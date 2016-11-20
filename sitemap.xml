@@ -5,63 +5,70 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://driewe.github.io/</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/archives.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/tags.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/categories.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/pages/classes.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/pages/contact.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/pages/hacker-stars.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/pages/meetups.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://driewe.github.io/pages/tutorials.html</loc>
-<lastmod>2016-11-20T14:53:11-00:00</lastmod>
+<lastmod>2016-11-20T15:53:49-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://driewe.github.io/ldr-light-sensor-tutorial.html</loc>
+<lastmod>2016-11-20T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -306,7 +313,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://driewe.github.io/category/blog.html</loc>
-<lastmod>2016-11-14T00:00:00-05:51</lastmod>
+<lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -335,6 +342,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://driewe.github.io/tag/infrared.html</loc>
 <lastmod>2015-11-28T00:00:00-05:51</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://driewe.github.io/tag/ldr.html</loc>
+<lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -376,7 +390,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://driewe.github.io/tag/arduino.html</loc>
-<lastmod>2016-11-14T00:00:00-05:51</lastmod>
+<lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -390,7 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://driewe.github.io/tag/tutorials.html</loc>
-<lastmod>2016-11-12T00:00:00-05:51</lastmod>
+<lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -410,8 +424,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://driewe.github.io/tag/rfid.html</loc>
-<lastmod>2016-11-14T00:00:00-05:51</lastmod>
+<loc>https://driewe.github.io/tag/processing.html</loc>
+<lastmod>2016-11-12T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -419,6 +433,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://driewe.github.io/tag/led.html</loc>
 <lastmod>2015-11-21T20:49:00-05:51</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://driewe.github.io/tag/7-segment-display.html</loc>
+<lastmod>2016-02-12T12:53:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -438,8 +459,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://driewe.github.io/tag/processing.html</loc>
-<lastmod>2016-11-12T00:00:00-05:51</lastmod>
+<loc>https://driewe.github.io/tag/rfid.html</loc>
+<lastmod>2016-11-14T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -515,8 +536,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://driewe.github.io/tag/7-segment-display.html</loc>
-<lastmod>2016-02-12T12:53:00-05:51</lastmod>
+<loc>https://driewe.github.io/tag/light-sensor.html</loc>
+<lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -558,7 +579,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://driewe.github.io/author/blaz-pongrac.html</loc>
-<lastmod>2016-11-14T00:00:00-05:51</lastmod>
+<lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
