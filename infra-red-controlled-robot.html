@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Infra Red Controlled Robot - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/infra-red-controlled-robot.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,Robot,infrared,Tutorials" />
+        <meta name="description" content="This is the first experiment I tried with the board of education arduuino robot shield. The experiment involves using Ken Shirrifs IR Library along with any IR Receiver. In order to use this example you will first need to determine what the IR codes are for the transmitter you wish ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Infra Red Controlled Robot"/>
+        <meta property="og:url" content="https://driewe.github.io/infra-red-controlled-robot.html"/>
+        <meta property="og:description" content="This is the first experiment I tried with the board of education arduuino robot shield. The experiment involves using Ken Shirrifs IR Library along with any IR Receiver. In order to use this example you will first need to determine what the IR codes are for the transmitter you wish ..."/>
+        <meta property="article:published_time" content="2015-11-02" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Robot" />
+            <meta property="article:tag" content="infrared" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/infra-red-controlled-robot.html"
+                       rel="bookmark"
+                       title="Permalink to Infra Red Controlled Robot">
+                        Infra Red Controlled Robot
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-11-02T00:00:00-06:00"> Mon 02 November 2015</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/robot.html">Robot</a>
+        /
+	<a href="https://driewe.github.io/tag/infrared.html">infrared</a>
+        /
+	<a href="https://driewe.github.io/tag/tutorials.html">Tutorials</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This is the first experiment I tried with the board of education arduuino robot shield.  The experiment involves using <a href="https://github.com/z3t0/Arduino-IRremote">Ken Shirrifs IR Library</a> along with any IR Receiver.  In order to use this example you will first need to determine what the IR codes are for the transmitter you wish to use.  The examples/IRrecvDemo sketch in the library provides a simple example of how to receive codes.  See <a href="http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html">Kens Blog</a> for more info.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fsBSJAT_SEQ" frameborder="0" allowfullscreen></iframe>
+
+<p>The motors on the robot are 360 degree servos that are controlled by sending them a digital pulse ranging in duration from 1300 to 1700 microseconds every 20milliseconds.  The width of the pulse determines the speed and direction they rotate.  1500 would be no motion at all, 1300 full speed counter clockwise and 1700 full speed counter clockwise.  While this is modifying the width of the pulse it is not the same as the PWM functions found in the Arduino library.</p>
+<p>When polling for commands from the IR receiver I found that that this particular remote requires me give it at least 175 ms before attempting to read its next transmission.   That, combined with the IR remote being single channel makes for a choppy RC because within 200 ms the servos have already repeated the last command 10 times.</p>
+<p>Oh and if you are wondering why no beeping from the Robot it is because the tone function is unable to access TIMER2 because it is being used by the IR Library   The servo library uses TIMER1.</p>
+<p><a href="https://github.com/driewe/RemoteControlRobotIR/blob/master/sourcecode/RemoteRobotWithFunctions.ino">Source Code</a></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Remote control Robot</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;IRremote.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Servo.h&gt; </span><span class="cp"></span>
+
+
+<span class="kt">int</span> <span class="n">RECV_PIN</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="cm">/* this is for the old clarion remote controller I am using</span>
+<span class="cm"> * the button names correspond with the names on the controller</span>
+<span class="cm"> * but not with the function I will be using them for.  Hence</span>
+<span class="cm"> * names like &quot;backbutton&quot; for what will be used to command</span>
+<span class="cm"> * the robot to turn left</span>
+<span class="cm"> */</span>
+
+<span class="k">const</span> <span class="kt">long</span> <span class="n">backbutton</span> <span class="o">=</span> <span class="mh">0x6106C03F</span><span class="p">;</span>     <span class="c1">// Turn Left</span>
+<span class="k">const</span> <span class="kt">long</span> <span class="n">uparrow</span> <span class="o">=</span> <span class="mh">0x6106D827</span><span class="p">;</span>        <span class="c1">// Forward</span>
+<span class="k">const</span> <span class="kt">long</span> <span class="n">menu</span> <span class="o">=</span> <span class="mh">0x6106D02F</span><span class="p">;</span>           <span class="c1">// Turn Right</span>
+<span class="k">const</span> <span class="kt">long</span> <span class="n">leftarrow</span> <span class="o">=</span> <span class="mh">0x61066897</span><span class="p">;</span>  <span class="c1">// Spin Left</span>
+<span class="k">const</span> <span class="kt">long</span> <span class="n">ok</span> <span class="o">=</span> <span class="mh">0x610610EF</span><span class="p">;</span>         <span class="c1">// pause</span>
+<span class="k">const</span> <span class="kt">long</span> <span class="n">rightarrow</span> <span class="o">=</span> <span class="mh">0x6106E817</span><span class="p">;</span> <span class="c1">// Spin Right</span>
+<span class="k">const</span> <span class="kt">long</span> <span class="n">downarrow</span> <span class="o">=</span> <span class="mh">0x6106B847</span><span class="p">;</span>  <span class="c1">// backwards</span>
+
+<span class="n">IRrecv</span> <span class="nf">irrecv</span><span class="p">(</span><span class="n">RECV_PIN</span><span class="p">);</span>
+<span class="n">decode_results</span> <span class="n">results</span><span class="p">;</span>
+<span class="n">Servo</span> <span class="n">servoLeft</span><span class="p">;</span>        <span class="c1">// Declare Left Servo</span>
+<span class="n">Servo</span> <span class="n">servoRight</span><span class="p">;</span>       <span class="c1">// Declare Right Servo</span>
+<span class="kt">int</span> <span class="n">lastcommand</span><span class="p">;</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+  <span class="n">irrecv</span><span class="p">.</span><span class="n">enableIRIn</span><span class="p">();</span> <span class="c1">// Start the receiver</span>
+  <span class="n">servoLeft</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+  <span class="n">servoRight</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+  <span class="n">servoLeft</span><span class="p">.</span><span class="n">writeMicroseconds</span><span class="p">(</span><span class="mi">1500</span><span class="p">);</span>
+  <span class="n">servoRight</span><span class="p">.</span><span class="n">writeMicroseconds</span><span class="p">(</span><span class="mi">1500</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">irrecv</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">results</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="n">HEX</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">backbutton</span><span class="p">)</span>    <span class="c1">// Turn Left</span>
+    <span class="p">{</span>
+      <span class="n">TurnLeft</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+    <span class="p">}</span> 
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">uparrow</span><span class="p">)</span>  <span class="c1">// Move Forward, ramp </span>
+    <span class="p">{</span>
+      <span class="n">MoveForward</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span> 
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">menu</span><span class="p">)</span>    <span class="c1">// Turn Right</span>
+    <span class="p">{</span>
+      <span class="n">TurnRight</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">leftarrow</span><span class="p">)</span>  <span class="c1">// Spin Left</span>
+    <span class="p">{</span>
+      <span class="n">SpinLeft</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">ok</span><span class="p">)</span>   <span class="c1">// do nothing</span>
+    <span class="p">{</span>
+      <span class="n">StayStill</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rightarrow</span><span class="p">)</span>   <span class="c1">// Spin right</span>
+    <span class="p">{</span>
+      <span class="n">SpinRight</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">downarrow</span><span class="p">)</span>   <span class="c1">// move backwards</span>
+    <span class="p">{</span>
+      <span class="n">MoveBackwards</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> 
+  <span class="k">else</span> 
+  <span class="p">{</span>
+    <span class="n">StayStill</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">irrecv</span><span class="p">.</span><span class="n">resume</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">MoveForward</span><span class="p">(</span><span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">msTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">MoveBackwards</span><span class="p">(</span><span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="n">msTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">SpinRight</span><span class="p">(</span><span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="n">msTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">TurnRight</span><span class="p">(</span><span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">msTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">StayStill</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">SpinLeft</span><span class="p">(</span><span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">msTime</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">TurnLeft</span><span class="p">(</span><span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">maneuver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">msTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">maneuver</span><span class="p">(</span><span class="kt">int</span> <span class="n">speedLeft</span><span class="p">,</span> <span class="kt">int</span> <span class="n">speedRight</span><span class="p">,</span> <span class="kt">int</span> <span class="n">msTime</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// speedLeft, speedRight ranges: Backward  Linear  Stop  Linear   Forward</span>
+  <span class="c1">//                               -200      -100......0......100       200</span>
+  <span class="n">servoLeft</span><span class="p">.</span><span class="n">writeMicroseconds</span><span class="p">(</span><span class="mi">1500</span> <span class="o">+</span> <span class="n">speedLeft</span><span class="p">);</span>   <span class="c1">// Set Left servo speed</span>
+  <span class="n">servoRight</span><span class="p">.</span><span class="n">writeMicroseconds</span><span class="p">(</span><span class="mi">1500</span> <span class="o">-</span> <span class="n">speedRight</span><span class="p">);</span> <span class="c1">// Set right servo speed</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">msTime</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>                                   <span class="c1">// if msTime = -1</span>
+  <span class="p">{</span>
+    <span class="n">servoLeft</span><span class="p">.</span><span class="n">detach</span><span class="p">();</span>                            <span class="c1">// Stop servo signals</span>
+    <span class="n">servoRight</span><span class="p">.</span><span class="n">detach</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">delay</span><span class="p">(</span><span class="n">msTime</span><span class="p">);</span>                                   <span class="c1">// Delay for msTime</span>
+<span class="p">}</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+        <li><a href="https://driewe.github.io/playing-music-with-remote-control.html">Playing Music With Remote Control</a></li>
+        <li><a href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
+        <li><a href="https://driewe.github.io/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="https://driewe.github.io/matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+        <li><a href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
+        <li><a href="https://driewe.github.io/max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

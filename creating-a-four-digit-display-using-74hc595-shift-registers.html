@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Creating a Four Digit Display Using 74HC595 Shift Registers - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,Shift Registers,Tutorials" />
+        <meta name="description" content="My last experiment was with the three 74HC595s I was using to create the Knightrider effect on 24 leds. In this experiment I am going to add another 74HC595 and use all four to control four common-cathode seven-segment LED displays. To duplicate this setup you will need the following hardware ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Creating a Four Digit Display Using 74HC595 Shift Registers"/>
+        <meta property="og:url" content="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html"/>
+        <meta property="og:description" content="My last experiment was with the three 74HC595s I was using to create the Knightrider effect on 24 leds. In this experiment I am going to add another 74HC595 and use all four to control four common-cathode seven-segment LED displays. To duplicate this setup you will need the following hardware ..."/>
+        <meta property="article:published_time" content="2015-11-17" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Shift Registers" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html"
+                       rel="bookmark"
+                       title="Permalink to Creating a Four Digit Display Using 74HC595 Shift Registers">
+                        Creating a Four Digit Display Using 74HC595 Shift Registers
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-11-17T15:09:00-06:00"> Tue 17 November 2015</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/shift-registers.html">Shift Registers</a>
+        /
+	<a href="https://driewe.github.io/tag/tutorials.html">Tutorials</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="Four Digit Display" src="/images/4digitdisplay.jpg" /></p>
+<p>My last experiment was with the three 74HC595s I was using to create the <a href="http://www.davidriewe.com/2015/11/playing-night-rider-with-three-74hc595s.html">Knightrider effect on 24 leds</a>. In this experiment I am going to add another 74HC595 and use all four to control four <a href="http://www.amazon.com/gp/product/B00EZBGA4U/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00EZBGA4U&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=N4SQMHQ5APJZRJSR">common-cathode seven-segment LED displays</a>.</p>
+<p>To duplicate this setup you will need the following hardware:</p>
+<ul>
+<li>Four <a href="http://www.amazon.com/gp/product/B00HPPOXM4/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HPPOXM4&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=WWQH7P2J577AJD4Y">74HC595 shift registers</a></li>
+<li>Four <a href="http://www.amazon.com/gp/product/B00EZBGA4U/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00EZBGA4U&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=N4SQMHQ5APJZRJSR">common-cathode seven-segment LED displays</a></li>
+<li>Thirty Two 560 Ohm Resistors.</li>
+<li>A large breadboard or several small ones connected together</li>
+<li>Various connecting wires</li>
+<li>Arduino UNO</li>
+</ul>
+<p><strong>Connections from Arduino in my setup</strong></p>
+<p>Pin 12 of the Arduino goes to pin 5 (the latch pin) on all of the 74HC595 shift registers.  When data is shifted out in serial to the shift registers this pin is first taken low then brought back high once the data has been shifted out and needs to be presented to the outputs of the shift registers.</p>
+<p>Pin 11 of the Arduino goes to pin 6 on all of the 74HC595 shift registers. This pin is clocked for each bit that is shifted in.  This pin is used by the ShiftOut() library function to clock data into the shift registers.</p>
+<p>Pin 14 of the Arduino is being used as the Serial Data Input to the
+shift registers.</p>
+<p>In order for the serial data to flow to all four of the shift regisers,
+pin 9 of shift register 1 (my least significant digit, holding the ones
+position) will connect to pin 14 of shift register 2 (digit holding the
+10's position).  Pin 9 of shift register 2 will feed into pin 14 of
+shift register 3 (100's digit) and pin 9 of shift register 3 will feed
+into pin 14 of shift register 4 (1,000's digit).</p>
+<p>Anytime I update the display it will involve four calls to the
+<code>ShiftOut()</code> routine:</p>
+<div class="highlight"><pre><span></span>digitalWrite(latchPin, LOW);
+shiftOut(dataPin, clockPin, LSBFIRST, digits[digit3]); 
+shiftOut(dataPin, clockPin, LSBFIRST, digits[digit2]);
+shiftOut(dataPin, clockPin, LSBFIRST, digits[digit1]);
+shiftOut(dataPin, clockPin, LSBFIRST, digits[digit0]);
+digitalWrite(latchPin, HIGH);
+</pre></div>
+
+
+<p><strong>Connections to 7 Segment Display</strong></p>
+<p>LED pins A through G connect to pins Q0 through Q6 and DP connects to Q7
+via current limiting resistors</p>
+<p><img alt="7seg" src="/images/7-seg-disp-cc.png" />
+<img alt="74HC595 Pinout" src="/images/595pinout.png" /></p>
+<p><strong>Wiring the Display </strong></p>
+<p>Each 7  segment display is going to have 8 resistors associated with it. I placed those 8 above the display on the breadboard and connected them
+to the 7 segment in the following order:</p>
+<p>DP (pin5), G (pin 10), F (pin9), E (pin 1), D (pin 2), C (pin 4), B (pin
+6), A (pin 7).</p>
+<p>Once I completed that wiring you might consider applying power to the
+board and testing by jumpering  5 volts to each resistor and confirming
+that the appropriate segment lights on your display.</p>
+<p>Now that the resistors are in place and connected to the 7 segment
+displays you can connect the shift registers.  Each 7 segment display is
+being driven by it's own shift register.  Following the order laid out
+for the 7 segment display you will connect Q7 to the resistor on DP, Q6
+to the resistor on G, Q5 to F, Q4 to E, Q3 to D, Q2 to C, Q1 to B and Q0
+to A.</p>
+<p>NOTE: A more practical way to have a 7 segment display would be using
+an <a href="http://www.amazon.com/gp/product/B00GJRW0DS/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00GJRW0DS&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=YAKLXTLW2R7AWSXL">Adafruit 0.56 4-digit 7-Segment Display w/I2C backpack</a> and only using two pins on the Arduino.  The backpack also multiplexes the displays so the current requirements are much lower.  This experiment is an exercise in using the shift registers that were already breadboarded. Here is a video of the display counting 0 through 13,000 with no delay between counts.  Once the count goes over 9,999 it will display dashes.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QhiC4AuJpJk" frameborder="0" allowfullscreen></iframe>
+
+<p>Here is the code I use to test the display.  I have it display dashes if
+the number is above 9,999, or out of range:</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+        <li><a href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
+        <li><a href="https://driewe.github.io/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="https://driewe.github.io/matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+        <li><a href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
+        <li><a href="https://driewe.github.io/max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+        <li><a href="https://driewe.github.io/multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
+        <li><a href="https://driewe.github.io/understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

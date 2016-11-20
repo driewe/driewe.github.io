@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Matrix keypad with 7 segment display - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/matrix-keypad-with-7-segment-display.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="This mini project shows you how to read a 3x4 matrix keypad and display the results on a 7 segment display via a 74HC595 serial to parallel shift register. Hardware Arduino Adafruits Membrane 3x4 Matrix Keypad 7 Seg LCD Display (common cathode is what I used) 74HC595 330 resistor hookup ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Matrix keypad with 7 segment display"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/matrix-keypad-with-7-segment-display.html"/>
+    <meta property="og:description" content="This mini project shows you how to read a 3x4 matrix keypad and display the results on a 7 segment display via a 74HC595 serial to parallel shift register. Hardware Arduino Adafruits Membrane 3x4 Matrix Keypad 7 Seg LCD Display (common cathode is what I used) 74HC595 330 resistor hookup ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Matrix keypad with 7 segment display</h1>
+        
+        <div class="entry-content">
+            <p>This mini project shows you how to read a 3x4 matrix keypad and display the results on a 7 segment display via a 74HC595 serial to parallel shift register.<br />
+<br />
+<span style="font-size: large;">Hardware</span><br />
+<br />
+<ul>
+<li>Arduino</li>
+<li>Adafruits&nbsp;<a href="https://www.adafruit.com/products/419" rel="nofollow" target="_blank">Membrane 3x4 Matrix Keypad</a></li>
+<li>7 Seg LCD Display (common cathode is what I used)</li>
+<li>74HC595</li>
+<li>330 resistor</li>
+<li>hookup wire</li>
+<li>breadboard</li>
+</ul>
+<div>
+<span style="font-size: large;">Circuit:</span></div>
+<div>
+<br /></div>
+<div>
+Connect the keypad to the Arduino to match this image</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-oAeRkRoWcJ8/Vv6yVpZrilI/AAAAAAAAs4I/rBNgSZys6K83g_nvhgFPSZRCCEpw3TiPg/s1600/membranekeypad34arduino_LRG.jpg" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="491" src="https://2.bp.blogspot.com/-oAeRkRoWcJ8/Vv6yVpZrilI/AAAAAAAAs4I/rBNgSZys6K83g_nvhgFPSZRCCEpw3TiPg/s640/membranekeypad34arduino_LRG.jpg" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<span style="font-size: large;">Connecting up the 74HC595</span></div>
+<br />
+<br />
+<b>Make the following connections:</b><br />
+GND (pin 8) to ground,<br />
+Vcc (pin 16) to 5V<br />
+OE (pin 13) to ground<br />
+MR (pin 10) to 5V<br />
+<br />
+This set up makes all of the output pins active and addressable all the time. The one flaw of this set up is that you end up with the lights turning on to their last state or something arbitrary every time you first power up the circuit before the program starts to run. You can get around this by controlling the MR and OE pins from your Arduino board too, but this way will work and leave you with more open pins.<br />
+<div>
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-7ZmCGxtJKFk/Vv6zgaKQR3I/AAAAAAAAs4U/APX-pkLAYKsbylyTdJyt9HkfzY80TSfhA/s1600/ShftOutExmp1_1.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="377" src="https://1.bp.blogspot.com/-7ZmCGxtJKFk/Vv6zgaKQR3I/AAAAAAAAs4U/APX-pkLAYKsbylyTdJyt9HkfzY80TSfhA/s640/ShftOutExmp1_1.gif" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<br />
+<span style="font-size: large;">Arduino Connections to 74HC595</span><br />
+<div>
+<br /></div>
+<div>
+DS (pin 14) to Ardunio DigitalPin 11 (blue wire)<br />
+SH_CP (pin 11) to to Ardunio DigitalPin 10 (yellow wire)<br />
+ST_CP (pin 12) to Ardunio DigitalPin 9 (green wire)<br />
+<br />
+From now on those will be refered to as the dataPin, the clockPin and the latchPin respectively. Notice the 0.1"f capacitor on the latchPin, if you have some flicker when the latch pin pulses you can use a capacitor to even it out.<a href="https://1.bp.blogspot.com/-sO6Hv1m58Bg/Vv61KoQdZ3I/AAAAAAAAs4g/FXZf6S7Dq7YdkX_f9gSkgTNX2es-vgl7w/s1600/ShftOutExmp1_2.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" height="334" src="https://1.bp.blogspot.com/-sO6Hv1m58Bg/Vv61KoQdZ3I/AAAAAAAAs4g/FXZf6S7Dq7YdkX_f9gSkgTNX2es-vgl7w/s640/ShftOutExmp1_2.gif" width="640" /></a><br />
+<br />
+<span style="font-size: large;">Connecting 7 Seg Dispay to 74HC595</span><br />
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+I used a common cathode seven segment display which means the middle pin on the top (pin 9) and bottom (pin 3) of the display would be connected to ground via a 220ohm current limiting resistor (pins 3 and 9). &nbsp;Starting with D0 of the 74HC595 (pin 15) I connected to the dot segment on the 7 segment display, and followed around connecting D2 - D7 to the remaining segments.</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+I use trial and error to figure out what my bit map would be. &nbsp;You can look at the symbols array in the code and compare the bits being turned on with the segments that it takes to make that number. &nbsp;For example. &nbsp;to display a character number 1 on a seven segment display we need to turn on segments 'c' and 'b'. &nbsp;The bit pattern to do that is B00010010, so we can conclude that D1 connects to the c segment and D4 to the b (notice when making a 6 that D4 is off while D1 is on, that is how I knew D1 connects to the c segment and b to the D4)</div>
+<div>
+<div>
+<br /></div>
+<div>
+<div>
+<br /></div>
+<div>
+<span style="font-size: large;">Code</span></div>
+<div>
+<br /></div></p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;Arduino.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Keypad.h&quot;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="n">byte</span> <span class="n">ROWS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">//four rows</span>
+<span class="k">const</span> <span class="n">byte</span> <span class="n">COLS</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//three columns</span>
+<span class="kt">char</span> <span class="n">keys</span><span class="p">[</span><span class="n">ROWS</span><span class="p">][</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="p">{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="sc">&#39;2&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;5&#39;</span><span class="p">,</span> <span class="sc">&#39;6&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="sc">&#39;7&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="sc">&#39;*&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;#&#39;</span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">byte</span> <span class="n">rowPins</span><span class="p">[</span><span class="n">ROWS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span> <span class="c1">//connect to the row pinouts of the keypad</span>
+<span class="n">byte</span> <span class="n">colPins</span><span class="p">[</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span> <span class="c1">//connect to the column pinouts of the keypad</span>
+
+<span class="n">Keypad</span> <span class="n">keypad</span> <span class="o">=</span> <span class="n">Keypad</span><span class="p">(</span> <span class="n">makeKeymap</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">rowPins</span><span class="p">,</span> <span class="n">colPins</span><span class="p">,</span> <span class="n">ROWS</span><span class="p">,</span> <span class="n">COLS</span> <span class="p">);</span>
+
+<span class="c1">//Pin connected to latch pin (ST_CP) of 74HC595</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">latchPin</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="c1">//Pin connected to clock pin (SH_CP) of 74HC595</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">clockPin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="c1">////Pin connected to Data in (DS) of 74HC595</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">dataPin</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="n">byte</span> <span class="n">CHAR_COUNT</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="n">byte</span> <span class="n">symbols</span><span class="p">[</span><span class="n">CHAR_COUNT</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">B01111110</span><span class="p">,</span> <span class="c1">// 0</span>
+    <span class="n">B00010010</span><span class="p">,</span> <span class="c1">// 1</span>
+    <span class="n">B10111100</span><span class="p">,</span> <span class="c1">// 2</span>
+    <span class="n">B10110110</span><span class="p">,</span> <span class="c1">// 3</span>
+    <span class="n">B11010010</span><span class="p">,</span> <span class="c1">// 4</span>
+    <span class="n">B11100110</span><span class="p">,</span> <span class="c1">// 5</span>
+    <span class="n">B11101110</span><span class="p">,</span> <span class="c1">// 6</span>
+    <span class="n">B00110010</span><span class="p">,</span> <span class="c1">// 7</span>
+    <span class="n">B11111110</span><span class="p">,</span> <span class="c1">// 8</span>
+    <span class="n">B11110110</span>  <span class="c1">// 9</span>
+<span class="p">};</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//set pins to output because they are addressed in the main loop</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">latchPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">dataPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">clockPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">key</span> <span class="o">=</span> <span class="n">keypad</span><span class="p">.</span><span class="n">getKey</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">!=</span> <span class="n">NO_KEY</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">key</span><span class="o">-</span><span class="mi">48</span><span class="p">]);</span>
+        <span class="n">writeLeds</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">key</span> <span class="o">-</span> <span class="mi">48</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">writeLeds</span><span class="p">(</span><span class="n">byte</span> <span class="n">pattern</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// turn off the output so the pins don&#39;t light up</span>
+    <span class="c1">// while you&#39;re shifting bits:</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">latchPin</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+
+    <span class="c1">// shift the bits out:</span>
+    <span class="n">shiftOut</span><span class="p">(</span><span class="n">dataPin</span><span class="p">,</span> <span class="n">clockPin</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">pattern</span><span class="p">);</span>
+
+    <span class="c1">// turn on the output so the LEDs can light up:</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">latchPin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><span style="font-size: large;">Video</span><br />
+<br />
+<iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/lIJE86yvEU0" width="560"></iframe>
+</div>
+</div></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

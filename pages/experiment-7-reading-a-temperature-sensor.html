@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 7: Reading a Temperature Sensor - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-7-reading-a-temperature-sensor.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction A temperature sensor is exactly what it sounds like – a sensor used to measure ambient temperature. This particular sensor has three pins – a positive, a ground, and a signal. This is a linear temperature sensor. A change in temperature of one degree ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 7: Reading a Temperature Sensor"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-7-reading-a-temperature-sensor.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction A temperature sensor is exactly what it sounds like – a sensor used to measure ambient temperature. This particular sensor has three pins – a positive, a ground, and a signal. This is a linear temperature sensor. A change in temperature of one degree ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 7: Reading a Temperature Sensor</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+A temperature sensor is exactly what it sounds like – a sensor used to measure ambient temperature. This particular sensor has three pins – a positive, a ground, and a signal. This is a linear temperature sensor. A change in temperature of one degree centigrade is equal to a change of 10 millivolts at the sensor output.</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The TMP36 sensor has a nominal 750 mV at 25°C (about room temperature). In this circuit, you’ll learn how to integrate the temperature sensor with your RedBoard or Arduino Uno R3, and use the Arduino IDE’s serial monitor to display the temperature.</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">5x</span>&nbsp;Jumper Wires</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Temperature Sensor</li>
+</ul>
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 750px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<span style="box-sizing: border-box; font-weight: 700;">Please note: The temperature sensor can only be connected to a circuit in one direction. See below for the pin outs of the temperature sensor - TMP36</span></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/2/7/5/TMP_pinout_drawing.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="Temperature Sensor" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/2/7/5/TMP_pinout_drawing.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a>&nbsp;&lt;-</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_07_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_07_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Run the Sketch</h3>
+</div>
+</div>
+
+<div>
+<br /></div>
+
+<div class="highlight"><pre><span></span><span class="c">/*</span>
+<span class="c">SparkFun Inventor&#39;s Kit</span>
+<span class="c">Example sketch 07</span>
+
+<span class="c">TEMPERATURE SENSOR</span>
+
+<span class="c">  Use the &quot;serial monitor&quot; window to read a temperature sensor.</span>
+
+<span class="c">  The TMP36 is an easy-to-use temperature sensor that outputs</span>
+<span class="c">  a voltage that&#39;s proportional to the ambient temperature.</span>
+<span class="c">  You can use it for all kinds of automation tasks where you&#39;d</span>
+<span class="c">  like to know or control the temperature of something.</span>
+
+<span class="c">  More information on the sensor is available in the datasheet:</span>
+<span class="c">  http://dlnmh9ip6v2uc.cloudfront.net/datasheets/Sensors/Temp/TMP35_36_37.pdf</span>
+
+<span class="c">  Even more exciting, we&#39;ll start using the Arduino&#39;s serial port</span>
+<span class="c">  to send data back to your main computer! Up until now, we&#39;ve </span>
+<span class="c">  been limited to using simple LEDs for output. We&#39;ll see that</span>
+<span class="c">  the Arduino can also easily output all kinds of text and data.</span>
+
+<span class="c">Hardware connections:</span>
+
+<span class="c">  Be careful when installing the temperature sensor, as it is</span>
+<span class="c">  almost identical to the transistors! The one you want has </span>
+<span class="c">  a triangle logo and &quot;TMP&quot; in very tiny letters. The</span>
+<span class="c">  ones you DON&#39;T want will have &quot;222&quot; on them.</span>
+
+<span class="c">  When looking at the flat side of the temperature sensor</span>
+<span class="c">  with the pins down, from left to right the pins are:</span>
+<span class="c">  5V, SIGNAL, and GND.</span>
+
+<span class="c">  Connect the 5V pin to 5 Volts (5V).</span>
+<span class="c">  Connect the SIGNAL pin to ANALOG pin 0.</span>
+<span class="c">  Connect the GND pin to ground (GND).</span>
+
+<span class="c">This sketch was written by SparkFun Electronics,</span>
+<span class="c">with lots of help from the Arduino community.</span>
+<span class="c">This code is completely free for any use.</span>
+<span class="c">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="c">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="c">Version 2.0 6/2012 MDG</span>
+<span class="c">*/</span>
+
+<span class="o">//</span> <span class="nt">We</span><span class="s1">&#39;ll use analog input 0 to measure the temperature sensor&#39;</span><span class="nt">s</span>
+<span class="o">//</span> <span class="nt">signal</span> <span class="nt">pin</span><span class="o">.</span>
+
+<span class="nt">const</span> <span class="nt">int</span> <span class="nt">temperaturePin</span> <span class="o">=</span> <span class="nt">0</span><span class="o">;</span>
+
+
+<span class="nt">void</span> <span class="nt">setup</span><span class="o">()</span>
+<span class="p">{</span>
+  <span class="o">//</span> <span class="n">In</span> <span class="n">this</span> <span class="n">sketch</span><span class="o">,</span> <span class="n">we</span><span class="s1">&#39;ll use the Arduino&#39;</span><span class="n">s</span> <span class="n">serial</span> <span class="n">port</span>
+  <span class="o">//</span> <span class="n">to</span> <span class="n">send</span> <span class="nb">text</span> <span class="n">back</span> <span class="n">to</span> <span class="n">the</span> <span class="n">main</span> <span class="n">computer</span><span class="o">.</span> <span class="n">For</span> <span class="nb">both</span> <span class="n">sides</span> <span class="n">to</span>
+  <span class="o">//</span> <span class="n">communicate</span> <span class="n">properly</span><span class="o">,</span> <span class="n">they</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">same</span> <span class="n">speed</span><span class="o">.</span>
+  <span class="o">//</span> <span class="n">We</span> <span class="n">use</span> <span class="n">the</span> <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="n">function</span> <span class="n">to</span> <span class="n">initialize</span> <span class="n">the</span> <span class="n">port</span>
+  <span class="o">//</span> <span class="n">and</span> <span class="n">set</span> <span class="n">the</span> <span class="n">communications</span> <span class="n">speed</span><span class="o">.</span>
+
+  <span class="o">//</span> <span class="n">The</span> <span class="n">speed</span> <span class="n">is</span> <span class="n">measured</span> <span class="n">in</span> <span class="n">bits</span> <span class="n">per</span> <span class="n">second</span><span class="o">,</span> <span class="n">also</span> <span class="n">known</span> <span class="n">as</span>
+  <span class="o">//</span> <span class="s2">&quot;baud rate&quot;</span><span class="o">.</span> <span class="m">9600</span> <span class="n">is</span> <span class="n">a</span> <span class="n">very</span> <span class="n">commonly</span> <span class="n">used</span> <span class="n">baud</span> <span class="n">rate</span><span class="o">,</span>
+  <span class="o">//</span> <span class="n">and</span> <span class="n">will</span> <span class="n">transfer</span> <span class="n">about</span> <span class="m">10</span> <span class="n">characters</span> <span class="n">per</span> <span class="n">second</span><span class="o">.</span>
+
+  <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="m">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="nt">void</span> <span class="nt">loop</span><span class="o">()</span>
+<span class="p">{</span>
+  <span class="o">//</span> <span class="n">Up</span> <span class="n">to</span> <span class="n">now</span> <span class="n">we</span><span class="s1">&#39;ve only used integer (&quot;int&quot;) values in our</span>
+<span class="s1">  // sketches. Integers are always whole numbers (0, 1, 23, etc.).</span>
+<span class="s1">  // In this sketch, we&#39;</span><span class="n">ll</span> <span class="n">use</span> <span class="n">floating</span><span class="o">-</span><span class="n">point</span> <span class="n">values</span> <span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span><span class="o">.</span>
+  <span class="o">//</span> <span class="n">Floats</span> <span class="n">can</span> <span class="n">be</span> <span class="n">fractional</span> <span class="n">numbers</span> <span class="n">such</span> <span class="n">as</span> <span class="m">1</span><span class="o">.</span><span class="m">42</span><span class="o">,</span> <span class="m">2523</span><span class="o">.</span><span class="m">43121</span><span class="o">,</span> <span class="n">etc</span><span class="o">.</span>
+
+  <span class="o">//</span> <span class="n">We</span><span class="s1">&#39;ll declare three floating-point variables</span>
+<span class="s1">  // (We can declare multiple variables of the same type on one line:)</span>
+
+<span class="s1">  float voltage, degreesC, degreesF;</span>
+
+<span class="s1">  // First we&#39;</span><span class="n">ll</span> <span class="n">measure</span> <span class="n">the</span> <span class="n">voltage</span> <span class="n">at</span> <span class="n">the</span> <span class="n">analog</span> <span class="n">pin</span><span class="o">.</span> <span class="n">Normally</span>
+  <span class="o">//</span> <span class="n">we</span><span class="s1">&#39;d use analogRead(), which returns a number from 0 to 1023.</span>
+<span class="s1">  // Here we&#39;</span><span class="n">ve</span> <span class="n">written</span> <span class="n">a</span> <span class="n">function</span> <span class="p">(</span><span class="n">further</span> <span class="n">down</span><span class="p">)</span> <span class="n">called</span>
+  <span class="o">//</span> <span class="n">getVoltage</span><span class="p">()</span> <span class="n">that</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">true</span> <span class="n">voltage</span> <span class="p">(</span><span class="m">0</span> <span class="n">to</span> <span class="m">5</span> <span class="n">Volts</span><span class="p">)</span>
+  <span class="o">//</span> <span class="n">present</span> <span class="n">on</span> <span class="n">an</span> <span class="n">analog</span> <span class="n">input</span> <span class="n">pin</span><span class="o">.</span>
+
+  <span class="n">voltage</span> <span class="o">=</span> <span class="n">getVoltage</span><span class="p">(</span><span class="n">temperaturePin</span><span class="p">);</span>
+
+  <span class="o">//</span> <span class="n">Now</span> <span class="n">we</span><span class="s1">&#39;ll convert the voltage to degrees Celsius.</span>
+<span class="s1">  // This formula comes from the temperature sensor datasheet:</span>
+
+<span class="s1">  degreesC = (voltage - 0.5) * 100.0;</span>
+
+<span class="s1">  // While we&#39;</span><span class="n">re</span> <span class="n">at</span> <span class="n">it</span><span class="o">,</span> <span class="n">let</span><span class="s1">&#39;s convert degrees Celsius to Fahrenheit.</span>
+<span class="s1">  // This is the classic C to F conversion formula:</span>
+
+<span class="s1">  degreesF = degreesC * (9.0/5.0) + 32.0;</span>
+
+<span class="s1">  // Now we&#39;</span><span class="n">ll</span> <span class="n">use</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">port</span> <span class="n">to</span> <span class="n">print</span> <span class="n">these</span> <span class="n">values</span>
+  <span class="o">//</span> <span class="n">to</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">monitor</span><span class="o">!</span>
+
+  <span class="o">//</span> <span class="n">To</span> <span class="n">open</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">monitor</span> <span class="n">window</span><span class="o">,</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">code</span><span class="o">,</span>
+  <span class="o">//</span> <span class="n">then</span> <span class="n">click</span> <span class="n">the</span> <span class="s2">&quot;magnifying glass&quot;</span> <span class="n">button</span> <span class="n">at</span> <span class="n">the</span> <span class="nb">right</span> <span class="n">edge</span>
+  <span class="o">//</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Arduino</span> <span class="n">IDE</span> <span class="n">toolbar</span><span class="o">.</span> <span class="n">The</span> <span class="n">serial</span> <span class="n">monitor</span> <span class="n">window</span>
+  <span class="o">//</span> <span class="n">will</span> <span class="n">open</span><span class="o">.</span>
+
+  <span class="o">//</span> <span class="p">(</span><span class="n">NOTE</span><span class="o">:</span> <span class="n">remember</span> <span class="n">we</span> <span class="n">said</span> <span class="n">that</span> <span class="n">the</span> <span class="n">communication</span> <span class="n">speed</span>
+  <span class="o">//</span> <span class="n">must</span> <span class="n">be</span> <span class="n">the</span> <span class="n">same</span> <span class="n">on</span> <span class="nb">both</span> <span class="n">sides</span><span class="o">.</span> <span class="n">Ensure</span> <span class="n">that</span> <span class="n">the</span> <span class="n">baud</span> <span class="n">rate</span>
+  <span class="o">//</span> <span class="n">control</span> <span class="n">at</span> <span class="n">the</span> <span class="nb">bottom</span> <span class="n">of</span> <span class="n">the</span> <span class="n">window</span> <span class="n">is</span> <span class="n">set</span> <span class="n">to</span> <span class="m">9600</span><span class="o">.</span> <span class="n">If</span> <span class="n">it</span>
+  <span class="o">//</span> <span class="n">isn</span><span class="s1">&#39;t, change it to 9600.)</span>
+
+<span class="s1">  // Also note that every time you upload a new sketch to the</span>
+<span class="s1">  // Arduino, the serial monitor window will close. It does this</span>
+<span class="s1">  // because the serial port is also used to upload code!</span>
+<span class="s1">  // When the upload is complete, you can re-open the serial</span>
+<span class="s1">  // monitor window.</span>
+
+<span class="s1">  // To send data from the Arduino to the serial monitor window,</span>
+<span class="s1">  // we use the Serial.print() function. You can print variables</span>
+<span class="s1">  // or text (within quotes).</span>
+
+<span class="s1">  Serial.print(&quot;voltage: &quot;);</span>
+<span class="s1">  Serial.print(voltage);</span>
+<span class="s1">  Serial.print(&quot;  deg C: &quot;);</span>
+<span class="s1">  Serial.print(degreesC);</span>
+<span class="s1">  Serial.print(&quot;  deg F: &quot;);</span>
+<span class="s1">  Serial.println(degreesF);</span>
+
+<span class="s1">  // These statements will print lines of data like this:</span>
+<span class="s1">  // &quot;voltage: 0.73 deg C: 22.75 deg F: 72.96&quot;</span>
+
+<span class="s1">  // Note that all of the above statements are &quot;print&quot;, except</span>
+<span class="s1">  // for the last one, which is &quot;println&quot;. &quot;Print&quot; will output</span>
+<span class="s1">  // text to the SAME LINE, similar to building a sentence</span>
+<span class="s1">  // out of words. &quot;Println&quot; will insert a &quot;carriage return&quot;</span>
+<span class="s1">  // character at the end of whatever it prints, moving down</span>
+<span class="s1">  // to the NEXT line.</span>
+
+<span class="s1">  delay(1000); // repeat once per second (change as you wish!)</span>
+<span class="s1">}</span>
+
+
+<span class="s1">float getVoltage(int pin)</span>
+<span class="s1">{</span>
+<span class="s1">  // This function has one input parameter, the analog pin number</span>
+<span class="s1">  // to read. You might notice that this function does not have</span>
+<span class="s1">  // &quot;void&quot; in front of it; this is because it returns a floating-</span>
+<span class="s1">  // point value, which is the true voltage on that pin (0 to 5V).</span>
+
+<span class="s1">  // You can write your own functions that take in parameters</span>
+<span class="s1">  // and return values. Here&#39;</span><span class="n">s</span> <span class="n">how</span><span class="o">:</span>
+
+    <span class="o">//</span> <span class="n">To</span> <span class="n">take</span> <span class="n">in</span> <span class="n">parameters</span><span class="o">,</span> <span class="n">put</span> <span class="n">their</span> <span class="n">type</span> <span class="n">and</span> <span class="n">name</span> <span class="n">in</span> <span class="n">the</span>
+    <span class="o">//</span> <span class="n">parenthesis</span> <span class="n">after</span> <span class="n">the</span> <span class="n">function</span> <span class="n">name</span> <span class="p">(</span><span class="n">see</span> <span class="nb">above</span><span class="p">)</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span>
+    <span class="o">//</span> <span class="n">have</span> <span class="n">multiple</span> <span class="n">parameters</span><span class="o">,</span> <span class="n">separated</span> <span class="n">with</span> <span class="n">commas</span><span class="o">.</span>
+
+    <span class="o">//</span> <span class="n">To</span> <span class="n">return</span> <span class="n">a</span> <span class="n">value</span><span class="o">,</span> <span class="n">put</span> <span class="n">the</span> <span class="n">type</span> <span class="n">BEFORE</span> <span class="n">the</span> <span class="n">function</span> <span class="n">name</span>
+    <span class="o">//</span> <span class="p">(</span><span class="n">see</span> <span class="s2">&quot;float&quot;</span><span class="o">,</span> <span class="nb">above</span><span class="p">)</span><span class="o">,</span> <span class="n">and</span> <span class="n">use</span> <span class="n">a</span> <span class="n">return</span><span class="p">()</span> <span class="n">statement</span> <span class="n">in</span> <span class="n">your</span> <span class="n">code</span>
+    <span class="o">//</span> <span class="n">to</span> <span class="n">actually</span> <span class="n">return</span> <span class="n">the</span> <span class="n">value</span> <span class="p">(</span><span class="n">see</span> <span class="nb">below</span><span class="p">)</span><span class="o">.</span>
+
+    <span class="o">//</span> <span class="n">If</span> <span class="n">you</span> <span class="n">don</span><span class="s1">&#39;t need to get any parameters, you can just put</span>
+<span class="s1">    // &quot;()&quot; after the function name.</span>
+
+<span class="s1">    // If you don&#39;</span><span class="n">t</span> <span class="n">need</span> <span class="n">to</span> <span class="n">return</span> <span class="n">a</span> <span class="n">value</span><span class="o">,</span> <span class="n">just</span> <span class="n">write</span> <span class="s2">&quot;void&quot;</span> <span class="n">before</span>
+    <span class="o">//</span> <span class="n">the</span> <span class="n">function</span> <span class="n">name</span><span class="o">.</span>
+
+  <span class="o">//</span> <span class="n">Here</span><span class="s1">&#39;s the return statement for this function. We&#39;</span><span class="n">re</span> <span class="n">doing</span>
+  <span class="o">//</span> <span class="n">all</span> <span class="n">the</span> <span class="n">math</span> <span class="n">we</span> <span class="n">need</span> <span class="n">to</span> <span class="n">do</span> <span class="n">within</span> <span class="n">this</span> <span class="n">statement</span><span class="o">:</span>
+
+  <span class="n">return</span> <span class="p">(</span><span class="n">analogRead</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="o">*</span> <span class="m">0</span><span class="o">.</span><span class="m">004882814</span><span class="p">);</span>
+
+  <span class="o">//</span> <span class="n">This</span> <span class="n">equation</span> <span class="n">converts</span> <span class="n">the</span> <span class="m">0</span> <span class="n">to</span> <span class="m">1023</span> <span class="n">value</span> <span class="n">that</span> <span class="n">analogRead</span><span class="p">()</span>
+  <span class="o">//</span> <span class="n">returns</span><span class="o">,</span> <span class="n">into</span> <span class="n">a</span> <span class="m">0</span><span class="o">.</span><span class="m">0</span> <span class="n">to</span> <span class="m">5</span><span class="o">.</span><span class="m">0</span> <span class="n">value</span> <span class="n">that</span> <span class="n">is</span> <span class="n">the</span> <span class="n">true</span> <span class="n">voltage</span>
+  <span class="o">//</span> <span class="n">being</span> <span class="n">read</span> <span class="n">at</span> <span class="n">that</span> <span class="n">pin</span><span class="o">.</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="nt">Other</span> <span class="nt">things</span> <span class="nt">to</span> <span class="nt">try</span> <span class="nt">with</span> <span class="nt">this</span> <span class="nt">code</span><span class="o">:</span>
+
+<span class="o">//</span>   <span class="nt">Turn</span> <span class="nt">on</span> <span class="nt">an</span> <span class="nt">LED</span> <span class="nt">if</span> <span class="nt">the</span> <span class="nt">temperature</span> <span class="nt">is</span> <span class="nt">above</span> <span class="nt">or</span> <span class="nt">below</span> <span class="nt">a</span> <span class="nt">value</span><span class="o">.</span>
+
+<span class="o">//</span>   <span class="nt">Read</span> <span class="nt">that</span> <span class="nt">threshold</span> <span class="nt">value</span> <span class="nt">from</span> <span class="nt">a</span> <span class="nt">potentiometer</span> <span class="nt">-</span> <span class="nt">now</span> <span class="nt">you</span><span class="err">&#39;</span><span class="nt">ve</span>
+<span class="o">//</span>   <span class="nt">created</span> <span class="nt">a</span> <span class="nt">thermostat</span><span class="o">!</span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.begin(9600);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Before using the&nbsp;<a href="https://learn.sparkfun.com/tutorials/terminal-basics/arduino-serial-monitor-windows-mac-linux" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">serial monitor</a>, you must call&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.begin()</code>&nbsp;to initialize it. 9600 is the “baud rate”, or communications speed. When two devices are communicating with each other, both must be set to the same speed.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.print(degreesC);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The Serial.print() command is very smart. It can print out almost anything you can throw at it, including variables of all types, quoted text (AKA “strings”), etc. See&nbsp;<span style="box-sizing: border-box; font-weight: 700;">http://arduino.cc/en/serial/print</span>&nbsp;for more info.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.println(degreesF);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.print()</code>&nbsp;will print everything on the same line.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.println()</code>&nbsp;will move to the next line. By using both of these commands together, you can create easy-to-read printouts of text and data.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You should be able to read the temperature your temperature sensor is detecting on the serial monitor in the Arduino IDE. If it isn’t working, make sure you have assembled the circuit correctly and verified and uploaded the code to your board or see the troubleshooting section.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<span style="box-sizing: border-box; font-weight: 700;">Example of what you should see in the Arduino IDE’s serial monitor:</span></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 22.75 deg F: 72.96</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 22.75 deg F: 72.96</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 22.75 deg F: 72.96</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 22.75 deg F: 72.96</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 22.75 deg F: 72.96</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+voltage: 0.73 deg C: 23.24 deg F: 73.84</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Building climate control systems use a temperature sensor to monitor and maintain their settings.</div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_07_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_07_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Nothing Seems to Happen</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+This program has no outward indication it is working. To see the results you must open the Arduino IDE’s serial monitor (instructions on previous page).</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Gibberish is Displayed</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+This happens because the serial monitor is receiving data at a different speed than expected. To fix this, click the pull-down box that reads “*** baud” and change it to “9600 baud”.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Temperature Value is Unchanging</h4>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+Try pinching the sensor with your fingers to heat it up or pressing a bag of ice against it to cool it down.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin: 20px 0px 10px; position: relative;">
+Questions:</h3>
+<div>
+<ol>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">What voltage reading does the TMP36 sensor produce at&nbsp;</span></span><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">25°C?</span></li>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">What is the formula to convert&nbsp;Celsius&nbsp;to&nbsp;Fahrenheit&nbsp;?</span></span></li>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">Why do we use the "float" data type?</span></span></li>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">Why do we multiply the analog reading by&nbsp;0.004882814?</span></span></li>
+</ol>
+</div>
+</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-6-reading-photoresistor.html">**Experiment 6: Reading a Photoresistor**</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-8-driving-servo-motor.html">**Experiment 8: Driving a Servo Motor**</a></span></span></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><br /></span></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+<div>
+<br /></div>
+<div>
+<h2 style="color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

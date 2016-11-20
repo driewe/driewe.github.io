@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Virtual Color Mixer - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/virtual-color-mixer.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="keywords" content="Arduino,Programming,Tutorials,Processing" />
+        <meta name="description" content="This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch. Hardware Required Arduino or Genuino Board 3 Analog Sensors (potentiometer, photocell, FSR ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Virtual Color Mixer"/>
+        <meta property="og:url" content="https://driewe.github.io/virtual-color-mixer.html"/>
+        <meta property="og:description" content="This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch. Hardware Required Arduino or Genuino Board 3 Analog Sensors (potentiometer, photocell, FSR ..."/>
+        <meta property="article:published_time" content="2016-11-12" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Programming" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:tag" content="Processing" />
+            <meta property="article:author" content="Hacker Space Tech" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/virtual-color-mixer.html"
+                       rel="bookmark"
+                       title="Permalink to Virtual Color Mixer">
+                        Virtual Color Mixer
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-11-12T00:00:00-06:00"> Sat 12 November 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/hacker-space-tech.html"><i class="fa fa-user"></i> Hacker Space Tech</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/programming.html">Programming</a>
+        /
+	<a href="https://driewe.github.io/tag/tutorials.html">Tutorials</a>
+        /
+	<a href="https://driewe.github.io/tag/processing.html">Processing</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch.</p>
+<h4>Hardware Required</h4>
+<ul>
+<li>Arduino or Genuino Board</li>
+<li>3 Analog Sensors (potentiometer, photocell, FSR, etc.)</li>
+<li>3 10K ohm resistors</li>
+<li>hook-up wires</li>
+<li>breadboard</li>
+</ul>
+<h4>Software Required</h4>
+<ul>
+<li>Processing</li>
+</ul>
+<h4>Circuit</h4>
+<p>Connect analog sensors to analog input pins 0, 1, and 2.</p>
+<p>This circuit uses three voltage divider sub-circuits to generate analog voltages from the force-sensing resistors. a voltage divider has two resistors in series, dividing the voltage proportionally to their values.</p>
+<p><img alt="breadboard" src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" /></p>
+<h4>Schematic</h4>
+<p><img alt="circuit" src="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" /></p>
+<h4>Code</h4>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  This example reads three analog sensors (potentiometers are easiest)</span>
+<span class="cm"> and sends their values serially. The Processing and Max/MSP programs at the bottom</span>
+<span class="cm"> take those three values and use them to change the background color of the screen.</span>
+
+<span class="cm"> The circuit:</span>
+<span class="cm"> * potentiometers attached to analog inputs 0, 1, and 2</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/VirtualColorMixer</span>
+
+<span class="cm"> created 2 Dec 2006</span>
+<span class="cm"> by David A. Mellis</span>
+<span class="cm"> modified 30 Aug 2011</span>
+<span class="cm"> by Tom Igoe and Scott Fitzgerald</span>
+
+<span class="cm">  This example code is in the public domain.</span>
+<span class="cm"> */</span><span class="w"></span>
+
+const<span class="w"> </span>int<span class="w"> </span>redPin<span class="w"> </span><span class="o">=</span><span class="w"> </span>A0<span class="err">;</span><span class="w">      </span><span class="o">//</span><span class="w"> </span>sensor<span class="w"> </span><span class="kr">to</span><span class="w"> </span>control<span class="w"> </span>red<span class="w"> </span>color<span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>greenPin<span class="w"> </span><span class="o">=</span><span class="w"> </span>A1<span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>sensor<span class="w"> </span><span class="kr">to</span><span class="w"> </span>control<span class="w"> </span>green<span class="w"> </span>color<span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>bluePin<span class="w"> </span><span class="o">=</span><span class="w"> </span>A2<span class="err">;</span><span class="w">     </span><span class="o">//</span><span class="w"> </span>sensor<span class="w"> </span><span class="kr">to</span><span class="w"> </span>control<span class="w"> </span>blue<span class="w"> </span>color<span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>begin<span class="o">(</span><span class="m">9600</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>print<span class="o">(</span>analogRead<span class="o">(</span>redPin<span class="o">))</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>print<span class="o">(</span><span class="s">&quot;,&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>print<span class="o">(</span>analogRead<span class="o">(</span>greenPin<span class="o">))</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>print<span class="o">(</span><span class="s">&quot;,&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>println<span class="o">(</span>analogRead<span class="o">(</span>bluePin<span class="o">))</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="cm">/* Processing code for this example</span>
+
+<span class="cm">//  This example code is in the public domain.</span>
+
+<span class="cm">import processing.serial.*;</span>
+
+<span class="cm">float redValue = 0;        // red value</span>
+<span class="cm">float greenValue = 0;      // green value</span>
+<span class="cm">float blueValue = 0;       // blue value</span>
+
+<span class="cm">Serial myPort;</span>
+
+<span class="cm">void setup() {</span>
+<span class="cm">  size(200, 200);</span>
+
+<span class="cm">  // List all the available serial ports</span>
+<span class="cm">  // if using Processing 2.1 or later, use Serial.printArray()</span>
+<span class="cm">  println(Serial.list());</span>
+
+<span class="cm">  // I know that the first port in the serial list on my mac</span>
+<span class="cm">  // is always my  Arduino, so I open Serial.list()[0].</span>
+<span class="cm">  // Open whatever port is the one you&#39;re using.</span>
+<span class="cm">  myPort = new Serial(this, Serial.list()[0], 9600);</span>
+<span class="cm">  // don&#39;t generate a serialEvent() unless you get a newline character:</span>
+<span class="cm">  myPort.bufferUntil(&#39;\n&#39;);</span>
+<span class="cm">}</span>
+
+<span class="cm">void draw() {</span>
+<span class="cm">  // set the background color with the color values:</span>
+<span class="cm">  background(redValue, greenValue, blueValue);</span>
+<span class="cm">}</span>
+
+<span class="cm">void serialEvent(Serial myPort) {</span>
+<span class="cm">  // get the ASCII string:</span>
+<span class="cm">  String inString = myPort.readStringUntil(&#39;\n&#39;);</span>
+
+<span class="cm">  if (inString != null) {</span>
+<span class="cm">    // trim off any whitespace:</span>
+<span class="cm">    inString = trim(inString);</span>
+<span class="cm">    // split the string on the commas and convert the</span>
+<span class="cm">    // resulting substrings into an integer array:</span>
+<span class="cm">    float[] colors = float(split(inString, &quot;,&quot;));</span>
+<span class="cm">    // if the array has at least three elements, you know</span>
+<span class="cm">    // you got the whole thing.  Put the numbers in the</span>
+<span class="cm">    // color variables:</span>
+<span class="cm">    if (colors.length &gt;=3) {</span>
+<span class="cm">      // map them to the range 0-255:</span>
+<span class="cm">      redValue = map(colors[0], 0, 1023, 0, 255);</span>
+<span class="cm">      greenValue = map(colors[1], 0, 1023, 0, 255);</span>
+<span class="cm">      blueValue = map(colors[2], 0, 1023, 0, 255);</span>
+<span class="cm">    }</span>
+<span class="cm">  }</span>
+<span class="cm">}</span>
+
+<span class="cm"> */</span><span class="w"></span>
+</pre></div>
+
+
+<h4>Processing Code</h4>
+<p>Copy the Processing sketch from the code sample above. As you change the value of the analog sensors, the background color will change:</p>
+<p><img alt="Processing" src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer-output.png" /></p>
+<h4>Video Demonstration</h4>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/kPKBdf-KYZU" frameborder="0" allowfullscreen></iframe></p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
+        <li><a href="https://driewe.github.io/understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
+        <li><a href="https://driewe.github.io/switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+        <li><a href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
+        <li><a href="https://driewe.github.io/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="https://driewe.github.io/matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

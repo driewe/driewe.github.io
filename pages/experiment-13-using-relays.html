@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 13: Using Relays - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-13-using-relays.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit, we are going to use some of the lessons we learned in experiment 12 to control a relay. A relay is basically an electrically controlled mechanical switch. Inside that harmless looking plastic box is an electromagnet that, when it ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 13: Using Relays"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-13-using-relays.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit, we are going to use some of the lessons we learned in experiment 12 to control a relay. A relay is basically an electrically controlled mechanical switch. Inside that harmless looking plastic box is an electromagnet that, when it ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 13: Using Relays</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+In this circuit, we are going to use some of the lessons we learned in experiment 12 to control a relay. A relay is basically an electrically controlled mechanical switch. Inside that harmless looking plastic box is an electromagnet that, when it gets a jolt of energy, causes a switch to trip. In this circuit, you’ll learn how to control a relay like a pro – giving your Arduino even more powerful abilities!</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">2x</span>&nbsp;LEDs</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">2x</span>&nbsp;330Ω Resistors</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Relay (SPDT)</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Diode 1N4148</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;NPN Transistor</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">14x</span>&nbsp;Jumper Wires</li>
+</ul>
+<div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Suggested Reading</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Before continuing on with this experiment, we recommend you be familiar with the concepts in the following tutorial:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/switch-basics" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">Switch Basics</a></li>
+</ul>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 640px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_13_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_13_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em><br />
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: left;">
+Run the Sketch</h3>
+</div>
+</div>
+</div>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">SparkFun Inventor&#39;s Kit</span>
+<span class="cm">Example sketch 13</span>
+
+<span class="cm">RELAYS</span>
+
+<span class="cm">  Use a transistor to drive a relay</span>
+
+<span class="cm">  A relay is a electrically-controlled mechanical switch.</span>
+<span class="cm">  It can control much more voltage and current than an Arduino pin</span>
+<span class="cm">  (or the transistor included in your kit) can. If you want to use</span>
+<span class="cm">  the Arduino to control a 120V bulb, coffee maker, or other high-</span>
+<span class="cm">  power device, a relay is an excellent way to do that. Because</span>
+<span class="cm">  the relay needs more power to switch than an Arduino pin can</span>
+<span class="cm">  provide, we&#39;ll use a transistor to drive the relay in exactly</span>
+<span class="cm">  the same way we used a transistor to drive a motor in circuit 12.</span>
+
+<span class="cm">  A relay consists of a coil of wire, and switch contacts. When</span>
+<span class="cm">  you apply power to the coil, it becomes magnetized, and pulls</span>
+<span class="cm">  the switch contacts closed. Since the switch contacts are </span>
+<span class="cm">  completely isolated from the Arduino, you can safely use a</span>
+<span class="cm">  relay to control normally dangerous voltages (but please only do</span>
+<span class="cm">  this if you already know how to safely work with high voltage!).</span>
+
+<span class="cm">  The relay has three contact pins, COM (common), NC (Normally</span>
+<span class="cm">  Closed), and NO (Normally Open). When the relay is turned off,</span>
+<span class="cm">  the COM pin is connected to the NC (Normally Closed) pin. When</span>
+<span class="cm">  the relay is turned on, the COM pin is connected to the NO</span>
+<span class="cm">  (Normally Open) pin.</span>
+
+<span class="cm">  This code is very simple - it turns the relay on for one second,</span>
+<span class="cm">  and off for one second, the same as the blink sketch!</span>
+
+<span class="cm">Hardware connections:</span>
+
+<span class="cm">  Transistor:</span>
+
+<span class="cm">    The transistor has three pins. Looking at the flat side with</span>
+<span class="cm">    the pins down, the order is COLLECTOR, BASE, EMITTER.</span>
+
+<span class="cm">    Connect the BASE pin through a 1K resistor to digital pin 2.</span>
+
+<span class="cm">    Connect the EMITTER pin to GND.</span>
+
+<span class="cm">  Relay coil:</span>
+
+<span class="cm">    The relay has pins for a coil (which you use to control the</span>
+<span class="cm">    relay), and contacts (which you connect to the device you&#39;d</span>
+<span class="cm">    like to switch). The top or bottom of the relay should have</span>
+<span class="cm">    a symbol indicating the coil pins.</span>
+
+<span class="cm">    Connect one side of the coil to the COLLECTOR pin</span>
+<span class="cm">    on the transistor.</span>
+
+<span class="cm">    Connect other side of the coil to 5V.</span>
+
+<span class="cm">  Diode:</span>
+
+<span class="cm">    The relay has a coil that you energize to close the switch.</span>
+<span class="cm">    When you disconnect power from a coil, the coil will generate</span>
+<span class="cm">    a voltage spike that can damage the transistor. This diode</span>
+<span class="cm">    protects the transistor from the voltage spike.</span>
+
+<span class="cm">    Connect the side of the diode with the band (cathode) to 5V</span>
+
+<span class="cm">    Connect the other side of the diode (anode) to the COLLECTOR</span>
+<span class="cm">    pin of the transistor.</span>
+
+<span class="cm">  Relay contacts and LEDs:</span>
+
+<span class="cm">    We&#39;ll use the relay contacts to turn LEDs on and off, but you</span>
+<span class="cm">    can use them to switch almost anything on and off.</span>
+
+<span class="cm">    Connect the COMMON side of the switch to a 330 Ohm resistor.</span>
+<span class="cm">    Connect the other side of the above resistor to 5V.</span>
+
+<span class="cm">    Connect the NC (Normally Closed) side of the switch to the</span>
+<span class="cm">    positive (longer) leg of LED 1.</span>
+
+<span class="cm">    Connect the NO (Normally Open) side of the switch to the</span>
+<span class="cm">    positive (longer) leg of LED 2.</span>
+
+<span class="cm">    Connect the negative sides (shorter leg) of both LEDs to GND.</span>
+
+<span class="cm">This sketch was written by SparkFun Electronics,</span>
+<span class="cm">with lots of help from the Arduino community.</span>
+<span class="cm">This code is completely free for any use.</span>
+<span class="cm">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="cm">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="cm">Version 2.0 6/2012 MDG</span>
+<span class="cm">*/</span><span class="w"></span>
+
+
+const<span class="w"> </span>int<span class="w"> </span>relayPin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="err">;</span><span class="w">     </span><span class="o">//</span><span class="w"> </span>use<span class="w"> </span>this<span class="w"> </span>pin<span class="w"> </span><span class="kr">to</span><span class="w"> </span>drive<span class="w"> </span>the<span class="w"> </span>transistor<span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>timeDelay<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>delay<span class="w"> </span>in<span class="w"> </span>ms<span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="kr">on</span><span class="w"> </span>and<span class="w"> </span><span class="kr">off</span><span class="w"> </span>phases<span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span>make<span class="w"> </span>timeDelay<span class="w"> </span>shorter<span class="o">,</span><span class="w"> </span>but<span class="w"> </span>note<span class="w"> </span>that<span class="w"> </span>relays<span class="o">,</span><span class="w"> </span>being<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>mechanical<span class="w"> </span>devices<span class="o">,</span><span class="w"> </span>will<span class="w"> </span>wear<span class="w"> </span>out<span class="w"> </span>quickly<span class="w"> </span><span class="kr">if</span><span class="w"> </span>you<span class="w"> </span>try<span class="w"> </span><span class="kr">to</span><span class="w"> </span>drive<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>them<span class="w"> </span>too<span class="w"> </span>fast<span class="o">.</span><span class="w"></span>
+
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>relayPin<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>set<span class="w"> </span>pin<span class="w"> </span>as<span class="w"> </span>an<span class="w"> </span>output<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w">                    </span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>relayPin<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>the<span class="w"> </span>relay<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span>timeDelay<span class="o">)</span><span class="err">;</span><span class="w">              </span><span class="o">//</span><span class="w"> </span>wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>one<span class="w"> </span>second<span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>relayPin<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>the<span class="w"> </span>relay<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span>timeDelay<span class="o">)</span><span class="err">;</span><span class="w">              </span><span class="o">//</span><span class="w"> </span>wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>one<span class="w"> </span>second<span class="w"></span>
+<span class="err">}</span><span class="w"> </span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">digitalWrite(relayPin, HIGH);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+When we turn on the transistor, which in turn energizes the relay’s coil, the relay’s switch contacts are closed. This connects the relay’s COM pin to the NO (Normally Open) pin. Whatever you’ve connected using these pins will turn on. (Here we’re using LEDs, but this could be almost anything.)</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">digitalWrite(relayPin, LOW);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The relay has an additional contact called NC (Normally Closed). The NC pin is connected to the COM pin when the relay is OFF. You can use either pin depending on whether something should be normally on or normally off. You can also use both pins to alternate power to two devices, much like railroad crossing warning lights.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You should be able to hear the relay contacts click, and see the two LEDs alternate illuminating at 1-second intervals. If you don’t, double-check that you have assembled the circuit correctly, and uploaded the correct sketch to the board. Also, see the troubleshooting section.</div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_13_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_13_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Garage door openers use relays to operate. You might be able to hear the clicking if you listen closely.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+LEDs Not Lighting</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Double-check that you’ve plugged them in correctly. The longer lead (and non-flat edge of the plastic flange) is the positive lead.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+No Clicking Sound</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The transistor or coil portion of the circuit isn’t quite working. Check the transistor is plugged in the right way.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Not Quite Working</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The included relays are designed to be soldered rather than used in a breadboard. As such you may need to press it in to ensure it works (and it may pop out occasionally).</div>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+When you’re building the circuit be careful not to mix up the temperature sensor and the transistor, they’re almost identical.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-12-driving-motor.html">Experiment 12: Driving a Motor</a> -|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-14-using-shift-register.html">Experiment 14: Using a Shift Register</a></span></span></div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<br /></div>
+
+<div>
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

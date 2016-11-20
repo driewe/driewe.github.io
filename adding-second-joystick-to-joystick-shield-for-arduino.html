@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Adding Second Joystick to Joystick Shield for Arduino - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/adding-second-joystick-to-joystick-shield-for-arduino.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,Projects" />
+        <meta name="description" content="Added a second joystick to the shield and use one for forward/back motion and the other for turning. I find this setup gives better control. Jeff Branson, from Sparkfun, saw my project on facebook and suggested I submit it to Sparkfun to be added to their project section. I ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Adding Second Joystick to Joystick Shield for Arduino"/>
+        <meta property="og:url" content="https://driewe.github.io/adding-second-joystick-to-joystick-shield-for-arduino.html"/>
+        <meta property="og:description" content="Added a second joystick to the shield and use one for forward/back motion and the other for turning. I find this setup gives better control. Jeff Branson, from Sparkfun, saw my project on facebook and suggested I submit it to Sparkfun to be added to their project section. I ..."/>
+        <meta property="article:published_time" content="2015-12-28" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Projects" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/adding-second-joystick-to-joystick-shield-for-arduino.html"
+                       rel="bookmark"
+                       title="Permalink to Adding Second Joystick to Joystick Shield for Arduino">
+                        Adding Second Joystick to Joystick Shield for Arduino
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-12-28T22:40:00-06:00"> Mon 28 December 2015</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/projects.html">Projects</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="Joy Stick" src="/images/joystick.jpg" /></p>
+<p>Added a second joystick to the shield and use one for forward/back motion and the other for turning.  I find this setup gives better control.</p>
+<p>Jeff Branson, from Sparkfun, saw my project on facebook and suggested I submit it to Sparkfun to be added to their project section.  I said I would if I could get some better quality joysticks, like the ones Sparkfun sells :-). I should be receiving those this week and will build up a nicer version and also add some additonal control buttons.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nJLt0zrsFyk" frameborder="0" allowfullscreen></iframe>
+
+<p>Below is a video of me driving the redbot using the dual joystick conroller.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/htI5ImI3H18" frameborder="0" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IO01oVrnVDw" frameborder="0" allowfullscreen></iframe>
+
+<h2>Code for the redbot</h2>
+<div class="highlight"><pre><span></span><span class="cm">/*****************************************************************</span>
+<span class="cm">XBee_Remote_Control.ino</span>
+
+<span class="cm">*****************************************************************/</span>
+<span class="cp">#include</span> <span class="cpf">&lt;RedBot.h&gt;  // This line &quot;includes&quot; the RedBot library into your sketch.</span><span class="cp"></span>
+<span class="c1">// Provides special objects, methods, and functions for the RedBot.</span>
+<span class="n">RedBotMotors</span> <span class="n">motors</span><span class="p">;</span> <span class="c1">// Instantiate the motor control object. This only needs</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;notes.h&quot;  // Individual &quot;notes&quot; have been #defined in the notes.h tab to make</span><span class="cp"></span>
+<span class="c1">// playing sounds easier. noteC4, for example, is defined as 262, the</span>
+<span class="c1">// frequency for middle C. See the tab above?</span>
+
+<span class="n">RedBotSoftwareSerial</span> <span class="n">XBee</span><span class="p">;</span>  <span class="c1">// version of SoftwareSerial that will work with Redbot</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">buzzerPin</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">xval</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">yval</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">swval</span><span class="o">=</span><span class="mi">1023</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">leftmotorspeed</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">rightmotorspeed</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="n">temp</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize XBee Software Serial port. Make sure the baud</span>
+    <span class="c1">// rate matches your XBee setting (9600 is default).</span>
+    <span class="n">XBee</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">buzzerPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="c1">//  if (XBee.available())</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">XBee</span><span class="p">.</span><span class="n">available</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">xval</span> <span class="o">=</span> <span class="n">XBee</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+        <span class="n">yval</span> <span class="o">=</span> <span class="n">XBee</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+        <span class="n">swval</span> <span class="o">=</span> <span class="n">XBee</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+        <span class="c1">//xval = Serial.read();</span>
+        <span class="c1">//yval = Serial.read();</span>
+        <span class="c1">//swval = Serial.read();</span>
+
+        <span class="c1">//normalize the values to a 1 byte value</span>
+
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">xval</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="mi">255</span><span class="p">;</span>
+        <span class="n">xval</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="mi">1023</span><span class="p">;</span>
+
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">yval</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="mi">255</span><span class="p">;</span>
+        <span class="n">yval</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="mi">1023</span><span class="p">;</span>
+
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">swval</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="mi">255</span><span class="p">;</span>
+        <span class="n">swval</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="mi">1023</span><span class="p">;</span>
+
+        <span class="n">xval</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="o">-</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+        <span class="n">yval</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="o">-</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">swval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">XBee</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+    <span class="c1">//  playSmallWorld();</span>
+        <span class="n">blowhorn</span><span class="p">();</span>
+        <span class="n">XBee</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">xval</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">40</span> <span class="o">&amp;&amp;</span> <span class="n">xval</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">)</span>            <span class="c1">// If we are not turning</span>
+    <span class="p">{</span>                                       
+        <span class="k">if</span> <span class="p">((</span><span class="n">yval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">40</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">yval</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">))</span>    <span class="c1">// set motor speed</span>
+        <span class="p">{</span>
+            <span class="n">rightmotorspeed</span> <span class="o">=</span> <span class="n">yval</span><span class="p">;</span>
+            <span class="n">leftmotorspeed</span> <span class="o">=</span> <span class="o">-</span><span class="n">yval</span><span class="p">;</span> 
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">rightmotorspeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">leftmotorspeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&gt;</span><span class="mi">40</span><span class="p">)</span>  <span class="c1">// Turning Left, are we moving while turning left or </span>
+    <span class="p">{</span>                   <span class="c1">// spinning</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">yval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">40</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">yval</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">))</span> <span class="c1">// User is moving forward or backwards</span>
+        <span class="p">{</span>
+            <span class="n">rightmotorspeed</span> <span class="o">=</span> <span class="n">yval</span><span class="p">;</span>     <span class="c1">// drive right motor 100% forward</span>
+            <span class="n">leftmotorspeed</span> <span class="o">=</span> <span class="o">-</span><span class="n">yval</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>   <span class="c1">// runt left by slowing left wheel</span>
+        <span class="p">}</span>
+        <span class="k">else</span>                            <span class="c1">// spin</span>
+        <span class="p">{</span>
+            <span class="n">rightmotorspeed</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+            <span class="n">leftmotorspeed</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>            <span class="c1">// We are not going straight or turning left, must be right</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">yval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">40</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">yval</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">))</span>    <span class="c1">// user is moving forward or backwards</span>
+        <span class="p">{</span>
+            <span class="n">leftmotorspeed</span> <span class="o">=</span> <span class="o">-</span><span class="n">yval</span><span class="p">;</span>
+            <span class="n">rightmotorspeed</span> <span class="o">=</span> <span class="n">yval</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">rightmotorspeed</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span><span class="p">;</span>
+            <span class="n">leftmotorspeed</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">motors</span><span class="p">.</span><span class="n">rightMotor</span><span class="p">(</span><span class="n">rightmotorspeed</span><span class="p">);</span>
+    <span class="n">motors</span><span class="p">.</span><span class="n">leftMotor</span><span class="p">(</span><span class="n">leftmotorspeed</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">blowhorn</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">tone</span><span class="p">(</span><span class="n">buzzerPin</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>   <span class="c1">// Play a 1kHz tone on the pin number held in</span>
+    <span class="c1">//  the variable &quot;buzzerPin&quot;.</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">125</span><span class="p">);</span>   <span class="c1">// Wait for 125ms.</span>
+    <span class="n">noTone</span><span class="p">(</span><span class="n">buzzerPin</span><span class="p">);</span>   <span class="c1">// Stop playing the tone.</span>
+
+    <span class="n">tone</span><span class="p">(</span><span class="n">buzzerPin</span><span class="p">,</span> <span class="mi">2000</span><span class="p">);</span>  <span class="c1">// Play a 2kHz tone on the buzzer pin</span>
+
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>   <span class="c1">// delay for 1000 ms (1 second)</span>
+
+    <span class="n">noTone</span><span class="p">(</span><span class="n">buzzerPin</span><span class="p">);</span>       <span class="c1">// Stop playing the tone.</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">playSmallWorld</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// we use a custom function below called playNote([note],[duration])</span>
+    <span class="c1">// to play a note and delay a certain # of milliseconds.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Both notes and durations are #defined in notes.h -- WN = whole note,</span>
+    <span class="c1">// HN = half note, QN = quarter note, EN = eighth note, SN = sixteenth note.</span>
+    <span class="c1">//</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteG5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteG5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteG5</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">Rest</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteC6</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">Rest</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteD6</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteC6</span><span class="p">,</span> <span class="n">HN</span> <span class="o">+</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteC6</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteC6</span><span class="p">,</span> <span class="n">HN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteB5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteA5</span><span class="p">,</span> <span class="n">QN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteD5</span><span class="p">,</span> <span class="n">WN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteFs5</span><span class="p">,</span> <span class="n">WN</span><span class="p">);</span>
+    <span class="n">playNote</span><span class="p">(</span><span class="n">noteG5</span><span class="p">,</span> <span class="n">WN</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">playNote</span><span class="p">(</span><span class="kt">int</span> <span class="n">note</span><span class="p">,</span> <span class="kt">int</span> <span class="n">duration</span><span class="p">)</span>
+<span class="c1">// This custom function takes two parameters, note and duration to make playing songs easier.</span>
+<span class="c1">// Each of the notes have been #defined in the notes.h file. The notes are broken down by</span>
+<span class="c1">// octave and sharp (s) / flat (b).</span>
+<span class="p">{</span>
+    <span class="n">tone</span><span class="p">(</span><span class="n">buzzerPin</span><span class="p">,</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">duration</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Code for the JoyStick Controller</h2>
+<div class="highlight"><pre><span></span><span class="cm">/*****************************************************************</span>
+<span class="cm">XBee_Remote_Controller.ino</span>
+
+<span class="cm">*****************************************************************/</span>
+<span class="c1">// SoftwareSerial is used to communicate with the XBee</span>
+<span class="cp">#include</span> <span class="cpf">&lt;SoftwareSerial.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// XBee&#39;s DOUT (TX) is connected to pin 2 (Arduino&#39;s Software RX)</span>
+<span class="c1">// XBee&#39;s DIN (RX) is connected to pin 3 (Arduino&#39;s Software TX)</span>
+<span class="n">SoftwareSerial</span> <span class="nf">XBee</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// RX, TX</span>
+
+<span class="c1">//values read from joy stick i.e. (0-1023)</span>
+<span class="kt">int</span> <span class="n">xval</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">yval</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">swval</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">xval2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">yval2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">swval2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">temp</span><span class="p">;</span>
+
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">xpin</span> <span class="o">=</span> <span class="n">A1</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">ypin</span> <span class="o">=</span> <span class="n">A2</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">swpin</span> <span class="o">=</span> <span class="n">A0</span><span class="p">;</span>   <span class="c1">// this is the</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">xpin2</span> <span class="o">=</span> <span class="n">A4</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">ypin2</span> <span class="o">=</span> <span class="n">A5</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">swpin2</span> <span class="o">=</span> <span class="n">A3</span><span class="p">;</span>
+
+
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize XBee Software Serial port. Make sure the baud</span>
+    <span class="c1">// rate matches your XBee setting (9600 is default).</span>
+    <span class="n">XBee</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+
+    <span class="c1">// enable pull up on analog pins that are connected to the SEL output</span>
+    <span class="c1">// of the joystick</span>
+    <span class="c1">//digitalWrite(A0, HIGH);</span>
+    <span class="c1">//digitalWrite(A3, HIGH);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">xval</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">xpin</span><span class="p">);</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">xval</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="mi">1023</span><span class="p">;</span>
+    <span class="n">xval</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">*</span> <span class="n">temp</span><span class="p">;</span>
+
+    <span class="n">swval</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">swpin</span><span class="p">);</span>          <span class="c1">// only concered if swval is 0</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">swval</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">swval</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+
+    <span class="n">yval2</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">ypin2</span><span class="p">);</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">yval2</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="mi">1023</span><span class="p">;</span>
+    <span class="n">yval2</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">*</span> <span class="n">temp</span><span class="p">;</span>
+
+    <span class="n">swval2</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">swpin2</span><span class="p">);</span>
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">swval2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">swval2</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+
+
+    <span class="n">XBee</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">xval</span><span class="p">);</span>  <span class="c1">// This first code will be interpreted for steering</span>
+    <span class="n">XBee</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">yval2</span><span class="p">);</span>  <span class="c1">// motor drive</span>
+    <span class="n">XBee</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">swval</span><span class="p">);</span>
+
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;swval = &quot;</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">swval</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">swval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">delay</span><span class="p">(</span><span class="mi">600</span><span class="p">);</span>  <span class="c1">// horn was pressed, give user time to release&#39;</span>
+
+<span class="p">}</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/arduino-gps-clock.html">Arduino GPS Clock</a></li>
+        <li><a href="https://driewe.github.io/8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
+        <li><a href="https://driewe.github.io/playing-music-with-remote-control.html">Playing Music With Remote Control</a></li>
+        <li><a href="https://driewe.github.io/attendance-logger.html">Attendance Logger</a></li>
+        <li><a href="https://driewe.github.io/track-a-car-using-tiny-arduino-gps-with-sd-card.html">Track A Car Using Tiny Arduino GPS with SD Card</a></li>
+        <li><a href="https://driewe.github.io/nootropic-design-16x32-rgb-backpack-from-adafruit.html">Nootropic design 16x32 RGB backpack from Adafruit</a></li>
+        <li><a href="https://driewe.github.io/wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

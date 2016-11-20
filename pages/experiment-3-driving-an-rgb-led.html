@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 3: Driving an RGB LED - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-3-driving-an-rgb-led.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction You know what’s even more fun than a blinking LED? Changing colors with one LED. RGB, or red-green-blue, LEDs have three different color-emitting diodes that can be combined to create all sorts of colors. In this circuit, you’ll learn how ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 3: Driving an RGB LED"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-3-driving-an-rgb-led.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction You know what’s even more fun than a blinking LED? Changing colors with one LED. RGB, or red-green-blue, LEDs have three different color-emitting diodes that can be combined to create all sorts of colors. In this circuit, you’ll learn how ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 3: Driving an RGB LED</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You know what’s even more fun than a blinking LED? Changing colors with one LED. RGB, or red-green-blue, LEDs have three different color-emitting diodes that can be combined to create all sorts of colors. In this circuit, you’ll learn how to use an RGB LED to create unique color combinations. Depending on how bright each diode is, nearly any color is possible!</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;LED - RGB Common Cathode</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">3x</span>&nbsp;330Ω Resistors</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">5x</span>&nbsp;Jumper Wires</li>
+</ul>
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram and hookup table below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 650px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction. Polarized components are highlighted with a yellow warning triangle, in the table below.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_02_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_02_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em><br />
+<em style="box-sizing: border-box;"><br /></em>
+<br />
+<h4 style="box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px; text-align: start;">
+Hookup Table</h4>
+<table class="table table-bordered" style="border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 650px;"><tbody style="box-sizing: border-box;">
+<tr style="box-sizing: border-box;"><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Component</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">RedBoard or Arduino Uno R3</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th></tr>
+<tr align="center" class="warning" style="box-sizing: border-box;"><td class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">RGB LED&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">j2 (RED)</td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">j3 (GND)</td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">j4 (GREEN)</td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">j5 (BLUE)</td></tr>
+<tr align="center" style="box-sizing: border-box;"><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">330 Resistor</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">d2</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">f2</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">330 Resistor</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">d4</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">f4</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">330 Resistor</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">d5</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">f5</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td bgcolor="#DDDDDD" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">GND</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( - )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="danger" style="background-color: #f2dede; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">PIN 9</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">a2</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td bgcolor="#DDDDDD" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">f3</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( - )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="success" style="background-color: #dff0d8; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">PIN 10</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">a4</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="info" style="background-color: #d9edf7; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">PIN 11</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">a5</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+</tbody></table>
+<div style="text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: left;">
+Run the Sketch</h3>
+<div>
+<br /></div>
+</div>
+</div>
+</div>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">SparkFun Inventor&#39;s Kit</span>
+<span class="cm">Example sketch 03</span>
+
+<span class="cm">RGB LED</span>
+
+<span class="cm">  Make an RGB LED display a rainbow of colors!</span>
+
+<span class="cm">Hardware connections:</span>
+
+<span class="cm">  An RGB LED is actually three LEDs (red, green, and blue) in</span>
+<span class="cm">  one package. When you run them at different brightnesses,</span>
+<span class="cm">  the red, green and blue mix to form new colors.</span>
+
+<span class="cm">  Starting at the flattened edge of the flange on the LED,</span>
+<span class="cm">  the pins are ordered RED, COMMON, GREEN, BLUE.</span>
+
+<span class="cm">  Connect RED to a 330 Ohm resistor. Connect the other end</span>
+<span class="cm">  of the resistor to Arduino digital pin 9.</span>
+
+<span class="cm">  Connect COMMON pin to GND.</span>
+
+<span class="cm">  Connect GREEN to a 330 Ohm resistor. Connect the other end</span>
+<span class="cm">  of the resistor to Arduino digital pin 10.</span>
+
+<span class="cm">  Connect BLUE to a 330 Ohm resistor. Connect the other end</span>
+<span class="cm">  of the resistor to Arduino digital pin 11.</span>
+
+<span class="cm">This sketch was written by SparkFun Electronics,</span>
+<span class="cm">with lots of help from the Arduino community.</span>
+<span class="cm">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="cm">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="cm">Version 2.0 6/2012 MDG</span>
+<span class="cm">*/</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>First<span class="w"> </span>we<span class="s">&#39;ll define the pins by name to make the sketch</span>
+<span class="o">//</span><span class="w"> </span>easier<span class="w"> </span><span class="kr">to</span><span class="w"> </span>follow<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Here<span class="s">&#39;s a new trick: putting the word &quot;const&quot; in front of a</span>
+<span class="o">//</span><span class="w"> </span>variable<span class="w"> </span>indicates<span class="w"> </span>that<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span><span class="s">&quot;constant&quot;</span><span class="w"> </span>value<span class="w"> </span>that<span class="w"> </span>will<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>never<span class="w"> </span>change<span class="o">.</span><span class="w"> </span><span class="o">(</span>You<span class="w"> </span>don<span class="s">&#39;t have to do this, but if you do, the</span>
+<span class="o">//</span><span class="w"> </span>Arduino<span class="w"> </span>will<span class="w"> </span>give<span class="w"> </span>you<span class="w"> </span>a<span class="w"> </span>friendly<span class="w"> </span>warning<span class="w"> </span><span class="kr">if</span><span class="w"> </span>you<span class="w"> </span>accidentally<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>try<span class="w"> </span><span class="kr">to</span><span class="w"> </span>change<span class="w"> </span>the<span class="w"> </span>value<span class="o">,</span><span class="w"> </span>so<span class="w"> </span>it<span class="s">&#39;s considered good form.)</span>
+
+const<span class="w"> </span>int<span class="w"> </span>RED_PIN<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="err">;</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>GREEN_PIN<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="err">;</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>BLUE_PIN<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="err">;</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>variable<span class="w"> </span>controls<span class="w"> </span>how<span class="w"> </span>fast<span class="w"> </span>we<span class="w"> </span>loop<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>colors<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="o">(</span>Try<span class="w"> </span>changing<span class="w"> </span>this<span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"> </span>the<span class="w"> </span>fading<span class="w"> </span>faster<span class="w"> </span>or<span class="w"> </span>slower<span class="o">.)</span><span class="w"></span>
+
+int<span class="w"> </span>DISPLAY_TIME<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>In<span class="w"> </span>milliseconds<span class="w"></span>
+
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Here<span class="w"> </span>we<span class="s">&#39;ll configure the Arduino pins we&#39;</span>re<span class="w"> </span>using<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>drive<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span><span class="kr">to</span><span class="w"> </span>be<span class="w"> </span><span class="nl">outputs</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span>pinMode<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>In<span class="w"> </span>this<span class="w"> </span>sketch<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;ll start writing our own functions.</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span>makes<span class="w"> </span>the<span class="w"> </span>sketch<span class="w"> </span>easier<span class="w"> </span><span class="kr">to</span><span class="w"> </span>follow<span class="w"> </span><span class="kr">by</span><span class="w"> </span>dividing<span class="w"> </span>up<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>sketch<span class="w"> </span>into<span class="w"> </span>sections<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>not<span class="w"> </span>having<span class="w"> </span>everything<span class="w"> </span>in<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>setup<span class="o">()</span><span class="w"> </span>or<span class="w"> </span>loop<span class="o">().</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ll show you two ways to run the RGB LED.</span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>The<span class="w"> </span>first<span class="w"> </span>way<span class="w"> </span>is<span class="w"> </span><span class="kr">to</span><span class="w"> </span>turn<span class="w"> </span>the<span class="w"> </span>individual<span class="w"> </span>LEDs<span class="w"> </span><span class="o">(</span>red<span class="o">,</span><span class="w"> </span>blue<span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>and<span class="w"> </span>green<span class="o">)</span><span class="w"> </span><span class="kr">on</span><span class="w"> </span>and<span class="w"> </span><span class="kr">off</span><span class="w"> </span>in<span class="w"> </span>various<span class="w"> </span>combinations<span class="o">.</span><span class="w"> </span>This<span class="w"> </span>gives<span class="w"> </span>you<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>a<span class="w"> </span>total<span class="w"> </span>of<span class="w"> </span>eight<span class="w"> </span>colors<span class="w"> </span><span class="o">(</span><span class="kr">if</span><span class="w"> </span>you<span class="w"> </span>count<span class="w"> </span><span class="s">&quot;black&quot;</span><span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>color<span class="o">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ve written a function called mainColors() that steps</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>through<span class="w"> </span>all<span class="w"> </span>eight<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>colors<span class="o">.</span><span class="w"> </span>We<span class="s">&#39;re only &quot;calling&quot; the</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>function<span class="w"> </span>here<span class="w"> </span><span class="o">(</span>telling<span class="w"> </span>it<span class="w"> </span><span class="kr">to</span><span class="w"> </span>run<span class="o">).</span><span class="w"> </span>The<span class="w"> </span>actual<span class="w"> </span>function<span class="w"> </span>code<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>is<span class="w"> </span>further<span class="w"> </span>down<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>sketch<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span>mainColors<span class="o">()</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>The<span class="w"> </span>above<span class="w"> </span>function<span class="w"> </span>turns<span class="w"> </span>the<span class="w"> </span>individual<span class="w"> </span>LEDs<span class="w"> </span>full<span class="o">-</span><span class="kr">on</span><span class="w"> </span>and<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>full<span class="o">-</span><span class="kr">off</span><span class="o">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span><span class="kr">to</span><span class="w"> </span>generate<span class="w"> </span>more<span class="w"> </span>than<span class="w"> </span>eight<span class="w"> </span>colors<span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span><span class="kr">do</span><span class="w"> </span>so<span class="w"> </span><span class="kr">by</span><span class="w"> </span>varying<span class="w"> </span>the<span class="w"> </span>brightness<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>individual<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>LEDs<span class="w"> </span>between<span class="w"> </span>full<span class="o">-</span><span class="kr">on</span><span class="w"> </span>and<span class="w"> </span>full<span class="o">-</span><span class="kr">off</span><span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>The<span class="w"> </span>analogWrite<span class="o">()</span><span class="w"> </span>function<span class="w"> </span>lets<span class="w"> </span>us<span class="w"> </span><span class="kr">do</span><span class="w"> </span>this<span class="o">.</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>dim<span class="w"> </span>a<span class="w"> </span>LED<span class="w"> </span>from<span class="w"> </span>full<span class="o">-</span><span class="kr">off</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>full<span class="o">-</span><span class="kr">on</span><span class="w"> </span>over<span class="w"> </span><span class="m">255</span><span class="w"> </span>steps<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ve written a function called showSpectrum() that smoothly</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>steps<span class="w"> </span>through<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>colors<span class="o">.</span><span class="w"> </span>Again<span class="w"> </span>we<span class="s">&#39;re just calling it</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>here<span class="err">;</span><span class="w"> </span>the<span class="w"> </span>actual<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>further<span class="w"> </span>down<span class="w"> </span>in<span class="w"> </span>this<span class="w"> </span>sketch<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span>showSpectrum<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>Here<span class="s">&#39;s the mainColors() function we&#39;</span>ve<span class="w"> </span>written<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>displays<span class="w"> </span>the<span class="w"> </span>eight<span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span>colors<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>RGB<span class="w"> </span>LED<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>can<span class="w"> </span>produce<span class="o">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>you<span class="s">&#39;d like to use one of these colors in your </span>
+<span class="o">//</span><span class="w"> </span>own<span class="w"> </span>sketch<span class="o">,</span><span class="w"> </span>you<span class="w"> </span>cancopy<span class="w"> </span>and<span class="w"> </span>paste<span class="w"> </span>that<span class="w"> </span>section<span class="w"> </span>into<span class="w"> </span>your<span class="w"> </span>code<span class="o">.</span><span class="w"></span>
+
+void<span class="w"> </span>mainColors<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">Off</span><span class="w"> </span><span class="o">(</span>all<span class="w"> </span>LEDs<span class="w"> </span><span class="kr">off</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Red<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>just<span class="w"> </span>the<span class="w"> </span>red<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Green<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>just<span class="w"> </span>the<span class="w"> </span>green<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Blue<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>just<span class="w"> </span>the<span class="w"> </span>blue<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Yellow<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>red<span class="w"> </span>and<span class="w"> </span>green<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Cyan<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>green<span class="w"> </span>and<span class="w"> </span>blue<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Purple<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>red<span class="w"> </span>and<span class="w"> </span>blue<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>White<span class="w"> </span><span class="o">(</span>turn<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span><span class="kr">on</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>Below<span class="w"> </span>are<span class="w"> </span>two<span class="w"> </span>more<span class="w"> </span>functions<span class="w"> </span>we<span class="s">&#39;ve written,</span>
+<span class="o">//</span><span class="w"> </span>showSpectrum<span class="o">()</span><span class="w"> </span>and<span class="w"> </span>showRGB<span class="o">().</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>showRGB<span class="o">()</span><span class="w"> </span>displays<span class="w"> </span>a<span class="w"> </span>single<span class="w"> </span>color<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>RGB<span class="w"> </span>LED<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>You<span class="w"> </span><span class="kr">call</span><span class="w"> </span>showRGB<span class="o">()</span><span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>color<span class="w"> </span>you<span class="w"> </span>want<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>display<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>showSpectrum<span class="o">()</span><span class="w"> </span>steps<span class="w"> </span>through<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>colors<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>RGB<span class="w"> </span>LED<span class="o">,</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>displaying<span class="w"> </span>a<span class="w"> </span>rainbow<span class="o">.</span><span class="w"> </span>showSpectrum<span class="o">()</span><span class="w"> </span>actually<span class="w"> </span>calls<span class="w"> </span>showRGB<span class="o">()</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>over<span class="w"> </span>and<span class="w"> </span>over<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>this<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ll often break tasks down into individual functions like</span>
+<span class="o">//</span><span class="w"> </span>this<span class="o">,</span><span class="w"> </span>which<span class="w"> </span>makes<span class="w"> </span>your<span class="w"> </span>sketches<span class="w"> </span>easier<span class="w"> </span><span class="kr">to</span><span class="w"> </span>follow<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>once<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>handy<span class="w"> </span>function<span class="o">,</span><span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>reuse<span class="w"> </span>it<span class="w"> </span>in<span class="w"> </span>your<span class="w"> </span>other<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>programs<span class="o">.</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>showSpectrum<span class="o">()</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>steps<span class="w"> </span>through<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>colors<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>RGB<span class="w"> </span>LED<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>It<span class="w"> </span>does<span class="w"> </span>this<span class="w"> </span><span class="kr">by</span><span class="w"> </span>stepping<span class="w"> </span>a<span class="w"> </span>variable<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">768</span><span class="w"> </span><span class="o">(</span>the<span class="w"> </span>total<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>colors<span class="o">),</span><span class="w"> </span>and<span class="w"> </span>repeatedly<span class="w"> </span>calling<span class="w"> </span>showRGB<span class="o">()</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>display<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>the<span class="w"> </span>individual<span class="w"> </span>colors<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>In<span class="w"> </span>this<span class="w"> </span>function<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;re using a &quot;for() loop&quot; to step a variable</span>
+<span class="o">//</span><span class="w"> </span>from<span class="w"> </span>one<span class="w"> </span>value<span class="w"> </span><span class="kr">to</span><span class="w"> </span>another<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>perform<span class="w"> </span>a<span class="w"> </span>set<span class="w"> </span>of<span class="w"> </span>instructions<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span>each<span class="w"> </span>step<span class="o">.</span><span class="w"> </span><span class="kr">For</span><span class="o">()</span><span class="w"> </span>loops<span class="w"> </span>are<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>handy<span class="w"> </span>way<span class="w"> </span><span class="kr">to</span><span class="w"> </span>get<span class="w"> </span>numbers<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>count<span class="w"> </span>up<span class="w"> </span>or<span class="w"> </span>down<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Every<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>has<span class="w"> </span>three<span class="w"> </span>statements<span class="w"> </span>separated<span class="w"> </span><span class="kr">by</span><span class="w"> </span><span class="nl">semicolons</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">//</span><span class="w">   </span><span class="m">1</span><span class="o">.</span><span class="w"> </span>Something<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>before<span class="w"> </span>starting<span class="w"></span>
+
+<span class="o">//</span><span class="w">   </span><span class="m">2</span><span class="o">.</span><span class="w"> </span>A<span class="w"> </span>test<span class="w"> </span><span class="kr">to</span><span class="w"> </span>perform<span class="err">;</span><span class="w"> </span>as<span class="w"> </span>long<span class="w"> </span>as<span class="w"> </span>it<span class="s">&#39;s true,</span>
+<span class="o">//</span><span class="w">      </span>it<span class="w"> </span>will<span class="w"> </span>keep<span class="w"> </span>looping<span class="w"></span>
+
+<span class="o">//</span><span class="w">   </span><span class="m">3</span><span class="o">.</span><span class="w"> </span>Something<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>after<span class="w"> </span>each<span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>usually<span class="w"></span>
+<span class="o">//</span><span class="w">      </span>increase<span class="w"> </span>a<span class="w"> </span>variable<span class="o">)</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span><span class="kr">For</span><span class="w"> </span>the<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>below<span class="o">,</span><span class="w"> </span>these<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>three<span class="w"> </span><span class="nl">statements</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">//</span><span class="w">   </span><span class="m">1</span><span class="o">.</span><span class="w"> </span>x<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">     </span>Before<span class="w"> </span>starting<span class="o">,</span><span class="w"> </span>make<span class="w"> </span>x<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w">   </span><span class="m">2</span><span class="o">.</span><span class="w"> </span>x<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">768</span><span class="err">;</span><span class="w">   </span><span class="kr">While</span><span class="w"> </span>x<span class="w"> </span>is<span class="w"> </span>less<span class="w"> </span>than<span class="w"> </span><span class="m">768</span><span class="o">,</span><span class="w"> </span>run<span class="w"> </span>the<span class="w"></span>
+<span class="o">//</span><span class="w">                 </span>following<span class="w"> </span>code<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w">   </span><span class="m">3</span><span class="o">.</span><span class="w"> </span>x<span class="o">++</span><span class="w">        </span>Putting<span class="w"> </span><span class="s">&quot;++&quot;</span><span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>variable<span class="w"> </span>means<span class="w"></span>
+<span class="o">//</span><span class="w">                 </span><span class="s">&quot;add one to it&quot;</span><span class="o">.</span><span class="w"> </span><span class="o">(</span>You<span class="w"> </span>can<span class="w"> </span>also<span class="w"> </span>use<span class="w"> </span><span class="s">&quot;x = x + 1&quot;</span><span class="o">)</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Every<span class="w"> </span>time<span class="w"> </span>you<span class="w"> </span>go<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>loop<span class="o">,</span><span class="w"> </span>the<span class="w"> </span>statements<span class="w"> </span>following<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>the<span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>those<span class="w"> </span>within<span class="w"> </span>the<span class="w"> </span>brackets<span class="o">)</span><span class="w"> </span>will<span class="w"> </span>run<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>And<span class="w"> </span>when<span class="w"> </span>the<span class="w"> </span>test<span class="w"> </span>in<span class="w"> </span>statement<span class="w"> </span><span class="m">2</span><span class="w"> </span>is<span class="w"> </span>finally<span class="w"> </span>false<span class="o">,</span><span class="w"> </span>the<span class="w"> </span>sketch<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>will<span class="w"> </span>continue<span class="o">.</span><span class="w"></span>
+
+
+void<span class="w"> </span>showSpectrum<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>x<span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>define<span class="w"> </span>an<span class="w"> </span>integer<span class="w"> </span>variable<span class="w"> </span>called<span class="w"> </span><span class="s">&quot;x&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Now<span class="w"> </span>we<span class="s">&#39;ll use a for() loop to make x count from 0 to 767</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="o">(</span>Note<span class="w"> </span>that<span class="w"> </span>there<span class="s">&#39;s no semicolon after this line!</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>That<span class="s">&#39;s because the for() loop will repeat the next</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="s">&quot;statement&quot;</span><span class="o">,</span><span class="w"> </span>which<span class="w"> </span>in<span class="w"> </span>this<span class="w"> </span>case<span class="w"> </span>is<span class="w"> </span>everything<span class="w"> </span>within<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>brackets<span class="w"> </span><span class="err">{}</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>x<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>x<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">768</span><span class="err">;</span><span class="w"> </span>x<span class="o">++)</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Each<span class="w"> </span>time<span class="w"> </span>we<span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>with<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>x<span class="o">),</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>the<span class="w"> </span><span class="nl">following</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>showRGB<span class="o">(</span>x<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">Call</span><span class="w"> </span>RGBspectrum<span class="o">()</span><span class="w"> </span>with<span class="w"> </span>our<span class="w"> </span>new<span class="w"> </span>x<span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">10</span><span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>Delay<span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="m">10</span><span class="w"> </span>ms<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">/</span><span class="m">100</span>th<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>second<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>showRGB<span class="o">()</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>translates<span class="w"> </span>a<span class="w"> </span>number<span class="w"> </span>between<span class="w"> </span><span class="m">0</span><span class="w"> </span>and<span class="w"> </span><span class="m">767</span><span class="w"> </span>into<span class="w"> </span>a<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>specific<span class="w"> </span>color<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>RGB<span class="w"> </span>LED<span class="o">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>this<span class="w"> </span>number<span class="w"> </span>count<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>whole<span class="w"> </span>range<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">767</span><span class="o">),</span><span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>will<span class="w"> </span>smoothly<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>change<span class="w"> </span>color<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>entire<span class="w"> </span>spectrum<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>The<span class="w"> </span><span class="s">&quot;base&quot;</span><span class="w"> </span>numbers<span class="w"> </span><span class="nl">are</span><span class="o">:</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="m">0</span><span class="w">   </span><span class="o">=</span><span class="w"> </span>pure<span class="w"> </span>red<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pure<span class="w"> </span>green<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="m">511</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pure<span class="w"> </span>blue<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="m">767</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pure<span class="w"> </span>red<span class="w"> </span><span class="o">(</span>again<span class="o">)</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Numbers<span class="w"> </span>between<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>colors<span class="w"> </span>will<span class="w"> </span>create<span class="w"> </span>blends<span class="o">.</span><span class="w"> </span><span class="kr">For</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>example<span class="o">,</span><span class="w"> </span><span class="m">640</span><span class="w"> </span>is<span class="w"> </span>midway<span class="w"> </span>between<span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="o">(</span>pure<span class="w"> </span>blue<span class="o">)</span><span class="w"> </span>and<span class="w"> </span><span class="m">767</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="o">(</span>pure<span class="w"> </span>red<span class="o">).</span><span class="w"> </span>It<span class="w"> </span>will<span class="w"> </span>give<span class="w"> </span>you<span class="w"> </span>a<span class="w"> </span><span class="m">50</span><span class="o">/</span><span class="m">50</span><span class="w"> </span>mix<span class="w"> </span>of<span class="w"> </span>blue<span class="w"> </span>and<span class="w"> </span>red<span class="o">,</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>resulting<span class="w"> </span>in<span class="w"> </span>purple<span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>you<span class="w"> </span>count<span class="w"> </span>up<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">767</span><span class="w"> </span>and<span class="w"> </span>pass<span class="w"> </span>that<span class="w"> </span>number<span class="w"> </span><span class="kr">to</span><span class="w"> </span>this<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>function<span class="o">,</span><span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>will<span class="w"> </span>smoothly<span class="w"> </span>fade<span class="w"> </span>between<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>colors<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="o">(</span>Because<span class="w"> </span>it<span class="w"> </span>starts<span class="w"> </span>and<span class="w"> </span>ends<span class="w"> </span><span class="kr">on</span><span class="w"> </span>pure<span class="w"> </span>red<span class="o">,</span><span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>start<span class="w"> </span>over<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>at<span class="w"> </span><span class="m">0</span><span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>break<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>spectrum<span class="o">).</span><span class="w"></span>
+
+
+void<span class="w"> </span>showRGB<span class="o">(</span>int<span class="w"> </span>color<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>redIntensity<span class="err">;</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>greenIntensity<span class="err">;</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>blueIntensity<span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Here<span class="w"> </span>we<span class="s">&#39;ll use an &quot;if / else&quot; statement to determine which</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>three<span class="w"> </span><span class="o">(</span>R<span class="o">,</span>G<span class="o">,</span>B<span class="o">)</span><span class="w"> </span>zones<span class="w"> </span>x<span class="w"> </span>falls<span class="w"> </span>into<span class="o">.</span><span class="w"> </span>Each<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>zones<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>spans<span class="w"> </span><span class="m">255</span><span class="w"> </span>because<span class="w"> </span>analogWrite<span class="o">()</span><span class="w"> </span>wants<span class="w"> </span>a<span class="w"> </span>number<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">255</span><span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>In<span class="w"> </span>each<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>zones<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;ll calculate the brightness</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span>each<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>red<span class="o">,</span><span class="w"> </span>green<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>blue<span class="w"> </span>LEDs<span class="w"> </span>within<span class="w"> </span>the<span class="w"> </span>RGB<span class="w"> </span>LED<span class="o">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>color<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">255</span><span class="o">)</span><span class="w">          </span><span class="o">//</span><span class="w"> </span>zone<span class="w"> </span><span class="m">1</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>redIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>color<span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>red<span class="w"> </span>goes<span class="w"> </span>from<span class="w"> </span><span class="kr">on</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">        </span>greenIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span>color<span class="err">;</span><span class="w">        </span><span class="o">//</span><span class="w"> </span>green<span class="w"> </span>goes<span class="w"> </span>from<span class="w"> </span><span class="kr">off</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">        </span>blueIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">             </span><span class="o">//</span><span class="w"> </span>blue<span class="w"> </span>is<span class="w"> </span>always<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>color<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">511</span><span class="o">)</span><span class="w">     </span><span class="o">//</span><span class="w"> </span>zone<span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>redIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">                     </span><span class="o">//</span><span class="w"> </span>red<span class="w"> </span>is<span class="w"> </span>always<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">        </span>greenIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">(</span>color<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">256</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>green<span class="w"> </span><span class="kr">on</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">        </span>blueIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>color<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">256</span><span class="o">)</span><span class="err">;</span><span class="w">        </span><span class="o">//</span><span class="w"> </span>blue<span class="w"> </span><span class="kr">off</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">else</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>color<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">512</span><span class="w">       </span><span class="o">//</span><span class="w"> </span>zone<span class="w"> </span><span class="m">3</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>redIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>color<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">512</span><span class="o">)</span><span class="err">;</span><span class="w">         </span><span class="o">//</span><span class="w"> </span>red<span class="w"> </span><span class="kr">off</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">        </span>greenIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">                   </span><span class="o">//</span><span class="w"> </span>green<span class="w"> </span>is<span class="w"> </span>always<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">        </span>blueIntensity<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">(</span>color<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">512</span><span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>blue<span class="w"> </span><span class="kr">on</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Now<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>brightness<span class="w"> </span>values<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>set<span class="o">,</span><span class="w"> </span>command<span class="w"> </span>the<span class="w"> </span>LED<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>those<span class="w"> </span>values<span class="w"></span>
+
+<span class="w">    </span>analogWrite<span class="o">(</span>RED_PIN<span class="o">,</span><span class="w"> </span>redIntensity<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>analogWrite<span class="o">(</span>BLUE_PIN<span class="o">,</span><span class="w"> </span>blueIntensity<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>analogWrite<span class="o">(</span>GREEN_PIN<span class="o">,</span><span class="w"> </span>greenIntensity<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<pre data-language="language:cpp
+,cpp
+" style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(204, 204, 204); box-sizing: border-box; color: #333333; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 13px; line-height: 19px; margin-bottom: 20px; max-height: 350px; overflow: auto; padding: 6px 10px; word-break: break-all; word-wrap: break-word;"><div class="copy-code" data-code-id="code-1" style="box-sizing: border-box; float: right;">
+<button class="btn btn-default btn-sm" style="-webkit-user-select: none; background-color: white; background-image: none; border-radius: 3px; border: 1px solid rgb(204, 204, 204); color: #e0311d; cursor: pointer; font-family: SparkGauge, 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-stretch: inherit; font-style: inherit; font-variant: inherit; font-weight: 700; letter-spacing: 0.1em; line-height: 1.5; margin: 0px; overflow: visible; padding: 5px 10px; text-transform: uppercase; vertical-align: middle; white-space: nowrap;">COPY CODE</button></div>
+<code class="rainbow" style="background: transparent; border-radius: 0px; border: 0px; box-sizing: border-box; color: inherit; font-family: Consolas, 'Liberation Mono', Courier, monospace; margin: 0px; padding: 0px; white-space: pre-wrap;"><span class="keyword" style="box-sizing: border-box; font-weight: bold;">for</span> (x <span class="keyword operator" style="box-sizing: border-box; font-weight: bold;">=</span> <span class="constant numeric" style="box-sizing: border-box; color: #009999;">0</span>; x <span class="keyword operator" style="box-sizing: border-box; font-weight: bold;">&lt;</span> <span class="constant numeric" style="box-sizing: border-box; color: #009999;">768</span>; x<span class="keyword operator" style="box-sizing: border-box; font-weight: bold;">+</span><span class="keyword operator" style="box-sizing: border-box; font-weight: bold;">+</span>)
+{}
+</code></pre>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+A&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">for()</code>&nbsp;loop is used to repeat an action a set number of times across a range, and repeatedly runs code within the brackets {}. Here the variable “x” starts a 0, ends at 767, and increases by one each time (“x++”).</div>
+
+<pre data-language="language:cpp
+,cpp
+" style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(204, 204, 204); box-sizing: border-box; color: #333333; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 13px; line-height: 19px; margin-bottom: 20px; max-height: 350px; overflow: auto; padding: 6px 10px; word-break: break-all; word-wrap: break-word;"><div class="copy-code" data-code-id="code-2" style="box-sizing: border-box; float: right;">
+<button class="btn btn-default btn-sm" style="-webkit-user-select: none; background-color: white; background-image: none; border-radius: 3px; border: 1px solid rgb(204, 204, 204); color: #e0311d; cursor: pointer; font-family: SparkGauge, 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-stretch: inherit; font-style: inherit; font-variant: inherit; font-weight: 700; letter-spacing: 0.1em; line-height: 1.5; margin: 0px; overflow: visible; padding: 5px 10px; text-transform: uppercase; vertical-align: middle; white-space: nowrap;">COPY CODE</button></div>
+<code class="rainbow" style="background: transparent; border-radius: 0px; border: 0px; box-sizing: border-box; color: inherit; font-family: Consolas, 'Liberation Mono', Courier, monospace; margin: 0px; padding: 0px; white-space: pre-wrap;"><span class="keyword" style="box-sizing: border-box; font-weight: bold;">if</span> (x <span class="keyword operator" style="box-sizing: border-box; font-weight: bold;">&lt;</span><span class="keyword operator" style="box-sizing: border-box; font-weight: bold;">=</span> <span class="constant numeric" style="box-sizing: border-box; color: #009999;">255</span>)
+{}
+<span class="keyword" style="box-sizing: border-box; font-weight: bold;">else</span>
+{}
+</code></pre>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+“If / else” statements are used to make choices in your programs. The statement within the parenthesis () is evaluated; if it’s true, the code within the first brackets {} will run. If it’s not true, the code within the second brackets {} will run.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You should see your LED turn on, but this time in new, crazy colors! If it isn’t, make sure you have assembled the circuit correctly and verified and uploaded the code to your board or see the troubleshooting section.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<br /></div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_03_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_03_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Many electronics such as video game consoles use RGB LEDs to have the versatility to show different colors in the same area. Often times the different colors represent different states of working condition.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+LED Remains Dark or Shows Incorrect Color</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+With the four pins of the LED so close together, it’s sometimes easy to misplace one. Double check each pin is where it should be.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Seeing Red</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The red diode within the RGB LED may be a bit brighter than the other two. To make your colors more balanced, use a higher ohm resistor. Or adjust in code.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">analogWrite(RED_PIN, redIntensity);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+to</div>
+
+<div style="box-sizing: border-box; margin: 0px 0px 10px;">
+<div style="background-color: white; color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; color: #333333; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">analogWrite(RED_PIN, redIntensity/3);</code></div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; color: #333333; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;"><br /></code></div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<span style="color: #555555; font-family: &quot;montserrat&quot; , &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 20px; line-height: 1.1;">Questions</span></div>
+<ol>
+<li>What does the mainColors function do?</li>
+<li>What does the showRGB function do?</li>
+<li>What does the show Spectrum function do?</li>
+<li>How is it we can have 768 possible colors with this sketch?</li>
+<li>Describe how the analogWrite() function works.</li>
+</ol>
+</div>
+<div style="background-color: white; color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<code style="background-attachment: initial; background-clip: initial; background-color: #f8f8f8; background-image: initial; background-origin: initial; background-position: initial; background-repeat: initial; background-size: initial; border-image-outset: initial; border-image-repeat: initial; border-image-slice: initial; border-image-source: initial; border-image-width: initial; border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-size: 12px; line-height: 20px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;"><span style="color: #333333; font-family: &quot;consolas&quot; , &quot;liberation mono&quot; , &quot;courier&quot; , monospace;"><br /></span></code></div>
+<div style="text-align: center;">
+<a href="http://www.davidriewe.com/p/experiment-2-reading-potentiometer.html"><span style="font-family: &quot;helvetica neue&quot; , &quot;arial&quot; , &quot;helvetica&quot; , sans-serif; font-size: x-small;"></span></a><span style="font-family: &quot;helvetica neue&quot; , &quot;arial&quot; , &quot;helvetica&quot; , sans-serif; font-size: x-small;"><a href="http://www.davidriewe.com/p/experiment-2-reading-potentiometer.html">Experiment 2: Reading a Potentiometer</a> -|- <a href="http://www.davidriewe.com/p/experiment-4-driving-multiple-leds.html">Experiment 4: Driving Multiple LEDs</a></span></div>
+</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; margin: 0px 0px 10px; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;">
+<div style="text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span><br />
+<br />
+<h2 style="color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; margin: 0px; position: relative;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br /><a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

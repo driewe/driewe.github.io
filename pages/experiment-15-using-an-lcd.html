@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 15: Using an LCD - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-15-using-an-lcd.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit, you’ll learn about how to use an LCD. An LCD, or liquid crystal display, is a simple screen that can display commands, bits of information, or readings from your sensor - all depending on how you program your board ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 15: Using an LCD"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-15-using-an-lcd.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit, you’ll learn about how to use an LCD. An LCD, or liquid crystal display, is a simple screen that can display commands, bits of information, or readings from your sensor - all depending on how you program your board ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 15: Using an LCD</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+In this circuit, you’ll learn about how to use an LCD. An LCD, or liquid crystal display, is a simple screen that can display commands, bits of information, or readings from your sensor - all depending on how you program your board. In this circuit, you’ll learn the basics of incorporating an LCD into your project.</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Potentiometer</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;LCD</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">16x</span>&nbsp;Jumper Wires</li>
+</ul>
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 640px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_15_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_15_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Run the Sketch</h3>
+</div>
+</div>
+
+<div>
+</div>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">SparkFun Inventor&#39;s Kit</span>
+<span class="cm">Example sketch 15</span>
+
+<span class="cm">LIQUID CRYSTAL DISPLAY (LCD)</span>
+
+<span class="cm">  A Liquid Crystal Display (LCD) is a sophisticated module </span>
+<span class="cm">  that can be used to display text or numeric data. The display</span>
+<span class="cm">  included in your SIK features two lines of 16 characters, and</span>
+<span class="cm">  a backlight so it can be used at night.</span>
+
+<span class="cm">  If you&#39;ve been using the Serial Monitor to output data,</span>
+<span class="cm">  you&#39;ll find that a LCD provides many of the same benefits</span>
+<span class="cm">  without needing to drag a large computer around.</span>
+
+<span class="cm">  This sketch will show you how to connect an LCD to your Arduino</span>
+<span class="cm">  and display any data you wish.</span>
+
+<span class="cm">Hardware connections:</span>
+
+<span class="cm">  The LCD has a 16-pin male header attached to it along the top</span>
+<span class="cm">  edge. Pin 1 is the pin closest to the corner of the LCD.</span>
+<span class="cm">  Pin 16 is the pin closest to the center of the LCD.</span>
+
+<span class="cm">  Plug the LCD into your breadboard.</span>
+
+<span class="cm">  As usual, you will want to connect the + and - power rails</span>
+<span class="cm">  on the side of the breadboard to 5V and GND on your Arduino.</span>
+
+<span class="cm">  Plug your 10K potentiometer into three unused rows on your</span>
+<span class="cm">  breadboard. Connect one side of the potentiometer to 5V,</span>
+<span class="cm">  and the other side to GND (it doesn&#39;t matter which). When you</span>
+<span class="cm">  run this sketch, you&#39;ll use the potentiometer to adjust the</span>
+<span class="cm">  contrast of the LCD so you can see the display.</span>
+
+<span class="cm">  Now connect the LCD pins. Remember that pin 1 on the LCD</span>
+<span class="cm">  is the one closest to the corner. Start there and work your</span>
+<span class="cm">  way up.</span>
+
+<span class="cm">  1 to GND</span>
+<span class="cm">  2 to 5V</span>
+<span class="cm">  3 to the center pin on the potentiometer</span>
+<span class="cm">  4 to Arduino digital pin 12</span>
+<span class="cm">  5 to GND</span>
+<span class="cm">  6 to Arduino digital pin 11</span>
+<span class="cm">  7 (no connection)</span>
+<span class="cm">  8 (no connection)</span>
+<span class="cm">  9 (no connection)</span>
+<span class="cm">  10 (no connection)</span>
+<span class="cm">  11 to Arduino digital pin 5</span>
+<span class="cm">  12 to Arduino digital pin 4</span>
+<span class="cm">  13 to Arduino digital pin 3</span>
+<span class="cm">  14 to Arduino digital pin 2</span>
+<span class="cm">  15 to 5V</span>
+<span class="cm">  16 to GND</span>
+
+<span class="cm">  Once everything is connected, load this sketch into the</span>
+<span class="cm">  Arduino, and adjust the potentiometer until the display</span>
+<span class="cm">  is clear.</span>
+
+<span class="cm">Library</span>
+
+<span class="cm">  The LCD has a chip built into it that controls all the</span>
+<span class="cm">  individual dots that make up the display, and obeys commands</span>
+<span class="cm">  sent to it by the the Arduino. The chip knows the dot patterns</span>
+<span class="cm">  that make up all the text characters, saving you a lot of work.</span>
+
+<span class="cm">  To communicate with this chip, we&#39;ll use the LiquidCrystal</span>
+<span class="cm">  library, which is one of the standard libraries that comes</span>
+<span class="cm">  with the Arduino. This library does most of the hard work</span>
+<span class="cm">  of interfacing to the LCD; all you need to pick a location</span>
+<span class="cm">  on the display and send your data!</span>
+
+<span class="cm">Tips</span>
+
+<span class="cm">  The LCD comes with a protective film over the display that</span>
+<span class="cm">  you can peel off (but be careful of the display surface as</span>
+<span class="cm">  it scratches easily).</span>
+
+<span class="cm">  The LCD has a backlight that will light up when you turn on</span>
+<span class="cm">  your Arduino. If the backlight doesn&#39;t turn on, check your </span>
+<span class="cm">  connections.</span>
+
+<span class="cm">  As we said above, the potentiometer adjusts the contrast of</span>
+<span class="cm">  the display. If you can&#39;t see anything when you run the sketch,</span>
+<span class="cm">  turn the potentiometer&#39;s knob until the text is clear.</span>
+
+<span class="cm">This sketch was written by SparkFun Electronics,</span>
+<span class="cm">with lots of help from the Arduino community.</span>
+<span class="cm">This code is completely free for any use.</span>
+<span class="cm">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="cm">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="cm">Version 1.0 2/2013 MDG</span>
+<span class="cm">*/</span>
+
+<span class="c1">// Load the LiquidCrystal library, which will give us</span>
+<span class="c1">// commands to interface to the LCD:</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;LiquidCrystal.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Initialize the library with the pins we&#39;re using.</span>
+<span class="c1">// (Note that you can use different pins if needed.)</span>
+<span class="c1">// See http://arduino.cc/en/Reference/LiquidCrystal</span>
+<span class="c1">// for more information:</span>
+
+<span class="n">LiquidCrystal</span> <span class="nf">lcd</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// The LiquidCrystal library can be used with many different</span>
+  <span class="c1">// LCD sizes. We&#39;re using one that&#39;s 2 lines of 16 characters,</span>
+  <span class="c1">// so we&#39;ll inform the library of that:</span>
+
+  <span class="n">lcd</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+  <span class="c1">// Data sent to the display will stay there until it&#39;s</span>
+  <span class="c1">// overwritten or power is removed. This can be a problem</span>
+  <span class="c1">// when you upload a new sketch to the Arduino but old data</span>
+  <span class="c1">// remains on the display. Let&#39;s clear the LCD using the</span>
+  <span class="c1">// clear() command from the LiquidCrystal library:</span>
+
+  <span class="n">lcd</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+  <span class="c1">// Now we&#39;ll display a message on the LCD!</span>
+
+  <span class="c1">// Just as with the Arduino IDE, there&#39;s a cursor that</span>
+  <span class="c1">// determines where the data you type will appear. By default,</span>
+  <span class="c1">// this cursor is invisible, though you can make it visible</span>
+  <span class="c1">// with other library commands if you wish.</span>
+
+  <span class="c1">// When the display powers up, the invisible cursor starts </span>
+  <span class="c1">// on the top row and first column.</span>
+
+  <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;hello, world!&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Adjusting the contrast (IMPORTANT!)</span>
+
+  <span class="c1">// When you run the sketch for the first time, there&#39;s a</span>
+  <span class="c1">// very good chance you won&#39;t see anything on the LCD display.</span>
+  <span class="c1">// This is because the contrast likely won&#39;t be set correctly.</span>
+  <span class="c1">// Don&#39;t worry, it&#39;s easy to set, and once you set it you won&#39;t</span>
+  <span class="c1">// need to change it again.</span>
+
+  <span class="c1">// Run the sketch, then turn the potentiometer until you can</span>
+  <span class="c1">// clearly see the &quot;hello, world!&quot; text. If you still can&#39;t</span>
+  <span class="c1">// see anything, check all of your connections, and ensure that</span>
+  <span class="c1">// the sketch was successfully uploaded to the Arduino.</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// You can move the invisible cursor to any location on the</span>
+  <span class="c1">// LCD before sending data. Counting starts from 0, so the top</span>
+  <span class="c1">// line is line 0 and the bottom line is line 1. Columns range</span>
+  <span class="c1">// from 0 on the left side, to 15 on the right.</span>
+
+  <span class="c1">// In additon to the &quot;hello, world!&quot; printed above, let&#39;s</span>
+  <span class="c1">// display a running count of the seconds since the Arduino</span>
+  <span class="c1">// was last reset. Note that the data you send to the display</span>
+  <span class="c1">// will stay there unless you erase it by overwriting it or</span>
+  <span class="c1">// sending a lcd.clear() command.</span>
+
+  <span class="c1">// Here we&#39;ll set the invisible cursor to the first column</span>
+  <span class="c1">// (column 0) of the second line (line 1):</span>
+
+  <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+  <span class="c1">// Now we&#39;ll print the number of seconds (millis() / 1000)</span>
+  <span class="c1">// since the Arduino last reset:</span>
+
+  <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">/</span><span class="mi">1000</span><span class="p">);</span>
+
+  <span class="c1">// TIP: Since the numeric data we&#39;re sending is always growing</span>
+  <span class="c1">// in length, new values will always overwrite the previous ones.</span>
+  <span class="c1">// However, if you want to display varying or decreasing numbers</span>
+  <span class="c1">// like a countdown, you&#39;ll find that the display will leave</span>
+  <span class="c1">// &quot;orphan&quot; characters when the new value is shorter than the</span>
+  <span class="c1">// old one.</span>
+
+  <span class="c1">// To prevent this, you&#39;ll need to erase the old number before</span>
+  <span class="c1">// writing the new one. You can do this by overwriting the</span>
+  <span class="c1">// last number with spaces. If you erase the old number and</span>
+  <span class="c1">// immediately write the new one, the momentary erase won&#39;t </span>
+  <span class="c1">// be noticeable. Here&#39;s a typical sequence of code:</span>
+
+  <span class="c1">// lcd.setCursor(0,1);   // Set the cursor to the position</span>
+  <span class="c1">// lcd.print(&quot;       &quot;); // Erase the largest possible number</span>
+  <span class="c1">// lcd.setCursor(0,1);   // Reset the cursor to the original position</span>
+  <span class="c1">// lcd.print(millis()/1000); // Print our value</span>
+
+  <span class="c1">// NEXT STEPS:</span>
+
+  <span class="c1">// Now you know the basics of hooking up an LCD to the Arduino,</span>
+  <span class="c1">// and sending text and numeric data to the display!</span>
+
+  <span class="c1">// The LCD library has many commands for turning the</span>
+  <span class="c1">// cursor on and off, scrolling the screen, etc. See:</span>
+  <span class="c1">// http://arduino.cc/en/Reference/LiquidCrystal</span>
+  <span class="c1">// for more information.</span>
+
+  <span class="c1">// Arduino also comes with a number of built-in examples</span>
+  <span class="c1">// showing off the features of the LiquidCrystal library.</span>
+  <span class="c1">// These are locted in the file/examples/LiquidCrystal menu.</span>
+
+  <span class="c1">// Have fun, and let us know what you create!</span>
+  <span class="c1">// Your friends at SparkFun.</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">#include &lt;LiquidCrystal.h&gt;</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+This bit of code tells your Arduino IDE to include the library for a simple LCD display. Without it, none of the commands will work, so make sure you include it!</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">lcd.print(“hello, world!”);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+This is the first time you’ll fire something up on your screen. You may need to adjust the contrast to make it visible. Twist the potentiometer until you can clearly see the text!</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Initially, you should see the words “hello, world!” pop up on your LCD. Remember you can adjust the contrast using the potentiometer if you can’t make out the words clearly. If you have any issues, make sure your code is correct and double-check your connections.</div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_15_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_15_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+LCDs are everywhere! From advanced LCDs like your television, to simple notification screens, this is a very common and useful display!</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+The Screen is Blank or Completely Lit?</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Fiddle with the contrast by twisting the potentiometer. If it’s incorrectly adjusted, you won’t be able to read the text.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Not Working At All?</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Double check the code, specifically that you include the LCD library.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Screen Is Flickering</h4>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+Double check your connections to your breadboard and Arduino.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-14-using-shift-register.html">Experiment 14: Using a Shift Register</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-16-simon-says.html">Experiment 16: Simon Says</a></span></span></div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<br /></div>
+
+<div>
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

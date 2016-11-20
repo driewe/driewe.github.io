@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 4: Driving Multiple LEDs - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-4-driving-multiple-leds.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Now that you’ve gotten your LED to blink on and off, it’s time to up the stakes a little bit – by connecting eight LEDs at once. We’ll also give your RedBoard or Arduino R3 a little test by creating ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 4: Driving Multiple LEDs"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-4-driving-multiple-leds.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Now that you’ve gotten your LED to blink on and off, it’s time to up the stakes a little bit – by connecting eight LEDs at once. We’ll also give your RedBoard or Arduino R3 a little test by creating ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 4: Driving Multiple LEDs</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Now that you’ve gotten your LED to blink on and off, it’s time to up the stakes a little bit – by connecting&nbsp;<span style="box-sizing: border-box; font-weight: 700;">eight LEDs at once</span>. We’ll also give your RedBoard or Arduino R3 a little test by creating various lighting sequences. This circuit is a great setup to start practicing writing your own programs and getting a feel for the way Arduino works.</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Along with controlling the LEDs, you’ll learn about a couple programming tricks that keep your code neat and tidy:</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">for() loops</code>&nbsp;- used when you want to run a piece of code several times</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">arrays[ ]</code>&nbsp;- used to make managing variables easier by grouping them together</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">8x</span>&nbsp;LEDs</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">8x</span>&nbsp;330Ω Resistors</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">9x</span>&nbsp;Jumper Wires</li>
+</ul>
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram and hookup table below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 640px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_04_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_04_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Run the Sketch</h3>
+</div>
+</div>
+
+<div>
+<br /></div>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">SparkFun Inventor&#39;s Kit</span>
+<span class="cm">Example sketch 04</span>
+
+<span class="cm">MULTIPLE LEDs</span>
+
+<span class="cm">  Make eight LEDs dance. Dance LEDs, dance!</span>
+
+<span class="cm">Hardware connections:</span>
+
+<span class="cm">  You&#39;ll need eight LEDs, and eight 330 Ohm resistors</span>
+<span class="cm">  (orange-orange-brown).</span>
+
+<span class="cm">    For each LED, connect the negative side (shorter leg)</span>
+<span class="cm">    to a 330 Ohm resistor.</span>
+
+<span class="cm">    Connect the other side of the resistors to GND.</span>
+
+<span class="cm">    Connect the positive side (longer leg) of the LEDs</span>
+<span class="cm">    to Arduino digital pins 2 through 9.</span>
+
+<span class="cm">This sketch was written by SparkFun Electronics,</span>
+<span class="cm">with lots of help from the Arduino community.</span>
+<span class="cm">This code is completely free for any use.</span>
+<span class="cm">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="cm">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="cm">Version 2.0 6/2012 MDG</span>
+<span class="cm">*/</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span><span class="kr">To</span><span class="w"> </span>keep<span class="w"> </span>track<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>pins<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;ll use an &quot;array&quot;.</span>
+<span class="o">//</span><span class="w"> </span>An<span class="w"> </span>array<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>store<span class="w"> </span>a<span class="w"> </span>group<span class="w"> </span>of<span class="w"> </span>variables<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>refer<span class="w"> </span><span class="kr">to</span><span class="w"> </span>them<span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="kr">by</span><span class="w"> </span>their<span class="w"> </span>position<span class="o">,</span><span class="w"> </span>or<span class="w"> </span><span class="s">&quot;index&quot;</span><span class="o">.</span><span class="w"> </span>Here<span class="w"> </span>we<span class="s">&#39;re creating an array of</span>
+<span class="o">//</span><span class="w"> </span>eight<span class="w"> </span>integers<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>initializing<span class="w"> </span>them<span class="w"> </span><span class="kr">to</span><span class="w"> </span>a<span class="w"> </span>set<span class="w"> </span>of<span class="w"> </span><span class="nl">values</span><span class="o">:</span><span class="w"></span>
+
+int<span class="w"> </span>ledPins<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="m">2</span><span class="o">,</span><span class="m">3</span><span class="o">,</span><span class="m">4</span><span class="o">,</span><span class="m">5</span><span class="o">,</span><span class="m">6</span><span class="o">,</span><span class="m">7</span><span class="o">,</span><span class="m">8</span><span class="o">,</span><span class="m">9</span><span class="err">};</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>The<span class="w"> </span>first<span class="w"> </span>element<span class="w"> </span>of<span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>is<span class="w"> </span>index<span class="w"> </span><span class="m">0</span><span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ve put the value &quot;2&quot; in index 0, &quot;3&quot; in index 1, etc.</span>
+<span class="o">//</span><span class="w"> </span>The<span class="w"> </span>final<span class="w"> </span>index<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>array<span class="w"> </span>is<span class="w"> </span><span class="m">7</span><span class="o">,</span><span class="w"> </span>which<span class="w"> </span>contains<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span><span class="s">&quot;9&quot;</span><span class="o">.</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>We<span class="s">&#39;re using the values in this array to specify the pin numbers</span>
+<span class="o">//</span><span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>eight<span class="w"> </span>LEDs<span class="w"> </span>are<span class="w"> </span>connected<span class="w"> </span><span class="kr">to</span><span class="o">.</span><span class="w"> </span>LED<span class="w"> </span><span class="m">0</span><span class="w"> </span>is<span class="w"> </span>connected<span class="w"> </span><span class="kr">to</span><span class="w"> </span>
+<span class="o">//</span><span class="w"> </span>pin<span class="w"> </span><span class="m">2</span><span class="o">,</span><span class="w"> </span>LED<span class="w"> </span><span class="m">1</span><span class="w"> </span>is<span class="w"> </span>connected<span class="w"> </span><span class="kr">to</span><span class="w"> </span>pin<span class="w"> </span><span class="m">3</span><span class="o">,</span><span class="w"> </span>etc<span class="o">.</span><span class="w"></span>
+
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>index<span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>In<span class="w"> </span>this<span class="w"> </span>sketch<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;ll use &quot;for() loops&quot; to step variables from</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>one<span class="w"> </span>value<span class="w"> </span><span class="kr">to</span><span class="w"> </span>another<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>perform<span class="w"> </span>a<span class="w"> </span>set<span class="w"> </span>of<span class="w"> </span>instructions<span class="w"> </span><span class="kr">for</span><span class="w"> </span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>each<span class="w"> </span>step<span class="o">.</span><span class="w"> </span><span class="kr">For</span><span class="o">()</span><span class="w"> </span>loops<span class="w"> </span>are<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>handy<span class="w"> </span>way<span class="w"> </span><span class="kr">to</span><span class="w"> </span>get<span class="w"> </span>numbers<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>count<span class="w"> </span>up<span class="w"> </span>or<span class="w"> </span>down<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Every<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>has<span class="w"> </span>three<span class="w"> </span>statements<span class="w"> </span>separated<span class="w"> </span><span class="kr">by</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>semicolons<span class="w"> </span><span class="o">(</span><span class="err">;</span><span class="o">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w">   </span><span class="m">1</span><span class="o">.</span><span class="w"> </span>Something<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>before<span class="w"> </span>starting<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">   </span><span class="m">2</span><span class="o">.</span><span class="w"> </span>A<span class="w"> </span>test<span class="w"> </span><span class="kr">to</span><span class="w"> </span>perform<span class="err">;</span><span class="w"> </span>as<span class="w"> </span>long<span class="w"> </span>as<span class="w"> </span>it<span class="s">&#39;s true, keep looping</span>
+<span class="w">  </span><span class="o">//</span><span class="w">   </span><span class="m">3</span><span class="o">.</span><span class="w"> </span>Something<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>after<span class="w"> </span>each<span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>increase<span class="w"> </span>a<span class="w"> </span>variable<span class="o">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">For</span><span class="w"> </span>the<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>below<span class="o">,</span><span class="w"> </span>these<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>three<span class="w"> </span><span class="nl">statements</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w">   </span><span class="m">1</span><span class="o">.</span><span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">    </span>Before<span class="w"> </span>starting<span class="o">,</span><span class="w"> </span>make<span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">   </span><span class="m">2</span><span class="o">.</span><span class="w"> </span>index<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w">   </span><span class="kr">If</span><span class="w"> </span>index<span class="w"> </span>is<span class="w"> </span>less<span class="w"> </span>or<span class="w"> </span>equal<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">7</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">                    </span>run<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>code<span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">            </span><span class="o">(</span>When<span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="o">,</span><span class="w"> </span>continue<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>sketch<span class="o">.)</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">   </span><span class="m">3</span><span class="o">.</span><span class="w"> </span>index<span class="o">++</span><span class="w">   </span>Putting<span class="w"> </span><span class="s">&quot;++&quot;</span><span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>variable<span class="w"> </span>means<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">                    </span><span class="s">&quot;add one to it&quot;</span><span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w">            </span><span class="o">(</span>You<span class="w"> </span>can<span class="w"> </span>also<span class="w"> </span>use<span class="w"> </span><span class="s">&quot;index = index + 1&quot;</span><span class="o">.)</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Every<span class="w"> </span>time<span class="w"> </span>you<span class="w"> </span>go<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>loop<span class="o">,</span><span class="w"> </span>the<span class="w"> </span>statements<span class="w"> </span>following<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span><span class="o">(</span>within<span class="w"> </span>the<span class="w"> </span>brackets<span class="o">)</span><span class="w"> </span>will<span class="w"> </span>run<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>When<span class="w"> </span>the<span class="w"> </span>test<span class="w"> </span>in<span class="w"> </span>statement<span class="w"> </span><span class="m">2</span><span class="w"> </span>is<span class="w"> </span>finally<span class="w"> </span>false<span class="o">,</span><span class="w"> </span>the<span class="w"> </span>sketch<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>will<span class="w"> </span>continue<span class="o">.</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Here<span class="w"> </span>we<span class="s">&#39;ll use a for() loop to initialize all the LED pins</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>outputs<span class="o">.</span><span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>much<span class="w"> </span>easier<span class="w"> </span>than<span class="w"> </span>writing<span class="w"> </span>eight<span class="w"> </span>separate<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>statements<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>thing<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>will<span class="w"> </span>make<span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>pinMode<span class="o">()</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>statement<span class="w"> </span>within<span class="w"> </span>the<span class="w"> </span>brackets<span class="o">.</span><span class="w"> </span>It<span class="w"> </span>will<span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>thing<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="o">,</span><span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="o">,</span><span class="w"> </span>etc<span class="o">.</span><span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>way<span class="w"> </span><span class="kr">to</span><span class="w"> </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w"> </span>index<span class="o">++)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>pinMode<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="w"> </span>is<span class="w"> </span>replaced<span class="w"> </span><span class="kr">by</span><span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>array<span class="o">.</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">For</span><span class="w"> </span>example<span class="o">,</span><span class="w"> </span>ledPins<span class="err">[</span><span class="m">0</span><span class="err">]</span><span class="w"> </span>is<span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span>loop<span class="o">()</span><span class="w"> </span>calls<span class="w"> </span>functions<span class="w"> </span>that<span class="w"> </span>we<span class="s">&#39;ve written further below.</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ve disabled some of these by commenting them out (putting</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="s">&quot;//&quot;</span><span class="w"> </span>in<span class="w"> </span>front<span class="w"> </span>of<span class="w"> </span>them<span class="o">).</span><span class="w"> </span><span class="kr">To</span><span class="w"> </span>try<span class="w"> </span>different<span class="w"> </span>LED<span class="w"> </span>displays<span class="o">,</span><span class="w"> </span>remove<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span><span class="s">&quot;//&quot;</span><span class="w"> </span>in<span class="w"> </span>front<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>ones<span class="w"> </span>you<span class="s">&#39;d like to run, and add &quot;//&quot;</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>in<span class="w"> </span>front<span class="w"> </span>of<span class="w"> </span>those<span class="w"> </span>you<span class="w"> </span>don<span class="s">&#39;t to comment out (and disable) those</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>lines<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span>oneAfterAnotherNoLoop<span class="o">()</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>Light<span class="w"> </span>up<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span>in<span class="w"> </span>turn<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>oneAfterAnotherLoop<span class="o">()</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>Same<span class="w"> </span>as<span class="w"> </span>oneAfterAnotherNoLoop<span class="o">,</span><span class="w"></span>
+<span class="w">                            </span><span class="o">//</span><span class="w"> </span>but<span class="w"> </span>with<span class="w"> </span>much<span class="w"> </span>less<span class="w"> </span>typing<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>oneOnAtATime<span class="o">()</span><span class="err">;</span><span class="w">         </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>one<span class="w"> </span>LED<span class="w"> </span>at<span class="w"> </span>a<span class="w"> </span>time<span class="o">,</span><span class="w"></span>
+<span class="w">                            </span><span class="o">//</span><span class="w"> </span>scrolling<span class="w"> </span>down<span class="w"> </span>the<span class="w"> </span>line<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>pingPong<span class="o">()</span><span class="err">;</span><span class="w">             </span><span class="o">//</span><span class="w"> </span>Light<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span>middle<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>edges<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>marquee<span class="o">()</span><span class="err">;</span><span class="w">              </span><span class="o">//</span><span class="w"> </span>Chase<span class="w"> </span>lights<span class="w"> </span>like<span class="w"> </span>you<span class="w"> </span>see<span class="w"> </span><span class="kr">on</span><span class="w"> </span>signs<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>randomLED<span class="o">()</span><span class="err">;</span><span class="w">            </span><span class="o">//</span><span class="w"> </span>Blink<span class="w"> </span>LEDs<span class="w"> </span>randomly<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">oneAfterAnotherNoLoop()</span>
+
+<span class="cm">This function will light one LED, delay for delayTime, then light</span>
+<span class="cm">the next LED, and repeat until all the LEDs are on. It will then</span>
+<span class="cm">turn them off in the reverse order.</span>
+
+<span class="cm">This function does NOT use a for() loop. We&#39;ve done it the hard way</span>
+<span class="cm">to show you how much easier life can be when you use for() loops.</span>
+<span class="cm">Take a look at oneAfterAnotherLoop() further down, which does</span>
+<span class="cm">exactly the same thing with much less typing.</span>
+<span class="cm">*/</span><span class="w"></span>
+
+void<span class="w"> </span>oneAfterAnotherNoLoop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>delayTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>milliseconds<span class="o">)</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>pause<span class="w"> </span>between<span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">                       </span><span class="o">//</span><span class="w"> </span>make<span class="w"> </span>this<span class="w"> </span>smaller<span class="w"> </span><span class="kr">for</span><span class="w"> </span>faster<span class="w"> </span>switching<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span><span class="nl">on</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">0</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">0</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">1</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">1</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">2</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">2</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">4</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">3</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">3</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">5</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">4</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">4</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">6</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">5</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">5</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">7</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">6</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">6</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">8</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">7</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span>Turns<span class="w"> </span><span class="kr">on</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">7</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">9</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w">  </span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span><span class="nl">off</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">7</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">7</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">9</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">6</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">6</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">8</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">5</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">5</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">7</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">4</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">4</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">6</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">3</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">3</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">5</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">2</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">2</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">4</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">1</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">1</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span><span class="m">0</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LED<span class="w"> </span><span class="err">#</span><span class="m">0</span><span class="w"> </span><span class="o">(</span>pin<span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span><span class="o">//</span>wait<span class="w"> </span>delayTime<span class="w"> </span>milliseconds<span class="w">  </span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">oneAfterAnotherLoop()</span>
+
+<span class="cm">This function does exactly the same thing as oneAfterAnotherNoLoop(),</span>
+<span class="cm">but it takes advantage of for() loops and the array to do it with</span>
+<span class="cm">much less typing.</span>
+<span class="cm">*/</span><span class="w"></span>
+
+void<span class="w"> </span>oneAfterAnotherLoop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>index<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>delayTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>milliseconds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>pause<span class="w"> </span>between<span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">                       </span><span class="o">//</span><span class="w"> </span>make<span class="w"> </span>this<span class="w"> </span>smaller<span class="w"> </span><span class="kr">for</span><span class="w"> </span>faster<span class="w"> </span>switching<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span><span class="nl">on</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>will<span class="w"> </span>step<span class="w"> </span>index<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">7</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="o">(</span>putting<span class="w"> </span><span class="s">&quot;++&quot;</span><span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>variable<span class="w"> </span>means<span class="w"> </span>add<span class="w"> </span>one<span class="w"> </span><span class="kr">to</span><span class="w"> </span>it<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>and<span class="w"> </span>will<span class="w"> </span><span class="kr">then</span><span class="w"> </span>use<span class="w"> </span>digitalWrite<span class="o">()</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>turn<span class="w"> </span>that<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w"> </span>index<span class="o">++)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                </span>
+<span class="w">  </span><span class="err">}</span><span class="w">                                  </span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>LEDs<span class="w"> </span><span class="nl">off</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span><span class="kr">for</span><span class="o">()</span><span class="w"> </span>loop<span class="w"> </span>will<span class="w"> </span>step<span class="w"> </span>index<span class="w"> </span>from<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="o">(</span>putting<span class="w"> </span><span class="s">&quot;--&quot;</span><span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>variable<span class="w"> </span>means<span class="w"> </span>subtract<span class="w"> </span>one<span class="w"> </span>from<span class="w"> </span>it<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>and<span class="w"> </span>will<span class="w"> </span><span class="kr">then</span><span class="w"> </span>use<span class="w"> </span>digitalWrite<span class="o">()</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>turn<span class="w"> </span>that<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="o">--)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w">               </span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">oneOnAtATime()</span>
+
+<span class="cm">This function will step through the LEDs,</span>
+<span class="cm">lighting only one at at time.</span>
+<span class="cm">*/</span><span class="w"></span>
+
+void<span class="w"> </span>oneOnAtATime<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>index<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>delayTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>milliseconds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>pause<span class="w"> </span>between<span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">                       </span><span class="o">//</span><span class="w"> </span>make<span class="w"> </span>this<span class="w"> </span>smaller<span class="w"> </span><span class="kr">for</span><span class="w"> </span>faster<span class="w"> </span>switching<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>step<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>LEDs<span class="o">,</span><span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">7</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w"> </span>index<span class="o">++)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                    </span><span class="o">//</span><span class="w"> </span>pause<span class="w"> </span><span class="kr">to</span><span class="w"> </span>slow<span class="w"> </span>down<span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">pingPong()</span>
+
+<span class="cm">This function will step through the LEDs,</span>
+<span class="cm">lighting one at at time in both directions.</span>
+<span class="cm">*/</span><span class="w"></span>
+
+void<span class="w"> </span>pingPong<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>index<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>delayTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>milliseconds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>pause<span class="w"> </span>between<span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">                       </span><span class="o">//</span><span class="w"> </span>make<span class="w"> </span>this<span class="w"> </span>smaller<span class="w"> </span><span class="kr">for</span><span class="w"> </span>faster<span class="w"> </span>switching<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>step<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>LEDs<span class="o">,</span><span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">7</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w"> </span>index<span class="o">++)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                    </span><span class="o">//</span><span class="w"> </span>pause<span class="w"> </span><span class="kr">to</span><span class="w"> </span>slow<span class="w"> </span>down<span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>step<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>LEDs<span class="o">,</span><span class="w"> </span>from<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="o">--)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                    </span><span class="o">//</span><span class="w"> </span>pause<span class="w"> </span><span class="kr">to</span><span class="w"> </span>slow<span class="w"> </span>down<span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">marquee()</span>
+
+<span class="cm">This function will mimic &quot;chase lights&quot; like those around signs.</span>
+<span class="cm">*/</span><span class="w"></span>
+
+void<span class="w"> </span>marquee<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>index<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>delayTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>milliseconds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>pause<span class="w"> </span>between<span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">                       </span><span class="o">//</span><span class="w"> </span>Make<span class="w"> </span>this<span class="w"> </span>smaller<span class="w"> </span><span class="kr">for</span><span class="w"> </span>faster<span class="w"> </span>switching<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Step<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>four<span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="o">(</span>We<span class="s">&#39;ll light up one in the lower 4 and one in the upper 4)</span>
+
+<span class="w">  </span><span class="kr">for</span><span class="o">(</span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>index<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">3</span><span class="err">;</span><span class="w"> </span>index<span class="o">++)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Step<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span>a<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="o">+</span><span class="m">4</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>Skip<span class="w"> </span>four<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>turn<span class="w"> </span>that<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                      </span><span class="o">//</span><span class="w"> </span>Pause<span class="w"> </span><span class="kr">to</span><span class="w"> </span>slow<span class="w"> </span>down<span class="w"> </span>the<span class="w"> </span>sequence<span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">     </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="o">+</span><span class="m">4</span><span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>Skip<span class="w"> </span>four<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>turn<span class="w"> </span>that<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
+<span class="cm">randomLED()</span>
+
+<span class="cm">This function will turn on random LEDs. Can you modify it so it</span>
+<span class="cm">also lights them for random times?</span>
+<span class="cm">*/</span><span class="w"></span>
+
+void<span class="w"> </span>randomLED<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>index<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>delayTime<span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>The<span class="w"> </span><span class="nb">random</span><span class="o">()</span><span class="w"> </span>function<span class="w"> </span>will<span class="w"> </span><span class="kr">return</span><span class="w"> </span>a<span class="w"> </span>semi<span class="o">-</span>random<span class="w"> </span>number<span class="w"> </span>each<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>time<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>called<span class="o">.</span><span class="w"> </span>See<span class="w"> </span><span class="nl">http</span><span class="o">://</span>arduino<span class="o">.</span>cc<span class="o">/</span>en<span class="o">/</span>Reference<span class="o">/</span>Random<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span>tips<span class="w"> </span><span class="kr">on</span><span class="w"> </span>how<span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"> </span><span class="nb">random</span><span class="o">()</span><span class="w"> </span>even<span class="w"> </span>more<span class="w"> </span>random<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span>index<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">random</span><span class="o">(</span><span class="m">8</span><span class="o">)</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>pick<span class="w"> </span>a<span class="w"> </span>random<span class="w"> </span>number<span class="w"> </span>between<span class="w"> </span><span class="m">0</span><span class="w"> </span>and<span class="w"> </span><span class="m">7</span><span class="w"></span>
+<span class="w">  </span>delayTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span>delayTime<span class="o">)</span><span class="err">;</span><span class="w">                    </span><span class="o">//</span><span class="w"> </span>pause<span class="w"> </span><span class="kr">to</span><span class="w"> </span>slow<span class="w"> </span>down<span class="w"></span>
+<span class="w">  </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>index<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">int ledPins[] = {2,3,4,5,6,7,8,9};</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+When you have to manage a lot of variables, an “array” is a handy way to group them together. Here we’re creating an array of integers, called ledPins, with eight elements.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">digitalWrite(ledPins[0], HIGH);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You refer to the elements in an array by their position. The first element is at position 0, the second is at position 1, etc. You refer to an element using “ledPins[x]” where x is the position. Here we’re making digital pin 2 HIGH, since the array element at position 0 is “2”.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">index = random(8);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Computers like to do the same things each time they run. But sometimes you want to do things randomly, such as simulating the roll of a dice. The&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">random()</code>&nbsp;function is a great way to do this. See<span style="box-sizing: border-box; font-weight: 700;"><a href="http://arduino.cc/en/reference/random" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">http://arduino.cc/en/reference/random</a></span>&nbsp;for more information.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+This is similar to circuit number one, but instead of one LED, you should see all the LEDs blink. If they aren’t, make sure you have assembled the circuit correctly and verified and uploaded the code to your board, or see the troubleshooting section.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<br /></div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_04_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_04_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Scrolling marquee displays are generally used to spread short segments of important information. They are built out of many LEDs.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Some LEDs Fail to Light</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+It is easy to insert an LED backwards. Check the LEDs that aren’t working and ensure they are in the correct orientation.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Operating out of sequence</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+With eight wires it’s easy to cross a couple. Double check that the first LED is plugged into pin 2 and each pin thereafter.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Starting Fresh</h4>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+It’s easy to accidentally misplace a wire without noticing. Pulling everything out and starting with a fresh slate is often easier than trying to track down the problem.<br />
+<br />
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Questions</h3>
+</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br />
+<ol>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">What will digitalWrite(ledPins[3], HIGH) do?</span></span></li>
+</ol>
+<div>
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><br /></span></span></div>
+</div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-3-driving-rgb-led.html">Experiment 3: Driving an RGB LED</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-5-push-buttons.html">Experiment 5: Push Buttons</a></span></span><br />
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><br /></span></div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+
+<div>
+<br /></div>
+
+<div>
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br /><a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

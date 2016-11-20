@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Graph: Send data to the computer and graph it in Processing. - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/graph-send-data-to-the-computer-and-graph-it-in-processing.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="This example shows you how to send a byte of data from the Arduino or Genuino to a personal computer and graph the result. This is called serial communication because the connection appears to both the board and the computer as a serial port, even though it may actually use ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Graph: Send data to the computer and graph it in Processing."/>
+    <meta property="og:url" content="https://driewe.github.io/pages/graph-send-data-to-the-computer-and-graph-it-in-processing.html"/>
+    <meta property="og:description" content="This example shows you how to send a byte of data from the Arduino or Genuino to a personal computer and graph the result. This is called serial communication because the connection appears to both the board and the computer as a serial port, even though it may actually use ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Graph: Send data to the computer and graph it in Processing.</h1>
+        
+        <div class="entry-content">
+            <p>This example shows you how to send a byte of data from the Arduino or Genuino to a personal computer and graph the result. This is called serial communication because the connection appears to both the board and the computer as a serial port, even though it may actually use a USB cable, a serial to USB and a USB to serial converter.<br />
+<br />
+You can use the serial monitor of the Arduino Software (IDE) to view the sent data, or it can be read by Processing (see code below), Flash, PD, Max/MSP, etc.<br />
+<div>
+<br />
+<span style="font-size: large;">Hardware Required</span><br />
+<br />
+Arduino<br />
+Analog Sensor (potentiometer, photocell, FSR, etc.)<br />
+Software Required<br />
+<a href="http://www.processing.org/">Processing</a><br />
+<br />
+<span style="font-size: large;">Circuit</span><br />
+<br />
+Connect a potentiometer or other analog sensor to analog input 0.<br />
+<br />
+click the image to enlarge<br />
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/graph-circuit3.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/graph-circuit3.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+<br />
+<br />
+image developed using <a href="http://www.fritzing.org/">Fritzing</a>. For more circuit examples, see the <a href="http://fritzing.org/projects/">Fritzing project page</a></div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<span style="font-size: large;">Schematic</span><br />
+<br />
+click the image to enlarge<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/AnalogReadSerial_sch.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" height="400px" src="https://www.arduino.cc/en/uploads/Tutorial/AnalogReadSerial_sch.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<br /></div>
+</div>
+<span style="font-size: large;">Code</span><br />
+<div>
+<br /></div>
+</div></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  Graph</span>
+
+<span class="cm"> A simple example of communication from the Arduino board to the computer:</span>
+<span class="cm"> the value of analog input 0 is sent out the serial port.  We call this &quot;serial&quot;</span>
+<span class="cm"> communication because the connection appears to both the Arduino and the</span>
+<span class="cm"> computer as a serial port, even though it may actually use</span>
+<span class="cm"> a USB cable. Bytes are sent one after another (serially) from the Arduino</span>
+<span class="cm"> to the computer.</span>
+
+<span class="cm"> You can use the Arduino serial monitor to view the sent data, or it can</span>
+<span class="cm"> be read by Processing, PD, Max/MSP, or any other program capable of reading</span>
+<span class="cm"> data from a serial port.  The Processing code below graphs the data received</span>
+<span class="cm"> so you can see the value of the analog input changing over time.</span>
+
+<span class="cm"> The circuit:</span>
+<span class="cm"> Any analog input sensor is attached to analog in pin 0.</span>
+
+<span class="cm"> created 2006</span>
+<span class="cm"> by David A. Mellis</span>
+<span class="cm"> modified 9 Apr 2012</span>
+<span class="cm"> by Tom Igoe and Scott Fitzgerald</span>
+
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/Graph</span>
+<span class="cm"> */</span><span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>initialize<span class="w"> </span>the<span class="w"> </span>serial<span class="w"> </span><span class="nl">communication</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>begin<span class="o">(</span><span class="m">9600</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>send<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>analog<span class="w"> </span>input<span class="w"> </span><span class="m">0</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>println<span class="o">(</span>analogRead<span class="o">(</span>A0<span class="o">))</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>wait<span class="w"> </span>a<span class="w"> </span>bit<span class="w"> </span><span class="kr">for</span><span class="w"> </span>the<span class="w"> </span>analog<span class="o">-</span><span class="kr">to</span><span class="o">-</span>digital<span class="w"> </span>converter<span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>stabilize<span class="w"> </span>after<span class="w"> </span>the<span class="w"> </span>last<span class="w"> </span><span class="nl">reading</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="cm">/* Processing code for this example</span>
+
+<span class="cm"> // Graphing sketch</span>
+
+
+<span class="cm">// This program takes ASCII-encoded strings</span>
+<span class="cm">// from the serial port at 9600 baud and graphs them. It expects values in the</span>
+<span class="cm">// range 0 to 1023, followed by a newline, or newline and carriage return</span>
+
+<span class="cm">// Created 20 Apr 2005</span>
+<span class="cm">// Updated 24 Nov 2015</span>
+<span class="cm">// by Tom Igoe</span>
+<span class="cm">// This example code is in the public domain.</span>
+
+<span class="cm">import processing.serial.*;</span>
+
+<span class="cm">Serial myPort;        // The serial port</span>
+<span class="cm">int xPos = 1;         // horizontal position of the graph</span>
+<span class="cm">float inByte = 0;</span>
+
+<span class="cm">void setup () {</span>
+<span class="cm">  // set the window size:</span>
+<span class="cm">  size(400, 300);</span>
+
+<span class="cm">  // List all the available serial ports</span>
+<span class="cm">  // if using Processing 2.1 or later, use Serial.printArray()</span>
+<span class="cm">  println(Serial.list());</span>
+
+<span class="cm">  // I know that the first port in the serial list on my mac</span>
+<span class="cm">  // is always my  Arduino, so I open Serial.list()[0].</span>
+<span class="cm">  // Open whatever port is the one you&#39;re using.</span>
+<span class="cm">  myPort = new Serial(this, Serial.list()[0], 9600);</span>
+
+<span class="cm">  // don&#39;t generate a serialEvent() unless you get a newline character:</span>
+<span class="cm">  myPort.bufferUntil(&#39;\n&#39;);</span>
+
+<span class="cm">  // set inital background:</span>
+<span class="cm">  background(0);</span>
+<span class="cm">}</span>
+<span class="cm">void draw () {</span>
+<span class="cm">  // draw the line:</span>
+<span class="cm">  stroke(127, 34, 255);</span>
+<span class="cm">  line(xPos, height, xPos, height - inByte);</span>
+
+<span class="cm">  // at the edge of the screen, go back to the beginning:</span>
+<span class="cm">  if (xPos &gt;= width) {</span>
+<span class="cm">    xPos = 0;</span>
+<span class="cm">    background(0);</span>
+<span class="cm">  } else {</span>
+<span class="cm">    // increment the horizontal position:</span>
+<span class="cm">    xPos++;</span>
+<span class="cm">  }</span>
+<span class="cm">}</span>
+
+
+<span class="cm">void serialEvent (Serial myPort) {</span>
+<span class="cm">  // get the ASCII string:</span>
+<span class="cm">  String inString = myPort.readStringUntil(&#39;\n&#39;);</span>
+
+<span class="cm">  if (inString != null) {</span>
+<span class="cm">    // trim off any whitespace:</span>
+<span class="cm">    inString = trim(inString);</span>
+<span class="cm">    // convert to an int and map to the screen height:</span>
+<span class="cm">    inByte = float(inString);</span>
+<span class="cm">    println(inByte);</span>
+<span class="cm">    inByte = map(inByte, 0, 1023, 0, height);</span>
+<span class="cm">  }</span>
+<span class="cm">}</span>
+
+<span class="cm">*/</span><span class="w"></span>
+</pre></div>
+
+
+<p><br />
+<span style="font-size: large;">Processing Sketch</span><br />
+<br />
+Using the Processing sketch in the code sample above, you'll get a graph of the sensor's value. As you change the value of the analog sensor, you'll get a graph something like this:<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/graph-output.png" style="border: 0px; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /><br />
+<br />
+<br />
+<div style="color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; font-weight: bold; line-height: 20px; text-align: center;">
+<span style="font-size: medium;">Want to save some time learning&nbsp;</span><span style="font-size: medium;">Arduino?</span></div>
+<span style="color: #666666; font-family: &quot;trebuchet ms&quot; , &quot;trebuchet&quot; , &quot;verdana&quot; , sans-serif; font-size: medium; font-weight: bold; line-height: 20px; text-align: center;"></span><br />
+<div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</div></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

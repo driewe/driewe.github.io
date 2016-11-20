@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 5: Push Buttons - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-5-push-buttons.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Up until now, we’ve focused mostly on outputs. Now we’re going to go to the other end of spectrum and play around with inputs. In experiment 2, we used an analog input to read the potentiometer. In this circuit, we ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 5: Push Buttons"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-5-push-buttons.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Up until now, we’ve focused mostly on outputs. Now we’re going to go to the other end of spectrum and play around with inputs. In experiment 2, we used an analog input to read the potentiometer. In this circuit, we ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 5: Push Buttons</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Up until now, we’ve focused mostly on outputs. Now we’re going to go to the other end of spectrum and play around with inputs. In experiment 2, we used an analog input to read the potentiometer. In this circuit, we’ll be reading in one of the most common and simple inputs – a push button – by using a digital input. The way a push button works with your RedBoard or Arduino Uno R3 is that when the button is pushed, the voltage goes LOW. You RedBoard or Arduino Uno R3 reads this and reacts accordingly.</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+In this circuit, you will also use a&nbsp;<a href="https://learn.sparkfun.com/tutorials/pull-up-resistors" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">pull-up resistor</a>, which keeps the voltage HIGH when you’re not pressing the button.</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;LED</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;330Ω Resistor</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">7x</span>&nbsp;Jumper Wires</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">2x</span>&nbsp;Push Buttons</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">2x</span>&nbsp;10k Resistors</li>
+</ul>
+<div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Suggested Reading</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Before continuing on with this tutorial, we recommend you be somewhat familiar with the concepts in these tutorials:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/switch-basics" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">Switch Basics</a></li>
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/analog-vs-digital" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">Analog vs. Digital</a></li>
+</ul>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram and hookup table below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 640px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_05_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_05_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Run the Sketch</h3>
+</div>
+</div>
+
+<div>
+<br /></div>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">SparkFun Inventor&#39;s Kit</span>
+<span class="cm">Example sketch 05</span>
+
+<span class="cm">PUSH BUTTONS</span>
+
+<span class="cm">  Use pushbuttons for digital input</span>
+
+<span class="cm">  Previously we&#39;ve used the analog pins for input, now we&#39;ll use</span>
+<span class="cm">  the digital pins for input as well. Because digital pins only</span>
+<span class="cm">  know about HIGH and LOW signals, they&#39;re perfect for interfacing</span>
+<span class="cm">  to pushbuttons and switches that also only have &quot;on&quot; and &quot;off&quot;</span>
+<span class="cm">  states.</span>
+
+<span class="cm">  We&#39;ll connect one side of the pushbutton to GND, and the other</span>
+<span class="cm">  side to a digital pin. When we press down on the pushbutton,</span>
+<span class="cm">  the pin will be connected to GND, and therefore will be read</span>
+<span class="cm">  as &quot;LOW&quot; by the Arduino.</span>
+
+<span class="cm">  But wait - what happens when you&#39;re not pushing the button?</span>
+<span class="cm">  In this state, the pin is disconnected from everything, which </span>
+<span class="cm">  we call &quot;floating&quot;. What will the pin read as then, HIGH or LOW?</span>
+<span class="cm">  It&#39;s hard to say, because there&#39;s no solid connection to either</span>
+<span class="cm">  5 Volts or GND. The pin could read as either one.</span>
+
+<span class="cm">  To deal with this issue, we&#39;ll connect a small (10K, or 10,000 Ohm)</span>
+<span class="cm">  resistance between the pin and 5 Volts. This &quot;pullup&quot; resistor</span>
+<span class="cm">  will ensure that when you&#39;re NOT pushing the button, the pin will</span>
+<span class="cm">  still have a weak connection to 5 Volts, and therefore read as</span>
+<span class="cm">  HIGH.</span>
+
+<span class="cm">  (Advanced: when you get used to pullup resistors and know when</span>
+<span class="cm">  they&#39;re required, you can activate internal pullup resistors</span>
+<span class="cm">  on the ATmega processor in the Arduino. See</span>
+<span class="cm">  http://arduino.cc/en/Tutorial/DigitalPins for information.)</span>
+
+<span class="cm">Hardware connections:</span>
+
+<span class="cm">  Pushbuttons:</span>
+
+<span class="cm">    Pushbuttons have two contacts that are connected if you&#39;re</span>
+<span class="cm">    pushing the button, and disconnected if you&#39;re not.</span>
+
+<span class="cm">    The pushbuttons we&#39;re using have four pins, but two pairs</span>
+<span class="cm">    of these are connected together. The easiest way to hook up</span>
+<span class="cm">    the pushbutton is to connect two wires to any opposite corners.</span>
+
+<span class="cm">    Connect any pin on pushbutton 1 to ground (GND).</span>
+<span class="cm">    Connect the opposite diagonal pin of the pushbutton to</span>
+<span class="cm">    digital pin 2.</span>
+
+<span class="cm">    Connect any pin on pushbutton 2 to ground (GND).</span>
+<span class="cm">    Connect the opposite diagonal pin of the pushbutton to</span>
+<span class="cm">    digital pin 3.</span>
+
+<span class="cm">    Also connect 10K resistors (brown/black/red) between</span>
+<span class="cm">    digital pins 2 and 3 and GND. These are called &quot;pullup&quot;</span>
+<span class="cm">    resistors. They ensure that the input pin will be either</span>
+<span class="cm">    5V (unpushed) or GND (pushed), and not somewhere in between.</span>
+<span class="cm">    (Remember that unlike analog inputs, digital inputs are only</span>
+<span class="cm">    HIGH or LOW.)</span>
+
+<span class="cm">  LED:</span>
+
+<span class="cm">    Most Arduinos, including the Uno, already have an LED</span>
+<span class="cm">    and resistor connected to pin 13, so you don&#39;t need any</span>
+<span class="cm">    additional circuitry.</span>
+
+<span class="cm">    But if you&#39;d like to connect a second LED to pin 13,</span>
+
+<span class="cm">    Connect the positive side of your LED to Arduino digital pin 13</span>
+<span class="cm">    Connect the negative side of your LED to a 330 Ohm resistor</span>
+<span class="cm">    Connect the other side of the resistor to ground</span>
+
+<span class="cm">This sketch was written by SparkFun Electronics,</span>
+<span class="cm">with lots of help from the Arduino community.</span>
+<span class="cm">This code is completely free for any use.</span>
+<span class="cm">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="cm">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="cm">Version 2.0 6/2012 MDG</span>
+<span class="cm">*/</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>First<span class="w"> </span>we<span class="s">&#39;ll set up constants for the pin numbers.</span>
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>will<span class="w"> </span>make<span class="w"> </span>it<span class="w"> </span>easier<span class="w"> </span><span class="kr">to</span><span class="w"> </span>follow<span class="w"> </span>the<span class="w"> </span>code<span class="w"> </span>below<span class="o">.</span><span class="w"></span>
+
+const<span class="w"> </span>int<span class="w"> </span>button1Pin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>pushbutton<span class="w"> </span><span class="m">1</span><span class="w"> </span>pin<span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>button2Pin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>pushbutton<span class="w"> </span><span class="m">2</span><span class="w"> </span>pin<span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>ledPin<span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">13</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>LED<span class="w"> </span>pin<span class="w"></span>
+
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Set<span class="w"> </span>up<span class="w"> </span>the<span class="w"> </span>pushbutton<span class="w"> </span>pins<span class="w"> </span><span class="kr">to</span><span class="w"> </span>be<span class="w"> </span>an<span class="w"> </span><span class="nl">input</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>button1Pin<span class="o">,</span><span class="w"> </span>INPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>button2Pin<span class="o">,</span><span class="w"> </span>INPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Set<span class="w"> </span>up<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>pin<span class="w"> </span><span class="kr">to</span><span class="w"> </span>be<span class="w"> </span>an<span class="w"> </span><span class="nl">output</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w">      </span>
+<span class="err">}</span><span class="w"></span>
+
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>button1State<span class="o">,</span><span class="w"> </span>button2State<span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>variables<span class="w"> </span><span class="kr">to</span><span class="w"> </span>hold<span class="w"> </span>the<span class="w"> </span>pushbutton<span class="w"> </span>states<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Since<span class="w"> </span>a<span class="w"> </span>pushbutton<span class="w"> </span>has<span class="w"> </span>only<span class="w"> </span>two<span class="w"> </span>states<span class="w"> </span><span class="o">(</span>pushed<span class="w"> </span>or<span class="w"> </span>not<span class="w"> </span>pushed<span class="o">),</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>we<span class="s">&#39;ve run them into digital inputs. To read an input, we&#39;</span>ll<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>digitalRead<span class="o">()</span><span class="w"> </span>function<span class="o">.</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>takes<span class="w"> </span>one<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>parameter<span class="o">,</span><span class="w"> </span>the<span class="w"> </span>pin<span class="w"> </span>number<span class="o">,</span><span class="w"> </span>and<span class="w"> </span>returns<span class="w"> </span>either<span class="w"> </span>HIGH<span class="w"> </span><span class="o">(</span><span class="m">5</span>V<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>or<span class="w"> </span>LOW<span class="w"> </span><span class="o">(</span>GND<span class="o">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Here<span class="w"> </span>we<span class="s">&#39;ll read the current pushbutton states into</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>two<span class="w"> </span><span class="nl">variables</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span>button1State<span class="w"> </span><span class="o">=</span><span class="w"> </span>digitalRead<span class="o">(</span>button1Pin<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>button2State<span class="w"> </span><span class="o">=</span><span class="w"> </span>digitalRead<span class="o">(</span>button2Pin<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Remember<span class="w"> </span>that<span class="w"> </span><span class="kr">if</span><span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>pressed<span class="o">,</span><span class="w"> </span>it<span class="w"> </span>will<span class="w"> </span>be<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>connected<span class="w"> </span><span class="kr">to</span><span class="w"> </span>GND<span class="o">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>being<span class="w"> </span>pressed<span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>pullup<span class="w"> </span>resistor<span class="w"> </span>will<span class="w"> </span>connect<span class="w"> </span>it<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">5</span><span class="w"> </span>Volts<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>So<span class="w"> </span>the<span class="w"> </span>state<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>LOW<span class="w"> </span>when<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>pressed<span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>and<span class="w"> </span>HIGH<span class="w"> </span>when<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>being<span class="w"> </span>pressed<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Now<span class="w"> </span>we<span class="s">&#39;ll use those states to control the LED.</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Here<span class="s">&#39;s what we want to do:</span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="s">&quot;If either button is being pressed, light up the LED&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="s">&quot;But, if BOTH buttons are being pressed, DON&#39;T light up the LED&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Let<span class="s">&#39;s translate that into computer code. The Arduino gives you</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>special<span class="w"> </span>logic<span class="w"> </span>functions<span class="w"> </span><span class="kr">to</span><span class="w"> </span>deal<span class="w"> </span>with<span class="w"> </span>true<span class="o">/</span>false<span class="w"> </span><span class="nl">logic</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>A<span class="w"> </span><span class="o">==</span><span class="w"> </span>B<span class="w"> </span>means<span class="w"> </span><span class="s">&quot;EQUIVALENT&quot;</span><span class="o">.</span><span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>true<span class="w"> </span><span class="kr">if</span><span class="w"> </span>both<span class="w"> </span>sides<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>same<span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>A<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>B<span class="w"> </span>means<span class="w"> </span><span class="s">&quot;AND&quot;</span><span class="o">.</span><span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>true<span class="w"> </span><span class="kr">if</span><span class="w"> </span>both<span class="w"> </span>sides<span class="w"> </span>are<span class="w"> </span>true<span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>A<span class="w"> </span><span class="o">||</span><span class="w"> </span>B<span class="w"> </span>means<span class="w"> </span><span class="s">&quot;OR&quot;</span><span class="o">.</span><span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>true<span class="w"> </span><span class="kr">if</span><span class="w"> </span>either<span class="w"> </span>side<span class="w"> </span>is<span class="w"> </span>true<span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="err">!</span>A<span class="w"> </span>means<span class="w"> </span><span class="s">&quot;NOT&quot;</span><span class="o">.</span><span class="w"> </span>This<span class="w"> </span>makes<span class="w"> </span>anything<span class="w"> </span>after<span class="w"> </span>it<span class="w"> </span>the<span class="w"> </span>opposite<span class="w"> </span><span class="o">(</span>true<span class="w"> </span>or<span class="w"> </span>false<span class="o">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="w"> </span>can<span class="w"> </span>use<span class="w"> </span>these<span class="w"> </span>operators<span class="w"> </span><span class="kr">to</span><span class="w"> </span>translate<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>sentences<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>into<span class="w"> </span>logic<span class="w"> </span>statements<span class="w"> </span><span class="o">(</span>Remember<span class="w"> </span>that<span class="w"> </span>LOW<span class="w"> </span>means<span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>is<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>being<span class="w"> </span>pressed<span class="o">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="s">&quot;If either button is being pressed, light up the LED&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nl">becomes</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="o">((</span>button1State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">(</span>button2State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>light<span class="w"> </span>the<span class="w"> </span>LED<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="s">&quot;If BOTH buttons are being pressed, DON&#39;T light up the LED&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nl">becomes</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="o">((</span>button1State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">(</span>button2State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>don<span class="s">&#39;t light the LED</span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Now<span class="w"> </span>let<span class="s">&#39;s use the above functions to combine them into one statement:</span>
+
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">(((</span>button1State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">(</span>button2State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">))</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>we<span class="s">&#39;re pushing button 1 OR button 2</span>
+<span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="err">!</span><span class="w">                                               </span><span class="o">//</span><span class="w"> </span>AND<span class="w"> </span>we<span class="s">&#39;re NOT</span>
+<span class="w">      </span><span class="o">((</span>button1State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">(</span>button2State<span class="w"> </span><span class="o">==</span><span class="w"> </span>LOW<span class="o">)))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>pushing<span class="w"> </span>button<span class="w"> </span><span class="m">1</span><span class="w"> </span>AND<span class="w"> </span>button<span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">                                                        </span><span class="o">//</span><span class="w"> </span><span class="kr">then</span><span class="o">...</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span><span class="kr">off</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>As<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>see<span class="o">,</span><span class="w"> </span>logic<span class="w"> </span>operators<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>combined<span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>complex<span class="w"> </span>decisions<span class="err">!</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Don<span class="s">&#39;t forget that we use = when we&#39;</span>re<span class="w"> </span>assigning<span class="w"> </span>a<span class="w"> </span>value<span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>and<span class="w"> </span>use<span class="w"> </span><span class="o">==</span><span class="w"> </span>when<span class="w"> </span>we<span class="s">&#39;re testing a value for equivalence.</span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">pinMode(button2Pin, INPUT);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The digital pins can be used as inputs as well as outputs. Before you do either, you need to tell the Arduino which direction you’re going.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">button1State = digitalRead(button1Pin);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+To read a digital input, you use the&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">digitalRead()</code>&nbsp;function. It will return HIGH if there’s 5V present at the pin, or LOW if there’s 0V present at the pin.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">if (button1State == LOW)</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Because we’ve connected the button to GND, it will read LOW when it’s being pressed. Here we’re using the “equivalence” operator (“==”) to see if the button is being pressed.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+You should see the LED turn on if you press either button, and off if you press both buttons. (See the code to find out why!) If it isn’t working, make sure you have assembled the circuit correctly and verified and uploaded the code to your board or see the troubleshooting section.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div class="row" style="box-sizing: border-box; color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_05_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_05_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+<div style="box-sizing: border-box; color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The buttons we used here are similar to the buttons in most video game controllers.</div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+<h4 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Light Not Turning On</h4>
+<div style="box-sizing: border-box; color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The pushbutton is square, and because of this it is easy to put it in the wrong way. Give it a 90 degree twist and see if it starts working.</div>
+<h4 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Underwhelmed</h4>
+<div style="box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+No worries, these circuits are all super stripped down to make playing with the components easy, but once you throw them together the sky is the limit.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Questions</h3>
+<div>
+<ol>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">What is the purpose of pull up resistors?</span></span></li>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">Describe the difference between the "=" operator and "==".</span></span></li>
+</ol>
+</div>
+</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-4-driving-multiple-leds.html">Experiment 4: Driving Multiple LEDs</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-6-reading-photoresistor.html">Experiment 6: Reading a Photoresistor</a></span></span></div>
+</div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+<div>
+<br /></div>
+<div>
+<h2 style="color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

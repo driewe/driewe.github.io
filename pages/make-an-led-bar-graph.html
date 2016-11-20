@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Make An LED Bar Graph - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/make-an-led-bar-graph.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="The bar graph - a series of LEDs in a line, such as you see on an audio display - is a common hardware display for analog sensors. It&#39;s made up of a series of LEDs in a row, an analog input like a potentiometer, and a little code in between ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Make An LED Bar Graph"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/make-an-led-bar-graph.html"/>
+    <meta property="og:description" content="The bar graph - a series of LEDs in a line, such as you see on an audio display - is a common hardware display for analog sensors. It&#39;s made up of a series of LEDs in a row, an analog input like a potentiometer, and a little code in between ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Make An LED Bar Graph</h1>
+        
+        <div class="entry-content">
+            <p>The bar graph - a series of LEDs in a line, such as you see on an audio display - is a common hardware display for analog sensors. It's made up of a series of LEDs in a row, an analog input like a potentiometer, and a little code in between. You can buy multi-LED bar graph displays fairly cheaply, like <a href="http://www.digikey.com/product-detail/en/MV54164/1080-1183-ND/2675674">this one</a>. This tutorial demonstrates how to control a series ofLEDs in a row, but can be applied to any series of digital outputs.<br />
+<br />
+This tutorial borrows from the <a href="http://www.arduino.cc/en/Tutorial/Loop">For Loop and Arrays</a> tutorial as well as the <a href="http://www.arduino.cc/en/Tutorial/AnalogInput">Analog Input</a> tutorial.<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<img alt="A bar graph display" src="http://media.digikey.com/photos/Lite%20On%20Photos/LITE-ON%20INC-%20LTA-1000G.jpg" style="border: 0px; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="A bar graph display" width="200px" /></div>
+<br />
+<span style="font-size: large;">Hardware Required</span><br />
+<br />
+<ul>
+<li>Arduino</li>
+<li>LED bar graph display or 10 LEDs</li>
+<li>Potentiometer</li>
+<li>10 220 ohm resistors</li>
+<li>hook-up wires</li>
+<li>breadboard</li>
+</ul>
+<div>
+<span style="font-size: large;">Circuit</span><br />
+<br />
+<br />
+click the image to enlarge<br />
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="http://www.arduino.cc/en/uploads/Tutorial/BarGraph_bb.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="http://www.arduino.cc/en/uploads/Tutorial/BarGraph_bb.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+<br />
+<br />
+image developed using <a href="http://www.fritzing.org/">Fritzing</a>. For more circuit examples, see the <a href="http://fritzing.org/projects/">Fritzing project page</a><br />
+<br />
+<span style="font-size: large;">Schematic:</span><br />
+<br />
+click the image to enlarge<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="http://www.arduino.cc/en/uploads/Tutorial/BarGraph2_schem.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="http://www.arduino.cc/en/uploads/Tutorial/BarGraph2_schem.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+</div>
+<br />
+<span style="font-size: large;">Code</span><br />
+<br />
+The sketch works like this: first you read the input. You map the input value to the output range, in this case ten LEDs. Then you set up a <a href="http://www.arduino.cc/en/Tutorial/Loop">for loop</a> to iterate over the outputs. If the output's number in the series is lower than the mapped input range, you turn it on. If not, you turn it off.</div>
+<div>
+<br /></div></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  LED bar graph</span>
+
+<span class="cm">  Turns on a series of LEDs based on the value of an analog sensor.</span>
+<span class="cm">  This is a simple way to make a bar graph display. Though this graph</span>
+<span class="cm">  uses 10 LEDs, you can use any number by changing the LED count</span>
+<span class="cm">  and the pins in the array.</span>
+
+<span class="cm">  This method can be used to control any series of digital outputs that</span>
+<span class="cm">  depends on an analog input.</span>
+
+<span class="cm">  The circuit:</span>
+<span class="cm">   * LEDs from pins 2 through 11 to ground</span>
+
+<span class="cm"> created 4 Sep 2010</span>
+<span class="cm"> by Tom Igoe</span>
+
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/BarGraph</span>
+<span class="cm"> */</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>these<span class="w"> </span>constants<span class="w"> </span>won<span class="s">&#39;t change:</span>
+const<span class="w"> </span>int<span class="w"> </span>analogPin<span class="w"> </span><span class="o">=</span><span class="w"> </span>A0<span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>pin<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>potentiometer<span class="w"> </span>is<span class="w"> </span>attached<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>ledCount<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>LEDs<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>bar<span class="w"> </span>graph<span class="w"></span>
+
+int<span class="w"> </span>ledPins<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="m">2</span><span class="o">,</span><span class="w"> </span><span class="m">3</span><span class="o">,</span><span class="w"> </span><span class="m">4</span><span class="o">,</span><span class="w"> </span><span class="m">5</span><span class="o">,</span><span class="w"> </span><span class="m">6</span><span class="o">,</span><span class="w"> </span><span class="m">7</span><span class="o">,</span><span class="w"> </span><span class="m">8</span><span class="o">,</span><span class="w"> </span><span class="m">9</span><span class="o">,</span><span class="w"> </span><span class="m">10</span><span class="o">,</span><span class="w"> </span><span class="m">11</span><span class="w"></span>
+<span class="err">};</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>of<span class="w"> </span>pin<span class="w"> </span>numbers<span class="w"> </span><span class="kr">to</span><span class="w"> </span>which<span class="w"> </span>LEDs<span class="w"> </span>are<span class="w"> </span>attached<span class="w"></span>
+
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>loop<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>pin<span class="w"> </span>array<span class="w"> </span>and<span class="w"> </span>set<span class="w"> </span>them<span class="w"> </span>all<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="nl">output</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>int<span class="w"> </span>thisLed<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>thisLed<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>ledCount<span class="err">;</span><span class="w"> </span>thisLed<span class="o">++)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>pinMode<span class="o">(</span>ledPins<span class="err">[</span>thisLed<span class="err">]</span><span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>the<span class="w"> </span><span class="nl">potentiometer</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>sensorReading<span class="w"> </span><span class="o">=</span><span class="w"> </span>analogRead<span class="o">(</span>analogPin<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>map<span class="w"> </span>the<span class="w"> </span>result<span class="w"> </span><span class="kr">to</span><span class="w"> </span>a<span class="w"> </span>range<span class="w"> </span>from<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span><span class="nl">LEDs</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>ledLevel<span class="w"> </span><span class="o">=</span><span class="w"> </span>map<span class="o">(</span>sensorReading<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">1023</span><span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>ledCount<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>loop<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span><span class="nl">array</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>int<span class="w"> </span>thisLed<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>thisLed<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>ledCount<span class="err">;</span><span class="w"> </span>thisLed<span class="o">++)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>the<span class="w"> </span>array<span class="w"> </span>element<span class="s">&#39;s index is less than ledLevel,</span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span>the<span class="w"> </span>pin<span class="w"> </span><span class="kr">for</span><span class="w"> </span>this<span class="w"> </span>element<span class="w"> </span><span class="nl">on</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>thisLed<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>ledLevel<span class="o">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>thisLed<span class="err">]</span><span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>all<span class="w"> </span>pins<span class="w"> </span>higher<span class="w"> </span>than<span class="w"> </span>the<span class="w"> </span><span class="nl">ledLevel</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="kr">else</span><span class="w"></span>
+<span class="w">        </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span>digitalWrite<span class="o">(</span>ledPins<span class="err">[</span>thisLed<span class="err">]</span><span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<p><br />
+<h2 style="background-color: white; color: #666666; font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif; font-size: 22px; margin: 0px; position: relative;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our&nbsp;</div>
+<div style="text-align: center;">
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

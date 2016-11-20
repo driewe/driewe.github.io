@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Physical Pixel: Turn a LED on and off by sending data to your Arduino from Processing or Max/MSP - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/physical-pixel-turn-a-led-on-and-off-by-sending-data-to-your-arduino-from-processing-or-maxmsp.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="This example example uses the Arduino or Genuino board to receive data from the computer. The board turns on an LED when it receives the character &#39;H&#39;, and turns off the LED when it receives the character &#39;L&#39;. The data can be sent from the Arduino Software (IDE) serial monitor ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Physical Pixel: Turn a LED on and off by sending data to your Arduino from Processing or Max/MSP"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/physical-pixel-turn-a-led-on-and-off-by-sending-data-to-your-arduino-from-processing-or-maxmsp.html"/>
+    <meta property="og:description" content="This example example uses the Arduino or Genuino board to receive data from the computer. The board turns on an LED when it receives the character &#39;H&#39;, and turns off the LED when it receives the character &#39;L&#39;. The data can be sent from the Arduino Software (IDE) serial monitor ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Physical Pixel: Turn a LED on and off by sending data to your Arduino from Processing or Max/MSP</h1>
+        
+        <div class="entry-content">
+            <p>This example example uses the Arduino or Genuino board to receive data from the computer. The board turns on an LED when it receives the character 'H', and turns off the LED when it receives the character 'L'.<br />
+<br />
+<br />
+The data can be sent from the Arduino Software (IDE) serial monitor, or another program like Processing (see code below), Flash (via a serial-net proxy), PD, or Max/MSP.<br />
+<div>
+<br />
+<span style="font-size: large;"> Hardware Required</span><br />
+<br />
+<ul>
+<li>Arduino</li>
+<li>LED (optional)&nbsp;</li>
+<li>220 ohm resistor (optional)&nbsp;</li>
+</ul>
+<div>
+<br />
+<span style="font-size: large;"> Software Required&nbsp;</span></div>
+<div>
+<br /></div>
+<div>
+<ul>
+<li><a href="http://www.processing.org/">Processing</a></li>
+</ul>
+<div>
+<br />
+<span style="font-size: large;"> Circuit</span><br />
+<br />
+Many Arduino and Genuino boards have a built-in LED connected to pin 13; if your board has no built-in LED, attach an external LED to pin 13. The long leg, or anode, goes to pin 13 through a 220 resistor. The short leg, or cathode, goes to ground.<br />
+<br />
+<br />
+click the image to enlarge<br />
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'typoninesans regular 18', 'lucida grande', lucida, verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/ExampleCircuit_bb.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" height="300px" src="https://www.arduino.cc/en/uploads/Tutorial/ExampleCircuit_bb.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></a></div>
+<br />
+<br />
+image developed using <a href="http://www.fritzing.org/">Fritzing</a>. For more circuit examples, see the <a href="http://fritzing.org/projects/">Fritzing project page</a></div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<span style="font-size: large;"> Schematic</span><br />
+<br />
+click the image to enlarge</div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'typoninesans regular 18', 'lucida grande', lucida, verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/ExampleCircuit_sch.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" height="300px" src="https://www.arduino.cc/en/uploads/Tutorial/ExampleCircuit_sch.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></a><br />
+<br /></div>
+</div>
+<span style="font-size: large;">Code</span><br />
+<div>
+<br /></div></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  Physical Pixel</span>
+
+<span class="cm"> An example of using the Arduino board to receive data from the</span>
+<span class="cm"> computer.  In this case, the Arduino boards turns on an LED when</span>
+<span class="cm"> it receives the character &#39;H&#39;, and turns off the LED when it</span>
+<span class="cm"> receives the character &#39;L&#39;.</span>
+
+<span class="cm"> The data can be sent from the Arduino serial monitor, or another</span>
+<span class="cm"> program like Processing (see code below), Flash (via a serial-net</span>
+<span class="cm"> proxy), PD, or Max/MSP.</span>
+
+<span class="cm"> The circuit:</span>
+<span class="cm"> * LED connected from digital pin 13 to ground</span>
+
+<span class="cm"> created 2006</span>
+<span class="cm"> by David A. Mellis</span>
+<span class="cm"> modified 30 Aug 2011</span>
+<span class="cm"> by Tom Igoe and Scott Fitzgerald</span>
+
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/PhysicalPixel</span>
+<span class="cm"> */</span><span class="w"></span>
+
+const<span class="w"> </span>int<span class="w"> </span>ledPin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>pin<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>is<span class="w"> </span>attached<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+int<span class="w"> </span>incomingByte<span class="err">;</span><span class="w">      </span><span class="o">//</span><span class="w"> </span>a<span class="w"> </span>variable<span class="w"> </span><span class="kr">to</span><span class="w"> </span>read<span class="w"> </span>incoming<span class="w"> </span>serial<span class="w"> </span>data<span class="w"> </span>into<span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>initialize<span class="w"> </span>serial<span class="w"> </span><span class="nl">communication</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>begin<span class="o">(</span><span class="m">9600</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>initialize<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>pin<span class="w"> </span>as<span class="w"> </span>an<span class="w"> </span><span class="nl">output</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>pinMode<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>see<span class="w"> </span><span class="kr">if</span><span class="w"> </span>there<span class="s">&#39;s incoming serial data:</span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>Serial<span class="o">.</span>available<span class="o">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>the<span class="w"> </span>oldest<span class="w"> </span>byte<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>serial<span class="w"> </span><span class="nl">buffer</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span>incomingByte<span class="w"> </span><span class="o">=</span><span class="w"> </span>Serial<span class="o">.</span>read<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>it<span class="s">&#39;s a capital H (ASCII 72), turn on the LED:</span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>incomingByte<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;H&#39;</span><span class="o">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span>digitalWrite<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>it<span class="s">&#39;s an L (ASCII 76) turn off the LED:</span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>incomingByte<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;L&#39;</span><span class="o">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span>digitalWrite<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="cm">/* Processing code for this example</span>
+
+<span class="cm"> // mouseover serial</span>
+
+<span class="cm"> // Demonstrates how to send data to the Arduino I/O board, in order to</span>
+<span class="cm"> // turn ON a light if the mouse is over a square and turn it off</span>
+<span class="cm"> // if the mouse is not.</span>
+
+<span class="cm"> // created 2003-4</span>
+<span class="cm"> // based on examples by Casey Reas and Hernando Barragan</span>
+<span class="cm"> // modified 30 Aug 2011</span>
+<span class="cm"> // by Tom Igoe</span>
+<span class="cm"> // This example code is in the public domain.</span>
+
+
+
+<span class="cm"> import processing.serial.*;</span>
+
+<span class="cm"> float boxX;</span>
+<span class="cm"> float boxY;</span>
+<span class="cm"> int boxSize = 20;</span>
+<span class="cm"> boolean mouseOverBox = false;</span>
+
+<span class="cm"> Serial port;</span>
+
+<span class="cm"> void setup() {</span>
+<span class="cm"> size(200, 200);</span>
+<span class="cm"> boxX = width/2.0;</span>
+<span class="cm"> boxY = height/2.0;</span>
+<span class="cm"> rectMode(RADIUS);</span>
+
+<span class="cm"> // List all the available serial ports in the output pane.</span>
+<span class="cm"> // You will need to choose the port that the Arduino board is</span>
+<span class="cm"> // connected to from this list. The first port in the list is</span>
+<span class="cm"> // port #0 and the third port in the list is port #2.</span>
+<span class="cm"> // if using Processing 2.1 or later, use Serial.printArray()</span>
+<span class="cm"> println(Serial.list());</span>
+
+<span class="cm"> // Open the port that the Arduino board is connected to (in this case #0)</span>
+<span class="cm"> // Make sure to open the port at the same speed Arduino is using (9600bps)</span>
+<span class="cm"> port = new Serial(this, Serial.list()[0], 9600);</span>
+
+<span class="cm"> }</span>
+
+<span class="cm"> void draw()</span>
+<span class="cm"> {</span>
+<span class="cm"> background(0);</span>
+
+<span class="cm"> // Test if the cursor is over the box</span>
+<span class="cm"> if (mouseX &gt; boxX-boxSize &amp;&amp; mouseX &lt; boxX+boxSize &amp;&amp;</span>
+<span class="cm"> mouseY &gt; boxY-boxSize &amp;&amp; mouseY &lt; boxY+boxSize) {</span>
+<span class="cm"> mouseOverBox = true;</span>
+<span class="cm"> // draw a line around the box and change its color:</span>
+<span class="cm"> stroke(255);</span>
+<span class="cm"> fill(153);</span>
+<span class="cm"> // send an &#39;H&#39; to indicate mouse is over square:</span>
+<span class="cm"> port.write(&#39;H&#39;);</span>
+<span class="cm"> }</span>
+<span class="cm"> else {</span>
+<span class="cm"> // return the box to it&#39;s inactive state:</span>
+<span class="cm"> stroke(153);</span>
+<span class="cm"> fill(153);</span>
+<span class="cm"> // send an &#39;L&#39; to turn the LED off:</span>
+<span class="cm"> port.write(&#39;L&#39;);</span>
+<span class="cm"> mouseOverBox = false;</span>
+<span class="cm"> }</span>
+
+<span class="cm"> // Draw the box</span>
+<span class="cm"> rect(boxX, boxY, boxSize, boxSize);</span>
+<span class="cm"> }</span>
+<span class="cm"> */</span><span class="w"></span>
+</pre></div>
+
+
+<div style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<span style="font-size: large;">Processing Code</span><br />
+Copy the Processing code from the code sample above. As you mouse over the center square, the LED on pin 13 should turn on and off. The Processing applet looks like this:<span style="color: #4f4e4e; font-family: &quot;typoninesans regular&quot; , &quot;lucida grande&quot; , &quot;lucida&quot; , &quot;verdana&quot; , sans-serif;"><span style="background-color: white; border-color: initial; border-image-outset: initial; border-image-repeat: initial; border-image-slice: initial; border-image-source: initial; border-image-width: initial; border-style: initial; font-size: 18px; line-height: 31.5px;"><img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/physicalPixel-output.png" style="border: 0px; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></span></span></div>
+
+<p>Mouse over the square to turn the LED on and off.<br />
+<br />
+<br />
+<br />
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div>
+<span style="font-size: medium;">Want to save some time learning&nbsp;</span><span style="font-size: medium;">Arduino?</span></div>
+<span style="font-size: medium;">Join the thousands of awesome people to sign up for our<br /><a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></span></h2>
+</div>
+</div>
+</div></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 16: Simon Says - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-16-simon-says.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Now that we’ve learned all the basics behind the components in the SIK experiments, let’s put them all together to make some fun. This circuit will show you how to create your own Simon Says game. Using some LEDs, some ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 16: Simon Says"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-16-simon-says.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Now that we’ve learned all the basics behind the components in the SIK experiments, let’s put them all together to make some fun. This circuit will show you how to create your own Simon Says game. Using some LEDs, some ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 16: Simon Says</h1>
+        
+        <div class="entry-content">
+            <p>Adapted from <a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></p>
+<h4>Introduction</h4>
+<p>Now that we’ve learned all the basics behind the components in the SIK experiments, let’s put them all together to make some fun. This circuit will show you how to create your own Simon Says game. Using some LEDs, some buttons, a buzzer, and some resistors, you can create this and other exciting games with the RedBoard or Arduino Uno R3.</p>
+<h4>Parts Needed</h4>
+<p>You will need the following parts:
+<ul>
+<li 1x Breadboard</li>
+<li 1x RedBoard or Arduino Uno</li>
+<li 4x LEDs</li>
+<li 1x Piezo Buzzer</li>
+<li 4x 330Ω Resistors</li>
+<li 4x Push Buttons</li>
+<li 17x Jumper Wires</li>
+</ul></p>
+<h4>Hardware Hookup</h4>
+<p>Ready to start hooking everything up? Check out the Fritzing diagram below, to see how everything is connected.</p>
+<p>Polarized Components </p>
+<p>Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</p>
+<h4>Fritzing Diagram for RedBoard</h4>
+<p><a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_16_01.png"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_16_01.png"></a></p>
+<h4>Run the Sketch</h4>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> SparkFun Inventor&#39;s Kit</span>
+<span class="cm"> Example sketch 16</span>
+<span class="cm"> Spark Fun Electronics</span>
+<span class="cm"> Oct. 7, 2014</span>
+
+<span class="cm"> Simon Says is a memory game. Start the game by pressing one of the four buttons. When a button lights up, </span>
+<span class="cm"> press the button, repeating the sequence. The sequence will get longer and longer. The game is won after </span>
+<span class="cm"> 13 rounds.</span>
+
+<span class="cm"> Generates random sequence, plays music, and displays button lights.</span>
+
+<span class="cm"> Simon tones from Wikipedia</span>
+<span class="cm"> - A (red, upper left) - 440Hz - 2.272ms - 1.136ms pulse</span>
+<span class="cm"> - a (green, upper right, an octave higher than A) - 880Hz - 1.136ms,</span>
+<span class="cm"> 0.568ms pulse</span>
+<span class="cm"> - D (blue, lower left, a perfect fourth higher than the upper left) </span>
+<span class="cm"> 587.33Hz - 1.702ms - 0.851ms pulse</span>
+<span class="cm"> - G (yellow, lower right, a perfect fourth higher than the lower left) - </span>
+<span class="cm"> 784Hz - 1.276ms - 0.638ms pulse</span>
+
+<span class="cm"> Simon Says game originally written in C for the PIC16F88.</span>
+<span class="cm"> Ported for the ATmega168, then ATmega328, then Arduino 1.0.</span>
+<span class="cm"> Fixes and cleanup by Joshua Neal &lt;joshua[at]trochotron.com&gt;</span>
+
+<span class="cm"> This sketch was written by SparkFun Electronics,</span>
+<span class="cm"> with lots of help from the Arduino community.</span>
+<span class="cm"> This code is completely free for any use.</span>
+<span class="cm"> Visit http://www.arduino.cc to learn about the Arduino.</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="cm">/*************************************************</span>
+<span class="cm">* Public Constants</span>
+<span class="cm">*************************************************/</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_B0<span class="w"> </span><span class="m">31</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_C1<span class="w"> </span><span class="m">33</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_CS1<span class="w"> </span><span class="m">35</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_D1<span class="w"> </span><span class="m">37</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_DS1<span class="w"> </span><span class="m">39</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_E1<span class="w"> </span><span class="m">41</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_F1<span class="w"> </span><span class="m">44</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_FS1<span class="w"> </span><span class="m">46</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_G1<span class="w"> </span><span class="m">49</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_GS1<span class="w"> </span><span class="m">52</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_A1<span class="w"> </span><span class="m">55</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_AS1<span class="w"> </span><span class="m">58</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_B1<span class="w"> </span><span class="m">62</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_C2<span class="w"> </span><span class="m">65</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_CS2<span class="w"> </span><span class="m">69</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_D2<span class="w"> </span><span class="m">73</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_DS2<span class="w"> </span><span class="m">78</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_E2<span class="w"> </span><span class="m">82</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_F2<span class="w"> </span><span class="m">87</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_FS2<span class="w"> </span><span class="m">93</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_G2<span class="w"> </span><span class="m">98</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_GS2<span class="w"> </span><span class="m">104</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_A2<span class="w"> </span><span class="m">110</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_AS2<span class="w"> </span><span class="m">117</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_B2<span class="w"> </span><span class="m">123</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_C3<span class="w"> </span><span class="m">131</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_CS3<span class="w"> </span><span class="m">139</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_D3<span class="w"> </span><span class="m">147</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_DS3<span class="w"> </span><span class="m">156</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_E3<span class="w"> </span><span class="m">165</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_F3<span class="w"> </span><span class="m">175</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_FS3<span class="w"> </span><span class="m">185</span><span class="w"></span>
+<span class="w"> </span><span class="err">#</span>define<span class="w"> </span>NOTE_G3<span class="w"> </span><span class="m">196</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS3<span class="w"> </span><span class="m">208</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A3<span class="w"> </span><span class="m">220</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS3<span class="w"> </span><span class="m">233</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B3<span class="w"> </span><span class="m">247</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C4<span class="w"> </span><span class="m">262</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS4<span class="w"> </span><span class="m">277</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D4<span class="w"> </span><span class="m">294</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS4<span class="w"> </span><span class="m">311</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E4<span class="w"> </span><span class="m">330</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F4<span class="w"> </span><span class="m">349</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS4<span class="w"> </span><span class="m">370</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G4<span class="w"> </span><span class="m">392</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS4<span class="w"> </span><span class="m">415</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A4<span class="w"> </span><span class="m">440</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS4<span class="w"> </span><span class="m">466</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B4<span class="w"> </span><span class="m">494</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C5<span class="w"> </span><span class="m">523</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS5<span class="w"> </span><span class="m">554</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D5<span class="w"> </span><span class="m">587</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS5<span class="w"> </span><span class="m">622</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E5<span class="w"> </span><span class="m">659</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F5<span class="w"> </span><span class="m">698</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS5<span class="w"> </span><span class="m">740</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G5<span class="w"> </span><span class="m">784</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS5<span class="w"> </span><span class="m">831</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A5<span class="w"> </span><span class="m">880</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS5<span class="w"> </span><span class="m">932</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B5<span class="w"> </span><span class="m">988</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C6<span class="w"> </span><span class="m">1047</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS6<span class="w"> </span><span class="m">1109</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D6<span class="w"> </span><span class="m">1175</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS6<span class="w"> </span><span class="m">1245</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E6<span class="w"> </span><span class="m">1319</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F6<span class="w"> </span><span class="m">1397</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS6<span class="w"> </span><span class="m">1480</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G6<span class="w"> </span><span class="m">1568</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS6<span class="w"> </span><span class="m">1661</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A6<span class="w"> </span><span class="m">1760</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS6<span class="w"> </span><span class="m">1865</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B6<span class="w"> </span><span class="m">1976</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C7<span class="w"> </span><span class="m">2093</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS7<span class="w"> </span><span class="m">2217</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D7<span class="w"> </span><span class="m">2349</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS7<span class="w"> </span><span class="m">2489</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E7<span class="w"> </span><span class="m">2637</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F7<span class="w"> </span><span class="m">2794</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS7<span class="w"> </span><span class="m">2960</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G7<span class="w"> </span><span class="m">3136</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS7<span class="w"> </span><span class="m">3322</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A7<span class="w"> </span><span class="m">3520</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS7<span class="w"> </span><span class="m">3729</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B7<span class="w"> </span><span class="m">3951</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C8<span class="w"> </span><span class="m">4186</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS8<span class="w"> </span><span class="m">4435</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D8<span class="w"> </span><span class="m">4699</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS8<span class="w"> </span><span class="m">4978</span><span class="w"></span>
+
+<span class="err">#</span>define<span class="w"> </span>CHOICE_OFF<span class="w">      </span><span class="m">0</span><span class="w"> </span><span class="o">//</span>Used<span class="w"> </span><span class="kr">to</span><span class="w"> </span>control<span class="w"> </span>LEDs<span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>CHOICE_NONE<span class="w">     </span><span class="m">0</span><span class="w"> </span><span class="o">//</span>Used<span class="w"> </span><span class="kr">to</span><span class="w"> </span>check<span class="w"> </span>buttons<span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>CHOICE_RED<span class="w">  </span><span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>CHOICE_GREEN<span class="w">    </span><span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>CHOICE_BLUE<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>CHOICE_YELLOW<span class="w">   </span><span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"></span>
+
+<span class="err">#</span>define<span class="w"> </span>LED_RED<span class="w">     </span><span class="m">10</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>LED_GREEN<span class="w">   </span><span class="m">3</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>LED_BLUE<span class="w">    </span><span class="m">13</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>LED_YELLOW<span class="w">  </span><span class="m">5</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Button<span class="w"> </span>pin<span class="w"> </span>definitions<span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>BUTTON_RED<span class="w">    </span><span class="m">9</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>BUTTON_GREEN<span class="w">  </span><span class="m">2</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>BUTTON_BLUE<span class="w">   </span><span class="m">12</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>BUTTON_YELLOW<span class="w"> </span><span class="m">6</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Buzzer<span class="w"> </span>pin<span class="w"> </span>definitions<span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>BUZZER1<span class="w">  </span><span class="m">4</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>BUZZER2<span class="w">  </span><span class="m">7</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Define<span class="w"> </span>game<span class="w"> </span>parameters<span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>ROUNDS_TO_WIN<span class="w">      </span><span class="m">13</span><span class="w"> </span><span class="o">//</span>Number<span class="w"> </span>of<span class="w"> </span>rounds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>succesfully<span class="w"> </span>remember<span class="w"> </span>before<span class="w"> </span>you<span class="w"> </span>win<span class="o">.</span><span class="w"> </span><span class="m">13</span><span class="w"> </span>is<span class="w"> </span><span class="kr">do</span><span class="o">-</span>able<span class="o">.</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>ENTRY_TIME_LIMIT<span class="w">   </span><span class="m">3000</span><span class="w"> </span><span class="o">//</span>Amount<span class="w"> </span>of<span class="w"> </span>time<span class="w"> </span><span class="kr">to</span><span class="w"> </span>press<span class="w"> </span>a<span class="w"> </span>button<span class="w"> </span>before<span class="w"> </span>game<span class="w"> </span>times<span class="w"> </span>out<span class="o">.</span><span class="w"> </span><span class="m">3000</span>ms<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"> </span>sec<span class="w"></span>
+
+<span class="err">#</span>define<span class="w"> </span>MODE_MEMORY<span class="w">  </span><span class="m">0</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>MODE_BATTLE<span class="w">  </span><span class="m">1</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>MODE_BEEGEES<span class="w"> </span><span class="m">2</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Game<span class="w"> </span>state<span class="w"> </span>variables<span class="w"></span>
+byte<span class="w"> </span>gameMode<span class="w"> </span><span class="o">=</span><span class="w"> </span>MODE_MEMORY<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="kr">By</span><span class="w"> </span>default<span class="o">,</span><span class="w"> </span>let<span class="s">&#39;s play the memory game</span>
+byte<span class="w"> </span>gameBoard<span class="err">[</span><span class="m">32</span><span class="err">];</span><span class="w"> </span><span class="o">//</span>Contains<span class="w"> </span>the<span class="w"> </span>combination<span class="w"> </span>of<span class="w"> </span>buttons<span class="w"> </span>as<span class="w"> </span>we<span class="w"> </span>advance<span class="w"></span>
+byte<span class="w"> </span>gameRound<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span><span class="o">//</span>Counts<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>succesful<span class="w"> </span>rounds<span class="w"> </span>the<span class="w"> </span>player<span class="w"> </span>has<span class="w"> </span>made<span class="w"> </span>it<span class="w"> </span>through<span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span>Setup<span class="w"> </span>hardware<span class="w"> </span>inputs<span class="o">/</span>outputs<span class="o">.</span><span class="w"> </span>These<span class="w"> </span>pins<span class="w"> </span>are<span class="w"> </span>defined<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>hardware_versions<span class="w"> </span>header<span class="w"> </span>file<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>Enable<span class="w"> </span><span class="kr">pull</span><span class="w"> </span>ups<span class="w"> </span><span class="kr">on</span><span class="w"> </span>inputs<span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>BUTTON_RED<span class="o">,</span><span class="w"> </span>INPUT_PULLUP<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>BUTTON_GREEN<span class="o">,</span><span class="w"> </span>INPUT_PULLUP<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>BUTTON_BLUE<span class="o">,</span><span class="w"> </span>INPUT_PULLUP<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>BUTTON_YELLOW<span class="o">,</span><span class="w"> </span>INPUT_PULLUP<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>pinMode<span class="o">(</span>LED_RED<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>LED_GREEN<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>LED_BLUE<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>LED_YELLOW<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>pinMode<span class="o">(</span>BUZZER1<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>BUZZER2<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>Mode<span class="w"> </span>checking<span class="w"></span>
+<span class="w">  </span>gameMode<span class="w"> </span><span class="o">=</span><span class="w"> </span>MODE_MEMORY<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">By</span><span class="w"> </span>default<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;re going to play the memory game</span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Check<span class="w"> </span><span class="kr">to</span><span class="w"> </span>see<span class="w"> </span><span class="kr">if</span><span class="w"> </span>the<span class="w"> </span>lower<span class="w"> </span>right<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>pressed<span class="w"></span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="w"> </span>play_beegees<span class="o">()</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Check<span class="w"> </span><span class="kr">to</span><span class="w"> </span>see<span class="w"> </span><span class="kr">if</span><span class="w"> </span>upper<span class="w"> </span>right<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>pressed<span class="w"></span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>CHOICE_GREEN<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>gameMode<span class="w"> </span><span class="o">=</span><span class="w"> </span>MODE_BATTLE<span class="err">;</span><span class="w"> </span><span class="o">//</span>Put<span class="w"> </span>game<span class="w"> </span>into<span class="w"> </span>battle<span class="w"> </span>mode<span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>upper<span class="w"> </span><span class="nb">right</span><span class="w"> </span><span class="o">(</span>green<span class="o">)</span><span class="w"> </span>LED<span class="w"></span>
+<span class="w">    </span>setLEDs<span class="o">(</span>CHOICE_GREEN<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>toner<span class="o">(</span>CHOICE_GREEN<span class="o">,</span><span class="w"> </span><span class="m">150</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_BLUE<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>other<span class="w"> </span>LEDs<span class="w"> </span><span class="kr">until</span><span class="w"> </span>you<span class="w"> </span>release<span class="w"> </span>button<span class="w"></span>
+
+<span class="w">    </span><span class="kr">while</span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>user<span class="w"> </span><span class="kr">to</span><span class="w"> </span>stop<span class="w"> </span>pressing<span class="w"> </span>button<span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span>Now<span class="w"> </span><span class="kr">do</span><span class="w"> </span>nothing<span class="o">.</span><span class="w"> </span>Battle<span class="w"> </span>mode<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>serviced<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>main<span class="w"> </span>routine<span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span>play_winner<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>After<span class="w"> </span>setup<span class="w"> </span>is<span class="w"> </span>complete<span class="o">,</span><span class="w"> </span><span class="kr">say</span><span class="w"> </span>hello<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>world<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>attractMode<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Blink<span class="w"> </span>lights<span class="w"> </span><span class="kr">while</span><span class="w"> </span>waiting<span class="w"> </span><span class="kr">for</span><span class="w"> </span>user<span class="w"> </span><span class="kr">to</span><span class="w"> </span>press<span class="w"> </span>a<span class="w"> </span>button<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Indicate<span class="w"> </span>the<span class="w"> </span>start<span class="w"> </span>of<span class="w"> </span>game<span class="w"> </span>play<span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_GREEN<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_BLUE<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span>all<span class="w"> </span>LEDs<span class="w"> </span><span class="kr">on</span><span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_OFF<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LEDs<span class="w"></span>
+<span class="w">  </span>delay<span class="o">(</span><span class="m">250</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>gameMode<span class="w"> </span><span class="o">==</span><span class="w"> </span>MODE_MEMORY<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>memory<span class="w"> </span>game<span class="w"> </span>and<span class="w"> </span>handle<span class="w"> </span>result<span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>play_memory<span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>true<span class="o">)</span><span class="w"> </span>
+<span class="w">      </span>play_winner<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Player<span class="w"> </span>won<span class="o">,</span><span class="w"> </span>play<span class="w"> </span>winner<span class="w"> </span>tones<span class="w"></span>
+<span class="w">    </span><span class="kr">else</span><span class="w"> </span>
+<span class="w">      </span>play_loser<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Player<span class="w"> </span>lost<span class="o">,</span><span class="w"> </span>play<span class="w"> </span>loser<span class="w"> </span>tones<span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>gameMode<span class="w"> </span><span class="o">==</span><span class="w"> </span>MODE_BATTLE<span class="o">)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>play_battle<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>game<span class="w"> </span><span class="kr">until</span><span class="w"> </span>someone<span class="w"> </span>loses<span class="w"></span>
+
+<span class="w">    </span>play_loser<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Player<span class="w"> </span>lost<span class="o">,</span><span class="w"> </span>play<span class="w"> </span>loser<span class="w"> </span>tones<span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</span><span class="w"></span>
+<span class="o">//</span>The<span class="w"> </span>following<span class="w"> </span>functions<span class="w"> </span>are<span class="w"> </span>related<span class="w"> </span><span class="kr">to</span><span class="w"> </span>game<span class="w"> </span>play<span class="w"> </span>only<span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>the<span class="w"> </span>regular<span class="w"> </span>memory<span class="w"> </span>game<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Returns<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>player<span class="w"> </span>loses<span class="o">,</span><span class="w"> </span>or<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>player<span class="w"> </span>wins<span class="w"></span>
+boolean<span class="w"> </span>play_memory<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>randomSeed<span class="o">(</span>millis<span class="o">())</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Seed<span class="w"> </span>the<span class="w"> </span>random<span class="w"> </span>generator<span class="w"> </span>with<span class="w"> </span>random<span class="w"> </span>amount<span class="w"> </span>of<span class="w"> </span>millis<span class="o">()</span><span class="w"></span>
+
+<span class="w">  </span>gameRound<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Reset<span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>beginning<span class="w"></span>
+
+<span class="w">  </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span>gameRound<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>ROUNDS_TO_WIN<span class="o">)</span><span class="w"> </span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>add_to_moves<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Add<span class="w"> </span>a<span class="w"> </span>button<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>moves<span class="o">,</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span>play<span class="w"> </span>them<span class="w"> </span>back<span class="w"></span>
+
+<span class="w">    </span>playMoves<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>back<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>game<span class="w"> </span>board<span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">Then</span><span class="w"> </span>require<span class="w"> </span>the<span class="w"> </span>player<span class="w"> </span><span class="kr">to</span><span class="w"> </span>repeat<span class="w"> </span>the<span class="w"> </span>sequence<span class="o">.</span><span class="w"></span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>byte<span class="w"> </span>currentMove<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>currentMove<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>gameRound<span class="w"> </span><span class="err">;</span><span class="w"> </span>currentMove<span class="o">++)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span>byte<span class="w"> </span>choice<span class="w"> </span><span class="o">=</span><span class="w"> </span>wait_for_button<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>See<span class="w"> </span>what<span class="w"> </span>button<span class="w"> </span>the<span class="w"> </span>user<span class="w"> </span>presses<span class="w"></span>
+
+<span class="w">      </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>choice<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span>false<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>wait<span class="w"> </span>timed<span class="w"> </span>out<span class="o">,</span><span class="w"> </span>player<span class="w"> </span>loses<span class="w"></span>
+
+<span class="w">      </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>choice<span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>gameBoard<span class="err">[</span>currentMove<span class="err">]</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span>false<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>the<span class="w"> </span>choice<span class="w"> </span>is<span class="w"> </span>incorect<span class="o">,</span><span class="w"> </span>player<span class="w"> </span>loses<span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Player<span class="w"> </span>was<span class="w"> </span>correct<span class="o">,</span><span class="w"> </span>delay<span class="w"> </span>before<span class="w"> </span>playing<span class="w"> </span>moves<span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">return</span><span class="w"> </span>true<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Player<span class="w"> </span>made<span class="w"> </span>it<span class="w"> </span>through<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>rounds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>win<span class="err">!</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>the<span class="w"> </span>special<span class="w"> </span><span class="m">2</span><span class="w"> </span>player<span class="w"> </span>battle<span class="w"> </span>mode<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>A<span class="w"> </span>player<span class="w"> </span>begins<span class="w"> </span><span class="kr">by</span><span class="w"> </span>pressing<span class="w"> </span>a<span class="w"> </span>button<span class="w"> </span><span class="kr">then</span><span class="w"> </span>handing<span class="w"> </span>it<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>other<span class="w"> </span>player<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>That<span class="w"> </span>player<span class="w"> </span>repeats<span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>and<span class="w"> </span>adds<span class="w"> </span>one<span class="o">,</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span>passes<span class="w"> </span>back<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>returns<span class="w"> </span>when<span class="w"> </span>someone<span class="w"> </span>loses<span class="w"></span>
+boolean<span class="w"> </span>play_battle<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>gameRound<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Reset<span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span>frame<span class="w"> </span>back<span class="w"> </span><span class="kr">to</span><span class="w"> </span>one<span class="w"> </span>frame<span class="w"></span>
+
+<span class="w">  </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Loop<span class="w"> </span><span class="kr">until</span><span class="w"> </span>someone<span class="w"> </span>fails<span class="w"> </span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>byte<span class="w"> </span>newButton<span class="w"> </span><span class="o">=</span><span class="w"> </span>wait_for_button<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>user<span class="w"> </span><span class="kr">to</span><span class="w"> </span>input<span class="w"> </span>next<span class="w"> </span>move<span class="w"></span>
+<span class="w">    </span>gameBoard<span class="err">[</span>gameRound<span class="o">++</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>newButton<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Add<span class="w"> </span>this<span class="w"> </span>new<span class="w"> </span>button<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span>array<span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">Then</span><span class="w"> </span>require<span class="w"> </span>the<span class="w"> </span>player<span class="w"> </span><span class="kr">to</span><span class="w"> </span>repeat<span class="w"> </span>the<span class="w"> </span>sequence<span class="o">.</span><span class="w"></span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>byte<span class="w"> </span>currentMove<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>currentMove<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>gameRound<span class="w"> </span><span class="err">;</span><span class="w"> </span>currentMove<span class="o">++)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span>byte<span class="w"> </span>choice<span class="w"> </span><span class="o">=</span><span class="w"> </span>wait_for_button<span class="o">()</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">      </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>choice<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span>false<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>wait<span class="w"> </span>timed<span class="w"> </span>out<span class="o">,</span><span class="w"> </span>player<span class="w"> </span>loses<span class="o">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>choice<span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>gameBoard<span class="err">[</span>currentMove<span class="err">]</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span>false<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>the<span class="w"> </span>choice<span class="w"> </span>is<span class="w"> </span>incorect<span class="o">,</span><span class="w"> </span>player<span class="w"> </span>loses<span class="o">.</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span>delay<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Give<span class="w"> </span>the<span class="w"> </span>user<span class="w"> </span>an<span class="w"> </span>extra<span class="w"> </span><span class="m">100</span>ms<span class="w"> </span><span class="kr">to</span><span class="w"> </span>hand<span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>other<span class="w"> </span>player<span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">return</span><span class="w"> </span>true<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>We<span class="w"> </span>should<span class="w"> </span>never<span class="w"> </span>get<span class="w"> </span>here<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Plays<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span>moves<span class="w"></span>
+void<span class="w"> </span>playMoves<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>byte<span class="w"> </span>currentMove<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>currentMove<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>gameRound<span class="w"> </span><span class="err">;</span><span class="w"> </span>currentMove<span class="o">++)</span><span class="w"> </span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>toner<span class="o">(</span>gameBoard<span class="err">[</span>currentMove<span class="err">]</span><span class="o">,</span><span class="w"> </span><span class="m">150</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>Wait<span class="w"> </span>some<span class="w"> </span>amount<span class="w"> </span>of<span class="w"> </span>time<span class="w"> </span>between<span class="w"> </span>button<span class="w"> </span>playback<span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>Shorten<span class="w"> </span>this<span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"> </span>game<span class="w"> </span>harder<span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">150</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="m">150</span><span class="w"> </span>works<span class="w"> </span>well<span class="o">.</span><span class="w"> </span><span class="m">75</span><span class="w"> </span>gets<span class="w"> </span>fast<span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Adds<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>random<span class="w"> </span>button<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span>sequence<span class="o">,</span><span class="w"> </span><span class="kr">by</span><span class="w"> </span>sampling<span class="w"> </span>the<span class="w"> </span>timer<span class="w"></span>
+void<span class="w"> </span>add_to_moves<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>byte<span class="w"> </span>newButton<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">random</span><span class="o">(</span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">4</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="nb">min</span><span class="w"> </span><span class="o">(</span>included<span class="o">),</span><span class="w"> </span><span class="nb">max</span><span class="w"> </span><span class="o">(</span>exluded<span class="o">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="w"> </span>have<span class="w"> </span><span class="kr">to</span><span class="w"> </span>convert<span class="w"> </span>this<span class="w"> </span>number<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">3</span><span class="o">,</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>CHOICEs<span class="w"></span>
+<span class="w">  </span><span class="kr">if</span><span class="o">(</span>newButton<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span>newButton<span class="w"> </span><span class="o">=</span><span class="w"> </span>CHOICE_RED<span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="o">(</span>newButton<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>newButton<span class="w"> </span><span class="o">=</span><span class="w"> </span>CHOICE_GREEN<span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="o">(</span>newButton<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>newButton<span class="w"> </span><span class="o">=</span><span class="w"> </span>CHOICE_BLUE<span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="o">(</span>newButton<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>newButton<span class="w"> </span><span class="o">=</span><span class="w"> </span>CHOICE_YELLOW<span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>gameBoard<span class="err">[</span>gameRound<span class="o">++</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>newButton<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Add<span class="w"> </span>this<span class="w"> </span>new<span class="w"> </span>button<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>game<span class="w"> </span>array<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</span><span class="w"></span>
+<span class="o">//</span>The<span class="w"> </span>following<span class="w"> </span>functions<span class="w"> </span>control<span class="w"> </span>the<span class="w"> </span>hardware<span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Lights<span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>LEDs<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Pass<span class="w"> </span>in<span class="w"> </span>a<span class="w"> </span>byte<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>made<span class="w"> </span>up<span class="w"> </span>from<span class="w"> </span>CHOICE_RED<span class="o">,</span><span class="w"> </span>CHOICE_YELLOW<span class="o">,</span><span class="w"> </span>etc<span class="w"></span>
+void<span class="w"> </span>setLEDs<span class="o">(</span>byte<span class="w"> </span>leds<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">((</span>leds<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>CHOICE_RED<span class="o">)</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_RED<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_RED<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">((</span>leds<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>CHOICE_GREEN<span class="o">)</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_GREEN<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_GREEN<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">((</span>leds<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>CHOICE_BLUE<span class="o">)</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_BLUE<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_BLUE<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">((</span>leds<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_YELLOW<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="kr">else</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>LED_YELLOW<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>a<span class="w"> </span>button<span class="w"> </span><span class="kr">to</span><span class="w"> </span>be<span class="w"> </span>pressed<span class="o">.</span><span class="w"> </span>
+<span class="o">//</span><span class="w"> </span>Returns<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>LED<span class="w"> </span>colors<span class="w"> </span><span class="o">(</span>LED_RED<span class="o">,</span><span class="w"> </span>etc<span class="o">.)</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>successful<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>timed<span class="w"> </span>out<span class="w"></span>
+byte<span class="w"> </span>wait_for_button<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>long<span class="w"> </span>startTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>millis<span class="o">()</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Remember<span class="w"> </span>the<span class="w"> </span>time<span class="w"> </span>we<span class="w"> </span>started<span class="w"> </span>the<span class="w"> </span>this<span class="w"> </span>loop<span class="w"></span>
+
+<span class="w">  </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="o">(</span>millis<span class="o">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>startTime<span class="o">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>ENTRY_TIME_LIMIT<span class="o">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Loop<span class="w"> </span><span class="kr">until</span><span class="w"> </span>too<span class="w"> </span>much<span class="w"> </span>time<span class="w"> </span>has<span class="w"> </span>passed<span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>byte<span class="w"> </span>button<span class="w"> </span><span class="o">=</span><span class="w"> </span>checkButton<span class="o">()</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>button<span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"> </span>
+<span class="w">      </span>toner<span class="o">(</span>button<span class="o">,</span><span class="w"> </span><span class="m">150</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>the<span class="w"> </span>user<span class="w"> </span>just<span class="w"> </span>pressed<span class="w"></span>
+
+<span class="w">      </span><span class="kr">while</span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>Now<span class="w"> </span>let<span class="s">&#39;s wait for user to release button</span>
+
+<span class="w">      </span>delay<span class="o">(</span><span class="m">10</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span>helps<span class="w"> </span>with<span class="w"> </span>debouncing<span class="w"> </span>and<span class="w"> </span>accidental<span class="w"> </span>double<span class="w"> </span>taps<span class="w"></span>
+
+<span class="w">      </span><span class="kr">return</span><span class="w"> </span>button<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">return</span><span class="w"> </span>CHOICE_NONE<span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>we<span class="w"> </span>get<span class="w"> </span>here<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;ve timed out!</span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Returns<span class="w"> </span>a<span class="w"> </span><span class="s">&#39;1&#39;</span><span class="w"> </span>bit<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>position<span class="w"> </span>corresponding<span class="w"> </span><span class="kr">to</span><span class="w"> </span>CHOICE_RED<span class="o">,</span><span class="w"> </span>CHOICE_GREEN<span class="o">,</span><span class="w"> </span>etc<span class="o">.</span><span class="w"></span>
+byte<span class="w"> </span>checkButton<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>digitalRead<span class="o">(</span>BUTTON_RED<span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="o">(</span>CHOICE_RED<span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>digitalRead<span class="o">(</span>BUTTON_GREEN<span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="o">(</span>CHOICE_GREEN<span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>digitalRead<span class="o">(</span>BUTTON_BLUE<span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="o">(</span>CHOICE_BLUE<span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>digitalRead<span class="o">(</span>BUTTON_YELLOW<span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="o">(</span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">return</span><span class="o">(</span>CHOICE_NONE<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>no<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>pressed<span class="o">,</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span>none<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Light<span class="w"> </span>an<span class="w"> </span>LED<span class="w"> </span>and<span class="w"> </span>play<span class="w"> </span>tone<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Red<span class="o">,</span><span class="w"> </span>upper<span class="w"> </span><span class="nl">left</span><span class="o">:</span><span class="w">     </span><span class="m">440</span>Hz<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2.272</span>ms<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.136</span>ms<span class="w"> </span>pulse<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Green<span class="o">,</span><span class="w"> </span>upper<span class="w"> </span><span class="nl">right</span><span class="o">:</span><span class="w">  </span><span class="m">880</span>Hz<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.136</span>ms<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.568</span>ms<span class="w"> </span>pulse<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Blue<span class="o">,</span><span class="w"> </span>lower<span class="w"> </span><span class="nl">left</span><span class="o">:</span><span class="w">    </span><span class="m">587.33</span>Hz<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.702</span>ms<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.851</span>ms<span class="w"> </span>pulse<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Yellow<span class="o">,</span><span class="w"> </span>lower<span class="w"> </span><span class="nl">right</span><span class="o">:</span><span class="w"> </span><span class="m">784</span>Hz<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.276</span>ms<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.638</span>ms<span class="w"> </span>pulse<span class="w"></span>
+void<span class="w"> </span>toner<span class="o">(</span>byte<span class="w"> </span>which<span class="o">,</span><span class="w"> </span>int<span class="w"> </span>buzz_length_ms<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>which<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>LED<span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span>Play<span class="w"> </span>the<span class="w"> </span>sound<span class="w"> </span>associated<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>given<span class="w"> </span>LED<span class="w"></span>
+<span class="w">  </span>switch<span class="o">(</span>which<span class="o">)</span><span class="w"> </span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span>case<span class="w"> </span><span class="nl">CHOICE_RED</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>buzz_sound<span class="o">(</span>buzz_length_ms<span class="o">,</span><span class="w"> </span><span class="m">1136</span><span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">    </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>case<span class="w"> </span><span class="nl">CHOICE_GREEN</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>buzz_sound<span class="o">(</span>buzz_length_ms<span class="o">,</span><span class="w"> </span><span class="m">568</span><span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">    </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>case<span class="w"> </span><span class="nl">CHOICE_BLUE</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>buzz_sound<span class="o">(</span>buzz_length_ms<span class="o">,</span><span class="w"> </span><span class="m">851</span><span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">    </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>case<span class="w"> </span><span class="nl">CHOICE_YELLOW</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>buzz_sound<span class="o">(</span>buzz_length_ms<span class="o">,</span><span class="w"> </span><span class="m">638</span><span class="o">)</span><span class="err">;</span><span class="w"> </span>
+<span class="w">    </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_OFF<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>all<span class="w"> </span>LEDs<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Toggle<span class="w"> </span>buzzer<span class="w"> </span>every<span class="w"> </span>buzz_delay_us<span class="o">,</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span>a<span class="w"> </span>duration<span class="w"> </span>of<span class="w"> </span>buzz_length_ms<span class="o">.</span><span class="w"></span>
+void<span class="w"> </span>buzz_sound<span class="o">(</span>int<span class="w"> </span>buzz_length_ms<span class="o">,</span><span class="w"> </span>int<span class="w"> </span>buzz_delay_us<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Convert<span class="w"> </span>total<span class="w"> </span>play<span class="w"> </span>time<span class="w"> </span>from<span class="w"> </span>milliseconds<span class="w"> </span><span class="kr">to</span><span class="w"> </span>microseconds<span class="w"></span>
+<span class="w">  </span>long<span class="w"> </span>buzz_length_us<span class="w"> </span><span class="o">=</span><span class="w"> </span>buzz_length_ms<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">(</span>long<span class="o">)</span><span class="m">1000</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Loop<span class="w"> </span><span class="kr">until</span><span class="w"> </span>the<span class="w"> </span>remaining<span class="w"> </span>play<span class="w"> </span>time<span class="w"> </span>is<span class="w"> </span>less<span class="w"> </span>than<span class="w"> </span>a<span class="w"> </span>single<span class="w"> </span>buzz_delay_us<span class="w"></span>
+<span class="w">  </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span>buzz_length_us<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">(</span>buzz_delay_us<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="o">))</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>buzz_length_us<span class="w"> </span><span class="o">-=</span><span class="w"> </span>buzz_delay_us<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="err">;</span><span class="w"> </span><span class="o">//</span>Decrease<span class="w"> </span>the<span class="w"> </span>remaining<span class="w"> </span>play<span class="w"> </span>time<span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>Toggle<span class="w"> </span>the<span class="w"> </span>buzzer<span class="w"> </span>at<span class="w"> </span>various<span class="w"> </span>speeds<span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>BUZZER1<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>BUZZER2<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delayMicroseconds<span class="o">(</span>buzz_delay_us<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span>digitalWrite<span class="o">(</span>BUZZER1<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>BUZZER2<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delayMicroseconds<span class="o">(</span>buzz_delay_us<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>the<span class="w"> </span>winner<span class="w"> </span>sound<span class="w"> </span>and<span class="w"> </span>lights<span class="w"></span>
+void<span class="w"> </span>play_winner<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_GREEN<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_BLUE<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>winner_sound<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>winner_sound<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_GREEN<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_BLUE<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>winner_sound<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>winner_sound<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>the<span class="w"> </span>winner<span class="w"> </span>sound<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>just<span class="w"> </span>a<span class="w"> </span>unique<span class="w"> </span><span class="o">(</span>annoying<span class="o">)</span><span class="w"> </span>sound<span class="w"> </span>we<span class="w"> </span>came<span class="w"> </span>up<span class="w"> </span>with<span class="o">,</span><span class="w"> </span>there<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>magic<span class="w"> </span><span class="kr">to</span><span class="w"> </span>it<span class="w"></span>
+void<span class="w"> </span>winner_sound<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Toggle<span class="w"> </span>the<span class="w"> </span>buzzer<span class="w"> </span>at<span class="w"> </span>various<span class="w"> </span>speeds<span class="w"></span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>byte<span class="w"> </span>x<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>x<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>x<span class="o">--)</span><span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>byte<span class="w"> </span>y<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>y<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="err">;</span><span class="w"> </span>y<span class="o">++)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span>digitalWrite<span class="o">(</span>BUZZER2<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>digitalWrite<span class="o">(</span>BUZZER1<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>delayMicroseconds<span class="o">(</span>x<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">      </span>digitalWrite<span class="o">(</span>BUZZER2<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>digitalWrite<span class="o">(</span>BUZZER1<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>delayMicroseconds<span class="o">(</span>x<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Play<span class="w"> </span>the<span class="w"> </span>loser<span class="w"> </span>sound<span class="o">/</span>lights<span class="w"></span>
+void<span class="w"> </span>play_loser<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_GREEN<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>buzz_sound<span class="o">(</span><span class="m">255</span><span class="o">,</span><span class="w"> </span><span class="m">1500</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_BLUE<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>buzz_sound<span class="o">(</span><span class="m">255</span><span class="o">,</span><span class="w"> </span><span class="m">1500</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_GREEN<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>buzz_sound<span class="o">(</span><span class="m">255</span><span class="o">,</span><span class="w"> </span><span class="m">1500</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_BLUE<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>buzz_sound<span class="o">(</span><span class="m">255</span><span class="o">,</span><span class="w"> </span><span class="m">1500</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Show<span class="w"> </span>an<span class="w"> </span><span class="s">&quot;attract mode&quot;</span><span class="w"> </span>display<span class="w"> </span><span class="kr">while</span><span class="w"> </span>waiting<span class="w"> </span><span class="kr">for</span><span class="w"> </span>user<span class="w"> </span><span class="kr">to</span><span class="w"> </span>press<span class="w"> </span>button<span class="o">.</span><span class="w"></span>
+void<span class="w"> </span>attractMode<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="kr">while</span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span>setLEDs<span class="o">(</span>CHOICE_BLUE<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span>setLEDs<span class="o">(</span>CHOICE_GREEN<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span>setLEDs<span class="o">(</span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="kr">return</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>functions<span class="w"> </span>are<span class="w"> </span>related<span class="w"> </span><span class="kr">to</span><span class="w"> </span>Beegees<span class="w"> </span>Easter<span class="w"> </span>Egg<span class="w"> </span>only<span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Notes<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>melody<span class="o">.</span><span class="w"> </span>Each<span class="w"> </span>note<span class="w"> </span>is<span class="w"> </span>about<span class="w"> </span>an<span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="m">8</span>th<span class="w"> </span>note<span class="o">,</span><span class="w"> </span><span class="s">&quot;0&quot;</span>s<span class="w"> </span>are<span class="w"> </span>rests<span class="o">.</span><span class="w"></span>
+int<span class="w"> </span>melody<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span>NOTE_G4<span class="o">,</span><span class="w"> </span>NOTE_A4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_C5<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_G4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span>NOTE_E4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_D4<span class="o">,</span><span class="w"> </span>NOTE_E4<span class="o">,</span><span class="w"> </span>NOTE_G4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span>NOTE_D4<span class="o">,</span><span class="w"> </span>NOTE_E4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_G4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span>NOTE_D4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_E4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_G4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_A4<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span>NOTE_C5<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="err">};</span><span class="w"></span>
+
+int<span class="w"> </span>noteDuration<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">115</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span>essentially<span class="w"> </span>sets<span class="w"> </span>the<span class="w"> </span>tempo<span class="o">,</span><span class="w"> </span><span class="m">115</span><span class="w"> </span>is<span class="w"> </span>just<span class="w"> </span>about<span class="w"> </span>right<span class="w"> </span><span class="kr">for</span><span class="w"> </span>a<span class="w"> </span>disco<span class="w"> </span><span class="nl">groove</span><span class="w"> </span><span class="o">:)</span><span class="w"></span>
+int<span class="w"> </span>LEDnumber<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Keeps<span class="w"> </span>track<span class="w"> </span>of<span class="w"> </span>which<span class="w"> </span>LED<span class="w"> </span>we<span class="w"> </span>are<span class="w"> </span><span class="kr">on</span><span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>beegees<span class="w"> </span>loop<span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span><span class="kr">Do</span><span class="w"> </span>nothing<span class="w"> </span>but<span class="w"> </span>play<span class="w"> </span>bad<span class="w"> </span>beegees<span class="w"> </span>music<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>is<span class="w"> </span>activated<span class="w"> </span>when<span class="w"> </span>user<span class="w"> </span>holds<span class="w"> </span>bottom<span class="w"> </span>right<span class="w"> </span>button<span class="w"> </span>during<span class="w"> </span>power<span class="w"> </span>up<span class="w"></span>
+void<span class="w"> </span>play_beegees<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span>Turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>bottom<span class="w"> </span><span class="nb">right</span><span class="w"> </span><span class="o">(</span>yellow<span class="o">)</span><span class="w"> </span>LED<span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_YELLOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">  </span>toner<span class="o">(</span>CHOICE_YELLOW<span class="o">,</span><span class="w"> </span><span class="m">150</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_RED<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_GREEN<span class="w"> </span><span class="o">|</span><span class="w"> </span>CHOICE_BLUE<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>other<span class="w"> </span>LEDs<span class="w"> </span><span class="kr">until</span><span class="w"> </span>you<span class="w"> </span>release<span class="w"> </span>button<span class="w"></span>
+
+<span class="w">  </span><span class="kr">while</span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="err">!</span><span class="o">=</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>user<span class="w"> </span><span class="kr">to</span><span class="w"> </span>stop<span class="w"> </span>pressing<span class="w"> </span>button<span class="w"></span>
+
+<span class="w">  </span>setLEDs<span class="o">(</span>CHOICE_NONE<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Turn<span class="w"> </span><span class="kr">off</span><span class="w"> </span>LEDs<span class="w"></span>
+
+<span class="w">  </span>delay<span class="o">(</span><span class="m">1000</span><span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Wait<span class="w"> </span>a<span class="w"> </span>second<span class="w"> </span>before<span class="w"> </span>playing<span class="w"> </span>song<span class="w"></span>
+
+<span class="w">  </span>digitalWrite<span class="o">(</span>BUZZER1<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>setup<span class="w"> </span>the<span class="w"> </span><span class="s">&quot;BUZZER1&quot;</span><span class="w"> </span>side<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>buzzer<span class="w"> </span><span class="kr">to</span><span class="w"> </span>stay<span class="w"> </span>low<span class="o">,</span><span class="w"> </span><span class="kr">while</span><span class="w"> </span>we<span class="w"> </span>play<span class="w"> </span>the<span class="w"> </span>tone<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>other<span class="w"> </span>pin<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">while</span><span class="o">(</span>checkButton<span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>CHOICE_NONE<span class="o">)</span><span class="w"> </span><span class="o">//</span>Play<span class="w"> </span>song<span class="w"> </span><span class="kr">until</span><span class="w"> </span>you<span class="w"> </span>press<span class="w"> </span>a<span class="w"> </span>button<span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">iterate</span><span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>notes<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="nl">melody</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>int<span class="w"> </span>thisNote<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>thisNote<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">32</span><span class="err">;</span><span class="w"> </span>thisNote<span class="o">++)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span>changeLED<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>tone<span class="o">(</span>BUZZER2<span class="o">,</span><span class="w"> </span>melody<span class="err">[</span>thisNote<span class="err">]</span><span class="o">,</span>noteDuration<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span><span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>distinguish<span class="w"> </span>the<span class="w"> </span>notes<span class="o">,</span><span class="w"> </span>set<span class="w"> </span>a<span class="w"> </span>minimum<span class="w"> </span>time<span class="w"> </span>between<span class="w"> </span>them<span class="o">.</span><span class="w"></span>
+<span class="w">      </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>note<span class="s">&#39;s duration + 30% seems to work well:</span>
+<span class="w">      </span>int<span class="w"> </span>pauseBetweenNotes<span class="w"> </span><span class="o">=</span><span class="w"> </span>noteDuration<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.30</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>delay<span class="o">(</span>pauseBetweenNotes<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span><span class="o">//</span><span class="w"> </span>stop<span class="w"> </span>the<span class="w"> </span>tone<span class="w"> </span><span class="nl">playing</span><span class="o">:</span><span class="w"></span>
+<span class="w">      </span>noTone<span class="o">(</span>BUZZER2<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Each<span class="w"> </span>time<span class="w"> </span>this<span class="w"> </span>function<span class="w"> </span>is<span class="w"> </span>called<span class="w"> </span>the<span class="w"> </span>board<span class="w"> </span>moves<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>LED<span class="w"></span>
+void<span class="w"> </span>changeLED<span class="o">(</span>void<span class="o">)</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>setLEDs<span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span>LEDnumber<span class="o">)</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Change<span class="w"> </span>the<span class="w"> </span>LED<span class="w"></span>
+
+<span class="w">  </span>LEDnumber<span class="o">++</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Goto<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>LED<span class="w"></span>
+<span class="w">  </span><span class="kr">if</span><span class="o">(</span>LEDnumber<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>LEDnumber<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>Wrap<span class="w"> </span>the<span class="w"> </span>counter<span class="w"> </span><span class="kr">if</span><span class="w"> </span>needed<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<p>Code To Note
+`#define statement is used to create constants in your code. Constants are variables that will likely only have one value during the lifespan of your code. Thus, you can assign constants a value, and then use them throughout your code wherever. Then, if you need to change that value, you can change that one line instead of going through all the code to find every instance of that variable.</p>
+<p>Bytes are another variable type. In the world of computing, a byte is a chunk of space that contains 8 bits, and a bit is a single binary value. Binary is another way of counting and uses only 1’s and 0’s. So a byte can hold all 1’s: 11111111, all 0’s: 00000000, or a combination of the two: 10010110.</p>
+<h3>What You Should See</h3>
+<p>Once the code is uploaded, the buzzer will beep a few times, and all four LEDs should begin blinking. The game begins once you press any of the four buttons. Once the game has been started, a random LED will blink. Press the button associated with that color LED to replicate the pattern. With a successful guess, the pattern will repeat, this time adding another random LED. The player is to follow the pattern for as long as possible, with each successful guess resulting in an additional layer of complexity added to the original pattern.</p>
+<p><a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_16_01.jpg"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_16_01.jpg" ></a></p>
+<h3>Real World Application</h3>
+<p>Toys and Games, such as the original Simon from Milton Bradley, have relied on electronics to provide fun and entertainment to children across the world.</p>
+<h3>Troubleshooting</h3>
+<p>Only Half the Circuit Works</p>
+<p>If only half of you circuit is working, make sure you added the additional wire from one ground rail to the other. Remember that breadboards have two power rails on each side and that these can be connected, or bussed, together to provide the power to both sides of the same circuit.</p>
+<h4>No Sound</h4>
+<p>Once the piezo buzzer is in the breadboard, it’s hard to see the legs and to which row they are connected. If you aren’t hearing any sound, make sure your wires are on the same row as the piezo buzzer legs.</p>
+<h4>Game is Not Working</h4>
+<p>If everything starts up ok, but you’re having trouble when it comes time to play the game, you may have a button or two misplaced. Pay close attention to which pin is connected to each button as it matters which button is pressed when a particular color lights up.</p>
+<p><a href="http://www.davidriewe.com/p/experiment-15-using-lcd.html">Experiment 15: Using an LCD</a><a href="http://www.davidriewe.com/p/resources-and-going-further.html">Resources and Going Further</a>
+Adapted from<a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

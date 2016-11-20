@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Serial Call and Response (handshaking) - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/serial-call-and-response-handshaking.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="This example demonstrates multi-byte communication from the Arduino or Genuino board to the computer using a call-and-response (handshaking) method. This sketch sends an ASCII A (byte of value 65) on startup and repeats that until it gets a serial response from the computer. Then it sends three sensor values as ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Serial Call and Response (handshaking)"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/serial-call-and-response-handshaking.html"/>
+    <meta property="og:description" content="This example demonstrates multi-byte communication from the Arduino or Genuino board to the computer using a call-and-response (handshaking) method. This sketch sends an ASCII A (byte of value 65) on startup and repeats that until it gets a serial response from the computer. Then it sends three sensor values as ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Serial Call and Response (handshaking)</h1>
+        
+        <div class="entry-content">
+            <p>This example demonstrates multi-byte communication from the Arduino or Genuino board to the computer using a call-and-response (handshaking) method.<br />
+<br />
+This sketch sends an ASCII A (byte of value 65) on startup and repeats that until it gets a serial response from the computer. Then it sends three sensor values as single bytes, and waits for another response from the computer.<br />
+<br />
+You can use the Arduino Software (IDE) serial monitor to view the sent data, or it can be read by Processing (see code below), Flash, PD, Max/MSP (see example below), etc.<br />
+<div>
+<br />
+<span style="font-size: large;">Hardware Required</span><br />
+<ul>
+<li>Arduino</li>
+<li>2 analog sensors (potentiometer, photocell, FSR, etc.)</li>
+<li>pushbutton</li>
+<li>3 10K ohm resistors</li>
+<li>hook-up wires</li>
+<li>breadboard</li>
+</ul>
+</div>
+<div>
+<br />
+<span style="font-size: large;">Software Required</span></div>
+<div>
+<ul>
+<li><a href="http://www.processing.org/">Processing</a></li>
+</ul>
+<br />
+<span style="font-size: large;">Circuit</span><br />
+<br />
+Connect analog sensors to analog input pin 0 and 1 with 10K ohm resistors used as voltage dividers. Connect a pushbutton or switch to digital I/O pin 2 with a 10K ohm resistor as a reference to ground.<br />
+<br />
+click on the image to enlarge</div>
+<div>
+<br />
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/SerialCallResponse-circuit3.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/SerialCallResponse-circuit3.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+<br />
+<br />
+image developed using <a href="http://www.fritzing.org/">Fritzing</a>. For more circuit examples, see the <a href="http://fritzing.org/projects/">Fritzing project page</a></div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<span style="font-size: large;">Schematic</span><br />
+<br />
+click the image to enlarge</div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/SerialCallResponse_sch.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/SerialCallResponse_sch.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+</div>
+<span style="font-size: large;">Code</span></div></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  Serial Call and Response</span>
+<span class="cm"> Language: Wiring/Arduino</span>
+
+<span class="cm"> This program sends an ASCII A (byte of value 65) on startup</span>
+<span class="cm"> and repeats that until it gets some data in.</span>
+<span class="cm"> Then it waits for a byte in the serial port, and</span>
+<span class="cm"> sends three sensor values whenever it gets a byte in.</span>
+
+<span class="cm"> Thanks to Greg Shakar and Scott Fitzgerald for the improvements</span>
+
+<span class="cm">   The circuit:</span>
+<span class="cm"> * potentiometers attached to analog inputs 0 and 1</span>
+<span class="cm"> * pushbutton attached to digital I/O 2</span>
+
+<span class="cm"> Created 26 Sept. 2005</span>
+<span class="cm"> by Tom Igoe</span>
+<span class="cm"> modified 24 April 2012</span>
+<span class="cm"> by Tom Igoe and Scott Fitzgerald</span>
+
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/SerialCallResponse</span>
+
+<span class="cm"> */</span><span class="w"></span>
+
+int<span class="w"> </span>firstSensor<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>first<span class="w"> </span>analog<span class="w"> </span>sensor<span class="w"></span>
+int<span class="w"> </span>secondSensor<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>second<span class="w"> </span>analog<span class="w"> </span>sensor<span class="w"></span>
+int<span class="w"> </span>thirdSensor<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>digital<span class="w"> </span>sensor<span class="w"></span>
+int<span class="w"> </span>inByte<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">         </span><span class="o">//</span><span class="w"> </span>incoming<span class="w"> </span>serial<span class="w"> </span>byte<span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>start<span class="w"> </span>serial<span class="w"> </span>port<span class="w"> </span>at<span class="w"> </span><span class="m">9600</span><span class="w"> </span><span class="nl">bps</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>begin<span class="o">(</span><span class="m">9600</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span><span class="err">!</span>Serial<span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>serial<span class="w"> </span>port<span class="w"> </span><span class="kr">to</span><span class="w"> </span>connect<span class="o">.</span><span class="w"> </span>Needed<span class="w"> </span><span class="kr">for</span><span class="w"> </span>native<span class="w"> </span>USB<span class="w"> </span>port<span class="w"> </span>only<span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span>pinMode<span class="o">(</span><span class="m">2</span><span class="o">,</span><span class="w"> </span>INPUT<span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>digital<span class="w"> </span>sensor<span class="w"> </span>is<span class="w"> </span><span class="kr">on</span><span class="w"> </span>digital<span class="w"> </span>pin<span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">    </span>establishContact<span class="o">()</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>send<span class="w"> </span>a<span class="w"> </span>byte<span class="w"> </span><span class="kr">to</span><span class="w"> </span>establish<span class="w"> </span>contact<span class="w"> </span><span class="kr">until</span><span class="w"> </span>receiver<span class="w"> </span>responds<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span>we<span class="w"> </span>get<span class="w"> </span>a<span class="w"> </span>valid<span class="w"> </span>byte<span class="o">,</span><span class="w"> </span>read<span class="w"> </span>analog<span class="w"> </span><span class="nl">ins</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>Serial<span class="o">.</span>available<span class="o">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>get<span class="w"> </span>incoming<span class="w"> </span><span class="nl">byte</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span>inByte<span class="w"> </span><span class="o">=</span><span class="w"> </span>Serial<span class="o">.</span>read<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>first<span class="w"> </span>analog<span class="w"> </span>input<span class="o">,</span><span class="w"> </span>divide<span class="w"> </span><span class="kr">by</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span><span class="m">0</span><span class="o">-</span><span class="m">255</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span>firstSensor<span class="w"> </span><span class="o">=</span><span class="w"> </span>analogRead<span class="o">(</span>A0<span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>delay<span class="w"> </span><span class="m">10</span>ms<span class="w"> </span><span class="kr">to</span><span class="w"> </span>let<span class="w"> </span>the<span class="w"> </span>ADC<span class="w"> </span><span class="nl">recover</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span>delay<span class="o">(</span><span class="m">10</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>second<span class="w"> </span>analog<span class="w"> </span>input<span class="o">,</span><span class="w"> </span>divide<span class="w"> </span><span class="kr">by</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span><span class="m">0</span><span class="o">-</span><span class="m">255</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span>secondSensor<span class="w"> </span><span class="o">=</span><span class="w"> </span>analogRead<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>read<span class="w">  </span>switch<span class="o">,</span><span class="w"> </span>map<span class="w"> </span>it<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>or<span class="w"> </span><span class="m">255</span>L<span class="w"></span>
+<span class="w">        </span>thirdSensor<span class="w"> </span><span class="o">=</span><span class="w"> </span>map<span class="o">(</span>digitalRead<span class="o">(</span><span class="m">2</span><span class="o">),</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">255</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">//</span><span class="w"> </span>send<span class="w"> </span>sensor<span class="w"> </span><span class="nl">values</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span>Serial<span class="o">.</span>write<span class="o">(</span>firstSensor<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>Serial<span class="o">.</span>write<span class="o">(</span>secondSensor<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">        </span>Serial<span class="o">.</span>write<span class="o">(</span>thirdSensor<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>establishContact<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span>Serial<span class="o">.</span>available<span class="o">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>Serial<span class="o">.</span>print<span class="o">(</span><span class="s">&#39;A&#39;</span><span class="o">)</span><span class="err">;</span><span class="w">   </span><span class="o">//</span><span class="w"> </span>send<span class="w"> </span>a<span class="w"> </span>capital<span class="w"> </span>A<span class="w"></span>
+<span class="w">        </span>delay<span class="o">(</span><span class="m">300</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">Processing sketch to run with this example:</span>
+
+<span class="cm">// This example code is in the public domain.</span>
+
+<span class="cm">import processing.serial.*;</span>
+
+<span class="cm">int bgcolor;                 // Background color</span>
+<span class="cm">int fgcolor;                 // Fill color</span>
+<span class="cm">Serial myPort;                       // The serial port</span>
+<span class="cm">int[] serialInArray = new int[3];    // Where we&#39;ll put what we receive</span>
+<span class="cm">int serialCount = 0;                 // A count of how many bytes we receive</span>
+<span class="cm">int xpos, ypos;                  // Starting position of the ball</span>
+<span class="cm">boolean firstContact = false;        // Whether we&#39;ve heard from the microcontroller</span>
+
+<span class="cm">void setup() {</span>
+<span class="cm">  size(256, 256);  // Stage size</span>
+<span class="cm">  noStroke();      // No border on the next thing drawn</span>
+
+<span class="cm">  // Set the starting position of the ball (middle of the stage)</span>
+<span class="cm">  xpos = width/2;</span>
+<span class="cm">  ypos = height/2;</span>
+
+<span class="cm">  // Print a list of the serial ports for debugging purposes</span>
+<span class="cm">  // if using Processing 2.1 or later, use Serial.printArray()</span>
+<span class="cm">  println(Serial.list());</span>
+
+<span class="cm">  // I know that the first port in the serial list on my mac</span>
+<span class="cm">  // is always my  FTDI adaptor, so I open Serial.list()[0].</span>
+<span class="cm">  // On Windows machines, this generally opens COM1.</span>
+<span class="cm">  // Open whatever port is the one you&#39;re using.</span>
+<span class="cm">  String portName = Serial.list()[0];</span>
+<span class="cm">  myPort = new Serial(this, portName, 9600);</span>
+<span class="cm">}</span>
+
+<span class="cm">void draw() {</span>
+<span class="cm">  background(bgcolor);</span>
+<span class="cm">  fill(fgcolor);</span>
+<span class="cm">  // Draw the shape</span>
+<span class="cm">  ellipse(xpos, ypos, 20, 20);</span>
+<span class="cm">}</span>
+
+<span class="cm">void serialEvent(Serial myPort) {</span>
+<span class="cm">  // read a byte from the serial port:</span>
+<span class="cm">  int inByte = myPort.read();</span>
+<span class="cm">  // if this is the first byte received, and it&#39;s an A,</span>
+<span class="cm">  // clear the serial buffer and note that you&#39;ve</span>
+<span class="cm">  // had first contact from the microcontroller.</span>
+<span class="cm">  // Otherwise, add the incoming byte to the array:</span>
+<span class="cm">  if (firstContact == false) {</span>
+<span class="cm">    if (inByte == &#39;A&#39;) {</span>
+<span class="cm">      myPort.clear();          // clear the serial port buffer</span>
+<span class="cm">      firstContact = true;     // you&#39;ve had first contact from the microcontroller</span>
+<span class="cm">      myPort.write(&#39;A&#39;);       // ask for more</span>
+<span class="cm">    }</span>
+<span class="cm">  }</span>
+<span class="cm">  else {</span>
+<span class="cm">    // Add the latest byte from the serial port to array:</span>
+<span class="cm">    serialInArray[serialCount] = inByte;</span>
+<span class="cm">    serialCount++;</span>
+
+<span class="cm">    // If we have 3 bytes:</span>
+<span class="cm">    if (serialCount &gt; 2 ) {</span>
+<span class="cm">      xpos = serialInArray[0];</span>
+<span class="cm">      ypos = serialInArray[1];</span>
+<span class="cm">      fgcolor = serialInArray[2];</span>
+
+<span class="cm">      // print the values (for debugging purposes only):</span>
+<span class="cm">      println(xpos + &quot;\t&quot; + ypos + &quot;\t&quot; + fgcolor);</span>
+
+<span class="cm">      // Send a capital A to request new sensor readings:</span>
+<span class="cm">      myPort.write(&#39;A&#39;);</span>
+<span class="cm">      // Reset serialCount:</span>
+<span class="cm">      serialCount = 0;</span>
+<span class="cm">    }</span>
+<span class="cm">  }</span>
+<span class="cm">}</span>
+<span class="cm">*/</span><span class="w"></span>
+</pre></div>
+
+
+<p><br />
+<span style="font-size: large;">Processing Code</span><br />
+<br />
+Copy the Processing sketch from the code sample above. As you change the value of the analog sensor, you'll get a ball moving onscreen something like this. The ball will appear only when you push the button:<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/serialCallResponse-output.png" style="border: 0px; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></div>
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<br /></div>
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<h2 style="color: #666666; font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif; font-size: 22px; margin: 0px; position: relative;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our&nbsp;</div>
+<div style="text-align: center;">
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

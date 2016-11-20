@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 12: Driving a Motor - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-12-driving-a-motor.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Back in experiment 8, you got to work with a servo motor. Now, we are going to tackle spinning a motor. This requires the use of a transistor, which can switch a larger amount of current than the RedBoard or Arduino Uno ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 12: Driving a Motor"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-12-driving-a-motor.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction Back in experiment 8, you got to work with a servo motor. Now, we are going to tackle spinning a motor. This requires the use of a transistor, which can switch a larger amount of current than the RedBoard or Arduino Uno ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 12: Driving a Motor</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Back in experiment 8, you got to work with a servo motor. Now, we are going to tackle spinning a motor. This requires the use of a&nbsp;<a href="https://learn.sparkfun.com/tutorials/transistors" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">transistor</a>, which can switch a larger amount of current than the RedBoard or Arduino Uno R3 can.</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+When using a transistor, you just need to make sure its maximum specs are high enough for your use case. The transistor we are using for this circuit is rated at 40V max and 200 milliamps max – perfect for our toy motor! When the motor is spinning and suddenly turned off, the magnetic field inside it collapses, generating a voltage spike. This can damage the transistor. To prevent this, we use a “flyback diode”, which diverts the voltage spike around the transistor.</div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Parts Needed</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Motor</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;330Ω Resistor</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;NPN transistor</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Diode 1N4148</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">6x</span>&nbsp;Jumper Wires</li>
+</ul>
+<div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Suggested Reading</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Before continuing on with this experiment, we recommend you be familiar with the concepts in the following tutorial:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/motors-and-selecting-the-right-one" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">Motors and Selecting the Right One</a></li>
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/diodes" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">Diodes</a></li>
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/transistors" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">Transistors</a></li>
+</ul>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 640px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<span style="box-sizing: border-box; font-weight: 700;">Please note:</span>&nbsp;When you’re building the circuit be careful not to mix up the transistor and the temperature sensor, they’re almost identical. Look for “P2N2222A” on the body of the transistor.</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_12_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_12_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em><br />
+<div style="text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: start;">
+Run the Sketch</h3>
+<div style="text-align: left;">
+<br /></div>
+</div>
+</div>
+</div>
+
+<div class="highlight"><pre><span></span>/*
+<span class="n">SparkFun</span> <span class="n">Inventor&#39;s</span> <span class="n">Kit</span>
+<span class="n">Example</span> <span class="n">sketch</span> <span class="mi">12</span>
+
+<span class="n">SPINNING</span> <span class="n">A</span> <span class="n">MOTOR</span>
+
+  <span class="n">Use</span> <span class="n">a</span> <span class="n">transistor</span> <span class="nb">to</span> <span class="n">spin</span> <span class="n">a</span> <span class="n">motor</span> <span class="n">at</span> <span class="n">different</span> <span class="n">speeds</span>.
+  <span class="n">We&#39;ll</span> <span class="o">also</span> <span class="n">show</span> <span class="n">you</span> <span class="n">how</span> <span class="nb">to</span> <span class="n">input</span> <span class="n">data</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">port</span>
+  (<span class="n">see</span> <span class="n">the</span> <span class="n">serialSpeed</span>() <span class="n">function</span> <span class="n">below</span>).
+
+  <span class="n">Motors</span> <span class="n">are</span> <span class="n">the</span> <span class="n">basis</span> <span class="k">for</span> <span class="n">thousands</span> <span class="k">of</span> <span class="n">things</span> <span class="n">in</span> <span class="k">our</span> <span class="n">daily</span> <span class="n">lives</span>,
+  <span class="o">and</span> <span class="n">the</span> <span class="n">Arduino</span> <span class="nb">can</span> <span class="n">control</span> <span class="n">them</span>. <span class="n">Here</span> <span class="n">we&#39;ll</span> <span class="k">use</span> <span class="n">pulse-width</span>
+  <span class="n">modulation</span> (<span class="n">PWM</span>) <span class="nb">to</span> <span class="n">vary</span> <span class="n">the</span> <span class="n">speed</span> <span class="k">of</span> <span class="n">a</span> <span class="n">motor</span>.
+
+  <span class="n">The</span> <span class="n">Arduino</span> <span class="n">pins</span> <span class="n">are</span> <span class="n">strong</span> <span class="n">enough</span> <span class="nb">to</span> <span class="n">light</span> <span class="n">small</span> <span class="n">LEDs</span> (<span class="n">up</span> <span class="nb">to</span>
+  <span class="mi">40</span> <span class="n">milliAmps</span>), <span class="k">but</span> <span class="n">they&#39;re</span> <span class="nb">not</span> <span class="n">strong</span> <span class="n">enough</span> <span class="nb">to</span> <span class="nb">run</span> <span class="n">motors</span> <span class="o">and</span>
+  <span class="n">other</span> <span class="n">power-hungry</span> <span class="n">parts</span>. (<span class="n">This</span> <span class="n">motor</span> <span class="n">needs</span> <span class="mi">50</span><span class="o">-</span><span class="mi">100</span><span class="n">mA</span>).
+  <span class="n">Because</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">needs</span> <span class="n">more</span> <span class="n">current</span> <span class="n">than</span> <span class="n">an</span> <span class="n">Arduino</span> <span class="n">pin</span> <span class="nb">can</span>
+  <span class="n">provide</span>, <span class="n">we&#39;ll</span> <span class="k">use</span> <span class="n">a</span> <span class="n">transistor</span> <span class="nb">to</span> <span class="k">do</span> <span class="n">the</span> <span class="n">heavy</span> <span class="n">lifting</span>.
+  <span class="n">A</span> <span class="n">transistor</span> <span class="k">is</span> <span class="n">a</span> <span class="n">solid-state</span> <span class="n">switch</span>. <span class="n">When</span> <span class="n">we</span> <span class="n">give</span> <span class="n">it</span> <span class="n">a</span> <span class="n">small</span>
+  <span class="n">amount</span> <span class="k">of</span> <span class="n">current</span>, <span class="n">it</span> <span class="nb">can</span> <span class="n">switch</span> <span class="n">a</span> <span class="n">much</span> <span class="n">larger</span> <span class="n">current</span>.
+  <span class="n">The</span> <span class="n">transistors</span> <span class="n">in</span> <span class="n">your</span> <span class="n">kit</span> (<span class="mi">2</span><span class="n">N2222</span>) <span class="nb">can</span> <span class="n">switch</span> <span class="n">up</span> <span class="nb">to</span> <span class="mi">200</span><span class="n">mA</span>.
+
+  <span class="n">You</span> <span class="nb">can</span> <span class="n">turn</span> <span class="n">a</span> <span class="n">transistor</span> <span class="n">on</span> <span class="o">and</span> <span class="n">off</span> <span class="n">using</span> <span class="n">the</span> <span class="n">digitalWrite</span>()
+  <span class="n">function</span>, <span class="k">but</span> <span class="n">you</span> <span class="nb">can</span> <span class="o">also</span> <span class="k">use</span> <span class="n">the</span> <span class="n">analogWrite</span>() <span class="n">function</span> <span class="nb">to</span>
+  <span class="n">vary</span> <span class="n">the</span> <span class="n">speed</span> <span class="k">of</span> <span class="n">the</span> <span class="n">motor</span>. <span class="n">The</span> <span class="n">analogWrite</span>() <span class="n">function</span> <span class="n">pulses</span>
+  <span class="n">a</span> <span class="n">pin</span>, <span class="n">varying</span> <span class="n">the</span> <span class="n">width</span> <span class="k">of</span> <span class="n">the</span> <span class="n">pulse</span> <span class="nb">from</span> <span class="mi">0</span>% <span class="nb">to</span> <span class="mi">100</span>%. <span class="n">We</span> <span class="n">call</span>
+  <span class="n">this</span> <span class="n">technique</span> <span class="s">&quot;PWM&quot;</span>, <span class="k">for</span> <span class="s">&quot;Pulse-Width Modulation&quot;</span>.
+
+  <span class="n">One</span> <span class="n">thing</span> <span class="nb">to</span> <span class="n">keep</span> <span class="n">in</span> <span class="n">mind</span> <span class="k">is</span> <span class="n">that</span> <span class="k">when</span> <span class="n">you</span> <span class="n">lower</span> <span class="n">the</span> <span class="n">speed</span> <span class="k">of</span>
+  <span class="n">a</span> <span class="n">motor</span> <span class="n">using</span> <span class="n">PWM</span>, <span class="n">you&#39;re</span> <span class="o">also</span> <span class="n">reducing</span> <span class="n">the</span> <span class="n">torque</span> (<span class="n">strength</span>)
+  <span class="k">of</span> <span class="n">the</span> <span class="n">motor</span>. <span class="n">For</span> <span class="n">PWM</span> <span class="nb">values</span> <span class="n">below</span> <span class="mi">50</span> <span class="o">or</span> <span class="o">so</span>, <span class="n">the</span> <span class="n">motor</span> <span class="n">won&#39;t</span> <span class="n">have</span>
+  <span class="n">enough</span> <span class="n">torque</span> <span class="nb">to</span> <span class="n">start</span> <span class="n">spinning</span>. <span class="n">It</span> <span class="k">will</span> <span class="n">start</span> <span class="n">spinning</span> <span class="k">when</span> <span class="n">you</span>
+  <span class="n">raise</span> <span class="n">the</span> <span class="n">speed</span> <span class="n">a</span> <span class="nb">bit</span>.
+
+<span class="n">Hardware</span> <span class="n">connections:</span>
+
+  <span class="n">Transistor:</span>
+
+    <span class="n">The</span> <span class="n">transistor</span> <span class="k">has</span> <span class="n">three</span> <span class="n">pins</span>. <span class="n">Looking</span> <span class="n">at</span> <span class="n">the</span> <span class="n">flat</span> <span class="n">side</span> <span class="n">with</span> <span class="n">the</span>
+    <span class="n">pins</span> <span class="n">down</span>, <span class="n">the</span> <span class="n">order</span> <span class="k">is</span> <span class="n">COLLECTOR</span>, <span class="n">BASE</span>, <span class="n">EMITTER</span>.
+
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">black</span> <span class="n">wire</span> <span class="n">on</span> <span class="n">the</span> <span class="n">motor</span> <span class="nb">to</span> <span class="n">the</span>
+    <span class="n">COLLECTOR</span> <span class="n">pin</span> <span class="n">on</span> <span class="n">the</span> <span class="n">transistor</span>.
+
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">BASE</span> <span class="n">pin</span> <span class="n">through</span> <span class="n">a</span> <span class="mi">330</span> <span class="n">Ohm</span> <span class="n">resistor</span> <span class="nb">to</span>
+    <span class="n">digital</span> <span class="n">pin</span> <span class="mi">9</span>.
+
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">EMITTER</span> <span class="n">pin</span> <span class="nb">to</span> <span class="n">GND</span>.
+
+  <span class="n">Motor:</span>
+
+    <span class="n">You&#39;ve</span> <span class="n">already</span> <span class="n">connected</span> <span class="n">the</span> <span class="n">black</span> <span class="n">wire</span> <span class="n">on</span> <span class="n">the</span> <span class="n">motor</span> <span class="nb">to</span> <span class="n">the</span>
+    <span class="n">COLLECTOR</span> <span class="n">pin</span> <span class="n">on</span> <span class="n">the</span> <span class="n">transistor</span>.
+
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">other</span> (<span class="n">red</span>) <span class="n">wire</span> <span class="n">on</span> <span class="n">the</span> <span class="n">motor</span> <span class="nb">to</span> <span class="mi">5</span><span class="n">V</span>.
+
+  <span class="n">Flyback</span> <span class="n">diode:</span>
+
+    <span class="n">When</span> <span class="n">the</span> <span class="n">motor</span> <span class="k">is</span> <span class="n">spinning</span> <span class="o">and</span> <span class="n">suddenly</span> <span class="n">turned</span> <span class="n">off</span>, <span class="n">the</span>
+    <span class="n">magnetic</span> <span class="n">field</span> <span class="n">inside</span> <span class="n">it</span> <span class="n">collapses</span>, <span class="n">generating</span> <span class="n">a</span> <span class="n">voltage</span> <span class="n">spike</span>.
+    <span class="n">This</span> <span class="nb">can</span> <span class="n">damage</span> <span class="n">the</span> <span class="n">transistor</span>. <span class="n">To</span> <span class="n">prevent</span> <span class="n">this</span>, <span class="n">we</span> <span class="k">use</span> <span class="n">a</span>
+    <span class="s">&quot;flyback diode&quot;</span>, <span class="n">which</span> <span class="n">diverts</span> <span class="n">the</span> <span class="n">voltage</span> <span class="n">spike</span> <span class="s">&quot;around&quot;</span> <span class="n">the</span>
+    <span class="n">transistor</span>.
+
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">side</span> <span class="k">of</span> <span class="n">the</span> <span class="n">diode</span> <span class="n">with</span> <span class="n">the</span> <span class="n">band</span> (<span class="n">cathode</span>) <span class="nb">to</span> <span class="mi">5</span><span class="n">V</span>
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">other</span> <span class="n">side</span> <span class="k">of</span> <span class="n">the</span> <span class="n">diode</span> (<span class="n">anode</span>) <span class="nb">to</span> <span class="n">the</span> <span class="n">black</span> <span class="n">wire</span>
+    <span class="n">on</span> <span class="n">the</span> <span class="n">motor</span>.
+
+<span class="n">This</span> <span class="n">sketch</span> <span class="n">was</span> <span class="n">written</span> <span class="nb">by</span> <span class="n">SparkFun</span> <span class="n">Electronics</span>,
+<span class="n">with</span> <span class="n">lots</span> <span class="k">of</span> <span class="n">help</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">Arduino</span> <span class="n">community</span>.
+<span class="n">This</span> <span class="n">code</span> <span class="k">is</span> <span class="n">completely</span> <span class="n">free</span> <span class="k">for</span> <span class="nb">any</span> <span class="k">use</span>.
+<span class="n">Visit</span> <span class="n">http:</span>//<span class="n">learn</span>.<span class="n">sparkfun</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">2</span> <span class="k">for</span> <span class="n">SIK</span> <span class="n">information</span>.
+<span class="n">Visit</span> <span class="n">http:</span>//<span class="n">www</span>.<span class="n">arduino</span>.<span class="n">cc</span> <span class="nb">to</span> <span class="n">learn</span> <span class="n">about</span> <span class="n">the</span> <span class="n">Arduino</span>.
+
+<span class="nb">Version</span> <span class="mf">2.0</span> <span class="mi">6</span><span class="o">/</span><span class="mi">2012</span> <span class="n">MDG</span>
+*/
+
+// <span class="n">We&#39;ll</span> <span class="n">be</span> <span class="n">controlling</span> <span class="n">the</span> <span class="n">motor</span> <span class="nb">from</span> <span class="n">pin</span> <span class="mi">9</span>.
+// <span class="n">This</span> <span class="n">must</span> <span class="n">be</span> <span class="nb">one</span> <span class="k">of</span> <span class="n">the</span> <span class="n">PWM-capable</span> <span class="n">pins</span>.
+
+<span class="n">const</span> <span class="nb">int</span> <span class="n">motorPin</span> = <span class="mi">9</span>;
+
+
+<span class="nb">void</span> <span class="n">setup</span>()
+{
+  // <span class="nb">Set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">pin</span> <span class="nb">to</span> <span class="n">be</span> <span class="n">an</span> <span class="n">output:</span>
+
+  <span class="n">pinMode</span>(<span class="n">motorPin</span>, <span class="n">OUTPUT</span>);
+
+  // <span class="nb">Set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">port:</span>
+
+  <span class="n">Serial</span>.<span class="n">begin</span>(<span class="mi">9600</span>);
+}
+
+
+<span class="nb">void</span> <span class="k">loop</span>()
+{
+  // <span class="n">Here</span> <span class="n">we&#39;ve</span> <span class="n">used</span> <span class="n">comments</span> <span class="nb">to</span> <span class="n">disable</span> <span class="n">some</span> <span class="k">of</span> <span class="n">the</span> <span class="n">examples</span>.
+  // <span class="n">To</span> <span class="k">try</span> <span class="n">different</span> <span class="n">things</span>, <span class="n">uncomment</span> <span class="nb">one</span> <span class="k">of</span> <span class="n">the</span> <span class="n">following</span> <span class="nb">lines</span>
+  // <span class="o">and</span> <span class="n">comment</span> <span class="n">the</span> <span class="n">other</span> <span class="n">ones</span>. <span class="n">See</span> <span class="n">the</span> <span class="n">functions</span> <span class="n">below</span> <span class="nb">to</span> <span class="n">learn</span>
+  // <span class="n">what</span> <span class="n">they</span> <span class="k">do</span> <span class="o">and</span> <span class="n">how</span> <span class="n">they</span> <span class="n">work</span>.
+
+  // <span class="n">motorOnThenOff</span>();
+  // <span class="n">motorOnThenOffWithSpeed</span>();
+  // <span class="n">motorAcceleration</span>();
+     <span class="n">serialSpeed</span>();
+}
+
+
+// <span class="n">This</span> <span class="n">function</span> <span class="n">turns</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">on</span> <span class="o">and</span> <span class="n">off</span> <span class="nb">like</span> <span class="n">the</span> <span class="n">blinking</span> <span class="n">LED</span>.
+// <span class="n">Try</span> <span class="n">different</span> <span class="nb">values</span> <span class="nb">to</span> <span class="n">affect</span> <span class="n">the</span> <span class="n">timing</span>.
+
+<span class="nb">void</span> <span class="n">motorOnThenOff</span>()
+{
+  <span class="nb">int</span> <span class="n">onTime</span> = <span class="mi">3000</span>;  // <span class="n">milliseconds</span> <span class="nb">to</span> <span class="n">turn</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">on</span>
+  <span class="nb">int</span> <span class="n">offTime</span> = <span class="mi">3000</span>; // <span class="n">milliseconds</span> <span class="nb">to</span> <span class="n">turn</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">off</span>
+
+  <span class="n">digitalWrite</span>(<span class="n">motorPin</span>, <span class="n">HIGH</span>); // <span class="n">turn</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">on</span> (<span class="n">full</span> <span class="n">speed</span>)
+  <span class="n">delay</span>(<span class="n">onTime</span>);                // <span class="n">delay</span> <span class="k">for</span> <span class="n">onTime</span> <span class="n">milliseconds</span>
+  <span class="n">digitalWrite</span>(<span class="n">motorPin</span>, <span class="n">LOW</span>);  // <span class="n">turn</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">off</span>
+  <span class="n">delay</span>(<span class="n">offTime</span>);               // <span class="n">delay</span> <span class="k">for</span> <span class="n">offTime</span> <span class="n">milliseconds</span>
+}
+
+
+// <span class="n">This</span> <span class="n">function</span> <span class="n">alternates</span> <span class="n">between</span> <span class="n">two</span> <span class="n">speeds</span>.
+// <span class="n">Try</span> <span class="n">different</span> <span class="nb">values</span> <span class="nb">to</span> <span class="n">affect</span> <span class="n">the</span> <span class="n">timing</span> <span class="o">and</span> <span class="n">speed</span>.
+
+<span class="nb">void</span> <span class="n">motorOnThenOffWithSpeed</span>()
+{
+  <span class="nb">int</span> <span class="n">Speed1</span> = <span class="mi">200</span>;  // <span class="n">between</span> <span class="mi">0</span> (<span class="n">stopped</span>) <span class="o">and</span> <span class="mi">255</span> (<span class="n">full</span> <span class="n">speed</span>)
+  <span class="nb">int</span> <span class="n">Time1</span> = <span class="mi">3000</span>;  // <span class="n">milliseconds</span> <span class="k">for</span> <span class="n">speed</span> <span class="mi">1</span>
+
+  <span class="nb">int</span> <span class="n">Speed2</span> = <span class="mi">50</span>;   // <span class="n">between</span> <span class="mi">0</span> (<span class="n">stopped</span>) <span class="o">and</span> <span class="mi">255</span> (<span class="n">full</span> <span class="n">speed</span>)
+  <span class="nb">int</span> <span class="n">Time2</span> = <span class="mi">3000</span>;  // <span class="n">milliseconds</span> <span class="nb">to</span> <span class="n">turn</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">off</span>
+
+  <span class="n">analogWrite</span>(<span class="n">motorPin</span>, <span class="n">Speed1</span>);  // <span class="n">turns</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">On</span>
+  <span class="n">delay</span>(<span class="n">Time1</span>);                   // <span class="n">delay</span> <span class="k">for</span> <span class="n">onTime</span> <span class="n">milliseconds</span>
+  <span class="n">analogWrite</span>(<span class="n">motorPin</span>, <span class="n">Speed2</span>);  // <span class="n">turns</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">Off</span>
+  <span class="n">delay</span>(<span class="n">Time2</span>);                   // <span class="n">delay</span> <span class="k">for</span> <span class="n">offTime</span> <span class="n">milliseconds</span>
+}
+
+
+// <span class="n">This</span> <span class="n">function</span> <span class="n">slowly</span> <span class="n">accelerates</span> <span class="n">the</span> <span class="n">motor</span> <span class="nb">to</span> <span class="n">full</span> <span class="n">speed</span>,<span class="sr"></span>
+<span class="sr">//</span> <span class="n">then</span> <span class="n">back</span> <span class="n">down</span> <span class="nb">to</span> <span class="n">zero</span>.
+
+<span class="nb">void</span> <span class="n">motorAcceleration</span>()
+{
+  <span class="nb">int</span> <span class="n">speed</span>;
+  <span class="nb">int</span> <span class="n">delayTime</span> = <span class="mi">20</span>; // <span class="n">milliseconds</span> <span class="n">between</span> <span class="nb">each</span> <span class="n">speed</span> <span class="n">step</span>
+
+  // <span class="n">accelerate</span> <span class="n">the</span> <span class="n">motor</span>
+
+  <span class="k">for</span>(<span class="n">speed</span> = <span class="mi">0</span>; <span class="n">speed</span> &lt;= <span class="mi">255</span>; <span class="n">speed</span>++)
+  {
+    <span class="n">analogWrite</span>(<span class="n">motorPin</span>,<span class="n">speed</span>);    // <span class="n">set</span> <span class="n">the</span> <span class="nb">new</span> <span class="n">speed</span>
+    <span class="n">delay</span>(<span class="n">delayTime</span>);               // <span class="n">delay</span> <span class="n">between</span> <span class="n">speed</span> <span class="n">steps</span>
+  }
+
+  // <span class="n">decelerate</span> <span class="n">the</span> <span class="n">motor</span>
+
+  <span class="k">for</span>(<span class="n">speed</span> = <span class="mi">255</span>; <span class="n">speed</span> &gt;= <span class="mi">0</span>; <span class="n">speed--</span>)
+  {
+    <span class="n">analogWrite</span>(<span class="n">motorPin</span>,<span class="n">speed</span>);    // <span class="n">set</span> <span class="n">the</span> <span class="nb">new</span> <span class="n">speed</span>
+    <span class="n">delay</span>(<span class="n">delayTime</span>);               // <span class="n">delay</span> <span class="n">between</span> <span class="n">speed</span> <span class="n">steps</span>
+  }
+}
+
+
+// <span class="n">This</span> <span class="n">function</span> <span class="k">will</span> <span class="k">let</span> <span class="n">you</span> <span class="n">type</span> <span class="n">a</span> <span class="n">speed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">serial</span>
+// <span class="n">monitor</span> <span class="n">window</span>. <span class="n">Open</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">monitor</span> <span class="n">using</span> <span class="n">the</span> <span class="n">magnifying-</span>
+// <span class="n">glass</span> <span class="n">icon</span> <span class="n">at</span> <span class="n">the</span> <span class="n">top</span> <span class="n">right</span> <span class="k">of</span> <span class="n">the</span> <span class="n">Arduino</span> <span class="n">window</span>. <span class="n">Then</span>
+// <span class="n">type</span> <span class="n">your</span> <span class="n">desired</span> <span class="n">speed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">small</span> <span class="n">text</span> <span class="n">entry</span> <span class="n">bar</span> <span class="n">at</span> <span class="n">the</span>
+// <span class="n">top</span> <span class="k">of</span> <span class="n">the</span> <span class="n">window</span> <span class="o">and</span> <span class="n">click</span> <span class="s">&quot;Send&quot;</span> <span class="o">or</span> <span class="n">press</span> <span class="k">return</span>. <span class="n">The</span> <span class="n">motor</span>
+// <span class="k">will</span> <span class="n">then</span> <span class="n">operate</span> <span class="n">at</span> <span class="n">that</span> <span class="n">speed</span>. <span class="n">The</span> <span class="n">valid</span> <span class="n">range</span> <span class="k">is</span> <span class="mi">0</span> <span class="nb">to</span> <span class="mi">255</span>.
+
+<span class="nb">void</span> <span class="n">serialSpeed</span>()
+{
+  <span class="nb">int</span> <span class="n">speed</span>;
+
+  <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;Type a speed (0-255) into the box above,&quot;</span>);
+  <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;then click [send] or press [return]&quot;</span>);
+  <span class="n">Serial</span>.<span class="n">println</span>();  // <span class="n">Print</span> <span class="n">a</span> <span class="n">blank</span> <span class="n">line</span>
+
+  // <span class="n">In</span> <span class="n">order</span> <span class="nb">to</span> <span class="n">type</span> <span class="n">out</span> <span class="n">the</span> <span class="n">above</span> <span class="n">message</span> <span class="k">only</span> <span class="nb">once</span>,<span class="sr"></span>
+<span class="sr">  //</span> <span class="n">we&#39;ll</span> <span class="nb">run</span> <span class="n">the</span> <span class="n">rest</span> <span class="k">of</span> <span class="n">this</span> <span class="n">function</span> <span class="n">in</span> <span class="n">an</span> <span class="n">infinite</span> <span class="n">loop:</span>
+
+  <span class="k">while</span>(<span class="nb">true</span>)  // <span class="s">&quot;true&quot;</span> <span class="k">is</span> <span class="n">always</span> <span class="nb">true</span>, <span class="o">so</span> <span class="n">this</span> <span class="k">will</span> <span class="k">loop</span> <span class="n">forever</span>.
+  {
+    // <span class="n">First</span> <span class="n">we</span> <span class="n">check</span> <span class="nb">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">incoming</span> <span class="n">data</span> <span class="k">is</span> <span class="n">available:</span>
+
+    <span class="k">while</span> (<span class="n">Serial</span>.<span class="n">available</span>() &gt; <span class="mi">0</span>)
+    {
+      // <span class="n">If</span> <span class="n">it</span> <span class="k">is</span>, <span class="n">we&#39;ll</span> <span class="k">use</span> <span class="n">parseInt</span>() <span class="nb">to</span> <span class="n">pull</span> <span class="n">out</span> <span class="nb">any</span> <span class="n">numbers:</span>
+
+      <span class="n">speed</span> = <span class="n">Serial</span>.<span class="n">parseInt</span>();
+
+      // <span class="n">Because</span> <span class="n">analogWrite</span>() <span class="k">only</span> <span class="n">works</span> <span class="n">with</span> <span class="n">numbers</span> <span class="nb">from</span>
+      // <span class="mi">0</span> <span class="nb">to</span> <span class="mi">255</span>, <span class="n">we&#39;ll</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">the</span> <span class="n">input</span> <span class="k">is</span> <span class="n">in</span> <span class="n">that</span> <span class="n">range:</span>
+
+      <span class="n">speed</span> = <span class="n">constrain</span>(<span class="n">speed</span>, <span class="mi">0</span>, <span class="mi">255</span>);
+
+      // <span class="n">We&#39;ll</span> <span class="nb">print</span> <span class="n">out</span> <span class="n">a</span> <span class="n">message</span> <span class="nb">to</span> <span class="k">let</span> <span class="n">you</span> <span class="n">know</span> <span class="n">that</span> <span class="n">the</span>
+      // <span class="n">number</span> <span class="n">was</span> <span class="n">received:</span>
+
+      <span class="n">Serial</span>.<span class="nb">print</span>(<span class="s">&quot;Setting speed to &quot;</span>);
+      <span class="n">Serial</span>.<span class="n">println</span>(<span class="n">speed</span>);
+
+      // <span class="n">And</span> <span class="n">finally</span>, <span class="n">we&#39;ll</span> <span class="n">set</span> <span class="n">the</span> <span class="n">speed</span> <span class="k">of</span> <span class="n">the</span> <span class="n">motor</span>!
+
+      <span class="n">analogWrite</span>(<span class="n">motorPin</span>, <span class="n">speed</span>);
+    }
+  }
+}
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">while (Serial.available() &gt; 0)</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The Arduino’s serial port can be used to receive as well as send data. Because data could arrive at any time, the Arduino stores, or “buffers” data coming into the port until you’re ready to use it. The&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.available()</code>&nbsp;command returns the number of characters that the port has received, but haven’t been used by your sketch yet. Zero means no data has arrived.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">speed = Serial.parseInt();</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+If the port has data waiting for you, there are a number of ways for you to use it. Since we’re typing numbers into the port, we can use the handy&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">Serial.parseInt()</code>&nbsp;command to extract, or “parse” integer numbers from the characters it’s received. If you type “1” “0” “0” to the port, this function will return the number 100.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+The DC Motor should spin if you have assembled the circuit’s components correctly, and also verified/uploaded the correct code. If your circuit is not working check the troubleshooting section.</div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_12_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_12_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Radio Controlled (RC) cars use&nbsp;<a href="https://learn.sparkfun.com/tutorials/alternating-current-ac-vs-direct-current-dc" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">Direct Current</a>&nbsp;(DC) motors to turn the wheels for propulsion.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Motor Not Spinning</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+If you sourced your own transistor, double check with the data sheet that the pinout is compatible with a P2N2222AG (many are reversed).</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Still No Luck</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+If you sourced your own motor, double check that it will work with 5 volts and that it does not draw too much power.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Still Not Working</h4>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+Sometimes the Arduino will disconnect from the computer. Try un-plugging and then re-plugging it into your USB port.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-11-using-piezo-buzzer.html">Experiment 11: Using a Piezo Buzzer</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-13-using-relays.html">Experiment 13: Using Relays</a></span></span></div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<br /></div>
+
+<div>
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

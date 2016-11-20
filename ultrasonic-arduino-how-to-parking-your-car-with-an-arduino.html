@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>UltraSonic Arduino How To - Parking your car with an Arduino - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,UltraSonic,Tutorials" />
+        <meta name="description" content="Using a Maxbotix Range Finder, Kevin Dahhar show you how to make a circuit that helps you back your car up into the garage, and put the Arduino into a super low power sleep when the circuit is not needed. The Arduino only runs off of batteries and because it ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="UltraSonic Arduino How To - Parking your car with an Arduino"/>
+        <meta property="og:url" content="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html"/>
+        <meta property="og:description" content="Using a Maxbotix Range Finder, Kevin Dahhar show you how to make a circuit that helps you back your car up into the garage, and put the Arduino into a super low power sleep when the circuit is not needed. The Arduino only runs off of batteries and because it ..."/>
+        <meta property="article:published_time" content="2015-11-21" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="UltraSonic" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html"
+                       rel="bookmark"
+                       title="Permalink to UltraSonic Arduino How To - Parking your car with an Arduino">
+                        UltraSonic Arduino How To - Parking your car with an Arduino
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-11-21T13:28:00-06:00"> Sat 21 November 2015</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/ultrasonic.html">UltraSonic</a>
+        /
+	<a href="https://driewe.github.io/tag/tutorials.html">Tutorials</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="Back Up Helper" src="/images/utrasonic-carparker.png" /></p>
+<p>Using a Maxbotix Range Finder, Kevin Dahhar show you how to make a circuit that helps you back your car up into the garage, and put the Arduino into a super low power sleep when the circuit is not needed.</p>
+<p>The Arduino only runs off of batteries and because it is kept in the super low power sleep mode the batteries last for months.</p>
+<p>Only when the garage door is opened will the Arduino turn on due to the garage light activating a photocell and transistor circuit that signals an interrupt on the Arduino.</p>
+<h3>The video below is long but well worth the watch</h3>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/U4D_c3fflLU" frameborder="0" allowfullscreen></iframe></p>
+<div class="highlight"><pre><span></span><span class="c1">// Back up Helper, by Kevin Darrah v4</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;SoftwareSerial.h&gt;// to read the data fron the range finder on any digital pin</span><span class="cp"></span>
+
+<span class="n">SoftwareSerial</span> <span class="nf">sonar</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span> <span class="c1">// RX, TX   //we&#39;re only using the RX pin (5), so who cares about the TX pin</span>
+
+<span class="kt">int</span> <span class="n">huns</span><span class="p">,</span> <span class="n">tens</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">returnbyte</span><span class="p">,</span> <span class="n">sonar_data</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//blah blah variables</span>
+
+<span class="c1">//************CHANGED FROM VIDEO************</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">time_start</span><span class="p">;</span><span class="c1">//changed to unsigned long (allows to count up to 32bits-1 positive)</span>
+
+
+<span class="kt">void</span> <span class="nf">wake_up</span><span class="p">(){}</span><span class="c1">//  This routine does nothing but is needed by the interrupt to wake the arduino up</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span> <span class="c1">//set up stuff</span>
+
+
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="c1">// for debugging and viewing distances</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span><span class="c1">//interrupt pin off of CDS</span>
+
+  <span class="c1">// Common Anode RGB LED so writing LOW turns it ON</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span><span class="c1">//GREEN</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span><span class="c1">//RED</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span><span class="c1">//BLUE</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span><span class="c1">//off</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span><span class="c1">//off</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span><span class="c1">//off</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span><span class="c1">//Sonar Activate, goes to power pin of range finder</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span><span class="c1">//turn on range finder</span>
+   <span class="n">sonar</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="c1">//start listening to range finder</span>
+
+<span class="p">}</span><span class="c1">//setup</span>
+
+<span class="kt">void</span> <span class="nf">go_to_sleep</span><span class="p">(){</span><span class="c1">// put the arduino to sleep when called</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span><span class="c1">//turn off range finder</span>
+   <span class="n">sonar</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="c1">// IMPORTANT!  you have to stop the software serial function before sleep, or it won&#39;t sleep!</span>
+
+   <span class="c1">// attach the interrupt on INT0 or digital pin 2, call wake_up, and do it when the pin falls from 5V to 0V</span>
+   <span class="n">attachInterrupt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wake_up</span><span class="p">,</span> <span class="n">FALLING</span><span class="p">);</span>
+
+   <span class="n">SMCR</span> <span class="o">=</span> <span class="n">B00000101</span><span class="p">;</span><span class="c1">//Sleep mode control register, Power Down mode and Enable Sleep</span>
+   <span class="n">__asm__</span>  <span class="n">__volatile__</span><span class="p">(</span><span class="s">&quot;sleep&quot;</span><span class="p">);</span><span class="c1">// In line assembler to execute the sleep function</span>
+  <span class="c1">//once digital pin 2 Falls, from seeing light, the program will resume here after waking up</span>
+
+   <span class="n">SMCR</span> <span class="o">=</span> <span class="n">B00000100</span><span class="p">;</span><span class="c1">// turn off bit 0 to disable the ability to sleep</span>
+   <span class="n">detachInterrupt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="c1">//turn off the interrupt, so the program doesn&#39;t go crazy when awake</span>
+   <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="c1">// let everybody get up and running for a sec</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span><span class="c1">//turn on the range finder</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="c1">//let it wake up for a sec, it goes through some self calibration stuff before its ready</span>
+    <span class="n">sonar</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="c1">//start listing to the range finder</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">//flash the Blue LED letting us know everybody is ready to go</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//time stamp the free running timer, so we know how long we are awake for, and go back to sleep after a certain time</span>
+<span class="n">time_start</span><span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+<span class="p">}</span><span class="c1">//sleep over  </span>
+
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span><span class="c1">// main loop</span>
+
+<span class="c1">//while 1 loop here, so that we are continuously reading the range finder trying to get data, until we see an 82, more on this later</span>
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+  <span class="n">sonar_data</span><span class="o">=</span><span class="n">sonar</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="c1">//read everything it sees, even garbage</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sonar_data</span><span class="o">==</span><span class="mi">82</span><span class="p">){</span><span class="c1">// as soon as we see an 82, we can read the next 4 bytes</span>
+  <span class="c1">// an integer 82 is equal to the ASCII character R</span>
+
+ <span class="c1">//the next 3 bytes will be ASCII characters representing the hundreds, tens, and ones place of the distance</span>
+ <span class="c1">// the 4th byte will be a carriage return, (integer 13), we use it to check the validity of the data</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span><span class="c1">//let the buffer fill up</span>
+  <span class="n">huns</span><span class="o">=</span> <span class="n">sonar</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="c1">//hundreds</span>
+  <span class="c1">//delay(2);</span>
+  <span class="n">tens</span><span class="o">=</span> <span class="n">sonar</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="c1">//tens</span>
+  <span class="c1">//delay(2);</span>
+  <span class="n">ones</span><span class="o">=</span> <span class="n">sonar</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="c1">//ones</span>
+  <span class="c1">//delay(2);</span>
+  <span class="n">returnbyte</span><span class="o">=</span> <span class="n">sonar</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="c1">//carriage return</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">returnbyte</span><span class="o">==</span><span class="mi">13</span><span class="p">){</span><span class="c1">// only use the data if we get the right carriage return</span>
+  <span class="c1">//since the data comes in as ASCII characters, the integer value will not correspond to the character</span>
+  <span class="c1">//looking at an ASCII table we see that an integer 48 is equal to an ASCII 0, which is why we subtract 48 from each value we read</span>
+
+    <span class="n">huns</span><span class="o">=</span> <span class="p">(</span><span class="n">huns</span><span class="o">-</span><span class="mi">48</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">;</span><span class="c1">//cut off the ASCII 48, then multiply by 100</span>
+  <span class="c1">//delay(5);</span>
+  <span class="n">tens</span><span class="o">=</span> <span class="p">(</span><span class="n">tens</span><span class="o">-</span><span class="mi">48</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">;</span><span class="c1">//cut off the ASCII 48, then multiply by 10</span>
+  <span class="c1">//delay(5);</span>
+  <span class="n">ones</span><span class="o">=</span> <span class="p">(</span><span class="n">ones</span><span class="o">-</span><span class="mi">48</span><span class="p">);</span><span class="c1">//cut off the ASCII 48</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">huns</span><span class="o">+</span><span class="n">tens</span><span class="o">+</span><span class="n">ones</span><span class="p">;</span><span class="c1">//add em all up to get the actual distance in INCHES</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">distance</span><span class="p">);</span> <span class="c1">//print it out to the computer for debugging</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot; inches&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+  <span class="k">break</span><span class="p">;</span><span class="c1">//we got good data so break the while loop</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="c1">//the while loop</span>
+
+
+<span class="c1">//DISTANCE CHECKER part of code</span>
+<span class="k">if</span><span class="p">(</span><span class="n">distance</span><span class="o">&gt;</span><span class="mi">36</span><span class="p">){</span><span class="c1">//  When we&#39;re really far away light only the GREEN LED</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">distance</span><span class="o">&gt;</span><span class="mi">12</span>  <span class="o">&amp;&amp;</span> <span class="n">distance</span><span class="o">&lt;=</span><span class="mi">36</span><span class="p">){</span><span class="c1">// When we get a little closer, light both GREEN and RED to make YELLOW</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">distance</span><span class="o">&lt;=</span><span class="mi">12</span><span class="p">){</span><span class="c1">//When we&#39;re close, flash the RED LED</span>
+
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>    
+  <span class="n">delay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+   <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+   <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span> 
+
+    <span class="p">}</span>
+
+
+
+    <span class="c1">//check to see if our total awake time is greater than 60,000, 60sec, then start to go to sleep</span>
+
+    <span class="c1">//**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG</span>
+
+    <span class="c1">// GREAT BUG CATCH FOUND BY Jurriaan Petersen</span>
+    <span class="c1">// If you time stamped time_start with millis, as millis was getting close to its overflow time of 49.71 days</span>
+    <span class="c1">// the check for millis()-time_start&gt;60000 could never go true, therefore never allowing the arduino to sleep</span>
+
+    <span class="c1">//Here&#39;s a quick fix</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">-</span><span class="n">time_start</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// means we had a roll over since time_start is greater than millis</span>
+    <span class="n">time_start</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="c1">//**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG**BUG   </span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="o">-</span><span class="n">time_start</span><span class="o">&gt;</span><span class="mi">60000</span><span class="p">){</span>
+
+     <span class="c1">//LEDS OFF</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+
+  <span class="c1">//FLASH BLUE LED</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+ <span class="c1">//CALL THE SLEEP FUNCTION</span>
+ <span class="n">go_to_sleep</span><span class="p">();</span>
+      <span class="p">}</span>
+<span class="p">}</span><span class="c1">//loop</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+        <li><a href="https://driewe.github.io/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="https://driewe.github.io/matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+        <li><a href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
+        <li><a href="https://driewe.github.io/max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+        <li><a href="https://driewe.github.io/multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
+        <li><a href="https://driewe.github.io/understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

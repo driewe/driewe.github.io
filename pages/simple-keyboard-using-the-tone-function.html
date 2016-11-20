@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Simple keyboard using the tone() function - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/simple-keyboard-using-the-tone-function.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="This example shows how to use the tone() command to generate different pitches depending on which sensor is pressed. Hardware Required Arduino 8 ohm speaker  3 force sensing resistors  3 10k ohm resistors  100 ohm resistor  hook-up wires  breadboard  Circuit Connect one terminal of your speaker to digital pin 8 ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Simple keyboard using the tone() function"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/simple-keyboard-using-the-tone-function.html"/>
+    <meta property="og:description" content="This example shows how to use the tone() command to generate different pitches depending on which sensor is pressed. Hardware Required Arduino 8 ohm speaker  3 force sensing resistors  3 10k ohm resistors  100 ohm resistor  hook-up wires  breadboard  Circuit Connect one terminal of your speaker to digital pin 8 ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Simple keyboard using the tone() function</h1>
+        
+        <div class="entry-content">
+            <p>This example shows how to use the tone() command to generate different pitches depending on which sensor is pressed.<br />
+<div>
+<br />
+<span style="font-size: large;"> Hardware Required</span><br />
+<br />
+<ul>
+<li>Arduino</li>
+<li>8 ohm speaker&nbsp;</li>
+<li>3 force sensing resistors&nbsp;</li>
+<li>3 10k ohm resistors&nbsp;</li>
+<li>100 ohm resistor&nbsp;</li>
+<li>hook-up wires&nbsp;</li>
+<li>breadboard&nbsp;</li>
+</ul>
+</div>
+<div>
+<br />
+<span style="font-size: large;"> Circuit</span><br />
+<br />
+Connect one terminal of your speaker to digital pin 8 through a 100 ohm resistor, and its other terminal to ground.<br />
+<br />
+Power your three FSRs (or any other analog sensor) with 5V in parallel. Connect each sensor to analog pins 0-2, using a 10K resistor as a reference to groud on each input line.<br />
+<br />
+click the image to enlarge</div>
+<div>
+<br />
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'typoninesans regular 18', 'lucida grande', lucida, verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="http://www.arduino.cc/en/uploads/Tutorial/arduino_fsrs_speaker_bb.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="http://www.arduino.cc/en/uploads/Tutorial/arduino_fsrs_speaker_bb.png" height="300px" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'typoninesans regular 18', 'lucida grande', lucida, verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin-bottom: 1.5em; margin-left: auto; margin-right: auto; padding: 0px;">
+<span style="box-sizing: border-box; font-size: 14.94px;">image developed using&nbsp;<a class="urllink" href="http://www.fritzing.org/" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;" target="_blank">Fritzing</a>. For more circuit examples, see the&nbsp;<a class="urllink" href="http://fritzing.org/projects/" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;" target="_blank">Fritzing project page</a></span></div>
+<br />
+<span style="font-size: large;">Schematic</span><br />
+<br />
+click the image to enlarge<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'typoninesans regular 18', 'lucida grande', lucida, verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="http://www.arduino.cc/en/uploads/Tutorial/arduino_fsrs_speaker_schem.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="http://www.arduino.cc/en/uploads/Tutorial/arduino_fsrs_speaker_schem.png" height="300px" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></a></div>
+</div>
+<h3 style="box-sizing: border-box; direction: ltr; font-stretch: normal; margin: 2rem 0px 1.0555rem; padding: 0px;">
+<span style="font-size: large;"><br /><span style="font-weight: normal;">Code</span></span><br />
+<span style="font-size: small; font-weight: normal;"><br />The sketch below reads three analog sensors. Each corresponds to a note value in an array of notes. If any of the sensors is above a given threshold, the corresponding note is played.<br /><br />Here's the main sketch:</span></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  keyboard</span>
+
+<span class="cm"> Plays a pitch that changes based on a changing analog input</span>
+
+<span class="cm"> circuit:</span>
+<span class="cm"> * 3 force-sensing resistors from +5V to analog in 0 through 5</span>
+<span class="cm"> * 3 10K resistors from analog in 0 through 5 to ground</span>
+<span class="cm"> * 8-ohm speaker on digital pin 8</span>
+
+<span class="cm"> created 21 Jan 2010</span>
+<span class="cm"> modified 9 Apr 2012</span>
+<span class="cm"> by Tom Igoe</span>
+
+<span class="cm">This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/Tone3</span>
+
+<span class="cm"> */</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;pitches.h&quot;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>    <span class="c1">// minimum reading of the sensors that generates a note</span>
+
+<span class="c1">// notes to play, corresponding to the 3 sensors:</span>
+<span class="kt">int</span> <span class="n">notes</span><span class="p">[]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">NOTE_A4</span><span class="p">,</span> <span class="n">NOTE_B4</span><span class="p">,</span> <span class="n">NOTE_C3</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">thisSensor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">thisSensor</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">thisSensor</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// get a sensor reading:</span>
+        <span class="kt">int</span> <span class="n">sensorReading</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">thisSensor</span><span class="p">);</span>
+
+        <span class="c1">// if the sensor is pressed hard enough:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sensorReading</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// play the note corresponding to this sensor:</span>
+            <span class="n">tone</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">notes</span><span class="p">[</span><span class="n">thisSensor</span><span class="p">],</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p></h3>
+<br />
+The sketch uses an extra file, pitches.h. This file contains all the pitch values for typical notes. For example, NOTE_C4 is middle C. NOTE_FS4 is F sharp, and so forth. This note table was originally written by Brett Hagman, on whose work the tone() command was based. You may find it useful for whenever you want to make musical notes.<br />
+<br />
+To make the pitches.h file, either click on the button just below the serial monitor icon and choose "New Tab", or use Ctrl+Shift+N.<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<img alt="" src="http://www.arduino.cc/en/uploads/Tutorial/New_Tab.png" style="border: 0px; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" /></div>
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin-bottom: 1.5em; margin-left: auto; margin-right: auto; padding: 0px;">
+<br style="box-sizing: border-box;" />
+Then paste in the following code:</div></p>
+<div class="highlight"><pre><span></span><span class="cm">/*************************************************</span>
+<span class="cm"> * Public Constants</span>
+<span class="cm"> *************************************************/</span><span class="w"></span>
+
+<span class="err">#</span>define<span class="w"> </span>NOTE_B0<span class="w">  </span><span class="m">31</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C1<span class="w">  </span><span class="m">33</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS1<span class="w"> </span><span class="m">35</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D1<span class="w">  </span><span class="m">37</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS1<span class="w"> </span><span class="m">39</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E1<span class="w">  </span><span class="m">41</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F1<span class="w">  </span><span class="m">44</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS1<span class="w"> </span><span class="m">46</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G1<span class="w">  </span><span class="m">49</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS1<span class="w"> </span><span class="m">52</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A1<span class="w">  </span><span class="m">55</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS1<span class="w"> </span><span class="m">58</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B1<span class="w">  </span><span class="m">62</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C2<span class="w">  </span><span class="m">65</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS2<span class="w"> </span><span class="m">69</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D2<span class="w">  </span><span class="m">73</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS2<span class="w"> </span><span class="m">78</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E2<span class="w">  </span><span class="m">82</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F2<span class="w">  </span><span class="m">87</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS2<span class="w"> </span><span class="m">93</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G2<span class="w">  </span><span class="m">98</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS2<span class="w"> </span><span class="m">104</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A2<span class="w">  </span><span class="m">110</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS2<span class="w"> </span><span class="m">117</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B2<span class="w">  </span><span class="m">123</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C3<span class="w">  </span><span class="m">131</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS3<span class="w"> </span><span class="m">139</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D3<span class="w">  </span><span class="m">147</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS3<span class="w"> </span><span class="m">156</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E3<span class="w">  </span><span class="m">165</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F3<span class="w">  </span><span class="m">175</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS3<span class="w"> </span><span class="m">185</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G3<span class="w">  </span><span class="m">196</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS3<span class="w"> </span><span class="m">208</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A3<span class="w">  </span><span class="m">220</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS3<span class="w"> </span><span class="m">233</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B3<span class="w">  </span><span class="m">247</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C4<span class="w">  </span><span class="m">262</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS4<span class="w"> </span><span class="m">277</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D4<span class="w">  </span><span class="m">294</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS4<span class="w"> </span><span class="m">311</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E4<span class="w">  </span><span class="m">330</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F4<span class="w">  </span><span class="m">349</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS4<span class="w"> </span><span class="m">370</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G4<span class="w">  </span><span class="m">392</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS4<span class="w"> </span><span class="m">415</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A4<span class="w">  </span><span class="m">440</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS4<span class="w"> </span><span class="m">466</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B4<span class="w">  </span><span class="m">494</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C5<span class="w">  </span><span class="m">523</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS5<span class="w"> </span><span class="m">554</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D5<span class="w">  </span><span class="m">587</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS5<span class="w"> </span><span class="m">622</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E5<span class="w">  </span><span class="m">659</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F5<span class="w">  </span><span class="m">698</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS5<span class="w"> </span><span class="m">740</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G5<span class="w">  </span><span class="m">784</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS5<span class="w"> </span><span class="m">831</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A5<span class="w">  </span><span class="m">880</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS5<span class="w"> </span><span class="m">932</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B5<span class="w">  </span><span class="m">988</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C6<span class="w">  </span><span class="m">1047</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS6<span class="w"> </span><span class="m">1109</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D6<span class="w">  </span><span class="m">1175</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS6<span class="w"> </span><span class="m">1245</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E6<span class="w">  </span><span class="m">1319</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F6<span class="w">  </span><span class="m">1397</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS6<span class="w"> </span><span class="m">1480</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G6<span class="w">  </span><span class="m">1568</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS6<span class="w"> </span><span class="m">1661</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A6<span class="w">  </span><span class="m">1760</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS6<span class="w"> </span><span class="m">1865</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B6<span class="w">  </span><span class="m">1976</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C7<span class="w">  </span><span class="m">2093</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS7<span class="w"> </span><span class="m">2217</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D7<span class="w">  </span><span class="m">2349</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS7<span class="w"> </span><span class="m">2489</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_E7<span class="w">  </span><span class="m">2637</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_F7<span class="w">  </span><span class="m">2794</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_FS7<span class="w"> </span><span class="m">2960</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_G7<span class="w">  </span><span class="m">3136</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_GS7<span class="w"> </span><span class="m">3322</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_A7<span class="w">  </span><span class="m">3520</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_AS7<span class="w"> </span><span class="m">3729</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_B7<span class="w">  </span><span class="m">3951</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_C8<span class="w">  </span><span class="m">4186</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_CS8<span class="w"> </span><span class="m">4435</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_D8<span class="w">  </span><span class="m">4699</span><span class="w"></span>
+<span class="err">#</span>define<span class="w"> </span>NOTE_DS8<span class="w"> </span><span class="m">4978</span><span class="w"></span>
+</pre></div>
+
+
+<h2 style="background-color: white; color: #666666; font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif; font-size: 22px; margin: 0px; position: relative;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

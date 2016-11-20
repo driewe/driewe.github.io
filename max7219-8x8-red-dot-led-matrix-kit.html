@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>MAX7219 8X8 Red Dot LED Matrix Kit - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/max7219-8x8-red-dot-led-matrix-kit.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,7219,8x8,Matrix,Kit,Reviews" />
+        <meta name="description" content="After reading up on Project #21: Creating an LED Matrix in The Arduino Workshop I set out to find a 8x8 common cathode led matrix. I saw this MAX7219 8X8 Red Dot LED Matrix on Amazon and while I was looking to experiment with using two 74HC595&#39;s to control ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="MAX7219 8X8 Red Dot LED Matrix Kit"/>
+        <meta property="og:url" content="https://driewe.github.io/max7219-8x8-red-dot-led-matrix-kit.html"/>
+        <meta property="og:description" content="After reading up on Project #21: Creating an LED Matrix in The Arduino Workshop I set out to find a 8x8 common cathode led matrix. I saw this MAX7219 8X8 Red Dot LED Matrix on Amazon and while I was looking to experiment with using two 74HC595&#39;s to control ..."/>
+        <meta property="article:published_time" content="2015-11-20" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="7219" />
+            <meta property="article:tag" content="8x8" />
+            <meta property="article:tag" content="Matrix" />
+            <meta property="article:tag" content="Kit" />
+            <meta property="article:tag" content="Reviews" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/max7219-8x8-red-dot-led-matrix-kit.html"
+                       rel="bookmark"
+                       title="Permalink to MAX7219 8X8 Red Dot LED Matrix Kit">
+                        MAX7219 8X8 Red Dot LED Matrix Kit
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-11-20T01:52:00-06:00"> Fri 20 November 2015</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/7219.html">7219</a>
+        /
+	<a href="https://driewe.github.io/tag/8x8.html">8x8</a>
+        /
+	<a href="https://driewe.github.io/tag/matrix.html">Matrix</a>
+        /
+	<a href="https://driewe.github.io/tag/kit.html">Kit</a>
+        /
+	<a href="https://driewe.github.io/tag/reviews.html">Reviews</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="MAX7219 LED Matrix Kit" src="/images/8x8unassembled.png" /></p>
+<p>After reading up on Project #21: Creating an LED Matrix in <a href="http://www.amazon.com/gp/product/1593274483/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593274483&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=ZO63GU2HQJNMIQ55">The Arduino Workshop</a>  I set out to find a 8x8 common cathode led matrix.  I saw this <a href="http://www.amazon.com/gp/product/B013KVWCBK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B013KVWCBK&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=PRCVVIVUW7CZPMCZ">MAX7219 8X8 Red Dot LED Matrix</a> on Amazon and while I was looking to experiment with using two 74HC595's to control the rows and columns of the 8x8 matrix, this</p>
+<p><a href="http://playground.arduino.cc/Main/MAX72XXHardware">MAX7219</a> chip that did it all caught my curiosity.  So I ordered the kit.  :-)</p>
+<p>Amazon Prime delivered quickly and the kit was relatively easy to solder. Both the 8x8 display and the [MAX7219] (http://playground.arduino.cc/Main/MAX72XXHardware) are socketed so you can easily remove them if you want to use in  a different project.  From the looks of it the board can be easily cascaded with other devices to create larger displays.  John Boxall does exactly that in his book <a href="">The Arduino Workshop</a> </p>
+<p>The <a href="http://playground.arduino.cc/uploads/Main/LedControl.zip">LedControl Arduino library</a> has full support of the <a href="http://playground.arduino.cc/Main/MAX72XXHardware">MAX7219</a> to control an 8x8 display.  The library does all the shifting out and multiplexing of row and column leds...All you do is tell it the and column of the led you would like to turn on or off!</p>
+<p>One single <a href="http://playground.arduino.cc/Main/MAX72XXHardware">MAX7219</a> can also control up to 8 7segment displays.  Unlike my prior example, where each 7 segment display is driven by an individual 74HC595, the MAX7219 multiplexes the 7 segment displays so that only one is on at a time.  This cuts the current usage and because of the persistence of vision it appears that all 8 digits are on constantly.</p>
+<p>So here is a peek at my finished <a href="http://www.amazon.com/gp/product/B013KVWCBK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B013KVWCBK&amp;linkCode=as2&amp;tag=davimakespa0e-20&amp;linkId=PRCVVIVUW7CZPMCZ">MAX7219 8X8 Red Dot LED Matrix Kit</a> running the test program.</p>
+<div style="text-align: center;">
+<iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/es18nvSmHFA" width="560"></iframe></div>
+
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;LedControl.h&quot; //  need the library</span><span class="cp"></span>
+<span class="n">LedControl</span> <span class="n">lc</span><span class="o">=</span><span class="n">LedControl</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// </span>
+<span class="c1">// pin 12 is connected to the MAX7219 pin 1 - Data In</span>
+<span class="c1">// pin 11 is connected to the CLK pin 13</span>
+<span class="c1">// pin 10 is connected to LOAD pin 12</span>
+<span class="c1">// 1 as we are only using 1 MAX7219</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// the zero refers to the MAX7219 number, it is zero for 1 chip</span>
+    <span class="n">lc</span><span class="p">.</span><span class="n">shutdown</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span><span class="c1">// turn off power saving, enables display</span>
+    <span class="n">lc</span><span class="p">.</span><span class="n">setIntensity</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span><span class="c1">// sets brightness (0~15 possible values)</span>
+    <span class="n">lc</span><span class="p">.</span><span class="n">clearDisplay</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="c1">// clear screen</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lc</span><span class="p">.</span><span class="n">setLed</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">row</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span> <span class="c1">// turns on LED at col, row</span>
+            <span class="n">delay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lc</span><span class="p">.</span><span class="n">setLed</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">row</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span> <span class="c1">// turns off LED at col, row</span>
+            <span class="n">delay</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+        <li><a href="https://driewe.github.io/the-learning-lab-kit-on-a-shield-for-arduino.html">The Learning Lab Kit on a Shield for Arduino</a></li>
+        <li><a href="https://driewe.github.io/lcd-button-shield-v2-for-arduino-by-sparkfun.html">LCD Button Shield V2 for Arduino by Sparkfun</a></li>
+        <li><a href="https://driewe.github.io/a-great-arduino-project-book-and-site.html">A great Arduino project book and site</a></li>
+        <li><a href="https://driewe.github.io/adafruit-wave-shield.html">Adafruit Wave Shield</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/arduino-gps-clock.html">Arduino GPS Clock</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

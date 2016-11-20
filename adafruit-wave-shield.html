@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Adafruit Wave Shield - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/adafruit-wave-shield.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,Reviews" />
+        <meta name="description" content="Here is a shield for Arduino that makes adding quality sound to your products easy. It can play up to 22KHz, 12bit uncompressed audio files of any length. It&#39;s low cost, available as an easy-to-make kit. It has an onboard DAC, filter and op-amp for high quality output. Audio ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Adafruit Wave Shield"/>
+        <meta property="og:url" content="https://driewe.github.io/adafruit-wave-shield.html"/>
+        <meta property="og:description" content="Here is a shield for Arduino that makes adding quality sound to your products easy. It can play up to 22KHz, 12bit uncompressed audio files of any length. It&#39;s low cost, available as an easy-to-make kit. It has an onboard DAC, filter and op-amp for high quality output. Audio ..."/>
+        <meta property="article:published_time" content="2016-01-03" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Reviews" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/adafruit-wave-shield.html"
+                       rel="bookmark"
+                       title="Permalink to Adafruit Wave Shield">
+                        Adafruit Wave Shield
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-01-03T01:47:00-06:00"> Sun 03 January 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/reviews.html">Reviews</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="wave Shield" src="/images/waveshield.jpg" /></p>
+<p>Here is a shield for Arduino that makes adding quality sound to your products easy.</p>
+<p>It can play up to 22KHz, 12bit uncompressed audio files of any length. </p>
+<p>It's low cost, available as an easy-to-make kit. </p>
+<p>It has an onboard DAC, filter and op-amp for high quality output. </p>
+<p>Audio files are read off of an SD/MMC card, which are available at nearly any store. </p>
+<p>Volume can be controlled with the onboard thumbwheel potentiometer.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6pQ4D-DPh3Q" frameborder="0" allowfullscreen></iframe>
+
+<p><em>Click on the play button to watch a demo of the wave shield playing
+assorted audio through a small speaker.</em></p>
+<p>The shield comes with an Arduino library for easy use; simply drag uncompressed wave files onto the SD card and plug it in. Then use the library to play audio when buttons are pressed, or when a sensor goes off, or when serial data is received, etc. Audio is played asynchronously as an interrupt, so the Arduino can perform tasks while the audio is playing.</p>
+<p>Can play any uncompressed 22KHz, 12bit, mono Wave (.wav) files of any
+size. While it isnt CD quality, it is certainly good enough to play
+music, have spoken word, or audio effects.</p>
+<p>Output is mono, into L and R channels, standard 3.5mm headphone jack and
+a connection for a speaker that is switched on when the headphones are
+unplugged.</p>
+<p>Files are read off of <a href="https://learn.adafruit.com/adafruit-wave-shield-audio-shield-for-arduino/sd-card">FAT16 formatted SD/MMC card</a>.</p>
+<p>Included library makes playing audio easy.</p>
+<p>While the shield has been tested and works well, here are some points to keep in mind:</p>
+<ul>
+<li>The audio playback library uses 10K of flash - so if you want to use
+   an NG arduino, you'll need to upgrade to an Atmega168 chip.</li>
+<li>About 600 bytes of SRAM are used to buffer the audio and keep track
+   of file data, so RAM-heavy projects may not work well.</li>
+<li>The shield can't play MP3, WMA, Ogg or other compressed audio files.
+   It can only play uncompressed PCM/WAV files. <a href="https://learn.adafruit.com/adafruit-wave-shield-audio-shield-for-arduino/convert-files">Converting audio to WAV format</a> is very easy, and is often the default format for many audio
+   programs.</li>
+<li>Files are stored as 8.3 name format, and can only be placed in the
+   root directory. That means you can only have ~512 files (but they can
+   be any size).</li>
+</ul>
+<p>Ideas for what you can use it for...</p>
+<ul>
+<li>Make a portable audio player</li>
+<li>Use the AT&amp;T text-to-speech site to make snippets of speech that you
+   string together for a talking project, like..</li>
+<li>Talking temperature sensor</li>
+<li>Talking clock</li>
+<li>Interfaces for sight-impared people</li>
+<li>Doorbell that plays a cool tune</li>
+<li>Jukebox/music-box that plays a song when its opened, or a coin is
+   inserted</li>
+<li>Security system that warns the intruder</li>
+<li>Audio looper for musical effects and performances</li>
+<li>Synthesizer with different sounds</li>
+<li>Really freaky halloween props that scream</li>
+<li>Display (like a point-of-sale box) that you can plug into to hear the
+   message</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/lcd-button-shield-v2-for-arduino-by-sparkfun.html">LCD Button Shield V2 for Arduino by Sparkfun</a></li>
+        <li><a href="https://driewe.github.io/a-great-arduino-project-book-and-site.html">A great Arduino project book and site</a></li>
+        <li><a href="https://driewe.github.io/max7219-8x8-red-dot-led-matrix-kit.html">MAX7219 8X8 Red Dot LED Matrix Kit</a></li>
+        <li><a href="https://driewe.github.io/the-learning-lab-kit-on-a-shield-for-arduino.html">The Learning Lab Kit on a Shield for Arduino</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/arduino-gps-clock.html">Arduino GPS Clock</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+        <li><a href="https://driewe.github.io/8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 2: Reading a Potentiometer - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-2-reading-a-potentiometer.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit you’ll work with a potentiometer. A potentiometer is also known as a variable resistor. When powered with 5V, the middle pin outputs a voltage between 0V and 5V, depending on the position of the knob on the potentiometer ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 2: Reading a Potentiometer"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-2-reading-a-potentiometer.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit you’ll work with a potentiometer. A potentiometer is also known as a variable resistor. When powered with 5V, the middle pin outputs a voltage between 0V and 5V, depending on the position of the knob on the potentiometer ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 2: Reading a Potentiometer</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+In this circuit you’ll work with a&nbsp;<a href="https://learn.sparkfun.com/tutorials/resistors#types-of-resistors" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">potentiometer</a>.</div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+A potentiometer is also known as a variable resistor. When powered with 5V, the middle pin outputs a voltage between 0V and 5V, depending on the position of the knob on the potentiometer. A potentiometer is a perfect demonstration of a variable&nbsp;<a href="https://learn.sparkfun.com/tutorials/voltage-dividers" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;" target="_blank">voltage divider</a>&nbsp;circuit. The voltage is divided proportionate to the resistance between the middle pin and the ground pin. In this circuit, you’ll learn how to use a potentiometer to control the brightness of an LED.</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;LED</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;330Ω Resistor</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">6x</span>&nbsp;Jumper Wires</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Potentiometer</li>
+</ul>
+<div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Suggested Reading</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Before continuing on with this experiment, we recommend you be familiar with the concepts in the following tutorial:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><a href="https://learn.sparkfun.com/tutorials/analog-to-digital-conversion" rel="nofollow" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">Analog to Digital Conversion</a></li>
+</ul>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram and hookup table below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 650px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction. Polarized components are highlighted with a yellow warning triangle, in the table.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_02-v3_2.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="RedBoard Fritzing Potentiometer" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_02-v3_2.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em><br />
+<em style="box-sizing: border-box;"><br /></em>
+<br />
+<h4 style="box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px; text-align: start;">
+Hookup Table</h4>
+<div class="table-responsive" style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: start;">
+<table class="table table-bordered" style="background-color: transparent; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; margin-bottom: 20px; max-width: 100%; width: 650px;"><tbody style="box-sizing: border-box;">
+<tr style="box-sizing: border-box;"><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Component</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">RedBoard or Arduino Uno R3</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th><th class="text-center" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; text-align: center; vertical-align: top;">Breadboard</th></tr>
+<tr align="center" style="box-sizing: border-box;"><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">330 Resistor</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">j21</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( - )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" class="warning" style="box-sizing: border-box;"><td class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">LED&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">h20 | LED ( + )</td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">h21 | LED ( - )</td><td style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Potentiometer</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">a6</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">a7</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">a8</td></tr>
+<tr align="center" style="box-sizing: border-box;"><td bgcolor="#DDDDDD" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">e6</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( - )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="success" style="background-color: #dff0d8; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">A0</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">e7</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="danger" style="background-color: #f2dede; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">e8</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( + )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="warning" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">PIN 13</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">j20</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td class="danger" style="background-color: #f2dede; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">5V</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( + )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+<tr align="center" style="box-sizing: border-box;"><td bgcolor="#DDDDDD" style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Jumper Wire</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">GND</td><td class="active" style="background-color: whitesmoke; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">( - )</td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td><td style="border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;"></td></tr>
+</tbody></table>
+</div>
+<div style="text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<div style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-bottom: 10px;">
+<em style="box-sizing: border-box;">In the table,&nbsp;<a href="https://learn.sparkfun.com/tutorials/polarity" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;">polarized</a>&nbsp;components are highlighted in&nbsp;<span style="box-sizing: border-box; font-weight: 700;">yellow</span>&nbsp;for the&nbsp;<span style="box-sizing: border-box; font-weight: 700;">whole row</span>&nbsp;and a warning triangle. Polarized components only be connected to a circuit in one direction.</em><br />
+<div style="text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: left;">
+Run the Sketch</h3>
+</div>
+</div>
+</div>
+</div>
+
+<div class="highlight"><pre><span></span>/*
+<span class="n">SparkFun</span> <span class="n">Inventor&#39;s</span> <span class="n">Kit</span>
+<span class="n">Example</span> <span class="n">sketch</span> <span class="mo">02</span>
+
+<span class="n">POTENTIOMETER</span>
+
+  <span class="n">Measure</span> <span class="n">the</span> <span class="n">position</span> <span class="k">of</span> <span class="n">a</span> <span class="n">potentiometer</span> <span class="o">and</span> <span class="k">use</span> <span class="n">it</span> <span class="nb">to</span>
+  <span class="n">control</span> <span class="n">the</span> <span class="n">blink</span> <span class="n">rate</span> <span class="k">of</span> <span class="n">an</span> <span class="n">LED</span>. <span class="n">Turn</span> <span class="n">the</span> <span class="n">knob</span> <span class="nb">to</span> <span class="k">make</span>
+  <span class="n">it</span> <span class="n">blink</span> <span class="n">faster</span> <span class="o">or</span> <span class="n">slower</span>!
+
+<span class="n">What&#39;s</span> <span class="n">a</span> <span class="n">potentiometer</span>?
+
+  <span class="n">A</span> <span class="n">potentiometer</span>, <span class="o">or</span> <span class="s">&quot;pot&quot;</span> <span class="k">for</span> <span class="n">short</span>, <span class="k">is</span> <span class="n">a</span> <span class="n">control</span> <span class="n">knob</span>.
+  <span class="n">It&#39;s</span> <span class="n">the</span> <span class="n">same</span> <span class="n">type</span> <span class="k">of</span> <span class="n">control</span> <span class="n">you&#39;d</span> <span class="k">use</span> <span class="nb">to</span> <span class="n">change</span> <span class="n">volume</span>, 
+  <span class="n">dim</span> <span class="n">a</span> <span class="n">lamp</span>, <span class="n">etc</span>. <span class="n">A</span> <span class="n">potentiometer</span> <span class="n">changes</span> <span class="n">resistance</span> <span class="k">as</span> <span class="n">it</span>
+  <span class="k">is</span> <span class="n">turned</span>. <span class="n">By</span> <span class="n">using</span> <span class="n">it</span> <span class="k">as</span> <span class="n">a</span> <span class="s">&quot;voltage divider&quot;</span>, <span class="n">the</span> <span class="n">Arduino</span>
+  <span class="nb">can</span> <span class="n">sense</span> <span class="n">the</span> <span class="n">position</span> <span class="k">of</span> <span class="n">the</span> <span class="n">knob</span>, <span class="o">and</span> <span class="k">use</span> <span class="n">that</span> <span class="nb">value</span> <span class="nb">to</span>
+  <span class="n">control</span> <span class="n">whatever</span> <span class="n">you</span> <span class="n">wish</span> (<span class="nb">like</span> <span class="n">the</span> <span class="n">blink</span> <span class="n">rate</span> <span class="k">of</span> <span class="n">an</span> <span class="n">LED</span>,
+  <span class="k">as</span> <span class="n">we&#39;re</span> <span class="n">doing</span> <span class="n">here</span>).
+
+<span class="n">Hardware</span> <span class="n">connections:</span>
+
+  <span class="n">Potentiometer:</span>
+
+    <span class="n">Potentiometers</span> <span class="n">have</span> <span class="n">three</span> <span class="n">pins</span>. <span class="n">When</span> <span class="n">we&#39;re</span> <span class="n">using</span> <span class="n">it</span> <span class="k">as</span> <span class="n">a</span>
+    <span class="n">voltage</span> <span class="n">divider</span>, <span class="n">we</span> <span class="nb">connect</span> <span class="n">the</span> <span class="n">outside</span> <span class="n">pins</span> <span class="nb">to</span> <span class="n">power</span> <span class="o">and</span>
+    <span class="n">ground</span>. <span class="n">The</span> <span class="n">middle</span> <span class="n">pin</span> <span class="k">will</span> <span class="n">be</span> <span class="n">the</span> <span class="n">signal</span> (<span class="n">a</span> <span class="n">voltage</span> <span class="n">which</span>
+    <span class="n">varies</span> <span class="nb">from</span> <span class="mi">0</span> <span class="n">Volts</span> <span class="nb">to</span> <span class="mi">5</span> <span class="n">Volts</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">the</span> <span class="n">position</span> <span class="k">of</span>
+    <span class="n">the</span> <span class="n">knob</span>).
+
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">middle</span> <span class="n">pin</span> <span class="nb">to</span> <span class="n">ANALOG</span> <span class="n">IN</span> <span class="n">pin</span> <span class="mi">0</span> <span class="n">on</span> <span class="n">the</span> <span class="n">Arduino</span>.
+    <span class="n">Connect</span> <span class="nb">one</span> <span class="k">of</span> <span class="n">the</span> <span class="n">outside</span> <span class="n">pins</span> <span class="nb">to</span> <span class="mi">5</span><span class="n">V</span>.
+    <span class="n">Connect</span> <span class="n">the</span> <span class="n">other</span> <span class="n">outside</span> <span class="n">pin</span> <span class="nb">to</span> <span class="n">GND</span>.
+
+    (<span class="n">TIP:</span> <span class="k">if</span> <span class="nb">once</span> <span class="n">your</span> <span class="n">program</span> <span class="k">is</span> <span class="n">running</span>, <span class="n">the</span> <span class="n">knob</span> <span class="n">feels</span>
+    <span class="s">&quot;backwards&quot;</span>, <span class="n">you</span> <span class="nb">can</span> <span class="n">swap</span> <span class="n">the</span> <span class="mi">5</span><span class="n">V</span> <span class="o">and</span> <span class="n">GND</span> <span class="n">pins</span> <span class="nb">to</span> <span class="nb">reverse</span>
+    <span class="n">the</span> <span class="n">direction</span>.)
+
+  <span class="n">LED:</span>
+
+    <span class="n">Most</span> <span class="n">Arduinos</span> <span class="n">already</span> <span class="n">have</span> <span class="n">an</span> <span class="n">LED</span> <span class="o">and</span> <span class="n">resistor</span> <span class="n">connected</span> <span class="nb">to</span>
+    <span class="n">pin</span> <span class="mi">13</span>, <span class="o">so</span> <span class="n">you</span> <span class="n">may</span> <span class="nb">not</span> <span class="n">need</span> <span class="nb">any</span> <span class="n">additional</span> <span class="n">circuitry</span>.
+
+    <span class="n">But</span> <span class="k">if</span> <span class="n">you&#39;d</span> <span class="nb">like</span> <span class="nb">to</span> <span class="nb">connect</span> <span class="n">a</span> <span class="n">second</span> <span class="n">LED</span> <span class="nb">to</span> <span class="n">pin</span> <span class="mi">13</span>, <span class="o">or</span> <span class="k">use</span>
+    <span class="n">a</span> <span class="n">different</span> <span class="n">pin</span>, <span class="n">follow</span> <span class="n">these</span> <span class="n">steps:</span>
+
+      <span class="n">Connect</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">side</span> <span class="k">of</span> <span class="n">your</span> <span class="n">LED</span> (<span class="n">longer</span> <span class="o">leg</span>) <span class="nb">to</span>
+      <span class="n">Arduino</span> <span class="n">digital</span> <span class="n">pin</span> <span class="mi">13</span> (<span class="o">or</span> <span class="n">another</span> <span class="n">digital</span> <span class="n">pin</span>, <span class="k">but</span> <span class="n">don&#39;t</span>
+      <span class="n">forget</span> <span class="nb">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">code</span> <span class="nb">to</span> <span class="n">match</span>).
+
+      <span class="n">Connect</span> <span class="n">the</span> <span class="n">negative</span> <span class="n">side</span> <span class="k">of</span> <span class="n">your</span> <span class="n">LED</span> (<span class="n">shorter</span> <span class="o">leg</span>) <span class="nb">to</span> <span class="n">a</span>
+      <span class="mi">330</span> <span class="n">Ohm</span> <span class="n">resistor</span> (<span class="n">orange-orange-brown</span>).
+
+      <span class="n">Connect</span> <span class="n">the</span> <span class="n">other</span> <span class="n">side</span> <span class="k">of</span> <span class="n">the</span> <span class="n">resistor</span> <span class="nb">to</span> <span class="n">ground</span>.
+
+<span class="n">This</span> <span class="n">sketch</span> <span class="n">was</span> <span class="n">written</span> <span class="nb">by</span> <span class="n">SparkFun</span> <span class="n">Electronics</span>,
+<span class="n">with</span> <span class="n">lots</span> <span class="k">of</span> <span class="n">help</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">Arduino</span> <span class="n">community</span>.
+<span class="n">This</span> <span class="n">code</span> <span class="k">is</span> <span class="n">completely</span> <span class="n">free</span> <span class="k">for</span> <span class="nb">any</span> <span class="k">use</span>.
+<span class="n">Visit</span> <span class="n">http:</span>//<span class="n">learn</span>.<span class="n">sparkfun</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">2</span> <span class="k">for</span> <span class="n">SIK</span> <span class="n">information</span>.
+<span class="n">Visit</span> <span class="n">http:</span>//<span class="n">www</span>.<span class="n">arduino</span>.<span class="n">cc</span> <span class="nb">to</span> <span class="n">learn</span> <span class="n">about</span> <span class="n">the</span> <span class="n">Arduino</span>.
+
+<span class="nb">Version</span> <span class="mf">2.0</span> <span class="mi">6</span><span class="o">/</span><span class="mi">2012</span> <span class="n">MDG</span>
+*/
+
+
+// <span class="n">Welcome</span> <span class="n">back</span>! <span class="n">In</span> <span class="n">this</span> <span class="n">sketch</span> <span class="n">we&#39;ll</span> <span class="n">start</span> <span class="n">using</span> <span class="s">&quot;variables&quot;</span>.
+
+// <span class="n">A</span> <span class="n">variable</span> <span class="k">is</span> <span class="n">a</span> <span class="n">named</span> <span class="n">number</span>. <span class="n">We&#39;ll</span> <span class="n">often</span> <span class="k">use</span> <span class="n">these</span> <span class="nb">to</span> <span class="n">store</span>
+// <span class="n">numbers</span> <span class="n">that</span> <span class="n">change</span>, <span class="n">such</span> <span class="k">as</span> <span class="n">measurements</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">outside</span>
+// <span class="n">world</span>, <span class="o">or</span> <span class="nb">to</span> <span class="k">make</span> <span class="n">a</span> <span class="n">sketch</span> <span class="n">easier</span> <span class="nb">to</span> <span class="n">understand</span> (<span class="n">sometimes</span> <span class="n">a</span>
+// <span class="n">descriptive</span> <span class="nb">name</span> <span class="n">makes</span> <span class="n">more</span> <span class="n">sense</span> <span class="n">than</span> <span class="n">looking</span> <span class="n">at</span> <span class="n">a</span> <span class="n">number</span>).
+
+// <span class="n">Variables</span> <span class="nb">can</span> <span class="n">be</span> <span class="n">different</span> <span class="s">&quot;data types&quot;</span>, <span class="n">which</span> <span class="k">is</span> <span class="n">the</span> <span class="n">kind</span> <span class="k">of</span>
+// <span class="n">number</span> <span class="n">we&#39;re</span> <span class="n">using</span> (<span class="nb">can</span> <span class="n">it</span> <span class="n">be</span> <span class="n">negative</span>? <span class="n">Have</span> <span class="n">a</span> <span class="n">decimal</span> <span class="n">point</span>?)
+// <span class="n">We&#39;ll</span> <span class="n">introduce</span> <span class="n">more</span> <span class="n">data</span> <span class="n">types</span> <span class="n">later</span>, <span class="k">but</span> <span class="k">for</span> <span class="n">the</span> <span class="n">moment</span> <span class="n">we&#39;ll</span>
+// <span class="n">stick</span> <span class="n">with</span> <span class="n">good</span> <span class="n">old</span> <span class="s">&quot;integers&quot;</span> (<span class="n">called</span> <span class="s">&quot;int&quot;</span> <span class="n">in</span> <span class="n">your</span> <span class="n">sketch</span>).
+
+// <span class="n">Integers</span> <span class="n">are</span> <span class="n">whole</span> <span class="n">numbers</span> (<span class="mi">0</span>, <span class="mi">3</span>, <span class="mi">5643</span>), <span class="nb">can</span> <span class="n">be</span> <span class="n">negative</span>, <span class="o">and</span>
+// <span class="k">for</span> <span class="n">reasons</span> <span class="n">we</span> <span class="n">won&#39;t</span> <span class="n">go</span> <span class="n">into</span> <span class="n">right</span> <span class="n">now</span>, <span class="nb">can</span> <span class="n">range</span> <span class="nb">from</span> -<span class="mi">32768</span>
+// <span class="nb">to</span> <span class="mi">32767</span>. (<span class="n">Don&#39;t</span> <span class="n">worry</span>, <span class="k">if</span> <span class="n">you</span> <span class="n">need</span> <span class="nb">to</span> <span class="n">work</span> <span class="n">with</span> <span class="n">larger</span> <span class="n">numbers</span>,<span class="sr"></span>
+<span class="sr">//</span> <span class="n">there</span> <span class="n">are</span> <span class="n">other</span> <span class="n">data</span> <span class="n">types</span> <span class="k">for</span> <span class="n">that</span>. <span class="n">See:</span>
+// <span class="n">http:</span>//<span class="n">arduino</span>.<span class="n">cc</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">Reference</span><span class="o">/</span><span class="n">VariableDeclaration</span>
+// <span class="k">for</span> <span class="n">a</span> <span class="n">list</span> <span class="k">of</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">data</span> <span class="n">types</span> <span class="n">you</span> <span class="nb">can</span> <span class="k">use</span>).
+
+// <span class="n">You</span> <span class="n">must</span> <span class="s">&quot;declare&quot;</span> <span class="n">variables</span> <span class="o">before</span> <span class="n">you</span> <span class="k">use</span> <span class="n">them</span>, <span class="o">so</span> <span class="n">that</span> <span class="n">the</span>
+// <span class="n">computer</span> <span class="n">knows</span> <span class="n">about</span> <span class="n">them</span>. <span class="n">Here</span> <span class="n">we&#39;ll</span> <span class="n">declare</span> <span class="n">two</span> <span class="n">integer</span>
+// <span class="n">variables</span>, <span class="o">and</span> <span class="n">at</span> <span class="n">the</span> <span class="n">same</span> <span class="nb">time</span>, <span class="n">initialize</span> <span class="n">them</span> <span class="nb">to</span> <span class="n">specific</span>
+// <span class="nb">values</span>. <span class="n">We&#39;re</span> <span class="n">doing</span> <span class="n">this</span> <span class="o">so</span> <span class="n">that</span> <span class="n">further</span> <span class="n">down</span>, <span class="n">we</span> <span class="nb">can</span> <span class="n">refer</span> <span class="nb">to</span>
+// <span class="n">the</span> <span class="n">pins</span> <span class="nb">by</span> <span class="nb">name</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">number</span>.
+
+// <span class="n">Note</span> <span class="n">that</span> <span class="n">variable</span> <span class="n">names</span> <span class="n">are</span> <span class="n">case-sensitive</span>! <span class="n">If</span> <span class="n">you</span> <span class="n">get</span> <span class="n">an</span>
+// <span class="s">&quot;(variable) was not declared in this scope&quot;</span> <span class="n">error</span>, <span class="n">double-check</span>
+// <span class="n">that</span> <span class="n">you</span> <span class="n">typed</span> <span class="n">the</span> <span class="nb">name</span> <span class="n">correctly</span>.
+
+// <span class="n">Here</span> <span class="n">we&#39;re</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">called</span> <span class="s">&quot;sensorPin&quot;</span> <span class="k">of</span> <span class="n">type</span> <span class="s">&quot;int&quot;</span>
+// <span class="o">and</span> <span class="n">initializing</span> <span class="n">it</span> <span class="nb">to</span> <span class="n">have</span> <span class="n">the</span> <span class="nb">value</span> <span class="s">&quot;0&quot;</span>:
+
+<span class="nb">int</span> <span class="n">sensorPin</span> = <span class="mi">0</span>;    // <span class="n">The</span> <span class="n">potentiometer</span> <span class="k">is</span> <span class="n">connected</span> <span class="nb">to</span>
+                      // <span class="n">analog</span> <span class="n">pin</span> <span class="mi">0</span>
+
+<span class="nb">int</span> <span class="n">ledPin</span> = <span class="mi">13</span>;      // <span class="n">The</span> <span class="n">LED</span> <span class="k">is</span> <span class="n">connected</span> <span class="nb">to</span> <span class="n">digital</span> <span class="n">pin</span> <span class="mi">13</span>
+
+// <span class="n">One</span> <span class="n">more</span> <span class="n">thing</span>. <span class="n">If</span> <span class="n">you</span> <span class="n">declare</span> <span class="n">variables</span> <span class="n">outside</span> <span class="k">of</span> <span class="n">a</span> <span class="n">function</span>,<span class="sr"></span>
+<span class="sr">//</span> <span class="k">as</span> <span class="n">we</span> <span class="n">have</span> <span class="n">here</span>, <span class="n">they</span> <span class="n">are</span> <span class="n">called</span> <span class="s">&quot;global variables&quot;</span> <span class="o">and</span> <span class="nb">can</span> <span class="n">be</span>
+// <span class="n">seen</span> <span class="nb">by</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">functions</span>. <span class="n">If</span> <span class="n">you</span> <span class="n">declare</span> <span class="n">variables</span> <span class="n">within</span> <span class="n">a</span> 
+// <span class="n">function</span>, <span class="n">they</span> <span class="nb">can</span> <span class="k">only</span> <span class="n">be</span> <span class="n">seen</span> <span class="n">within</span> <span class="n">that</span> <span class="n">function</span>. <span class="n">It&#39;s</span> <span class="n">good</span>
+// <span class="n">practice</span> <span class="nb">to</span> <span class="s">&quot;limit the scope&quot;</span> <span class="k">of</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">whenever</span> <span class="n">possible</span>,<span class="sr"></span>
+<span class="sr">//</span> <span class="k">but</span> <span class="k">as</span> <span class="n">we&#39;re</span> <span class="n">getting</span> <span class="n">started</span>, <span class="n">global</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">just</span> <span class="n">fine</span>.
+
+
+<span class="nb">void</span> <span class="n">setup</span>() // <span class="n">this</span> <span class="n">function</span> <span class="n">runs</span> <span class="nb">once</span> <span class="k">when</span> <span class="n">the</span> <span class="n">sketch</span> <span class="n">starts</span> <span class="n">up</span>
+{
+  // <span class="n">We&#39;ll</span> <span class="n">be</span> <span class="n">using</span> <span class="n">pin</span> <span class="mi">13</span> <span class="nb">to</span> <span class="n">light</span> <span class="n">a</span> <span class="n">LED</span>, <span class="o">so</span> <span class="n">we</span> <span class="n">must</span> <span class="n">configure</span> <span class="n">it</span>
+  // <span class="k">as</span> <span class="n">an</span> <span class="n">output</span>.
+
+  // <span class="n">Because</span> <span class="n">we</span> <span class="n">already</span> <span class="n">created</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">called</span> <span class="n">ledPin</span>, <span class="o">and</span>
+  // <span class="n">set</span> <span class="n">it</span> <span class="n">equal</span> <span class="nb">to</span> <span class="mi">13</span>, <span class="n">we</span> <span class="nb">can</span> <span class="k">use</span> <span class="s">&quot;ledPin&quot;</span> <span class="n">in</span> <span class="n">place</span> <span class="k">of</span> <span class="s">&quot;13&quot;</span>.
+  // <span class="n">This</span> <span class="n">makes</span> <span class="n">the</span> <span class="n">sketch</span> <span class="n">easier</span> <span class="nb">to</span> <span class="n">follow</span>.
+
+  <span class="n">pinMode</span>(<span class="n">ledPin</span>, <span class="n">OUTPUT</span>);
+
+  // <span class="n">The</span> <span class="n">above</span> <span class="n">line</span> <span class="k">is</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="s">&quot;pinMode(13, OUTPUT);&quot;</span>
+
+  // <span class="n">You</span> <span class="n">might</span> <span class="n">be</span> <span class="n">wondering</span> <span class="n">why</span> <span class="n">we&#39;re</span> <span class="nb">not</span> <span class="o">also</span> <span class="n">configuring</span>
+  // <span class="n">sensorPin</span> <span class="k">as</span> <span class="n">an</span> <span class="n">input</span>. <span class="n">The</span> <span class="n">reason</span> <span class="k">is</span> <span class="n">that</span> <span class="n">this</span> <span class="k">is</span> <span class="n">an</span>
+  // <span class="s">&quot;analog in&quot;</span> <span class="n">pin</span>. <span class="n">These</span> <span class="n">pins</span> <span class="n">have</span> <span class="n">the</span> <span class="n">special</span> <span class="n">ability</span> <span class="nb">to</span>
+  // <span class="nb">read</span> <span class="n">varying</span> <span class="n">voltages</span> <span class="nb">from</span> <span class="n">sensors</span> <span class="nb">like</span> <span class="n">the</span> <span class="n">potentiometer</span>.
+  // <span class="n">Since</span> <span class="n">they&#39;re</span> <span class="n">always</span> <span class="n">used</span> <span class="k">as</span> <span class="n">inputs</span>, <span class="n">there</span> <span class="k">is</span> <span class="n">no</span> <span class="n">need</span> <span class="nb">to</span>
+  // <span class="n">specifically</span> <span class="n">configure</span> <span class="n">them</span>.
+}
+
+
+<span class="nb">void</span> <span class="k">loop</span>() // <span class="n">this</span> <span class="n">function</span> <span class="n">runs</span> <span class="n">repeatedly</span> <span class="o">after</span> <span class="n">setup</span>() <span class="n">finishes</span>
+{
+  // <span class="n">First</span> <span class="n">we&#39;ll</span> <span class="n">declare</span> <span class="n">another</span> <span class="n">integer</span> <span class="n">variable</span>
+  // <span class="nb">to</span> <span class="n">store</span> <span class="n">the</span> <span class="nb">value</span> <span class="k">of</span> <span class="n">the</span> <span class="n">potentiometer:</span>
+
+  <span class="nb">int</span> <span class="n">sensorValue</span>;
+
+  // <span class="n">The</span> <span class="n">potentiometer</span> <span class="k">is</span> <span class="n">set</span> <span class="n">up</span> <span class="k">as</span> <span class="n">a</span> <span class="n">voltage</span> <span class="n">divider</span>, <span class="o">so</span> <span class="n">that</span>
+  // <span class="k">when</span> <span class="n">you</span> <span class="n">turn</span> <span class="n">it</span>, <span class="n">the</span> <span class="n">voltage</span> <span class="n">on</span> <span class="n">the</span> <span class="n">center</span> <span class="n">pin</span> <span class="k">will</span> <span class="n">vary</span>
+  // <span class="nb">from</span> <span class="mi">0</span><span class="n">V</span> <span class="nb">to</span> <span class="mi">5</span><span class="n">V</span>. <span class="n">We&#39;ve</span> <span class="n">connected</span> <span class="n">the</span> <span class="n">center</span> <span class="n">pin</span> <span class="n">on</span> <span class="n">the</span>
+  // <span class="n">potentiometer</span> <span class="nb">to</span> <span class="n">the</span> <span class="n">Arduino&#39;s</span> <span class="n">analog</span> <span class="n">input</span> <span class="mi">0</span>.
+
+  // <span class="n">The</span> <span class="n">Arduino</span> <span class="nb">can</span> <span class="nb">read</span> <span class="n">external</span> <span class="n">voltages</span> <span class="n">on</span> <span class="n">the</span> <span class="n">analog</span> <span class="n">input</span>
+  // <span class="n">pins</span> <span class="n">using</span> <span class="n">a</span> <span class="n">built-in</span> <span class="n">function</span> <span class="n">called</span> <span class="n">analogRead</span>(). <span class="n">This</span>
+  // <span class="n">function</span> <span class="n">takes</span> <span class="nb">one</span> <span class="n">input</span> <span class="nb">value</span>, <span class="n">the</span> <span class="n">analog</span> <span class="n">pin</span> <span class="n">we&#39;re</span> <span class="n">using</span>
+  // (<span class="n">sensorPin</span>, <span class="n">which</span> <span class="n">we</span> <span class="n">earlier</span> <span class="n">set</span> <span class="nb">to</span> <span class="mi">0</span>). <span class="n">It</span> <span class="k">returns</span> <span class="n">an</span> <span class="n">integer</span>
+  // <span class="n">number</span> <span class="n">that</span> <span class="n">ranges</span> <span class="nb">from</span> <span class="mi">0</span> (<span class="mi">0</span> <span class="n">Volts</span>) <span class="nb">to</span> <span class="mi">1023</span> (<span class="mi">5</span> <span class="n">Volts</span>).
+  // <span class="n">We&#39;re</span> <span class="n">sticking</span> <span class="n">this</span> <span class="nb">value</span> <span class="n">into</span> <span class="n">the</span> <span class="n">sensorValue</span> <span class="n">variable:</span>
+
+  <span class="n">sensorValue</span> = <span class="n">analogRead</span>(<span class="n">sensorPin</span>);    
+
+  // <span class="n">Now</span> <span class="n">we&#39;ll</span> <span class="n">blink</span> <span class="n">the</span> <span class="n">LED</span> <span class="nb">like</span> <span class="n">in</span> <span class="n">the</span> <span class="nb">first</span> <span class="n">example</span>, <span class="k">but</span> <span class="n">we&#39;ll</span>
+  // <span class="k">use</span> <span class="n">the</span> <span class="n">sensorValue</span> <span class="n">variable</span> <span class="nb">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">blink</span> <span class="n">speed</span>
+  // (<span class="n">the</span> <span class="n">smaller</span> <span class="n">the</span> <span class="n">number</span>, <span class="n">the</span> <span class="n">faster</span> <span class="n">it</span> <span class="k">will</span> <span class="n">blink</span>).
+
+  // <span class="n">Note</span> <span class="n">that</span> <span class="n">we&#39;re</span> <span class="n">using</span> <span class="n">the</span> <span class="n">ledPin</span> <span class="n">variable</span> <span class="n">here</span> <span class="k">as</span> <span class="n">well:</span>
+
+  <span class="n">digitalWrite</span>(<span class="n">ledPin</span>, <span class="n">HIGH</span>);     // <span class="n">Turn</span> <span class="n">the</span> <span class="n">LED</span> <span class="n">on</span>
+
+  <span class="n">delay</span>(<span class="n">sensorValue</span>);             // <span class="n">Pause</span> <span class="k">for</span> <span class="n">sensorValue</span>
+                                  // <span class="n">milliseconds</span>
+
+  <span class="n">digitalWrite</span>(<span class="n">ledPin</span>, <span class="n">LOW</span>);      // <span class="n">Turn</span> <span class="n">the</span> <span class="n">LED</span> <span class="n">off</span>
+
+  <span class="n">delay</span>(<span class="n">sensorValue</span>);             // <span class="n">Pause</span> <span class="k">for</span> <span class="n">sensorValue</span>
+                                  // <span class="n">milliseconds</span>
+
+  // <span class="n">Remember</span> <span class="n">that</span> <span class="k">loop</span>() <span class="n">repeats</span> <span class="n">forever</span>, <span class="o">so</span> <span class="n">we&#39;ll</span> <span class="k">do</span> <span class="nb">all</span> <span class="n">this</span>
+  // <span class="n">again</span> <span class="o">and</span> <span class="n">again</span>.
+}
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">int sensorValue;</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+A “variable” is a placeholder for values that may change in your code. You must introduce, or “declare” variables before you use them; here we’re declaring a variable called sensorValue, of type “int” (integer). Don’t forget that variable names are case-sensitive!</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">sensorValue = analogRead(sensorPin);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+We use the&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">analogRead()</code>&nbsp;function to read the value on an analog pin.&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">analogRead()</code>&nbsp;takes one parameter, the analog pin you want to use (“sensorPin”), and returns a number (“sensorValue”) between 0 (0 volts) and 1023 (5 volts).</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">delay(sensorValue);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Microcontrollers are very fast, capable of running thousands of lines of code each second. To slow it down so that we can see what it’s doing, we’ll often insert delays into the code.&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">delay()</code>&nbsp;counts in milliseconds; there are 1000 ms in one second.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You should see the LED blink faster or slower in accordance with your potentiometer. If it isn’t working, make sure you have assembled the circuit correctly and verified and uploaded the code to your board, or see the troubleshooting section.</div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_02_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_02_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+Most traditional volume knobs employ a potentiometer.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Questions<span style="line-height: 1.1;">&nbsp;</span></h3>
+</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br />
+<ol>
+<li><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;">What range of values can 'sensorValue' have?</span></span></li>
+</ol>
+<div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Going Further</h3>
+</div>
+<div>
+Change you circuit so that the LED is connected to pin 9 of the redboard and load the sketch below:</div>
+<div>
+<br /></div>
+</div>
+</div>
+
+<iframe allowtransparency="true" frameborder="0" src="https://codebender.cc/embed/sketch:245623" style="height: 510px; margin: 10px 0 10px; width: 100%;"></iframe>
+
+<p><br />
+<br />
+<br />
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><br /></span></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-1-blinking-led.html">Experiment 1: Blinking an LED</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-3-driving-rgb-led.html">Experiment 3: Driving an RGB LED</a></span></span></div>
+</div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="font-size: xx-small;"><span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></span></h3>
+<div>
+<br /></div>
+<div>
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

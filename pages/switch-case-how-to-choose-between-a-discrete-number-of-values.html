@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Switch Case: How to choose between a discrete number of values. - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/switch-case-how-to-choose-between-a-discrete-number-of-values.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options. This tutorial shows you how to use ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Switch Case: How to choose between a discrete number of values."/>
+    <meta property="og:url" content="https://driewe.github.io/pages/switch-case-how-to-choose-between-a-discrete-number-of-values.html"/>
+    <meta property="og:description" content="An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options. This tutorial shows you how to use ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Switch Case: How to choose between a discrete number of values.</h1>
+        
+        <div class="entry-content">
+            <p>An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the <a href="https://www.arduino.cc/en/Reference/SwitchCase">switch</a> statement. Switch allows you to choose between several discrete options. This tutorial shows you how to use it to switch between four desired states of a photo resistor: really dark, dim, medium, and bright.<br />
+<br />
+This program first reads the photoresistor. Then it uses the map() function to map its output to one of four values: 0, 1, 2, or 3. Finally, it uses the switch() statement to print one of four messages back to the computer depending on which of the four values is returned.<br />
+<div>
+<br />
+<span style="font-size: large;">Hardware Required</span><br />
+<ul>
+<li>Arduino or Genuino Board</li>
+<li>photoresistor, or another analog sensor</li>
+<li>10k ohm resistors</li>
+<li>hook-up wires</li>
+<li>breadboard</li>
+</ul>
+</div>
+<div>
+<br />
+<span style="font-size: large;">Circuit</span><br />
+The photoresistor is connected to analog in pin 0 using a <a href="http://www.tigoe.com/pcomp/code/controllers/input-output/analog-input/">voltage divider</a> circuit. A 10K ohm resistor makes up the other side of the voltage divider, running from Analog in 0 to ground. The analogRead() function returns a range of about 0 to 600 from this circuit in a reasonably lit indoor space.<br />
+<br />
+click the image to enlarge</div>
+<div>
+<br />
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/switchCase_bb.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/switchCase_bb.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+<br />
+<br />
+image developed using <a href="http://www.fritzing.org/">Fritzing</a>. For more circuit examples, see the <a href="http://fritzing.org/projects/">Fritzing project page</a></div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<span style="font-size: large;">Schematic</span><br />
+<br />
+click the image to enlarge</div>
+<div class="circuit" style="box-sizing: border-box; direction: ltr; margin: 0px; padding: 0px;">
+<br />
+<div style="background-color: white; box-sizing: border-box; color: #4f4e4e; direction: ltr; font-family: 'TyponineSans Regular 18', 'Lucida Grande', Lucida, Verdana, sans-serif; font-size: 18px; line-height: 31.5px; margin: 0px; padding: 0px;">
+<a class="urllink" href="https://www.arduino.cc/en/uploads/Tutorial/switchCase_N_schem.png" rel="nofollow" style="box-sizing: border-box; color: #00979c; line-height: inherit; text-decoration: none;"><img alt="" src="https://www.arduino.cc/en/uploads/Tutorial/switchCase2_N_schem.png" style="border: none; box-sizing: border-box; display: inline-block; vertical-align: middle;" title="" width="400px" /></a></div>
+</div></p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  Switch statement</span>
+
+<span class="cm"> Demonstrates the use of a switch statement.  The switch</span>
+<span class="cm"> statement allows you to choose from among a set of discrete values</span>
+<span class="cm"> of a variable.  It&#39;s like a series of if statements.</span>
+
+<span class="cm"> To see this sketch in action, but the board and sensor in a well-lit</span>
+<span class="cm"> room, open the serial monitor, and and move your hand gradually</span>
+<span class="cm"> down over the sensor.</span>
+
+<span class="cm"> The circuit:</span>
+<span class="cm"> * photoresistor from analog in 0 to +5V</span>
+<span class="cm"> * 10K resistor from analog in 0 to ground</span>
+
+<span class="cm"> created 1 Jul 2009</span>
+<span class="cm"> modified 9 Apr 2012</span>
+<span class="cm"> by Tom Igoe</span>
+
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/SwitchCase</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>these<span class="w"> </span>constants<span class="w"> </span>won<span class="s">&#39;t change. They are the</span>
+<span class="o">//</span><span class="w"> </span>lowest<span class="w"> </span>and<span class="w"> </span>highest<span class="w"> </span>readings<span class="w"> </span>you<span class="w"> </span>get<span class="w"> </span>from<span class="w"> </span>your<span class="w"> </span><span class="nl">sensor</span><span class="o">:</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>sensorMin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">      </span><span class="o">//</span><span class="w"> </span>sensor<span class="w"> </span>minimum<span class="o">,</span><span class="w"> </span>discovered<span class="w"> </span>through<span class="w"> </span>experiment<span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>sensorMax<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span><span class="err">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>sensor<span class="w"> </span>maximum<span class="o">,</span><span class="w"> </span>discovered<span class="w"> </span>through<span class="w"> </span>experiment<span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>initialize<span class="w"> </span>serial<span class="w"> </span><span class="nl">communication</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>Serial<span class="o">.</span>begin<span class="o">(</span><span class="m">9600</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>the<span class="w"> </span><span class="nl">sensor</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>sensorReading<span class="w"> </span><span class="o">=</span><span class="w"> </span>analogRead<span class="o">(</span>A0<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>map<span class="w"> </span>the<span class="w"> </span>sensor<span class="w"> </span>range<span class="w"> </span><span class="kr">to</span><span class="w"> </span>a<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>four<span class="w"> </span><span class="nl">options</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>int<span class="w"> </span>range<span class="w"> </span><span class="o">=</span><span class="w"> </span>map<span class="o">(</span>sensorReading<span class="o">,</span><span class="w"> </span>sensorMin<span class="o">,</span><span class="w"> </span>sensorMax<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">3</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span>something<span class="w"> </span>different<span class="w"> </span>depending<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>range<span class="w"> </span><span class="nl">value</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>switch<span class="w"> </span><span class="o">(</span>range<span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>case<span class="w"> </span><span class="m">0</span><span class="err">:</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>your<span class="w"> </span>hand<span class="w"> </span>is<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>sensor<span class="w"></span>
+<span class="w">            </span>Serial<span class="o">.</span>println<span class="o">(</span><span class="s">&quot;dark&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">            </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>case<span class="w"> </span><span class="m">1</span><span class="err">:</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>your<span class="w"> </span>hand<span class="w"> </span>is<span class="w"> </span>close<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>sensor<span class="w"></span>
+<span class="w">            </span>Serial<span class="o">.</span>println<span class="o">(</span><span class="s">&quot;dim&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">            </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>case<span class="w"> </span><span class="m">2</span><span class="err">:</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>your<span class="w"> </span>hand<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>few<span class="w"> </span>inches<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>sensor<span class="w"></span>
+<span class="w">            </span>Serial<span class="o">.</span>println<span class="o">(</span><span class="s">&quot;medium&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">            </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">        </span>case<span class="w"> </span><span class="m">3</span><span class="err">:</span><span class="w">    </span><span class="o">//</span><span class="w"> </span>your<span class="w"> </span>hand<span class="w"> </span>is<span class="w"> </span>nowhere<span class="w"> </span>near<span class="w"> </span>the<span class="w"> </span>sensor<span class="w"></span>
+<span class="w">            </span>Serial<span class="o">.</span>println<span class="o">(</span><span class="s">&quot;bright&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">            </span>break<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="err">;</span><span class="w">        </span><span class="o">//</span><span class="w"> </span>delay<span class="w"> </span>in<span class="w"> </span>between<span class="w"> </span>reads<span class="w"> </span><span class="kr">for</span><span class="w"> </span>stability<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<p><br />
+<h2 style="background-color: white; color: #666666; font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif; font-size: 22px; margin: 0px; position: relative;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our&nbsp;</div>
+<div style="text-align: center;">
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2></p>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

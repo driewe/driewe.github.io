@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Experiment 11: Using a Piezo Buzzer - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/pages/experiment-11-using-a-piezo-buzzer.html">
+
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit, we’ll again bridge the gap between the digital world and the analog world. We’ll be using a piezo buzzer that makes a small “click” when you apply voltage to it (try it!). By itself that isn’t ..." />
+
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Experiment 11: Using a Piezo Buzzer"/>
+    <meta property="og:url" content="https://driewe.github.io/pages/experiment-11-using-a-piezo-buzzer.html"/>
+    <meta property="og:description" content="Adapted from Sparkfun Inventor Kit Experiential Guide Introduction In this circuit, we’ll again bridge the gap between the digital world and the analog world. We’ll be using a piezo buzzer that makes a small “click” when you apply voltage to it (try it!). By itself that isn’t ..." />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content" class="body">
+        <h1 class="entry-title">Experiment 11: Using a Piezo Buzzer</h1>
+        
+        <div class="entry-content">
+            <h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Introduction</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+In this circuit, we’ll again bridge the gap between the digital world and the analog world. We’ll be using a piezo buzzer that makes a small “click” when you apply voltage to it (try it!). By itself that isn’t terribly exciting, but if you turn the voltage on and off hundreds of times a second, the piezo buzzer will produce a tone. And if you string a bunch of tones together, you’ve got music! This circuit and sketch will play a classic tune. We’ll never let you down!</div>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Parts Needed</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You will need the following parts:</div>
+<ul style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-top: 0px;">
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Breadboard</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;RedBoard or Arduino Uno</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">1x</span>&nbsp;Piezo Buzzer</li>
+<li style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: 700;">3x</span>&nbsp;Jumper Wires</li>
+</ul>
+<div>
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Hardware Hookup</h3>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Ready to start hooking everything up? Check out the Fritzing diagram below, to see how everything is connected.</div>
+<table class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0px; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 20px; max-width: 100%; width: 640px;"><tbody style="box-sizing: border-box;">
+<tr class="warning" style="box-sizing: border-box;"><td align="center" class="form-control-feedback" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Polarized Components&nbsp;<span class="glyphicon glyphicon-warning-sign" style="box-sizing: border-box; display: inline-block; font-family: &quot;glyphicons halflings&quot;; line-height: 1; position: relative; top: 1px;"></span></td><td align="left" style="background-color: #fcf8e3; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; line-height: 1.42857; padding: 8px; vertical-align: top;">Pay special attention to the component’s markings indicating how to place it on the breadboard. Polarized components can only be connected to a circuit in one direction.</td></tr>
+</tbody></table>
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Fritzing Diagram for RedBoard</h4>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<a href="https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/RedBoard_circuit_11_01.png" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; text-decoration: none;"><img alt="alt text" src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/RedBoard_circuit_11_01.png" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px; text-align: center;">
+<em style="box-sizing: border-box;">Having a hard time seeing the circuit? Click on the Fritzing diagram to see a bigger image.</em><br />
+<div style="text-align: left;">
+<em style="box-sizing: border-box;"></em></div>
+<h3 style="box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: left;">
+Run the Sketch</h3>
+</div>
+</div>
+</div>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">SparkFun Inventor&#39;s Kit</span>
+<span class="cm">Example sketch 11</span>
+
+<span class="cm">BUZZER</span>
+
+<span class="cm">  Use the buzzer to play a song!</span>
+
+<span class="cm">  The buzzer in your Inventor&#39;s Kit is an electromechanical</span>
+<span class="cm">  component you can use to make noise. Inside the buzzer is a</span>
+<span class="cm">  coil of wire and a small magnet. When current flows through </span>
+<span class="cm">  the coil, it becomes magnetized and pulls towards the magnet,</span>
+<span class="cm">  creating a tiny &quot;click&quot;. When you do this thousands of times</span>
+<span class="cm">  per second, you create tones.</span>
+
+<span class="cm">  The Arduino has a built-in command called tone() which clicks</span>
+<span class="cm">  the buzzer at a certain frequency. This sketch knows the</span>
+<span class="cm">  frequencies of the common notes, allowing you to create songs.</span>
+<span class="cm">  We&#39;re never going to let you down!</span>
+
+<span class="cm">Hardware connections:</span>
+
+<span class="cm">  The buzzer has two pins. One is positive and one is negative.</span>
+<span class="cm">  The postitive pin is marked by a &quot;+&quot; symbol on both the top</span>
+<span class="cm">  and bottom of the buzzer.</span>
+
+<span class="cm">  Connect the positive pin to Arduino digital pin 9.</span>
+<span class="cm">  (Note that this must be a PWM pin.)</span>
+<span class="cm">  Connect the negative pin to GND.</span>
+
+<span class="cm">  Tip: if the buzzer doesn&#39;t fit into the breadboard easily,</span>
+<span class="cm">  try rotating it slightly to fit into diagonal holes.</span>
+
+<span class="cm">This sketch was written by SparkFun Electronics,</span>
+<span class="cm">with lots of help from the Arduino community.</span>
+<span class="cm">(This sketch was originally developed by D. Cuartielles for K3)</span>
+<span class="cm">This code is completely free for any use.</span>
+<span class="cm">Visit http://learn.sparkfun.com/products/2 for SIK information.</span>
+<span class="cm">Visit http://www.arduino.cc to learn about the Arduino.</span>
+
+<span class="cm">Version 2.0 6/2012 MDG</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">This sketch uses the buzzer to play songs.</span>
+<span class="cm">The Arduino&#39;s tone() command will play notes of a given frequency.</span>
+<span class="cm">We&#39;ll provide a function that takes in note characters (a-g),</span>
+<span class="cm">and returns the corresponding frequency from this table:</span>
+
+<span class="cm">  note  frequency</span>
+<span class="cm">  c     262 Hz</span>
+<span class="cm">  d     294 Hz</span>
+<span class="cm">  e     330 Hz</span>
+<span class="cm">  f     349 Hz</span>
+<span class="cm">  g     392 Hz</span>
+<span class="cm">  a     440 Hz</span>
+<span class="cm">  b     494 Hz</span>
+<span class="cm">  C     523 Hz</span>
+
+<span class="cm">For more information, see http://arduino.cc/en/Tutorial/Tone</span>
+<span class="cm">*/</span><span class="w"></span>
+
+const<span class="w"> </span>int<span class="w"> </span>buzzerPin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="err">;</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>We<span class="s">&#39;ll set up an array with the notes we want to play</span>
+<span class="o">//</span><span class="w"> </span>change<span class="w"> </span>these<span class="w"> </span>values<span class="w"> </span><span class="kr">to</span><span class="w"> </span>make<span class="w"> </span>different<span class="w"> </span>songs<span class="err">!</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Length<span class="w"> </span>must<span class="w"> </span>equal<span class="w"> </span>the<span class="w"> </span>total<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>notes<span class="w"> </span>and<span class="w"> </span>spaces<span class="w"> </span>
+
+const<span class="w"> </span>int<span class="w"> </span>songLength<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="err">;</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Notes<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>of<span class="w"> </span>text<span class="w"> </span>characters<span class="w"> </span>corresponding<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>notes<span class="w"></span>
+<span class="o">//</span><span class="w"> </span>in<span class="w"> </span>your<span class="w"> </span>song<span class="o">.</span><span class="w"> </span>A<span class="w"> </span>space<span class="w"> </span>represents<span class="w"> </span>a<span class="w"> </span>rest<span class="w"> </span><span class="o">(</span>no<span class="w"> </span>tone<span class="o">)</span><span class="w"></span>
+
+char<span class="w"> </span>notes<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cdfda ag cdfdg gf &quot;</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>a<span class="w"> </span>space<span class="w"> </span>represents<span class="w"> </span>a<span class="w"> </span>rest<span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>Beats<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>of<span class="w"> </span>values<span class="w"> </span><span class="kr">for</span><span class="w"> </span>each<span class="w"> </span>note<span class="w"> </span>and<span class="w"> </span>rest<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>A<span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w"> </span>represents<span class="w"> </span>a<span class="w"> </span>quarter<span class="o">-</span>note<span class="o">,</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>a<span class="w"> </span>half<span class="o">-</span>note<span class="o">,</span><span class="w"> </span>etc<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span>Don<span class="s">&#39;t forget that the rests (spaces) need a length as well.</span>
+
+int<span class="w"> </span>beats<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">4</span><span class="o">,</span><span class="m">4</span><span class="o">,</span><span class="m">2</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="m">4</span><span class="o">,</span><span class="m">4</span><span class="o">,</span><span class="m">2</span><span class="err">};</span><span class="w"></span>
+
+<span class="o">//</span><span class="w"> </span>The<span class="w"> </span>tempo<span class="w"> </span>is<span class="w"> </span>how<span class="w"> </span>fast<span class="w"> </span><span class="kr">to</span><span class="w"> </span>play<span class="w"> </span>the<span class="w"> </span>song<span class="o">.</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="kr">To</span><span class="w"> </span>make<span class="w"> </span>the<span class="w"> </span>song<span class="w"> </span>play<span class="w"> </span>faster<span class="o">,</span><span class="w"> </span>decrease<span class="w"> </span>this<span class="w"> </span>value<span class="o">.</span><span class="w"></span>
+
+int<span class="w"> </span>tempo<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="err">;</span><span class="w"></span>
+
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"> </span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>pinMode<span class="o">(</span>buzzerPin<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"> </span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>i<span class="o">,</span><span class="w"> </span>duration<span class="err">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>i<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>songLength<span class="err">;</span><span class="w"> </span>i<span class="o">++)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>step<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>song<span class="w"> </span>arrays<span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span>duration<span class="w"> </span><span class="o">=</span><span class="w"> </span>beats<span class="err">[</span>i<span class="err">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>tempo<span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>length<span class="w"> </span>of<span class="w"> </span>note<span class="o">/</span>rest<span class="w"> </span>in<span class="w"> </span>ms<span class="w"></span>
+
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>notes<span class="err">[</span>i<span class="err">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39; &#39;</span><span class="o">)</span><span class="w">          </span><span class="o">//</span><span class="w"> </span>is<span class="w"> </span>this<span class="w"> </span>a<span class="w"> </span>rest<span class="err">?</span><span class="w"> </span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span>delay<span class="o">(</span>duration<span class="o">)</span><span class="err">;</span><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span>pause<span class="w"> </span><span class="kr">for</span><span class="w"> </span>a<span class="w"> </span>moment<span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">else</span><span class="w">                          </span><span class="o">//</span><span class="w"> </span>otherwise<span class="o">,</span><span class="w"> </span>play<span class="w"> </span>the<span class="w"> </span>note<span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span>tone<span class="o">(</span>buzzerPin<span class="o">,</span><span class="w"> </span>frequency<span class="o">(</span>notes<span class="err">[</span>i<span class="err">]</span><span class="o">),</span><span class="w"> </span>duration<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">      </span>delay<span class="o">(</span>duration<span class="o">)</span><span class="err">;</span><span class="w">            </span><span class="o">//</span><span class="w"> </span>wait<span class="w"> </span><span class="kr">for</span><span class="w"> </span>tone<span class="w"> </span><span class="kr">to</span><span class="w"> </span>finish<span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span>delay<span class="o">(</span>tempo<span class="o">/</span><span class="m">10</span><span class="o">)</span><span class="err">;</span><span class="w">              </span><span class="o">//</span><span class="w"> </span>brief<span class="w"> </span>pause<span class="w"> </span>between<span class="w"> </span>notes<span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="w"> </span>only<span class="w"> </span>want<span class="w"> </span><span class="kr">to</span><span class="w"> </span>play<span class="w"> </span>the<span class="w"> </span>song<span class="w"> </span>once<span class="o">,</span><span class="w"> </span>so<span class="w"> </span>we<span class="s">&#39;ll pause forever:</span>
+<span class="w">  </span><span class="kr">while</span><span class="o">(</span>true<span class="o">)</span><span class="err">{}</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>you<span class="s">&#39;d like your song to play over and over,</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>remove<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>statement<span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+
+int<span class="w"> </span>frequency<span class="o">(</span>char<span class="w"> </span>note<span class="o">)</span><span class="w"> </span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>This<span class="w"> </span>function<span class="w"> </span>takes<span class="w"> </span>a<span class="w"> </span>note<span class="w"> </span>character<span class="w"> </span><span class="o">(</span>a<span class="o">-</span>g<span class="o">),</span><span class="w"> </span>and<span class="w"> </span>returns<span class="w"> </span>the<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>corresponding<span class="w"> </span>frequency<span class="w"> </span>in<span class="w"> </span>Hz<span class="w"> </span><span class="kr">for</span><span class="w"> </span>the<span class="w"> </span>tone<span class="o">()</span><span class="w"> </span>function<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span>int<span class="w"> </span>i<span class="err">;</span><span class="w"></span>
+<span class="w">  </span>const<span class="w"> </span>int<span class="w"> </span>numNotes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>notes<span class="w"> </span>we<span class="s">&#39;re storing</span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>arrays<span class="w"> </span>hold<span class="w"> </span>the<span class="w"> </span>note<span class="w"> </span>characters<span class="w"> </span>and<span class="w"> </span>their<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>corresponding<span class="w"> </span>frequencies<span class="o">.</span><span class="w"> </span>The<span class="w"> </span>last<span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span>note<span class="w"> </span>is<span class="w"> </span>uppercase<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span>separate<span class="w"> </span>it<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>lowercase<span class="w"> </span><span class="s">&quot;c&quot;</span><span class="o">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>add<span class="w"> </span>more<span class="w"> </span>notes<span class="o">,</span><span class="w"> </span>you<span class="s">&#39;ll need to use unique characters.</span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="kr">For</span><span class="w"> </span>the<span class="w"> </span><span class="s">&quot;char&quot;</span><span class="w"> </span><span class="o">(</span>character<span class="o">)</span><span class="w"> </span>type<span class="o">,</span><span class="w"> </span>we<span class="w"> </span>put<span class="w"> </span>single<span class="w"> </span>characters<span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>in<span class="w"> </span>single<span class="w"> </span>quotes<span class="o">.</span><span class="w"></span>
+
+<span class="w">  </span>char<span class="w"> </span>names<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="s">&#39;c&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;d&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;e&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;f&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;g&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;b&#39;</span><span class="o">,</span><span class="w"> </span><span class="s">&#39;C&#39;</span><span class="w"> </span><span class="err">};</span><span class="w"></span>
+<span class="w">  </span>int<span class="w"> </span>frequencies<span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="m">262</span><span class="o">,</span><span class="w"> </span><span class="m">294</span><span class="o">,</span><span class="w"> </span><span class="m">330</span><span class="o">,</span><span class="w"> </span><span class="m">349</span><span class="o">,</span><span class="w"> </span><span class="m">392</span><span class="o">,</span><span class="w"> </span><span class="m">440</span><span class="o">,</span><span class="w"> </span><span class="m">494</span><span class="o">,</span><span class="w"> </span><span class="m">523</span><span class="err">};</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>Now<span class="w"> </span>we<span class="s">&#39;ll search through the letters in the array, and if</span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span>we<span class="w"> </span>find<span class="w"> </span>it<span class="o">,</span><span class="w"> </span>we<span class="s">&#39;ll return the frequency for that note.</span>
+
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="o">(</span>i<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>numNotes<span class="err">;</span><span class="w"> </span>i<span class="o">++)</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>Step<span class="w"> </span>through<span class="w"> </span>the<span class="w"> </span>notes<span class="w"></span>
+<span class="w">  </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>names<span class="err">[</span>i<span class="err">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>note<span class="o">)</span><span class="w">         </span><span class="o">//</span><span class="w"> </span>Is<span class="w"> </span>this<span class="w"> </span>the<span class="w"> </span>one<span class="err">?</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">      </span><span class="kr">return</span><span class="o">(</span>frequencies<span class="err">[</span>i<span class="err">]</span><span class="o">)</span><span class="err">;</span><span class="w">     </span><span class="o">//</span><span class="w"> </span>Yes<span class="err">!</span><span class="w"> </span><span class="kr">Return</span><span class="w"> </span>the<span class="w"> </span>frequency<span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="w">  </span><span class="kr">return</span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>We<span class="w"> </span>looked<span class="w"> </span>through<span class="w"> </span>everything<span class="w"> </span>and<span class="w"> </span>didn<span class="s">&#39;t find it,</span>
+<span class="w">              </span><span class="o">//</span><span class="w"> </span>but<span class="w"> </span>we<span class="w"> </span>still<span class="w"> </span>need<span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span>a<span class="w"> </span>value<span class="o">,</span><span class="w"> </span>so<span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="m">0</span><span class="o">.</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Code To Note</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">char notes[] = "cdfda ag cdfdg gf ";</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">char names[] = {'c','d','e','f','g','a','b','C'};</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Up until now we’ve been working solely with numerical data, but the Arduino can also work with text. Characters (single, printable, letters, numbers and other symbols) have their own type, called “char”. When you have an array of characters, it can be defined between double-quotes (also called a “string”), OR as a list of single-quoted characters.</div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">tone(pin, frequency, duration);</code></div>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+One of Arduino’s many useful built-in commands is the&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">tone()</code>&nbsp;function. This function drives an output pin at a certain frequency, making it perfect for driving buzzers and speakers. If you give it a duration (in milliseconds), it will play the tone then stop. If you don’t give it a duration, it will keep playing the tone forever (but you can stop it with another function,&nbsp;<code style="background: rgb(248, 248, 248); border-radius: 3px; border: 1px solid rgb(234, 234, 234); box-sizing: border-box; font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; margin: 0px 2px; padding: 0px 5px; white-space: nowrap;">noTone()</code>&nbsp;).</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+What You Should See</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+You should see - well, nothing! But you should be able to hear a song. If it isn’t working, make sure you have assembled the circuit correctly and verified and uploaded the code to your board or see the troubleshooting section.</div>
+
+<div class="row" style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-left: -15px; margin-right: -15px;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_11_01.jpg" style="background: 0px 0px; box-sizing: border-box; color: #e0311d; margin-left: 1em; margin-right: 1em; text-decoration: none;"><img src="https://cdn.sparkfun.com/r/600-600/assets/learn_tutorials/3/1/0/SIK_RedBoard_exp_11_01.jpg" style="border: 0px; box-sizing: border-box; height: auto; max-width: 100%; vertical-align: middle;" /></a></div>
+<div class="col-xs-6 col-md-6" style="box-sizing: border-box; float: left; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 390px;">
+</div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Real World Application</h3>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Many modern megaphones have settings that use a loud amplified buzzer. They are usually very loud and quite good at getting people’s attention.</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px;">
+Troubleshooting</h3>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+No Sound</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Given the size and shape of the piezo buzzer it is easy to miss the right holes on the breadboard. Try double checking its placement.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Can’t Think While the Melody is Playing</h4>
+
+<div style="background-color: white; box-sizing: border-box; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; margin-bottom: 10px;">
+Just pull up the piezo buzzer whilst you think, upload your program then plug it back in.</div>
+
+<h4 style="background-color: white; box-sizing: border-box; color: #555555; font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 10px;">
+Feeling Let Down and Deserted</h4>
+
+<div style="background-color: white; box-sizing: border-box; margin-bottom: 10px;">
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+The code is written so you can easily add your own songs.</div>
+<div style="color: #333333; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px;">
+<br /></div>
+<div style="text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif;"><span style="font-size: 14px; line-height: 20px;"><a href="http://www.davidriewe.com/p/experiment-10-reading-soft-potentiometer.html">Experiment 10: Reading a Soft Potentiometer</a>&nbsp;-|-&nbsp;<a href="http://www.davidriewe.com/p/experiment-12-driving-motor.html">Experiment 12: Driving a Motor</a></span></span></div>
+</div>
+
+<h3 style="background-color: white; box-sizing: border-box; color: #555555; font-family: montserrat, 'helvetica neue', helvetica, arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.1; margin-bottom: 10px; margin-top: 20px; text-align: center;">
+<span style="color: #333333; font-family: &quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif; font-size: 14px; line-height: 20px;">Adapted from&nbsp;</span><a href="https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32?_ga=1.62774956.1058471170.1443294570" rel="nofollow" style="color: #7d181e; font-family: 'helvetica neue', helvetica, arial, sans-serif; font-size: 14px; line-height: 20px; text-decoration: none;" target="_blank">Sparkfun Inventor Kit Experiential Guide</a></h3>
+
+<div>
+<br /></div>
+
+<div>
+<h2 style="background-color: white; color: #666666; font-family: 'trebuchet ms', trebuchet, verdana, sans-serif; font-size: 22px; line-height: 20px; margin: 0px; position: relative; text-align: center;">
+<div style="text-align: center;">
+<span style="font-size: large;">Want to save some time learning&nbsp;</span><span style="font-size: large;">Arduino?</span></div>
+<span style="font-size: large;"><div style="text-align: center;">
+Join the thousands of awesome people to sign up for our<br />
+<a href="http://freecourse.hackerspacetech.com/" style="color: #888888; text-decoration: none;">FREE Arduino Video Crash Course!</a></div>
+</span></h2>
+</div>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+</body>
+</html>

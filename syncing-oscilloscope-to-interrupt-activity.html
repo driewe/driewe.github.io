@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Syncing Oscilloscope To Interrupt Activity - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,Oscilloscope,Interrupts,Tutorials" />
+        <meta name="description" content="Debugging interrupt service routines can be very tricky. It&#39;s not like you can print out variabes to the serial port as you might when debugging code outside the interrupt. One way you can can get some idea of what your code is doing in the ISR is to pulse ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Syncing Oscilloscope To Interrupt Activity"/>
+        <meta property="og:url" content="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html"/>
+        <meta property="og:description" content="Debugging interrupt service routines can be very tricky. It&#39;s not like you can print out variabes to the serial port as you might when debugging code outside the interrupt. One way you can can get some idea of what your code is doing in the ISR is to pulse ..."/>
+        <meta property="article:published_time" content="2016-02-22" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Oscilloscope" />
+            <meta property="article:tag" content="Interrupts" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html"
+                       rel="bookmark"
+                       title="Permalink to Syncing Oscilloscope To Interrupt Activity">
+                        Syncing Oscilloscope To Interrupt Activity
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-02-22T15:19:00-06:00"> Mon 22 February 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/oscilloscope.html">Oscilloscope</a>
+        /
+	<a href="https://driewe.github.io/tag/interrupts.html">Interrupts</a>
+        /
+	<a href="https://driewe.github.io/tag/tutorials.html">Tutorials</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="Oscilloscope" src="/images/synching.jpg" /></p>
+<p>Debugging interrupt service routines can be very tricky.  It's not like
+you can print out variabes to the serial port as you might when
+debugging code outside the interrupt.  One way you can can get some idea
+of what your code is doing in the ISR is to pulse one of the GPIO pins
+while in the ISR.  On the 16Mhz Arduino Uno this takes about 4
+microseconds of overhead.  Another reason you might want to generate a
+pusle like this is to synchronize your oscilloscope with another event.</p>
+<p>In the case of this experiment I wanted to see the clocking out of data
+to a <a href="https://www.amazon.com/gp/product/B00HPPOXM4/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HPPOXM4&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=d88428782c982080350c532cf768c759">74HC595</a> shift register. </p>
+<p>This all started when I wanted to modify a sample sketch from the
+Sparkfun inventor kit to allow me to dynamically select and change the
+pattern being displayed on the 8 leds.  The experiment was set up so
+that the student was expected to un comment only the function to be used
+then re-upload the sketch to the arduino/redboard.</p>
+<p>We had an extra <a href="https://www.amazon.com/gp/product/B00C461CAA/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00C461CAA&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=38ce86ad2e2c290d498cbbf8e691dffb">Adafruit RGB LCD Matrix</a> that had an I2C interface and 5
+menu buttons.  This worked very nicely because it only requires 2 pins
+from the redboard.  However, no matter what method you use to interact
+with the redboard in this example, you have the following problem:  The
+sketch as written uses delays between updating the led patterns.  In
+fact, the majority of what the sketch does is wait in delays.  If you
+try and add code that checks for key presses in the main loop of the
+program then you will have times that you need to hold the button or
+press the key for over half a second in order for the sketch to see it.
+  (<a href="https://github.com/driewe/CodeBender/blob/master/SFE_Circuit_14.ino">See sketch that uses polling here</a>.</p>
+<h4>There are are a few ways this can be solved</h4>
+<p>1 - Have the keyboard / buttons generate an external interrupt to the redboard which cases a keyboard read and stores the key pressed in a buffer to be processed soon as the current led pattern function call is finished. (this would require additional hardware to route the physical interrupt signal). 
+2 - Set up a timer interrupt that polls the key for a keypressed, if one if
+found, set a flag and store the keypress for the sketch to process soon
+as the current led pattern function has finished.</p>
+<blockquote>
+<p>Note that both 1 and 2 will involve some delay in the response time but will reduce the need of having the user hold the key or button until the redboard has a chance to check it. </p>
+</blockquote>
+<p>3 - A third way to do this is set up a interrupt that occurs ever
+millisecond, in the interrupt service routine you will check if the
+required time has elapsed and if so update the leds with the next
+pattern.  The main program of your loop will be devoted to interacting
+with the user.  Every millisecond the program will take 15 microseconds
+to decide if it needs to update the led patter on the <a href="https://www.amazon.com/gp/product/B00HPPOXM4/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00HPPOXM4&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=d88428782c982080350c532cf768c759">74HC595</a>.  99% of
+the time it has nothing to do and returns.  When it does need to update
+the display it will take about 135 microseconds to shift the pattern
+out.</p>
+<p>This does require rewriting the code.  No longer will you have functions
+you call for each pattern, but will keep a global variable telling the
+interrupt service routine which pattern is active and will decide how to
+do that within the interrupt service routine.  The advantage to doing
+this is the updating the display is happening in the background and
+allowing the main program to be more interactive with the user.
+Here is a video of the project along with the code:  </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4tIKYcS4_fo" frameborder="0" allowfullscreen></iframe>
+
+<h3>Code Used In Video</h3>
+<div class="highlight"><pre><span></span><span class="c1">// include the library code: for Adafruit RGB LCD</span>
+<span class="cp">#include</span> <span class="cpf">&lt;Wire.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Adafruit_RGBLCDShield.h&gt;</span><span class="cp"></span>
+<span class="c1">//#include &lt;utility/Adafruit_MCP23017.h&gt;</span>
+
+<span class="n">Adafruit_RGBLCDShield</span> <span class="n">lcd</span> <span class="o">=</span> <span class="n">Adafruit_RGBLCDShield</span><span class="p">();</span>
+
+<span class="c1">// These #defines make it easy to set the backlight color</span>
+<span class="cp">#define RED 0x1</span>
+<span class="cp">#define YELLOW 0x3</span>
+<span class="cp">#define GREEN 0x2</span>
+<span class="cp">#define TEAL 0x6</span>
+<span class="cp">#define BLUE 0x4</span>
+<span class="cp">#define VIOLET 0x5</span>
+<span class="cp">#define WHITE 0x7</span>
+
+<span class="cp">#define MAX_MENU_ITEMS 8</span>
+
+<span class="kt">char</span><span class="o">*</span> <span class="n">Menu</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;1 After Another&quot;</span><span class="p">,</span> <span class="s">&quot;1 at a time&quot;</span><span class="p">,</span> <span class="s">&quot;Ping Pong&quot;</span><span class="p">,</span>
+                <span class="s">&quot;Random LED&quot;</span><span class="p">,</span> <span class="s">&quot;Marquee&quot;</span><span class="p">,</span> <span class="s">&quot;Binary Count&quot;</span><span class="p">,</span> <span class="s">&quot;Increase Delay&quot;</span><span class="p">,</span>
+                <span class="s">&quot;Decrease Delay&quot;</span>
+               <span class="p">};</span>
+
+<span class="c1">// Pin definitions:</span>
+<span class="c1">// The 74HC595 uses a type of serial connection called SPI</span>
+<span class="c1">// (Serial Peripheral Interface) that requires three pins:</span>
+
+<span class="kt">int</span> <span class="n">datapin</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">clockpin</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">latchpin</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+
+
+<span class="c1">// We&#39;ll also declare a global variable for the data we&#39;re</span>
+<span class="c1">// sending to the shift register:</span>
+<span class="n">byte</span> <span class="n">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                              <span class="c1">// current bit that is being acted on</span>
+<span class="kt">int</span> <span class="n">menuIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                          <span class="c1">// actively displayed menu item</span>
+<span class="kt">int</span> <span class="n">activePattern</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">delayTime</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>                            <span class="c1">// delay in milliseconds</span>
+<span class="n">boolean</span> <span class="n">PatternChanged</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">boolean</span> <span class="n">direction</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="n">boolean</span> <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                <span class="c1">// used by</span>
+<span class="n">boolean</span> <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">long</span>  <span class="n">PreviousMillis</span><span class="p">,</span> <span class="n">CurrentMillis</span><span class="p">;</span>  <span class="c1">// will store last time LED was updated</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="c1">// Set the three SPI pins to be outputs:</span>
+
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">datapin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">clockpin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">latchpin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="c1">// set up the LCD&#39;s number of columns and rows:</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Use up/dn buttons&quot;</span><span class="p">);</span>
+
+    <span class="c1">// Timer0 is already used for millis() - we&#39;ll just interrupt somewhere</span>
+    <span class="c1">// in the middle and call the &quot;Compare A&quot; function below</span>
+    <span class="n">OCR0A</span> <span class="o">=</span> <span class="mh">0xAF</span><span class="p">;</span>
+    <span class="n">TIMSK0</span> <span class="o">|=</span> <span class="n">_BV</span><span class="p">(</span><span class="n">OCIE0A</span><span class="p">);</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Use up/dn buttons&quot;</span><span class="p">);</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">Menu</span><span class="p">[</span><span class="n">menuIndex</span><span class="p">]);</span>
+
+
+<span class="p">}</span>
+
+
+<span class="c1">// Interrupt is called once a millisecond</span>
+<span class="n">SIGNAL</span><span class="p">(</span><span class="n">TIMER0_COMPA_vect</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">CurrentMillis</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">PatternChanged</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">PatternChanged</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">CurrentMillis</span> <span class="o">-</span> <span class="n">PreviousMillis</span> <span class="o">&gt;</span> <span class="n">delayTime</span> <span class="o">||</span> <span class="n">SkipDelay</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>       <span class="c1">// is it time to update?</span>
+    <span class="p">{</span>
+        <span class="n">PreviousMillis</span> <span class="o">=</span> <span class="n">CurrentMillis</span><span class="p">;</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>     <span class="c1">// for scope trigger</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+
+        <span class="k">switch</span> <span class="p">(</span><span class="n">activePattern</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>                             <span class="c1">// One after another</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">true</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">true</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">direction</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">false</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="p">{</span>
+
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                    <span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">false</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">direction</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+
+            <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>                         <span class="c1">//  One at a time</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">TimeToTurnOn</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>                        <span class="c1">// time to turn off and update index</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span>
+                    <span class="p">{</span>
+                        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                    <span class="p">}</span>
+
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>                     <span class="c1">// ping pong</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">TimeToTurnOn</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                    <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>                        <span class="c1">// time to turn off and update index</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                    <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="n">direction</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                            <span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span>                <span class="c1">// direction must be false</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="n">direction</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+
+            <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>                     <span class="c1">//random</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">TimeToTurnOn</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                    <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                    <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+
+            <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>    <span class="c1">// Marquee</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">TimeToTurnOn</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                    <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>                        <span class="c1">// time to turn off and update index</span>
+                <span class="p">{</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                    <span class="n">shiftWrite</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                    <span class="n">TimeToTurnOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                    <span class="n">SkipDelay</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+
+                    <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="n">direction</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                            <span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span>                <span class="c1">// direction must be false</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="n">direction</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+
+                <span class="k">break</span><span class="p">;</span>
+
+            <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>             <span class="c1">// binary count</span>
+                <span class="n">digitalWrite</span><span class="p">(</span><span class="n">latchpin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+
+                <span class="n">shiftOut</span><span class="p">(</span><span class="n">datapin</span><span class="p">,</span> <span class="n">clockpin</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+
+                <span class="n">digitalWrite</span><span class="p">(</span><span class="n">latchpin</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+                <span class="n">data</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="kt">void</span> <span class="n">loop</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="kt">uint8_t</span> <span class="n">buttons</span> <span class="o">=</span> <span class="n">lcd</span><span class="p">.</span><span class="n">readButtons</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">buttons</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">buttons</span> <span class="o">&amp;</span> <span class="n">BUTTON_UP</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">menuIndex</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">menuIndex</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="c1">//menuIndex = 0;</span>
+                <span class="n">menuIndex</span> <span class="o">=</span> <span class="n">MAX_MENU_ITEMS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">buttons</span> <span class="o">&amp;</span> <span class="n">BUTTON_DOWN</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">menuIndex</span> <span class="o">&lt;</span> <span class="n">MAX_MENU_ITEMS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">menuIndex</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="c1">//menuIndex = MAX_MENU_ITEMS - 1;</span>
+                <span class="n">menuIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">buttons</span> <span class="o">&amp;</span> <span class="n">BUTTON_SELECT</span><span class="p">)</span>        <span class="c1">//if select then assign the selected</span>
+        <span class="p">{</span>
+            <span class="c1">//menu item</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">menuIndex</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">delayTime</span> <span class="o">+=</span> <span class="mi">25</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">menuIndex</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">delayTime</span> <span class="o">-=</span> <span class="mi">25</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">activePattern</span> <span class="o">=</span> <span class="n">menuIndex</span><span class="p">;</span>
+                <span class="n">PatternChanged</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>          <span class="c1">// flag the change for the ISR</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Use up/dn buttons&quot;</span><span class="p">);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">Menu</span><span class="p">[</span><span class="n">menuIndex</span><span class="p">]);</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">//</span>
+<span class="kt">void</span> <span class="n">shiftWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">desiredPin</span><span class="p">,</span> <span class="n">boolean</span> <span class="n">desiredState</span><span class="p">)</span>
+<span class="c1">// This function lets you make the shift register outputs</span>
+<span class="c1">// HIGH or LOW in exactly the same way that you use digitalWrite().</span>
+<span class="p">{</span>
+    <span class="n">bitWrite</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">desiredPin</span><span class="p">,</span> <span class="n">desiredState</span><span class="p">);</span>
+
+    <span class="n">shiftOut</span><span class="p">(</span><span class="n">datapin</span><span class="p">,</span> <span class="n">clockpin</span><span class="p">,</span> <span class="n">MSBFIRST</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">latchpin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">latchpin</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
+        <li><a href="https://driewe.github.io/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="https://driewe.github.io/matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+        <li><a href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
+        <li><a href="https://driewe.github.io/max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+        <li><a href="https://driewe.github.io/multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
+        <li><a href="https://driewe.github.io/understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

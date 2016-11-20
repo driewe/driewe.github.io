@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read. - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,Programming,Tutorials" />
+        <meta name="description" content="Sometimes you want everything in the program to stop while a given condition is true. You can do this using a while loop. This example shows how to use a while loop to calibrate the value of an analog sensor. In the main loop, the sketch below reads the value ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read."/>
+        <meta property="og:url" content="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html"/>
+        <meta property="og:description" content="Sometimes you want everything in the program to stop while a given condition is true. You can do this using a while loop. This example shows how to use a while loop to calibrate the value of an analog sensor. In the main loop, the sketch below reads the value ..."/>
+        <meta property="article:published_time" content="2016-11-08" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Programming" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html"
+                       rel="bookmark"
+                       title="Permalink to While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.">
+                        While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-11-08T00:00:00-06:00"> Tue 08 November 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/programming.html">Programming</a>
+        /
+	<a href="https://driewe.github.io/tag/tutorials.html">Tutorials</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Sometimes you want everything in the program to stop while a given condition is true. You can do this using a <a href="http://www.arduino.cc/en/Reference/While">while loop</a>. This example shows how to use a while loop to <a href="http://www.arduino.cc/en/Tutorial/Calibration">calibrate</a> the value of an analog sensor.</p>
+<p>In the main loop, the sketch below reads the value of a photoresistor on analog pin 0 and uses it to fade an LED on pin 9. But while a button attached to digital pin 2 is pressed, the program runs a method called calibrate() that looks for the highest and lowest values of the analog sensor. When you release the button, the sketch continues with the main loop.</p>
+<p>This technique lets you update the maximum and minimum values for the photoresistor when the lighting conditions change.</p>
+<h3>Hardware Required</h3>
+<ul>
+<li>Arduino</li>
+<li>pushbutton or switch</li>
+<li>photoresistor or another analog sensor</li>
+<li>2 10k ohm resistors</li>
+<li>breadboard</li>
+</ul>
+<h3>Circuit</h3>
+<p>Connect your analog sensor (e.g. potentiometer, light sensor) on analog input 2 with a 10K ohm resistor to ground. Connect your button to digital pin, again with a 10K ohm resistor to ground. Connect your LED to digital pin 9, with a 220 ohm resistor in series.</p>
+<p><img alt="Circuit" src="http://www.arduino.cc/en/uploads/Tutorial/while_bb.png" /></p>
+<p><em>image developed using Fritzing. For more circuit examples, see the Fritzing project page</em></p>
+<h3>Schematic</h3>
+<p><img alt="Arduino" src="http://www.arduino.cc/en/uploads/Tutorial/whileloop_schem.png" /></p>
+<h3>Code</h3>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">  Conditionals - while statement</span>
+
+<span class="cm"> This example demonstrates the use of  while() statements.</span>
+
+<span class="cm"> While the pushbutton is pressed, the sketch runs the calibration routine.</span>
+<span class="cm"> The  sensor readings during the while loop define the minimum and maximum</span>
+<span class="cm"> of expected values from the photo resistor.</span>
+
+<span class="cm"> This is a variation on the calibrate example.</span>
+
+<span class="cm"> The circuit:</span>
+<span class="cm"> * photo resistor connected from +5V to analog in pin 0</span>
+<span class="cm"> * 10K resistor connected from ground to analog in pin 0</span>
+<span class="cm"> * LED connected from digital pin 9 to ground through 220 ohm resistor</span>
+<span class="cm"> * pushbutton attached from pin 2 to +5V</span>
+<span class="cm"> * 10K resistor attached from pin 2 to ground</span>
+
+<span class="cm"> created 17 Jan 2009</span>
+<span class="cm"> modified 30 Aug 2011</span>
+<span class="cm"> by Tom Igoe</span>
+
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> http://www.arduino.cc/en/Tutorial/WhileLoop</span>
+
+<span class="cm"> */</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>These<span class="w"> </span>constants<span class="w"> </span>won<span class="s">&#39;t change:</span>
+const<span class="w"> </span>int<span class="w"> </span>sensorPin<span class="w"> </span><span class="o">=</span><span class="w"> </span>A2<span class="err">;</span><span class="w">       </span><span class="o">//</span><span class="w"> </span>pin<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>sensor<span class="w"> </span>is<span class="w"> </span>attached<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>ledPin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="err">;</span><span class="w">           </span><span class="o">//</span><span class="w"> </span>pin<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>is<span class="w"> </span>attached<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>indicatorLedPin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13</span><span class="err">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span>pin<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>built<span class="o">-</span>in<span class="w"> </span>LED<span class="w"> </span>is<span class="w"> </span>attached<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+const<span class="w"> </span>int<span class="w"> </span>buttonPin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="err">;</span><span class="w">        </span><span class="o">//</span><span class="w"> </span>pin<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>attached<span class="w"> </span><span class="kr">to</span><span class="w"></span>
+
+
+<span class="o">//</span><span class="w"> </span>These<span class="w"> </span>variables<span class="w"> </span>will<span class="w"> </span><span class="nl">change</span><span class="o">:</span><span class="w"></span>
+int<span class="w"> </span>sensorMin<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1023</span><span class="err">;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>minimum<span class="w"> </span>sensor<span class="w"> </span>value<span class="w"></span>
+int<span class="w"> </span>sensorMax<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">     </span><span class="o">//</span><span class="w"> </span>maximum<span class="w"> </span>sensor<span class="w"> </span>value<span class="w"></span>
+int<span class="w"> </span>sensorValue<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="err">;</span><span class="w">         </span><span class="o">//</span><span class="w"> </span>the<span class="w"> </span>sensor<span class="w"> </span>value<span class="w"></span>
+
+void<span class="w"> </span>setup<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>set<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>pins<span class="w"> </span>as<span class="w"> </span>outputs<span class="w"> </span>and<span class="w"> </span>the<span class="w"> </span>switch<span class="w"> </span>pin<span class="w"> </span>as<span class="w"> </span><span class="nl">input</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>pinMode<span class="o">(</span>indicatorLedPin<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>pinMode<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>OUTPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span>pinMode<span class="o">(</span>buttonPin<span class="o">,</span><span class="w"> </span>INPUT<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">while</span><span class="w"> </span>the<span class="w"> </span>button<span class="w"> </span>is<span class="w"> </span>pressed<span class="o">,</span><span class="w"> </span>take<span class="w"> </span>calibration<span class="w"> </span><span class="nl">readings</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span>digitalRead<span class="o">(</span>buttonPin<span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>HIGH<span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>calibrate<span class="o">()</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="kr">signal</span><span class="w"> </span>the<span class="w"> </span><span class="kr">end</span><span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>calibration<span class="w"> </span>period<span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>indicatorLedPin<span class="o">,</span><span class="w"> </span>LOW<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>the<span class="w"> </span><span class="nl">sensor</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>sensorValue<span class="w"> </span><span class="o">=</span><span class="w"> </span>analogRead<span class="o">(</span>sensorPin<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>apply<span class="w"> </span>the<span class="w"> </span>calibration<span class="w"> </span><span class="kr">to</span><span class="w"> </span>the<span class="w"> </span>sensor<span class="w"> </span>reading<span class="w"></span>
+<span class="w">    </span>sensorValue<span class="w"> </span><span class="o">=</span><span class="w"> </span>map<span class="o">(</span>sensorValue<span class="o">,</span><span class="w"> </span>sensorMin<span class="o">,</span><span class="w"> </span>sensorMax<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">255</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>in<span class="w"> </span>case<span class="w"> </span>the<span class="w"> </span>sensor<span class="w"> </span>value<span class="w"> </span>is<span class="w"> </span>outside<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span>seen<span class="w"> </span>during<span class="w"> </span>calibration<span class="w"></span>
+<span class="w">    </span>sensorValue<span class="w"> </span><span class="o">=</span><span class="w"> </span>constrain<span class="o">(</span>sensorValue<span class="o">,</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="m">255</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>fade<span class="w"> </span>the<span class="w"> </span>LED<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>calibrated<span class="w"> </span><span class="nl">value</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>analogWrite<span class="o">(</span>ledPin<span class="o">,</span><span class="w"> </span>sensorValue<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+void<span class="w"> </span>calibrate<span class="o">()</span><span class="w"></span>
+<span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>turn<span class="w"> </span><span class="kr">on</span><span class="w"> </span>the<span class="w"> </span>indicator<span class="w"> </span>LED<span class="w"> </span><span class="kr">to</span><span class="w"> </span>indicate<span class="w"> </span>that<span class="w"> </span>calibration<span class="w"> </span>is<span class="w"> </span><span class="nl">happening</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>digitalWrite<span class="o">(</span>indicatorLedPin<span class="o">,</span><span class="w"> </span>HIGH<span class="o">)</span><span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>read<span class="w"> </span>the<span class="w"> </span><span class="nl">sensor</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span>sensorValue<span class="w"> </span><span class="o">=</span><span class="w"> </span>analogRead<span class="o">(</span>sensorPin<span class="o">)</span><span class="err">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>record<span class="w"> </span>the<span class="w"> </span>maximum<span class="w"> </span>sensor<span class="w"> </span>value<span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>sensorValue<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>sensorMax<span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>sensorMax<span class="w"> </span><span class="o">=</span><span class="w"> </span>sensorValue<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">//</span><span class="w"> </span>record<span class="w"> </span>the<span class="w"> </span>minimum<span class="w"> </span>sensor<span class="w"> </span>value<span class="w"></span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="o">(</span>sensorValue<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>sensorMin<span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span>sensorMin<span class="w"> </span><span class="o">=</span><span class="w"> </span>sensorValue<span class="err">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
+        <li><a href="https://driewe.github.io/virtual-color-mixer.html">Virtual Color Mixer</a></li>
+        <li><a href="https://driewe.github.io/switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+        <li><a href="https://driewe.github.io/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+        <li><a href="https://driewe.github.io/ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
+        <li><a href="https://driewe.github.io/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="https://driewe.github.io/matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

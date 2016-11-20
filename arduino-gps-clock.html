@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Arduino GPS Clock - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/arduino-gps-clock.html">
+
+        <meta name="author" content="David Riewe" />
+        <meta name="keywords" content="Arduino,GPS,Projects" />
+        <meta name="description" content="I built the Arduino GPS Clock by Tony DiCola over at Adafruit. The clock was very cool, setting it&#39;s time from the satellites, however, I soon started feeling like I was wasting my GPS shield by only using it to get time. So I decided to use the RGB ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Arduino GPS Clock"/>
+        <meta property="og:url" content="https://driewe.github.io/arduino-gps-clock.html"/>
+        <meta property="og:description" content="I built the Arduino GPS Clock by Tony DiCola over at Adafruit. The clock was very cool, setting it&#39;s time from the satellites, however, I soon started feeling like I was wasting my GPS shield by only using it to get time. So I decided to use the RGB ..."/>
+        <meta property="article:published_time" content="2016-04-10" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="GPS" />
+            <meta property="article:tag" content="Projects" />
+            <meta property="article:author" content="David Riewe" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/arduino-gps-clock.html"
+                       rel="bookmark"
+                       title="Permalink to Arduino GPS Clock">
+                        Arduino GPS Clock
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-04-10T12:23:00-05:00"> Sun 10 April 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/gps.html">GPS</a>
+        /
+	<a href="https://driewe.github.io/tag/projects.html">Projects</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="GPS CLock" src="/images/gps-clock-3.jpg" /></p>
+<p>I built the <a href="https://learn.adafruit.com/arduino-clock">Arduino GPS Clock</a> by <a href="https://learn.adafruit.com/users/tdicola">Tony DiCola</a> over at Adafruit.
+The clock was very cool, setting it's time from the satellites, however, I soon started feeling like I was wasting my GPS shield by only using it to get time. So I decided to use the RGB LCD Shield which would allow me to display more information and be more interactive with the device. At the time of this writing I have four boards stacked.  1) Thearduino, 2) An Ad afruit PowerBoost Shield with a 2000ma Lipo Battery, 3) The Adafruit Ultimate GPS Logger Shield and 4) the Adafruit RGB LCD Shield.</p>
+<p><img alt="GPS Clock" src="/images/gps-clock-4.jpg" /></p>
+<p>Having four boards stacked does make it bulky but I will be reducing that by dropping the Arduino Uno R3 board and replacing it's functionality with an Arduino Pro Mini placed in the prototype section of the GPS Logger Shield.
+On the software side I currently have it displaying the time and date on its initial screen.  Other screens show "Latitude and Longitude", "Speed and Angle", Altitude and Satellites, then the Select button displays the message "This is a clock NOT a bomb. :-)</p>
+<p>I plan to add some code to support logging GPS coordinates to the SD card.  Then I would like to try and implement Ladyada's logger which is interrupt driven to log data.  I would hope to accomplish a feature where background logging could be turned on and off.  The user in the foreground could set flags that would mark spots as important for the back ground logger to flag so that it could be recognized later when importing the data to google maps or some other gps mapping system.</p>
+<div class="highlight"><pre><span></span>// <span class="n">Clock</span> <span class="n">example</span> <span class="n">using</span> <span class="n">a</span> <span class="n">seven</span> <span class="n">segment</span> <span class="n">display</span> &amp; <span class="n">GPS</span> <span class="k">for</span> <span class="nb">time</span>.
+//
+// <span class="n">Must</span> <span class="n">have</span> <span class="n">the</span> <span class="n">Adafruit</span> <span class="n">GPS</span> <span class="n">library</span> <span class="n">installed</span> <span class="n">too</span>!  <span class="n">See:</span>
+//   <span class="n">https:</span>//<span class="n">github</span>.<span class="n">com</span><span class="o">/</span><span class="n">adafruit</span><span class="o">/</span><span class="n">Adafruit-GPS-Library</span>
+//
+// <span class="n">Designed</span> <span class="n">specifically</span> <span class="nb">to</span> <span class="n">work</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Adafruit</span> <span class="n">LED</span> <span class="mi">7</span><span class="o">-</span><span class="n">Segment</span> <span class="n">backpacks</span>
+// <span class="o">and</span> <span class="n">ultimate</span> <span class="n">GPS</span> <span class="n">breakout</span><span class="o">/</span><span class="n">shield:</span>
+// ----&gt; <span class="n">http:</span>//<span class="n">www</span>.<span class="n">adafruit</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">881</span>
+// ----&gt; <span class="n">http:</span>//<span class="n">www</span>.<span class="n">adafruit</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">880</span>
+// ----&gt; <span class="n">http:</span>//<span class="n">www</span>.<span class="n">adafruit</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">879</span>
+// ----&gt; <span class="n">http:</span>//<span class="n">www</span>.<span class="n">adafruit</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">878</span>
+// ----&gt; <span class="n">http:</span>//<span class="n">www</span>.<span class="n">adafruit</span>.<span class="n">com</span><span class="o">/</span><span class="n">products</span><span class="o">/</span><span class="mi">746</span>
+//
+// <span class="n">Adafruit</span> <span class="n">invests</span> <span class="nb">time</span> <span class="o">and</span> <span class="n">resources</span> <span class="n">providing</span> <span class="n">this</span> <span class="nb">open</span> <span class="n">source</span> <span class="n">code</span>,<span class="sr"></span>
+<span class="sr">//</span> <span class="n">please</span> <span class="n">support</span> <span class="n">Adafruit</span> <span class="o">and</span> <span class="n">open-source</span> <span class="n">hardware</span> <span class="nb">by</span> <span class="n">purchasing</span>
+// <span class="n">products</span> <span class="nb">from</span> <span class="n">Adafruit</span>!
+//
+// <span class="n">Written</span> <span class="nb">by</span> <span class="n">Tony</span> <span class="n">DiCola</span> <span class="k">for</span> <span class="n">Adafruit</span> <span class="n">Industries</span>.
+// <span class="n">Released</span> <span class="n">under</span> <span class="n">MIT</span> <span class="n">a</span> <span class="n">license:</span> <span class="n">https:</span>//<span class="n">opensource</span>.<span class="n">org</span><span class="o">/</span><span class="n">licenses</span><span class="o">/</span><span class="n">MIT</span>
+<span class="c c-Singleline">#include &lt;SoftwareSerial.h&gt;</span>
+<span class="c c-Singleline">#include &lt;Wire.h&gt;</span>
+<span class="c c-Singleline">#include &quot;Adafruit_LEDBackpack.h&quot;</span>
+<span class="c c-Singleline">#include &quot;Adafruit_GFX.h&quot;</span>
+<span class="c c-Singleline">#include &quot;Adafruit_GPS.h&quot;</span>
+
+
+// <span class="nb">Set</span> <span class="nb">to</span> <span class="n">false</span> <span class="nb">to</span> <span class="n">display</span> <span class="nb">time</span> <span class="n">in</span> <span class="mi">12</span> <span class="n">hour</span> <span class="n">format</span>, <span class="o">or</span> <span class="nb">true</span> <span class="nb">to</span> <span class="k">use</span> <span class="mi">24</span> <span class="n">hour:</span>
+<span class="c c-Singleline">#define TIME_24_HOUR      false</span>
+
+// <span class="n">Offset</span> <span class="n">the</span> <span class="n">hours</span> <span class="nb">from</span> <span class="n">UTC</span> (<span class="n">universal</span> <span class="nb">time</span>) <span class="nb">to</span> <span class="n">your</span> <span class="n">local</span> <span class="nb">time</span> <span class="nb">by</span> <span class="n">changing</span>
+// <span class="n">this</span> <span class="nb">value</span>.  <span class="n">The</span> <span class="n">GPS</span> <span class="nb">time</span> <span class="k">will</span> <span class="n">be</span> <span class="n">in</span> <span class="n">UTC</span> <span class="o">so</span> <span class="n">lookup</span> <span class="n">the</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">your</span>
+// <span class="n">local</span> <span class="nb">time</span> <span class="nb">from</span> <span class="n">a</span> <span class="n">site</span> <span class="n">like:</span>
+//   <span class="n">https:</span>//<span class="n">en</span>.<span class="n">wikipedia</span>.<span class="n">org</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">List_of_UTC_time_offsets</span>
+// <span class="n">This</span> <span class="nb">value</span>, -<span class="mi">7</span>, <span class="k">will</span> <span class="n">set</span> <span class="n">the</span> <span class="nb">time</span> <span class="nb">to</span> <span class="n">UTC-7</span> <span class="o">or</span> <span class="n">Pacific</span> <span class="n">Standard</span> <span class="n">Time</span> <span class="n">during</span>
+// <span class="n">daylight</span> <span class="n">savings</span> <span class="nb">time</span>.
+<span class="c c-Singleline">#define HOUR_OFFSET       -6</span>
+
+// <span class="n">I2C</span> <span class="n">address</span> <span class="k">of</span> <span class="n">the</span> <span class="n">display</span>.  <span class="n">Stick</span> <span class="n">with</span> <span class="n">the</span> <span class="k">default</span> <span class="n">address</span> <span class="k">of</span> <span class="mh">0x70</span>
+// <span class="k">unless</span> <span class="n">you&#39;ve</span> <span class="n">changed</span> <span class="n">the</span> <span class="n">address</span> <span class="n">jumpers</span> <span class="n">on</span> <span class="n">the</span> <span class="n">back</span> <span class="k">of</span> <span class="n">the</span> <span class="n">display</span>.
+<span class="c c-Singleline">#define DISPLAY_ADDRESS   0x70</span>
+
+
+// <span class="n">Create</span> <span class="n">display</span> <span class="o">and</span> <span class="n">GPS</span> <span class="n">objects</span>.  <span class="n">These</span> <span class="n">are</span> <span class="n">global</span> <span class="n">variables</span> <span class="n">that</span>
+// <span class="nb">can</span> <span class="n">be</span> <span class="n">accessed</span> <span class="nb">from</span> <span class="n">both</span> <span class="n">the</span> <span class="n">setup</span> <span class="o">and</span> <span class="k">loop</span> <span class="n">function</span> <span class="n">below</span>.
+<span class="n">Adafruit_7segment</span> <span class="n">clockDisplay</span> = <span class="n">Adafruit_7segment</span>();
+
+<span class="n">SoftwareSerial</span> <span class="n">gpsSerial</span>(<span class="mi">8</span>, <span class="mi">7</span>);  // <span class="n">GPS</span> <span class="n">breakout</span><span class="o">/</span><span class="n">shield</span> <span class="k">will</span> <span class="k">use</span> <span class="n">a</span>
+// <span class="n">software</span> <span class="n">serial</span> <span class="n">connection</span> <span class="n">with</span>
+// <span class="n">TX</span> = <span class="n">pin</span> <span class="mi">8</span> <span class="o">and</span> <span class="n">RX</span> = <span class="n">pin</span> <span class="mi">7</span>.
+
+<span class="n">Adafruit_GPS</span> <span class="n">gps</span>(<span class="nv">&amp;gpsSerial</span>);
+
+
+<span class="nb">void</span> <span class="n">setup</span>()
+{
+    // <span class="n">Setup</span> <span class="n">function</span> <span class="n">runs</span> <span class="nb">once</span> <span class="n">at</span> <span class="n">startup</span> <span class="nb">to</span> <span class="n">initialize</span> <span class="n">the</span> <span class="n">display</span> <span class="o">and</span> <span class="n">GPS</span>.
+
+    // <span class="n">Setup</span> <span class="n">Serial</span> <span class="n">port</span> <span class="nb">to</span> <span class="nb">print</span> <span class="n">debug</span> <span class="n">output</span>.
+    <span class="n">Serial</span>.<span class="n">begin</span>(<span class="mi">115200</span>);
+    <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;Clock starting!&quot;</span>);
+
+    // <span class="n">Setup</span> <span class="n">the</span> <span class="n">display</span>.
+    <span class="n">clockDisplay</span>.<span class="n">begin</span>(<span class="n">DISPLAY_ADDRESS</span>);
+
+    // <span class="n">Setup</span> <span class="n">the</span> <span class="n">GPS</span> <span class="n">using</span> <span class="n">a</span> <span class="mi">9600</span> <span class="n">baud</span> <span class="n">connection</span> (<span class="n">the</span> <span class="k">default</span> <span class="k">for</span> <span class="n">most</span>
+    // <span class="n">GPS</span> <span class="n">modules</span>).
+    <span class="n">gps</span>.<span class="n">begin</span>(<span class="mi">9600</span>);
+
+    // <span class="n">Configure</span> <span class="n">GPS</span> <span class="nb">to</span> <span class="n">onlu</span> <span class="n">output</span> <span class="n">minimum</span> <span class="n">data</span> (<span class="n">location</span>, <span class="nb">time</span>, <span class="n">fix</span>).
+    <span class="n">gps</span>.<span class="n">sendCommand</span>(<span class="n">PMTK_SET_NMEA_OUTPUT_RMCONLY</span>);
+
+    // <span class="n">Use</span> <span class="n">a</span> <span class="mi">1</span> <span class="n">hz</span>, <span class="nb">once</span> <span class="n">a</span> <span class="n">second</span>, <span class="n">update</span> <span class="n">rate</span>.
+    <span class="n">gps</span>.<span class="n">sendCommand</span>(<span class="n">PMTK_SET_NMEA_UPDATE_1HZ</span>);
+
+    // <span class="n">Enable</span> <span class="n">the</span> <span class="n">interrupt</span> <span class="nb">to</span> <span class="n">parse</span> <span class="n">GPS</span> <span class="n">data</span>.
+    <span class="n">enableGPSInterrupt</span>();
+}
+
+<span class="nb">void</span> <span class="k">loop</span>()
+{
+    // <span class="n">Loop</span> <span class="n">function</span> <span class="n">runs</span> <span class="n">over</span> <span class="o">and</span> <span class="n">over</span> <span class="n">again</span> <span class="nb">to</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">clock</span> <span class="n">logic</span>.
+
+    // <span class="n">Check</span> <span class="k">if</span> <span class="n">GPS</span> <span class="k">has</span> <span class="nb">new</span> <span class="n">data</span> <span class="o">and</span> <span class="n">parse</span> <span class="n">it</span>.
+    <span class="k">if</span> (<span class="n">gps</span>.<span class="n">newNMEAreceived</span>())
+    {
+        <span class="n">gps</span>.<span class="n">parse</span>(<span class="n">gps</span>.<span class="n">lastNMEA</span>());
+    }
+
+    // <span class="n">Grab</span> <span class="n">the</span> <span class="n">current</span> <span class="n">hours</span>, <span class="n">minutes</span>, <span class="n">seconds</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">GPS</span>.
+    // <span class="n">This</span> <span class="k">will</span> <span class="k">only</span> <span class="n">be</span> <span class="n">set</span> <span class="nb">once</span> <span class="n">the</span> <span class="n">GPS</span> <span class="k">has</span> <span class="n">a</span> <span class="n">fix</span>!  <span class="n">Make</span> <span class="n">sure</span> <span class="nb">to</span> <span class="n">add</span>
+    // <span class="n">a</span> <span class="n">coin</span> <span class="n">cell</span> <span class="n">battery</span> <span class="o">so</span> <span class="n">the</span> <span class="n">GPS</span> <span class="k">will</span> <span class="n">save</span> <span class="n">the</span> <span class="nb">time</span> <span class="n">between</span> <span class="n">power-up</span><span class="o">/</span><span class="n">down</span>.
+    <span class="nb">int</span> <span class="n">hours</span> = <span class="n">gps</span>.<span class="n">hour</span> + <span class="n">HOUR_OFFSET</span>;  // <span class="n">Add</span> <span class="n">hour</span> <span class="n">offset</span> <span class="nb">to</span> <span class="n">convert</span> <span class="nb">from</span> <span class="n">UTC</span>
+    // <span class="nb">to</span> <span class="n">local</span> <span class="nb">time</span>.
+    // <span class="n">Handle</span> <span class="k">when</span> <span class="n">UTC</span> + <span class="n">offset</span> <span class="n">wraps</span> <span class="n">around</span> <span class="nb">to</span> <span class="n">a</span> <span class="n">negative</span> <span class="o">or</span> &gt; <span class="mi">23</span> <span class="nb">value</span>.
+    <span class="k">if</span> (<span class="n">hours</span> &lt; <span class="mi">0</span>)
+    {
+        <span class="n">hours</span> = <span class="mi">24</span> + <span class="n">hours</span>;
+    }
+    <span class="k">if</span> (<span class="n">hours</span> &gt; <span class="mi">23</span>)
+    {
+        <span class="n">hours</span> = <span class="mi">24</span> - <span class="n">hours</span>;
+    }
+    <span class="nb">int</span> <span class="n">minutes</span> = <span class="n">gps</span>.<span class="n">minute</span>;
+    <span class="nb">int</span> <span class="n">seconds</span> = <span class="n">gps</span>.<span class="n">seconds</span>;
+
+    // <span class="n">Show</span> <span class="n">the</span> <span class="nb">time</span> <span class="n">on</span> <span class="n">the</span> <span class="n">display</span> <span class="nb">by</span> <span class="n">turning</span> <span class="n">it</span> <span class="n">into</span> <span class="n">a</span> <span class="n">numeric</span>
+    // <span class="nb">value</span>, <span class="nb">like</span> <span class="mi">3</span>:<span class="mi">30</span> <span class="n">turns</span> <span class="n">into</span> <span class="mi">330</span>, <span class="nb">by</span> <span class="n">multiplying</span> <span class="n">the</span> <span class="n">hour</span> <span class="nb">by</span>
+    // <span class="mi">100</span> <span class="o">and</span> <span class="n">then</span> <span class="n">adding</span> <span class="n">the</span> <span class="n">minutes</span>.
+    <span class="nb">int</span> <span class="n">displayValue</span> = <span class="n">hours</span> * <span class="mi">100</span> + <span class="n">minutes</span>;
+
+    // <span class="n">Do</span> <span class="mi">24</span> <span class="n">hour</span> <span class="nb">to</span> <span class="mi">12</span> <span class="n">hour</span> <span class="n">format</span> <span class="n">conversion</span> <span class="k">when</span> <span class="k">required</span>.
+    <span class="k">if</span> (!<span class="n">TIME_24_HOUR</span>)
+    {
+        // <span class="n">Handle</span> <span class="k">when</span> <span class="n">hours</span> <span class="n">are</span> <span class="n">past</span> <span class="mi">12</span> <span class="nb">by</span> <span class="n">subtracting</span> <span class="mi">12</span> <span class="n">hours</span> (<span class="mi">1200</span> <span class="nb">value</span>).
+        <span class="k">if</span> (<span class="n">hours</span> &gt; <span class="mi">12</span>)
+        {
+            <span class="n">displayValue</span> -= <span class="mi">1200</span>;
+        }
+        // <span class="n">Handle</span> <span class="n">hour</span> <span class="mi">0</span> (<span class="n">midnight</span>) <span class="n">being</span> <span class="n">shown</span> <span class="k">as</span> <span class="mi">12</span>.
+        <span class="k">else</span> <span class="k">if</span> (<span class="n">hours</span> == <span class="mi">0</span>)
+        {
+            <span class="n">displayValue</span> += <span class="mi">1200</span>;
+        }
+    }
+
+    // <span class="n">Now</span> <span class="nb">print</span> <span class="n">the</span> <span class="nb">time</span> <span class="nb">value</span> <span class="nb">to</span> <span class="n">the</span> <span class="n">display</span>.
+    <span class="n">clockDisplay</span>.<span class="nb">print</span>(<span class="n">displayValue</span>, <span class="n">DEC</span>);
+
+    // <span class="n">Add</span> <span class="n">zero</span> <span class="n">padding</span> <span class="k">when</span> <span class="n">in</span> <span class="mi">24</span> <span class="n">hour</span> <span class="n">mode</span> <span class="o">and</span> <span class="n">it&#39;s</span> <span class="n">midnight</span>.
+    // <span class="n">In</span> <span class="n">this</span> <span class="n">case</span> <span class="n">the</span> <span class="nb">print</span> <span class="n">function</span> <span class="n">above</span> <span class="n">won&#39;t</span> <span class="n">have</span> <span class="n">leading</span> <span class="mi">0</span><span class="s">&#39;s</span>
+<span class="s">    // which can look confusing.  Go in and explicitly add these zeros.</span>
+<span class="s">    if (TIME_24_HOUR &amp;&amp; hours == 0)</span>
+<span class="s">    {</span>
+<span class="s">        // Pad hour 0.</span>
+<span class="s">        clockDisplay.writeDigitNum(1, 0);</span>
+<span class="s">        // Also pad when the 10&#39;</span><span class="o">s</span> <span class="n">minute</span> <span class="k">is</span> <span class="mi">0</span> <span class="o">and</span> <span class="n">should</span> <span class="n">be</span> <span class="n">padded</span>.
+        <span class="k">if</span> (<span class="n">minutes</span> &lt; <span class="mi">10</span>)
+        {
+            <span class="n">clockDisplay</span>.<span class="n">writeDigitNum</span>(<span class="mi">2</span>, <span class="mi">0</span>);
+        }
+    }
+
+    // <span class="n">Blink</span> <span class="n">the</span> <span class="n">colon</span> <span class="nb">by</span> <span class="n">turning</span> <span class="n">it</span> <span class="n">on</span> <span class="n">every</span> <span class="n">even</span> <span class="n">second</span> <span class="o">and</span> <span class="n">off</span>
+    // <span class="n">every</span> <span class="n">odd</span> <span class="n">second</span>.  <span class="n">The</span> <span class="n">modulus</span> <span class="nb">operator</span> <span class="k">is</span> <span class="n">very</span> <span class="n">handy</span> <span class="n">here</span> <span class="nb">to</span>
+    // <span class="n">check</span> <span class="k">if</span> <span class="n">a</span> <span class="nb">value</span> <span class="k">is</span> <span class="n">even</span> (<span class="n">modulus</span> <span class="mi">2</span> <span class="n">equals</span> <span class="mi">0</span>) <span class="o">or</span> <span class="n">odd</span> (<span class="n">modulus</span> <span class="mi">2</span>
+    // <span class="n">equals</span> <span class="mi">1</span>).
+    <span class="n">clockDisplay</span>.<span class="n">drawColon</span>(<span class="n">seconds</span> % <span class="mi">2</span> == <span class="mi">0</span>);
+
+    // <span class="n">Now</span> <span class="nb">push</span> <span class="n">out</span> <span class="nb">to</span> <span class="n">the</span> <span class="n">display</span> <span class="n">the</span> <span class="nb">new</span> <span class="nb">values</span> <span class="n">that</span> <span class="n">were</span> <span class="n">set</span> <span class="n">above</span>.
+    <span class="n">clockDisplay</span>.<span class="n">writeDisplay</span>();
+
+    // <span class="n">Loop</span> <span class="n">code</span> <span class="k">is</span> <span class="n">finished</span>, <span class="n">it</span> <span class="k">will</span> <span class="n">jump</span> <span class="n">back</span> <span class="nb">to</span> <span class="n">the</span> <span class="n">start</span> <span class="k">of</span> <span class="n">the</span> <span class="k">loop</span>
+    // <span class="n">function</span> <span class="n">again</span>! <span class="n">Don&#39;t</span> <span class="n">add</span> <span class="nb">any</span> <span class="n">delays</span> <span class="n">because</span> <span class="n">the</span> <span class="n">parsing</span> <span class="n">needs</span> <span class="nb">to</span>
+    // <span class="n">happen</span> <span class="nb">all</span> <span class="n">the</span> <span class="nb">time</span>!
+}
+
+<span class="n">SIGNAL</span>(<span class="n">TIMER0_COMPA_vect</span>)
+{
+    // <span class="n">Use</span> <span class="n">a</span> <span class="n">timer</span> <span class="n">interrupt</span> <span class="nb">once</span> <span class="n">a</span> <span class="n">millisecond</span> <span class="nb">to</span> <span class="n">check</span> <span class="k">for</span> <span class="nb">new</span> <span class="n">GPS</span> <span class="n">data</span>.
+    // <span class="n">This</span> <span class="n">piggybacks</span> <span class="n">on</span> <span class="n">Arduino&#39;s</span> <span class="n">internal</span> <span class="n">clock</span> <span class="n">timer</span> <span class="k">for</span> <span class="n">the</span> <span class="n">millis</span>()
+    // <span class="n">function</span>.
+    <span class="n">gps</span>.<span class="nb">read</span>();
+}
+
+<span class="nb">void</span> <span class="n">enableGPSInterrupt</span>()
+{
+    // <span class="n">Function</span> <span class="nb">to</span> <span class="n">enable</span> <span class="n">the</span> <span class="n">timer</span> <span class="n">interrupt</span> <span class="n">that</span> <span class="k">will</span> <span class="n">parse</span> <span class="n">GPS</span> <span class="n">data</span>.
+    // <span class="n">Timer0</span> <span class="k">is</span> <span class="n">already</span> <span class="n">used</span> <span class="k">for</span> <span class="n">millis</span>() - <span class="n">we&#39;ll</span> <span class="n">just</span> <span class="n">interrupt</span> <span class="n">somewhere</span>
+    // <span class="n">in</span> <span class="n">the</span> <span class="n">middle</span> <span class="o">and</span> <span class="n">call</span> <span class="n">the</span> <span class="s">&quot;Compare A&quot;</span> <span class="n">function</span> <span class="n">above</span>
+    <span class="n">OCR0A</span> = <span class="mh">0xAF</span>;
+    <span class="n">TIMSK0</span> |= <span class="n">_BV</span>(<span class="n">OCIE0A</span>);
+}
+</pre></div>
+
+
+<p>Lots to learn and try on this project.</p>
+<p>UPDATE 4/10/16</p>
+<p>The Arduino Pro Mini was put in place eliminating the need of the UNO R3.</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/track-a-car-using-tiny-arduino-gps-with-sd-card.html">Track A Car Using Tiny Arduino GPS with SD Card</a></li>
+        <li><a href="https://driewe.github.io/8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
+        <li><a href="https://driewe.github.io/playing-music-with-remote-control.html">Playing Music With Remote Control</a></li>
+        <li><a href="https://driewe.github.io/attendance-logger.html">Attendance Logger</a></li>
+        <li><a href="https://driewe.github.io/adding-second-joystick-to-joystick-shield-for-arduino.html">Adding Second Joystick to Joystick Shield for Arduino</a></li>
+        <li><a href="https://driewe.github.io/nootropic-design-16x32-rgb-backpack-from-adafruit.html">Nootropic design 16x32 RGB backpack from Adafruit</a></li>
+        <li><a href="https://driewe.github.io/wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>

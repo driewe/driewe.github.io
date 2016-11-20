@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Attendance Logger - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://driewe.github.io/attendance-logger.html">
+
+        <meta name="author" content="Blaž Pongrac" />
+        <meta name="keywords" content="Arduino,Projects,RTC,RFID" />
+        <meta name="description" content="I made this project long time ago. It was build as proof of concept while working for local tech company. Since then I have used it to track my working hours on my personal projects. Here is how you can make one. Point of the project was to develop simple ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Attendance Logger"/>
+        <meta property="og:url" content="https://driewe.github.io/attendance-logger.html"/>
+        <meta property="og:description" content="I made this project long time ago. It was build as proof of concept while working for local tech company. Since then I have used it to track my working hours on my personal projects. Here is how you can make one. Point of the project was to develop simple ..."/>
+        <meta property="article:published_time" content="2016-11-14" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Projects" />
+            <meta property="article:tag" content="RTC" />
+            <meta property="article:tag" content="RFID" />
+            <meta property="article:author" content="Blaž Pongrac" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://driewe.github.io/theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="https://driewe.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://driewe.github.io/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://driewe.github.io/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://driewe.github.io/" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="/pages/arduino-crash-course-prelude.html">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("https://driewe.github.io//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://driewe.github.io/attendance-logger.html"
+                       rel="bookmark"
+                       title="Permalink to Attendance Logger">
+                        Attendance Logger
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-11-14T00:00:00-06:00"> Mon 14 November 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="https://driewe.github.io/author/blaz-pongrac.html"><i class="fa fa-user"></i> Blaž Pongrac</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://driewe.github.io/tag/arduino.html">Arduino</a>
+        /
+	<a href="https://driewe.github.io/tag/projects.html">Projects</a>
+        /
+	<a href="https://driewe.github.io/tag/rtc.html">RTC</a>
+        /
+	<a href="https://driewe.github.io/tag/rfid.html">RFID</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>I made this project long time ago. It was build as proof of concept while working for local tech
+company. Since then I have used it to track my working hours on my personal projects. Here is how
+you can make one.</p>
+<p>Point of the project was to develop simple Attendance data logger which can log time of arrival, time
+of departure and calculate working hours and access to the data must be granted within same LAN.
+From that I conclude that I would need RTC (Real Time Clock) module and Ethernet shield. For
+identifying user I went for RFID module. I added LEDs and speaker for more user friendly functioning.</p>
+<p><img alt="attendancd logger" src="/images/attendance-logger/image_1.jpg" /></p>
+<p>To recreate this project, you'll need:
+* <a href="https://www.amazon.com/gp/product/B00JTBMD7E/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00JTBMD7E&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=e019c92af67ea61af617e81aa17c30d5">Arduino Mega 2560</a></p>
+<ul>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B00UUR8GJU/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UUR8GJU&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=0846e93d9644288acfee1498dfb7c5e3">DS1307 RTC module</a> (I used TinyRTC)</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B00AXVX5D0/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00AXVX5D0&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=80368ee774a17a2048158c4503320a94">Ethernet shield</a> (I used W5100)</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B014CLKOJE/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B014CLKOJE&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=3ccdb0c4bbca230b0cd90cd50111d719">RFID shield</a> (I used RC522) and some tags; NFC module can be used instead</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B01F0TCXSW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01F0TCXSW&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=8206617fe1f806f6a18bbd0d8e637ab5">green and red LED</a> or two color LED (I am using two color 2 pins LED)</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B0185FGNWK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0185FGNWK&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=1e04088241310f3e56a02a198f438c2b">220 OHM resistors</a> for LEDs</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B00TX2Z4J8/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00TX2Z4J8&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=4bfcb57047e2c7532ebe9c163ed42665">8-ohm speaker</a> or buzzer</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B00BPPTTU6/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00BPPTTU6&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=82ba7916f18d2c8d02b599c06217e8be">9V PSU and DC connector</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B01HYHUEBQ/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01HYHUEBQ&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=d83a5aa9931efe51b29a10d462652e6e">Ethernet cable</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/gp/product/B004G605OA/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B004G605OA&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=2a9ee9b8f40e70513710481f2d4c2301">microSD card</a></p>
+</li>
+<li>
+<p>project housing</p>
+</li>
+<li>
+<p>some wires to connect everything together</p>
+</li>
+</ul>
+<p><img alt="Board Layout" src="/images/attendance-logger/image_2.jpg" /></p>
+<p>Schematics are pretty simple. MicroSD card, Ethernet Shield and RC522 are using SPI interface with
+different CS pins, tinyRTC uses I2C interface and LEDs and speakers are controlled with digital pins.
+Project could be executed with Arduino UNO, but one can run out of available memory for the code.
+Arduino Mega 2560 was used instead. For connecting Ethernet Shield to Arduino Mega 2560 you can
+<a href="http://mcukits.com/2009/04/06/arduino-ethernet-shield-mega-hack/">use this guide</a>. Because
+different modules can have different pinouts, I created table bellow so connecting everything
+together can be easier. Make sure Ethernet shield is inserted like on link above – only pins 13, 12 and 11 are bended away. Ethernet Shield and RC522 module are using same pins, because they both uses
+same SPI interface. This is something that can be dealt with simple Y wire (I made mine from
+breadboard wires).</p>
+<p><img alt="Y Cable" src="/images/attendance-logger/image_3.jpg" /></p>
+<p><img alt="Ethernet Shield" src="/images/attendance-logger/table.png" /></p>
+<p>Arduino code is build according to flow chart below. Program runs in loop. First step in the loop is to check RFID module. If module is sensing known tag, step two is in place – getting data from RTC
+module and storing it onto microSD card. Step three is performed when HTTP request is received.
+Data is collected from microSD card and it is combined with HTML/CSS code to be displayed in
+client’s browser.</p>
+<p><img alt="flow chart" src="/images/attendance-logger/flowchart.jpeg" /></p>
+<h4>Here is short video from first test of this device.</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qQ855Dht2_U" frameborder="0" allowfullscreen></iframe>
+
+<h4>And here is the Arduino code.</h4>
+<div class="highlight"><pre><span></span><span class="c">/* RFID TAG READER</span>
+<span class="c">Author: vonPongrac</span>
+
+<span class="c">Short description: Program read RFID tags. If tags UID is not familiar, sets new user</span>
+
+<span class="c">Hardware: Arduino Mega 2560, LED, Buzzer, RFID module RC522 with tags</span>
+
+<span class="c">Arduino IDE v1.6.3</span>
+
+<span class="c">Copyrights by vonPongrac</span>
+<span class="c">*/</span>
+<span class="o">//</span> <span class="nt">Include</span> <span class="nt">librarys</span>
+<span class="nn">#include</span> <span class="o">&lt;</span><span class="nt">SPI</span><span class="nc">.h</span><span class="o">&gt;</span>
+<span class="nn">#include</span> <span class="o">&lt;</span><span class="nt">MFRC522</span><span class="nc">.h</span><span class="o">&gt;</span>  <span class="o">//</span> <span class="nt">RFID</span> <span class="nt">module</span> <span class="nt">library</span>
+<span class="nn">#include</span> <span class="o">&lt;</span><span class="nt">RTClib</span><span class="nc">.h</span><span class="o">&gt;</span>  <span class="o">//</span> <span class="nt">RTC</span> <span class="nt">library</span>
+<span class="nn">#include</span> <span class="o">&lt;</span><span class="nt">Wire</span><span class="nc">.h</span><span class="o">&gt;</span>  <span class="o">//</span> <span class="nt">i2C</span><span class="o">/</span><span class="nt">1-wire</span> <span class="nt">library</span>
+<span class="nn">#include</span> <span class="o">&lt;</span><span class="nt">SD</span><span class="nc">.h</span><span class="o">&gt;</span>  <span class="o">//</span> <span class="nt">SD</span> <span class="nt">card</span> <span class="nt">library</span>
+<span class="nn">#include</span> <span class="o">&lt;</span><span class="nt">Ethernet</span><span class="nc">.h</span><span class="o">&gt;</span>  <span class="o">//</span> <span class="nt">Etrhenret</span> <span class="nt">library</span>
+
+<span class="nn">#define</span> <span class="nt">RST_PIN</span>     <span class="nt">6</span>  <span class="o">//</span> <span class="nt">RST</span> <span class="nt">pin</span> <span class="nt">for</span> <span class="nt">RFID</span> <span class="nt">module</span>
+<span class="nn">#define</span> <span class="nt">SS_PIN</span>      <span class="nt">7</span>  <span class="o">//</span> <span class="nt">Slave</span> <span class="nt">Select</span> <span class="nt">pine</span> <span class="nt">for</span> <span class="nt">RFID</span> <span class="nt">module</span>
+
+<span class="nt">MFRC522</span> <span class="nt">mfrc522</span><span class="o">(</span><span class="nt">SS_PIN</span><span class="o">,</span> <span class="nt">RST_PIN</span><span class="o">);</span>  <span class="o">//</span> <span class="nt">define</span> <span class="nt">RFID</span> <span class="nt">reader</span> <span class="nt">class</span>
+<span class="nt">RTC_DS1307</span> <span class="nt">RTC</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">define</span> <span class="nt">RTC</span> <span class="nt">class</span>
+
+<span class="nt">byte</span> <span class="nt">mac</span><span class="cp">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="m">0</span><span class="n">xDE</span><span class="o">,</span> <span class="m">0</span><span class="n">xAD</span><span class="o">,</span> <span class="m">0</span><span class="n">xBE</span><span class="o">,</span> <span class="m">0</span><span class="n">xEF</span><span class="o">,</span> <span class="m">0</span><span class="n">xFE</span><span class="o">,</span> <span class="m">0</span><span class="n">xED</span> <span class="p">}</span><span class="o">;</span> <span class="o">//</span> <span class="nt">MAC</span> <span class="nt">address</span> 
+<span class="nt">IPAddress</span> <span class="nt">ip</span><span class="o">(</span><span class="nt">192</span><span class="o">,</span> <span class="nt">168</span><span class="o">,</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">177</span><span class="o">);</span> <span class="o">//</span> <span class="nt">IP</span> <span class="nt">address</span>
+<span class="nt">EthernetServer</span> <span class="nt">server</span><span class="o">(</span><span class="nt">80</span><span class="o">);</span> <span class="o">//</span> <span class="nt">define</span> <span class="nt">server</span> <span class="nt">class</span> <span class="nt">in</span> <span class="nt">port</span> <span class="nt">80</span> <span class="nt">-</span> <span class="nt">HTTP</span> <span class="nt">port</span>
+
+<span class="nt">int</span> <span class="nt">buzzer</span> <span class="o">=</span> <span class="nt">8</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">speaker</span> <span class="nt">or</span> <span class="nt">buzzer</span> <span class="nt">on</span> <span class="nt">pin</span> <span class="nt">8</span>
+<span class="nt">int</span> <span class="nt">led_pos</span> <span class="o">=</span> <span class="nt">3</span><span class="o">;</span> <span class="o">//</span> <span class="nt">green</span> <span class="nt">LED</span> <span class="nt">on</span> <span class="nt">pin</span> <span class="nt">3</span>
+<span class="nt">int</span> <span class="nt">led_neg</span> <span class="o">=</span> <span class="nt">2</span><span class="o">;</span> <span class="o">//</span> <span class="nt">red</span> <span class="nt">LED</span> <span class="nt">on</span> <span class="nt">pin</span> <span class="nt">2</span>
+<span class="nt">String</span> <span class="nt">UID_tagA</span> <span class="o">=</span> <span class="s2">&quot;856a8b45&quot;</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">UID</span> <span class="nt">of</span> <span class="nt">tag</span> <span class="nt">that</span> <span class="nt">we</span> <span class="nt">are</span> <span class="nt">using</span>
+<span class="nt">unsigned</span> <span class="nt">int</span> <span class="nt">MinsA</span> <span class="o">=</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">HoursA</span> <span class="o">=</span> <span class="nt">0</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">working</span> <span class="nt">minutes</span> <span class="nt">and</span> <span class="nt">hours</span> <span class="nt">for</span> <span class="nt">tag</span> <span class="nt">A</span>
+<span class="nt">String</span> <span class="nt">readTag</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>  
+<span class="nt">int</span> <span class="nt">readCard</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">;</span>
+<span class="nt">short</span> <span class="nt">UIDs_No</span> <span class="o">=</span> <span class="nt">1</span><span class="o">;</span>
+<span class="nt">boolean</span> <span class="nt">TimeFlag</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">false</span><span class="o">,</span> <span class="n">false</span><span class="p">}</span><span class="o">;</span>
+<span class="nt">DateTime</span> <span class="nt">arrival</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">tiem</span> <span class="nt">class</span> <span class="nt">for</span> <span class="nt">arrival</span>
+<span class="nt">DateTime</span> <span class="nt">departure</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">time</span> <span class="nt">class</span> <span class="nt">for</span> <span class="nt">departure</span>
+<span class="nt">int</span> <span class="nt">LastMonth</span><span class="o">=</span><span class="nt">0</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">working</span> <span class="nt">hours</span> <span class="nt">till</span> <span class="nt">now</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">month</span>
+<span class="nt">char</span> <span class="nt">DataRead</span><span class="o">=</span><span class="nt">0</span><span class="o">;</span>
+
+<span class="o">//</span> <span class="nt">Declaration</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">functions</span>
+<span class="nt">void</span> <span class="nt">redLED</span><span class="o">();</span> <span class="o">//</span> <span class="nt">red</span> <span class="nt">LED</span> <span class="nt">on</span>
+<span class="nt">void</span> <span class="nt">greenLED</span><span class="o">();</span> <span class="o">//</span> <span class="nt">green</span> <span class="nt">LED</span> <span class="o">+</span> <span class="nt">buzzer</span> <span class="nt">on</span>
+<span class="nt">int</span> <span class="nt">getID</span><span class="o">();</span>  <span class="o">//</span> <span class="nt">read</span> <span class="nt">tag</span>
+<span class="nt">boolean</span> <span class="nt">checkTag</span><span class="o">();</span>  <span class="o">//</span> <span class="nt">check</span> <span class="nt">if</span> <span class="nt">tag</span> <span class="nt">is</span> <span class="nt">unknown</span>
+<span class="nt">void</span> <span class="nt">errorBeep</span><span class="o">();</span>  <span class="o">//</span> <span class="nt">error</span> <span class="nt">while</span> <span class="nt">reading</span> <span class="o">(</span><span class="nt">unknown</span> <span class="nt">tag</span><span class="o">)</span>
+<span class="nt">void</span> <span class="nt">StoreData</span><span class="o">();</span>  <span class="o">//</span> <span class="nt">store</span> <span class="nt">data</span> <span class="nt">to</span> <span class="nt">microSD</span>
+
+<span class="nt">File</span> <span class="nt">myFile</span><span class="o">;</span> <span class="o">//</span> <span class="nt">class</span> <span class="nt">file</span> <span class="nt">for</span> <span class="nt">reading</span><span class="o">/</span><span class="nt">writing</span> <span class="nt">to</span> <span class="nt">file</span> <span class="nt">on</span> <span class="nt">SD</span> <span class="nt">card</span>
+
+
+<span class="o">//</span> <span class="nt">SETUP</span>
+<span class="nt">void</span> <span class="nt">setup</span><span class="o">()</span> <span class="p">{</span>
+<span class="o">//</span>  <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="m">9600</span><span class="p">);</span> <span class="o">//</span> <span class="n">for</span> <span class="n">testing</span> <span class="n">and</span> <span class="n">debugging</span>
+  <span class="n">SPI</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>  <span class="o">//</span> <span class="n">run</span> <span class="n">SPI</span> <span class="n">library</span> <span class="n">first</span><span class="p">;</span> <span class="n">if</span> <span class="n">not</span><span class="o">,</span> <span class="n">RFID</span> <span class="n">will</span> <span class="n">not</span> <span class="n">work</span>
+  <span class="n">mfrc522</span><span class="o">.</span><span class="n">PCD_Init</span><span class="p">();</span>  <span class="o">//</span> <span class="n">initializing</span> <span class="n">RFID</span><span class="o">,</span> <span class="n">start</span> <span class="n">RFID</span> <span class="n">library</span>
+  <span class="n">Wire</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>  <span class="o">//</span> <span class="n">start</span> <span class="n">i2c</span> <span class="n">library</span><span class="p">;</span> <span class="n">if</span> <span class="n">not</span><span class="o">,</span> <span class="n">RTC</span> <span class="n">will</span> <span class="n">not</span> <span class="n">work</span>
+  <span class="n">RTC</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>  <span class="o">//</span> <span class="n">start</span> <span class="n">RTC</span> <span class="n">library</span>
+  <span class="n">RTC</span><span class="o">.</span><span class="n">adjust</span><span class="p">(</span><span class="n">DateTime</span><span class="p">(</span><span class="n">__DATE__</span><span class="o">,</span> <span class="n">__TIME__</span><span class="p">));</span>  <span class="o">//</span> <span class="n">set</span> <span class="n">RTC</span> <span class="n">time</span> <span class="n">to</span> <span class="n">compiling</span> <span class="n">time</span>
+  <span class="n">Ethernet</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">mac</span><span class="o">,</span> <span class="n">ip</span><span class="p">);</span>  <span class="o">//</span> <span class="n">start</span> <span class="n">Ethernet</span> <span class="n">library</span> 
+  <span class="n">server</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>  <span class="o">//</span> <span class="n">start</span> <span class="n">server</span> 
+<span class="o">//</span>  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;server is at &quot;</span><span class="p">);</span>
+<span class="o">//</span>  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">Ethernet</span><span class="o">.</span><span class="n">localIP</span><span class="p">());</span>
+  <span class="n">SD</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="m">4</span><span class="p">);</span>  <span class="o">//</span> <span class="n">start</span> <span class="n">SD</span> <span class="n">library</span>
+<span class="o">//</span> <span class="n">setting</span> <span class="n">DI</span><span class="o">/</span><span class="n">O</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">led_pos</span><span class="o">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">led_neg</span><span class="o">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="nt">MAIN</span> <span class="nt">PROGRAM</span>
+<span class="nt">void</span> <span class="nt">loop</span><span class="o">()</span> <span class="p">{</span>
+  <span class="n">int</span> <span class="n">succesRead</span> <span class="o">=</span> <span class="n">getID</span><span class="p">();</span> <span class="o">//</span> <span class="n">read</span> <span class="n">RFID</span> <span class="n">tag</span>
+  <span class="n">if</span><span class="p">(</span><span class="n">succesRead</span><span class="o">==</span><span class="m">1</span><span class="p">)</span><span class="err">{</span> <span class="o">//</span> <span class="n">if</span> <span class="n">RFID</span> <span class="n">read</span> <span class="n">was</span> <span class="n">succesful</span>
+    <span class="o">//</span><span class="n">greenLED</span><span class="p">();</span>
+    <span class="n">if</span> <span class="p">(</span><span class="n">checkTag</span><span class="p">())</span><span class="err">{</span> <span class="o">//</span> <span class="n">if</span> <span class="n">tag</span> <span class="n">is</span> <span class="n">known</span><span class="o">,</span> <span class="n">store</span> <span class="n">data</span>
+      <span class="n">greenLED</span><span class="p">();</span>
+      <span class="n">StoreData</span><span class="p">();</span>
+    <span class="p">}</span> <span class="nt">else</span> <span class="p">{</span> <span class="o">//</span> <span class="n">beeb</span> <span class="n">an</span> <span class="n">error</span><span class="p">;</span> <span class="n">if</span> <span class="n">new</span> <span class="n">tag</span><span class="o">,</span> <span class="n">then</span> <span class="n">exit</span>
+      <span class="n">errorBeep</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="err">}</span> <span class="nt">else</span> <span class="p">{</span>
+    <span class="n">redLED</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="o">//</span> <span class="nt">Web</span> <span class="nt">server</span>
+  <span class="nt">EthernetClient</span> <span class="nt">client</span> <span class="o">=</span> <span class="nt">server</span><span class="nc">.available</span><span class="o">();</span>  <span class="o">//</span> <span class="nt">check</span> <span class="nt">for</span> <span class="nt">HTTP</span> <span class="nt">request</span>
+  <span class="nt">if</span> <span class="o">(</span><span class="nt">client</span><span class="o">)</span> <span class="p">{</span> <span class="o">//</span> <span class="n">if</span> <span class="n">HTTP</span> <span class="n">request</span> <span class="n">is</span> <span class="n">available</span>
+<span class="o">//</span>    <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;new client&quot;</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">an</span> <span class="n">http</span> <span class="n">request</span> <span class="n">ends</span> <span class="n">with</span> <span class="n">a</span> <span class="n">blank</span> <span class="n">line</span>
+    <span class="n">boolean</span> <span class="n">currentLineIsBlank</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+    <span class="n">while</span> <span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">connected</span><span class="p">())</span> <span class="err">{</span>
+      <span class="n">if</span> <span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">available</span><span class="p">())</span> <span class="err">{</span>
+        <span class="n">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">read</span><span class="p">();</span>
+ <span class="o">//</span>       <span class="n">Serial</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+        <span class="o">//</span> <span class="n">if</span> <span class="n">you</span><span class="s1">&#39;ve gotten to the end of the line (received a newline</span>
+<span class="s1">        // character) and the line is blank, the http request has ended,</span>
+<span class="s1">        // so you can send a reply</span>
+<span class="s1">        if (c == &#39;</span><span class="err">\</span><span class="n">n</span><span class="s1">&#39; &amp;&amp; currentLineIsBlank) {</span>
+<span class="s1">          // send a standard http response header</span>
+<span class="s1">          client.println(&quot;HTTP/1.1 200 OK&quot;);</span>
+<span class="s1">          client.println(&quot;Content-Type: text/html&quot;);</span>
+<span class="s1">          client.println(&quot;Connection: close&quot;);  // the connection will be closed after completion of the response</span>
+<span class="s1">        //  client.println(&quot;Refresh: 10&quot;);  // refresh the page automatically every 5 sec</span>
+<span class="s1">          client.println();</span>
+<span class="s1">          client.println(&quot;&lt;!DOCTYPE html&gt;&quot;);</span>
+<span class="s1">          client.println(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Office Atendance Logger&lt;/title&gt;&lt;style&gt;&quot;);</span>
+<span class="s1">          client.println(&quot;.jumbotron{margin: 1% 3% 1% 3%; border: 1px solid none; border-radius: 30px; background-color: #AAAAAA;}&quot;);</span>
+<span class="s1">          client.println(&quot;.dataWindow{margin: 1% 3% 1% 3%; border: 1px solid none; border-radius: 30px; background-color: #AAAAAA;padding: 1% 1% 1% 1%;}&quot;);</span>
+<span class="s1">          client.println(&quot;&lt;/style&gt;&lt;/head&gt;&lt;body style=\&quot;background-color: #E6E6E6\&quot;&gt;&quot;);</span>
+<span class="s1">          client.println(&quot;&lt;div class=\&quot;jumbotron\&quot;&gt;&lt;div style=\&quot;text-align: center\&quot;&gt; &lt;h1&gt;  Office Atendance Logger &lt;/h1&gt; &lt;/div&gt; &quot;);</span>
+<span class="s1">          client.println(&quot;&lt;/div&gt;&lt;div class=\&quot;dataWindow\&quot;&gt;&lt;div style=\&quot;text-align: center\&quot;&gt; &lt;h2&gt; User A &lt;/h2&gt;&quot;);</span>
+<span class="s1">          myFile = SD.open(&quot;A.txt&quot;);</span>
+<span class="s1">          if(myFile){</span>
+
+<span class="s1">            while(myFile.available()){</span>
+<span class="s1">                client.print(&quot;&lt;p&gt;&quot;);</span>
+<span class="s1">                while(DataRead != 59){</span>
+<span class="s1">                  DataRead = (char)myFile.read();</span>
+<span class="s1">                  client.print(DataRead);</span>
+<span class="s1">            //      client.print(myFile.read());</span>
+<span class="s1">                }</span>
+<span class="s1">                client.println(&quot;&lt;/p&gt;&quot;);</span>
+<span class="s1">                DataRead = 0;</span>
+<span class="s1">            }  </span>
+
+<span class="s1">            myFile.close();</span>
+<span class="s1">          }</span>
+<span class="s1">          client.println(&quot;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;);    </span>
+<span class="s1">          break;     </span>
+<span class="s1">        }</span>
+<span class="s1">        if (c == &#39;</span><span class="err">\</span><span class="n">n</span><span class="s1">&#39;) {</span>
+<span class="s1">          // you&#39;</span><span class="n">re</span> <span class="n">starting</span> <span class="n">a</span> <span class="n">new</span> <span class="n">line</span>
+          <span class="n">currentLineIsBlank</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nt">else</span> <span class="nt">if</span> <span class="o">(</span><span class="nt">c</span> <span class="o">!=</span> <span class="s1">&#39;\r&#39;</span><span class="o">)</span> <span class="p">{</span>
+          <span class="o">//</span> <span class="n">you</span><span class="s1">&#39;ve gotten a character on the current line</span>
+<span class="s1">          currentLineIsBlank = false;</span>
+<span class="s1">        }</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">    // give the web browser time to receive the data</span>
+<span class="s1">    delay(1);</span>
+<span class="s1">    // close the connection:</span>
+<span class="s1">    client.stop();</span>
+<span class="s1">//    Serial.println(&quot;client disconnected&quot;);</span>
+<span class="s1">  }   </span>
+<span class="s1">  delay(1000);</span>
+<span class="s1">}</span>
+
+<span class="s1">// FUNCTIONS</span>
+<span class="s1">void redLED(){ // red LED on, green LED off</span>
+<span class="s1">  digitalWrite(led_pos, LOW);</span>
+<span class="s1">  digitalWrite(led_neg, HIGH);</span>
+<span class="s1">}</span>
+
+<span class="s1">void greenLED(){ // red LED off, green LED on</span>
+<span class="s1">  digitalWrite(led_pos, HIGH);</span>
+<span class="s1">  digitalWrite(led_neg, LOW);</span>
+<span class="s1">  tone(buzzer, 440, 50); // sound; frequency of tone: 440 Hz, duration of tone: 50 ms</span>
+<span class="s1">}</span>
+
+<span class="s1">boolean checkTag(){ // check if tag is unknown</span>
+<span class="s1">  if(readTag == UID_tagA){UIDs_No = 1; return true;}</span>
+<span class="s1">//  else if(readTag == UID_tagB){UIDs_No = 2; return true;}</span>
+<span class="s1">  else {return false;}</span>
+<span class="s1">}</span>
+
+<span class="s1">void errorBeep(){ // error option</span>
+<span class="s1">  digitalWrite(led_pos, LOW);</span>
+<span class="s1">  digitalWrite(led_neg, LOW);</span>
+<span class="s1">  delay(150);</span>
+<span class="s1">  digitalWrite(led_neg, HIGH);</span>
+<span class="s1">  tone(buzzer, 440, 50);</span>
+<span class="s1">  delay(150);</span>
+<span class="s1">  digitalWrite(led_neg, LOW);</span>
+<span class="s1">  delay(150);</span>
+<span class="s1">  digitalWrite(led_neg, HIGH);</span>
+<span class="s1">  tone(buzzer, 440, 50);</span>
+<span class="s1">}</span>
+
+<span class="s1">int getID() { // Read RFID</span>
+<span class="s1">    // Getting ready for Reading PICCs</span>
+<span class="s1">  if ( ! mfrc522.PICC_IsNewCardPresent()) { //If a new PICC placed to RFID reader continue</span>
+<span class="s1">    return 0;</span>
+<span class="s1">  }</span>
+<span class="s1">  if ( ! mfrc522.PICC_ReadCardSerial()) {   //Since a PICC placed get Serial and continue</span>
+<span class="s1">    return 0;</span>
+<span class="s1">  }</span>
+<span class="s1">  // There are Mifare PICCs which have 4 byte or 7 byte UID care if you use 7 byte PICC</span>
+<span class="s1">  // I think we should assume every PICC as they have 4 byte UID</span>
+<span class="s1">  // Until we support 7 byte PICCs</span>
+<span class="s1">//  Serial.println(F(&quot;Scanned PICC&#39;</span><span class="n">s</span> <span class="n">UID</span><span class="o">:</span><span class="s2">&quot;));</span>
+<span class="s2">  readTag = &quot;&quot;;</span>
+<span class="s2">  for (int i = 0; i &lt; 4; i++) {  //</span>
+<span class="s2">    readCard</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span><span class="s2"> = mfrc522.uid.uidByte</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span><span class="s2">;</span>
+<span class="s2">//    Serial.print(readCard</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span><span class="s2">, HEX);</span>
+<span class="s2">    readTag=readTag+String(readCard</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span><span class="s2">, HEX);</span>
+<span class="s2">  }</span>
+<span class="s2">  // Serial.println(readTag);</span>
+<span class="s2">//  Serial.println(&quot;&quot;);</span>
+<span class="s2">  mfrc522.PICC_HaltA(); // Stop reading</span>
+<span class="s2">  return 1;</span>
+<span class="s2">}</span>
+
+<span class="s2">void StoreData(){ // calculate and store data to SD card</span>
+<span class="s2">  DateTime time = RTC.now(); // read time from RTC</span>
+<span class="s2">  if(LastMonth != time.month()){ // check if there is a new month</span>
+<span class="s2">    LastMonth = time.month();</span>
+<span class="s2">    SD.remove(&quot;</span><span class="n">hoursA</span><span class="o">.</span><span class="n">txt</span><span class="s2">&quot;);</span>
+<span class="s2">  }</span>
+<span class="s2">  switch(UIDs_No){ // this is set for multiple tags, as of right now is made only for one tag</span>
+<span class="s2">    case 1:</span>
+<span class="s2">      if(TimeFlag</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2">){ // departure</span>
+<span class="s2">        departure</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2"> = time;  // save departure time</span>
+<span class="s2">        // calculate working hours and minutes</span>
+<span class="s2">        int dh = abs(departure</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2">.hour()-arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2">.hour()); </span>
+<span class="s2">        int dm = abs(departure</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2">.minute()-arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2">.minute()); </span>
+<span class="s2">        unsigned int work = dh*60 + dm; // working hours in minutes</span>
+<span class="s2">        MinsA = MinsA + work; // add working hours in minutes to working hours from this month</span>
+<span class="s2">        HoursA = (int)MinsA/60; // calculate working hours from minutes</span>
+<span class="s2">        myFile = SD.open(&quot;</span><span class="n">A</span><span class="o">.</span><span class="n">txt</span><span class="s2">&quot;, FILE_WRITE); // open file with history and write to it</span>
+<span class="s2">        if(myFile){ // format = &quot;</span> <span class="n">MM</span><span class="o">-</span><span class="n">DD</span><span class="o">-</span><span class="n">YYYY</span> <span class="n">hh</span><span class="o">:</span><span class="n">mm</span> <span class="p">(</span><span class="n">arrival</span><span class="p">)</span><span class="o">,</span> <span class="n">hh</span><span class="o">:</span><span class="n">mm</span> <span class="p">(</span><span class="n">departure</span><span class="p">)</span><span class="o">,</span> <span class="n">hh</span> <span class="p">(</span><span class="n">working</span> <span class="n">hours</span> <span class="n">today</span><span class="p">)</span><span class="o">,</span> <span class="n">hh</span> <span class="p">(</span><span class="n">working</span> <span class="n">hours</span> <span class="n">this</span> <span class="n">month</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">month</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">day</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">minute</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">departure</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">departure</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">.</span><span class="n">minute</span><span class="p">()</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">dh</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">dm</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">HoursA</span><span class="o">,</span><span class="n">DEC</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">);</span>
+          <span class="n">myFile</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="nt">TimeFlag</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">false</span><span class="o">;</span> <span class="o">//</span> <span class="nt">set</span> <span class="nt">time</span> <span class="nt">flag</span> <span class="nt">to</span> <span class="nt">false</span>
+      <span class="err">}</span> <span class="nt">else</span> <span class="p">{</span> <span class="o">//</span> <span class="n">arrival</span><span class="p">;</span> 
+        <span class="n">arrival</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span> <span class="o">=</span> <span class="n">time</span><span class="p">;</span>  <span class="o">//</span> <span class="n">save</span> <span class="n">time</span> <span class="n">of</span> <span class="n">arrival</span> 
+        <span class="n">TimeFlag</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>  <span class="o">//</span> <span class="n">set</span> <span class="n">time</span> <span class="n">flag</span> <span class="n">to</span> <span class="n">true</span>
+      <span class="p">}</span>
+      <span class="nt">break</span><span class="o">;</span>  
+  <span class="err">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p><a href="http://www.instructables.com/id/Arduino-attendence-logger/">Visit project’s homepage for more information.</a></p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="https://driewe.github.io/arduino-gps-clock.html">Arduino GPS Clock</a></li>
+        <li><a href="https://driewe.github.io/8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
+        <li><a href="https://driewe.github.io/playing-music-with-remote-control.html">Playing Music With Remote Control</a></li>
+        <li><a href="https://driewe.github.io/track-a-car-using-tiny-arduino-gps-with-sd-card.html">Track A Car Using Tiny Arduino GPS with SD Card</a></li>
+        <li><a href="https://driewe.github.io/adding-second-joystick-to-joystick-shield-for-arduino.html">Adding Second Joystick to Joystick Shield for Arduino</a></li>
+        <li><a href="https://driewe.github.io/nootropic-design-16x32-rgb-backpack-from-adafruit.html">Nootropic design 16x32 RGB backpack from Adafruit</a></li>
+        <li><a href="https://driewe.github.io/wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
+        <li><a href="https://driewe.github.io/serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="https://driewe.github.io/creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="https://driewe.github.io/logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogo.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br><b>Please Follow Us Below:</b>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="250" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://driewe.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://driewe.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://driewe.github.io/theme/js/respond.min.js"></script>
+
+    <script src="https://driewe.github.io/theme/js/bodypadding.js"></script>
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>
