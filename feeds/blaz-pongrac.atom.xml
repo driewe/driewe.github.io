@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-11-20T00:00:00-06:00</updated><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;p&gt;Recently I received a question from a good friend of mine. He wanted to automate blinds on his office window and he wondered how he can measure or detect light. I told him that the simplest solution would be using LDR resistor.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LDR Prototype" src="/images/ldr-tutorial/image_1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Light Dependent Resistor, also called photoresistor, is resistor with variable resistance, which depends on illumination. First let us take on the basics of the resistors and then basics of the LDR. After that we can move to LDR light sensor and simple Arduino example.&lt;/p&gt;
+&lt;h4&gt;Resistance&lt;/h4&gt;
+&lt;p&gt;Resistance is characteristic of a material that is resisting the flow of electricity. Basically what that mean is that the higher the resistance, less current can go through the material. This can be well described with the image below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Resistance" src="/images/ldr-tutorial/image_2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Voltage or difference in potential is pushing charge carriers (current flow) through the medium and resistance is the “opposite” force of voltage – it is trying to stop them from flowing.&lt;/p&gt;
+&lt;p&gt;Resistance (R in image bellow) is defined by Ohm Law. Ohm’s Law is link between electrical voltage (V in image bellow) and electrical current (I in image bellow) and it is one of the basic laws in electronics.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Ohms Law" src="/images/ldr-tutorial/image_3.jpg" /&gt;&lt;/p&gt;
+&lt;h4&gt;Resistor&lt;/h4&gt;
+&lt;p&gt;Resistor is one of 4 basic passive elements. Passive elements are all of the elements that cannot amplify or produce energy by themselves (resistor, capacitor, coil and ideal transformer). Resistors main characteristic is resistance (as described above). It is used for current limiting (as on LEDs), voltage drops, voltage dividers, etc. It is
+one of the most common elements in DC circuits.&lt;/p&gt;
+&lt;h4&gt;LDR Resistor&lt;/h4&gt;
+&lt;p&gt;LDR resistor is a type of resistor which has a variable resistance – its resistance is changing according to the illumination. If lamination is getting higher, resistance is getting lower. Because LDR is sensitive to broad spectrum of light, it can be used for measuring intensity of the light. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="LDR Resistor" src="/images/ldr-tutorial/image_4.jpg" /&gt;&lt;/p&gt;
+&lt;h4&gt;LDR Sensor Circuit&lt;/h4&gt;
+&lt;p&gt;So far we’ve managed without the math. From now on we will have to do some. On picture bellow there is significant LDR sensor schematic, which is actually voltage divider. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Schematic" src="/images/ldr-tutorial/image_5.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;For sake of argument let’s say that LDR resistor (upper element in left picture) has a resistance of R1 (which is changing according to the illumination) and the lower one has the resistance of R2. Combined resistance is then R = R1+R2.&lt;/p&gt;
+&lt;p&gt;What I want to explain to you is current limiting and voltage drop. Let us first deal with the currents. Arduino can manage currents in range of few 10 mA, which is not a lot. To have lower power consumption of the LDR sensor circuit, combined resistance R should always be higher than 10 kOHM (with 10 kOHM combined resistance and 5V drop on it, current will be around 0.5 mA).&lt;/p&gt;
+&lt;p&gt;Now let’s move to the voltage drop part. Both resistors, R1 and R2, have some voltage drop on it. If LDR change its value according to illumination, voltage drop is redistributed accordingly. Output voltage of voltage divider is always measured between both resistors and 0V potential (GND). That means one is actually measuring voltage drop on resistor R2. Output voltage can be calculated with: 
+&lt;center&gt;
+&lt;img alt="formula" src="/images/ldr-tutorial/formula.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Where Vin = 5V in case of Arduino. With changing R1 with illumination, output voltage is changed. To set the value of R2 resistor, one must know LDR resistance range (what resistance in dark and what in full illumination). That is usually from around 3k (illuminated) and 1MOHM (in dark).  &lt;/p&gt;
+&lt;p&gt;Let’s say R2 = 10kOHM for now. If sensor is in dark, Vout is close to the 0V potential, because dividing ratio is very low (denominator is very high according to the numerator). If sensor is well illuminated, dividing ratio is very high (nominator and denominator are very close to each other) and Vout is close to the Vin. Because 10kOHM resistor limits the current and it works great in dividing ratio, R2 must be set to that value&lt;/p&gt;
+&lt;p&gt;To determine true value of the R2 resistor, one should measure range of his LDR resistor. That can be done with simple multimeter and simple experiment: resistance is measured when LDR is under light source and resistance is measured when LDR is covered or is in dark space. Resistance can be measured ohmmeter (you can get multimeter for few bucks in your local hardware store).&lt;/p&gt;
+&lt;h4&gt;Arduino example with LDR sensor&lt;/h4&gt;
+&lt;p&gt;We’ve seen above that LDR sensor have an analog output. Also we can see that Vout voltage is rising with illumination. We can use this to measure light intensity. Because of the nature of LDR, this measurement is not reliable and it is not something that can be transformed into luminous intensity meter. So the main use for it is to create a light detector. This is fairly simple: analog value is measured and then compared to the desired reference value. If measured value is higher than reference, light was detected (LED on). If measured value is lower than reference value, light is absent from LDR surroundings (dark is detected, LED off). For testing this code you’ll need: Arduino Uno, LDR resistor and 10k OHM resistor. Connect as in schematics above - Vin to 5V, Vout to A0 and ground to GND. &lt;/p&gt;
+&lt;h4&gt;Video&lt;/h4&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/zfpYheCEqbc" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h4&gt;Arduino Code&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void setup() {
+  pinMode(13,OUTPUT); // there is onboard LED connected to pin 13
+  digitalWrite(13,LOW); // set initial value to 0
+  Serial.begin(9600); // begin serial interface; use it to see what values is Arduino reading from LDR sensor
+}
+
+void loop() {
+  unsigned int value = analogRead(A0); // read analog value from pin A0
+  Serial.println(value); // print it to serial monitor; this is for monitoring the value from sensor
+  if(value&amp;gt;400){ // if light is detected, set LED
+    digitalWrite(13,HIGH);
+  }else{ // if light is not detected, reset LED
+    digitalWrite(13,LOW);
+  }
+  delay(1000); // short delay, not needed but is convenient
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;p&gt;I made this project long time ago. It was build as proof of concept while working for local tech
+company. Since then I have used it to track my working hours on my personal projects. Here is how
+you can make one.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="attendancd logger" src="/images/attendance-logger/image_1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Point of the project was to develop simple Attendance data logger which can log time of arrival, time
+of departure and calculate working hours and access to the data must be granted within same LAN.
+From that I conclude that I would need RTC (Real Time Clock) module and Ethernet shield. For
+identifying user I went for RFID module. I added LEDs and speaker for more user friendly functioning.&lt;/p&gt;
+&lt;p&gt;To recreate this project, you'll need:
+* &lt;a href="https://www.amazon.com/gp/product/B00JTBMD7E/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00JTBMD7E&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=e019c92af67ea61af617e81aa17c30d5"&gt;Arduino Mega 2560&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00UUR8GJU/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00UUR8GJU&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=0846e93d9644288acfee1498dfb7c5e3"&gt;DS1307 RTC module&lt;/a&gt; (I used TinyRTC)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00AXVX5D0/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00AXVX5D0&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=80368ee774a17a2048158c4503320a94"&gt;Ethernet shield&lt;/a&gt; (I used W5100)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B014CLKOJE/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B014CLKOJE&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=3ccdb0c4bbca230b0cd90cd50111d719"&gt;RFID shield&lt;/a&gt; (I used RC522) and some tags; NFC module can be used instead&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B01F0TCXSW/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B01F0TCXSW&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=8206617fe1f806f6a18bbd0d8e637ab5"&gt;green and red LED&lt;/a&gt; or two color LED (I am using two color 2 pins LED)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B0185FGNWK/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B0185FGNWK&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=1e04088241310f3e56a02a198f438c2b"&gt;220 OHM resistors&lt;/a&gt; for LEDs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00TX2Z4J8/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00TX2Z4J8&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=4bfcb57047e2c7532ebe9c163ed42665"&gt;8-ohm speaker&lt;/a&gt; or buzzer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00BPPTTU6/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00BPPTTU6&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=82ba7916f18d2c8d02b599c06217e8be"&gt;9V PSU and DC connector&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B01HYHUEBQ/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B01HYHUEBQ&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=d83a5aa9931efe51b29a10d462652e6e"&gt;Ethernet cable&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B004G605OA/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B004G605OA&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=2a9ee9b8f40e70513710481f2d4c2301"&gt;microSD card&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;project housing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;some wires to connect everything together&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Board Layout" src="/images/attendance-logger/image_2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Schematics are pretty simple. MicroSD card, Ethernet Shield and RC522 are using SPI interface with
+different CS pins, tinyRTC uses I2C interface and LEDs and speakers are controlled with digital pins.
+Project could be executed with Arduino UNO, but one can run out of available memory for the code.
+Arduino Mega 2560 was used instead. For connecting Ethernet Shield to Arduino Mega 2560 you can
+&lt;a href="http://mcukits.com/2009/04/06/arduino-ethernet-shield-mega-hack/"&gt;use this guide&lt;/a&gt;. Because
+different modules can have different pinouts, I created table bellow so connecting everything
+together can be easier. Make sure Ethernet shield is inserted like on link above – only pins 13, 12 and 11 are bended away. Ethernet Shield and RC522 module are using same pins, because they both uses
+same SPI interface. This is something that can be dealt with simple Y wire (I made mine from
+breadboard wires).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Y Cable" src="/images/attendance-logger/image_3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Ethernet Shield" src="/images/attendance-logger/table.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Arduino code is build according to flow chart below. Program runs in loop. First step in the loop is to check RFID module. If module is sensing known tag, step two is in place – getting data from RTC
+module and storing it onto microSD card. Step three is performed when HTTP request is received.
+Data is collected from microSD card and it is combined with HTML/CSS code to be displayed in
+client’s browser.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="flow chart" src="/images/attendance-logger/flowchart.jpeg" /&gt;&lt;/p&gt;
+&lt;h4&gt;Here is short video from first test of this device.&lt;/h4&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/qQ855Dht2_U" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h4&gt;And here is the Arduino code.&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;/* RFID TAG READER&lt;/span&gt;
+&lt;span class="c"&gt;Author: vonPongrac&lt;/span&gt;
+
+&lt;span class="c"&gt;Short description: Program read RFID tags. If tags UID is not familiar, sets new user&lt;/span&gt;
+
+&lt;span class="c"&gt;Hardware: Arduino Mega 2560, LED, Buzzer, RFID module RC522 with tags&lt;/span&gt;
+
+&lt;span class="c"&gt;Arduino IDE v1.6.3&lt;/span&gt;
+
+&lt;span class="c"&gt;Copyrights by vonPongrac&lt;/span&gt;
+&lt;span class="c"&gt;*/&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Include&lt;/span&gt; &lt;span class="nt"&gt;librarys&lt;/span&gt;
+&lt;span class="nn"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;SPI&lt;/span&gt;&lt;span class="nc"&gt;.h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nn"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;MFRC522&lt;/span&gt;&lt;span class="nc"&gt;.h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;RFID&lt;/span&gt; &lt;span class="nt"&gt;module&lt;/span&gt; &lt;span class="nt"&gt;library&lt;/span&gt;
+&lt;span class="nn"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;RTClib&lt;/span&gt;&lt;span class="nc"&gt;.h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;RTC&lt;/span&gt; &lt;span class="nt"&gt;library&lt;/span&gt;
+&lt;span class="nn"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;Wire&lt;/span&gt;&lt;span class="nc"&gt;.h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;i2C&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;1-wire&lt;/span&gt; &lt;span class="nt"&gt;library&lt;/span&gt;
+&lt;span class="nn"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;SD&lt;/span&gt;&lt;span class="nc"&gt;.h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;SD&lt;/span&gt; &lt;span class="nt"&gt;card&lt;/span&gt; &lt;span class="nt"&gt;library&lt;/span&gt;
+&lt;span class="nn"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;Ethernet&lt;/span&gt;&lt;span class="nc"&gt;.h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Etrhenret&lt;/span&gt; &lt;span class="nt"&gt;library&lt;/span&gt;
+
+&lt;span class="nn"&gt;#define&lt;/span&gt; &lt;span class="nt"&gt;RST_PIN&lt;/span&gt;     &lt;span class="nt"&gt;6&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;RST&lt;/span&gt; &lt;span class="nt"&gt;pin&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;RFID&lt;/span&gt; &lt;span class="nt"&gt;module&lt;/span&gt;
+&lt;span class="nn"&gt;#define&lt;/span&gt; &lt;span class="nt"&gt;SS_PIN&lt;/span&gt;      &lt;span class="nt"&gt;7&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Slave&lt;/span&gt; &lt;span class="nt"&gt;Select&lt;/span&gt; &lt;span class="nt"&gt;pine&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;RFID&lt;/span&gt; &lt;span class="nt"&gt;module&lt;/span&gt;
+
+&lt;span class="nt"&gt;MFRC522&lt;/span&gt; &lt;span class="nt"&gt;mfrc522&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;SS_PIN&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;RST_PIN&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;define&lt;/span&gt; &lt;span class="nt"&gt;RFID&lt;/span&gt; &lt;span class="nt"&gt;reader&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt;
+&lt;span class="nt"&gt;RTC_DS1307&lt;/span&gt; &lt;span class="nt"&gt;RTC&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;define&lt;/span&gt; &lt;span class="nt"&gt;RTC&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt;
+
+&lt;span class="nt"&gt;byte&lt;/span&gt; &lt;span class="nt"&gt;mac&lt;/span&gt;&lt;span class="cp"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="n"&gt;xDE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="n"&gt;xAD&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="n"&gt;xBE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="n"&gt;xEF&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="n"&gt;xFE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="n"&gt;xED&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;MAC&lt;/span&gt; &lt;span class="nt"&gt;address&lt;/span&gt; 
+&lt;span class="nt"&gt;IPAddress&lt;/span&gt; &lt;span class="nt"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;192&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;168&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;177&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;IP&lt;/span&gt; &lt;span class="nt"&gt;address&lt;/span&gt;
+&lt;span class="nt"&gt;EthernetServer&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;80&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;define&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;port&lt;/span&gt; &lt;span class="nt"&gt;80&lt;/span&gt; &lt;span class="nt"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;HTTP&lt;/span&gt; &lt;span class="nt"&gt;port&lt;/span&gt;
+
+&lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;buzzer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;8&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;speaker&lt;/span&gt; &lt;span class="nt"&gt;or&lt;/span&gt; &lt;span class="nt"&gt;buzzer&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;pin&lt;/span&gt; &lt;span class="nt"&gt;8&lt;/span&gt;
+&lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;led_pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;3&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;green&lt;/span&gt; &lt;span class="nt"&gt;LED&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;pin&lt;/span&gt; &lt;span class="nt"&gt;3&lt;/span&gt;
+&lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;led_neg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;red&lt;/span&gt; &lt;span class="nt"&gt;LED&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;pin&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt;
+&lt;span class="nt"&gt;String&lt;/span&gt; &lt;span class="nt"&gt;UID_tagA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;856a8b45&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;UID&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;tag&lt;/span&gt; &lt;span class="nt"&gt;that&lt;/span&gt; &lt;span class="nt"&gt;we&lt;/span&gt; &lt;span class="nt"&gt;are&lt;/span&gt; &lt;span class="nt"&gt;using&lt;/span&gt;
+&lt;span class="nt"&gt;unsigned&lt;/span&gt; &lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;MinsA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;HoursA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;working&lt;/span&gt; &lt;span class="nt"&gt;minutes&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;hours&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;tag&lt;/span&gt; &lt;span class="nt"&gt;A&lt;/span&gt;
+&lt;span class="nt"&gt;String&lt;/span&gt; &lt;span class="nt"&gt;readTag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  
+&lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;readCard&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nt"&gt;short&lt;/span&gt; &lt;span class="nt"&gt;UIDs_No&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nt"&gt;boolean&lt;/span&gt; &lt;span class="nt"&gt;TimeFlag&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nt"&gt;DateTime&lt;/span&gt; &lt;span class="nt"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;tiem&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;arrival&lt;/span&gt;
+&lt;span class="nt"&gt;DateTime&lt;/span&gt; &lt;span class="nt"&gt;departure&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;time&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;departure&lt;/span&gt;
+&lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;LastMonth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;working&lt;/span&gt; &lt;span class="nt"&gt;hours&lt;/span&gt; &lt;span class="nt"&gt;till&lt;/span&gt; &lt;span class="nt"&gt;now&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;month&lt;/span&gt;
+&lt;span class="nt"&gt;char&lt;/span&gt; &lt;span class="nt"&gt;DataRead&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Declaration&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;functions&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;redLED&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;red&lt;/span&gt; &lt;span class="nt"&gt;LED&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;greenLED&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;green&lt;/span&gt; &lt;span class="nt"&gt;LED&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nt"&gt;buzzer&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt;
+&lt;span class="nt"&gt;int&lt;/span&gt; &lt;span class="nt"&gt;getID&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;read&lt;/span&gt; &lt;span class="nt"&gt;tag&lt;/span&gt;
+&lt;span class="nt"&gt;boolean&lt;/span&gt; &lt;span class="nt"&gt;checkTag&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;check&lt;/span&gt; &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="nt"&gt;tag&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;unknown&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;errorBeep&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;error&lt;/span&gt; &lt;span class="nt"&gt;while&lt;/span&gt; &lt;span class="nt"&gt;reading&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;unknown&lt;/span&gt; &lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;StoreData&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;store&lt;/span&gt; &lt;span class="nt"&gt;data&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;microSD&lt;/span&gt;
+
+&lt;span class="nt"&gt;File&lt;/span&gt; &lt;span class="nt"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt; &lt;span class="nt"&gt;file&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;reading&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;writing&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;file&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;SD&lt;/span&gt; &lt;span class="nt"&gt;card&lt;/span&gt;
+
+
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;SETUP&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;for&lt;/span&gt; &lt;span class="n"&gt;testing&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;debugging&lt;/span&gt;
+  &lt;span class="n"&gt;SPI&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;SPI&lt;/span&gt; &lt;span class="n"&gt;library&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RFID&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;
+  &lt;span class="n"&gt;mfrc522&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PCD_Init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;initializing&lt;/span&gt; &lt;span class="n"&gt;RFID&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;RFID&lt;/span&gt; &lt;span class="n"&gt;library&lt;/span&gt;
+  &lt;span class="n"&gt;Wire&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;i2c&lt;/span&gt; &lt;span class="n"&gt;library&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RTC&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt;
+  &lt;span class="n"&gt;RTC&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;RTC&lt;/span&gt; &lt;span class="n"&gt;library&lt;/span&gt;
+  &lt;span class="n"&gt;RTC&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;adjust&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__DATE__&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__TIME__&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;RTC&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;compiling&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;
+  &lt;span class="n"&gt;Ethernet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mac&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ip&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;Ethernet&lt;/span&gt; &lt;span class="n"&gt;library&lt;/span&gt; 
+  &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt; 
+&lt;span class="o"&gt;//&lt;/span&gt;  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;server is at &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;  &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Ethernet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localIP&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+  &lt;span class="n"&gt;SD&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;SD&lt;/span&gt; &lt;span class="n"&gt;library&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;setting&lt;/span&gt; &lt;span class="n"&gt;DI&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;
+  &lt;span class="n"&gt;pinMode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;led_pos&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;pinMode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;led_neg&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;MAIN&lt;/span&gt; &lt;span class="nt"&gt;PROGRAM&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;int&lt;/span&gt; &lt;span class="n"&gt;succesRead&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;getID&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;RFID&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;
+  &lt;span class="n"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;succesRead&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;RFID&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;succesful&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;greenLED&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;checkTag&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;known&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;store&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;
+      &lt;span class="n"&gt;greenLED&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+      &lt;span class="n"&gt;StoreData&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nt"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;beeb&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="n"&gt;exit&lt;/span&gt;
+      &lt;span class="n"&gt;errorBeep&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="err"&gt;}&lt;/span&gt; &lt;span class="nt"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;redLED&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Web&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt;
+  &lt;span class="nt"&gt;EthernetClient&lt;/span&gt; &lt;span class="nt"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt;&lt;span class="nc"&gt;.available&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;check&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;HTTP&lt;/span&gt; &lt;span class="nt"&gt;request&lt;/span&gt;
+  &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;client&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;HTTP&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;    &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;new client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt; &lt;span class="n"&gt;ends&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;blank&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;
+    &lt;span class="n"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;currentLineIsBlank&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connected&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;char&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+ &lt;span class="o"&gt;//&lt;/span&gt;       &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;if&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ve gotten to the end of the line (received a newline&lt;/span&gt;
+&lt;span class="s1"&gt;        // character) and the line is blank, the http request has ended,&lt;/span&gt;
+&lt;span class="s1"&gt;        // so you can send a reply&lt;/span&gt;
+&lt;span class="s1"&gt;        if (c == &amp;#39;&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; &amp;amp;&amp;amp; currentLineIsBlank) {&lt;/span&gt;
+&lt;span class="s1"&gt;          // send a standard http response header&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;HTTP/1.1 200 OK&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;Content-Type: text/html&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;Connection: close&amp;quot;);  // the connection will be closed after completion of the response&lt;/span&gt;
+&lt;span class="s1"&gt;        //  client.println(&amp;quot;Refresh: 10&amp;quot;);  // refresh the page automatically every 5 sec&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println();&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Office Atendance Logger&amp;lt;/title&amp;gt;&amp;lt;style&amp;gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;.jumbotron{margin: 1% 3% 1% 3%; border: 1px solid none; border-radius: 30px; background-color: #AAAAAA;}&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;.dataWindow{margin: 1% 3% 1% 3%; border: 1px solid none; border-radius: 30px; background-color: #AAAAAA;padding: 1% 1% 1% 1%;}&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body style=\&amp;quot;background-color: #E6E6E6\&amp;quot;&amp;gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;&amp;lt;div class=\&amp;quot;jumbotron\&amp;quot;&amp;gt;&amp;lt;div style=\&amp;quot;text-align: center\&amp;quot;&amp;gt; &amp;lt;h1&amp;gt;  Office Atendance Logger &amp;lt;/h1&amp;gt; &amp;lt;/div&amp;gt; &amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;&amp;lt;/div&amp;gt;&amp;lt;div class=\&amp;quot;dataWindow\&amp;quot;&amp;gt;&amp;lt;div style=\&amp;quot;text-align: center\&amp;quot;&amp;gt; &amp;lt;h2&amp;gt; User A &amp;lt;/h2&amp;gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          myFile = SD.open(&amp;quot;A.txt&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;          if(myFile){&lt;/span&gt;
+
+&lt;span class="s1"&gt;            while(myFile.available()){&lt;/span&gt;
+&lt;span class="s1"&gt;                client.print(&amp;quot;&amp;lt;p&amp;gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;                while(DataRead != 59){&lt;/span&gt;
+&lt;span class="s1"&gt;                  DataRead = (char)myFile.read();&lt;/span&gt;
+&lt;span class="s1"&gt;                  client.print(DataRead);&lt;/span&gt;
+&lt;span class="s1"&gt;            //      client.print(myFile.read());&lt;/span&gt;
+&lt;span class="s1"&gt;                }&lt;/span&gt;
+&lt;span class="s1"&gt;                client.println(&amp;quot;&amp;lt;/p&amp;gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;                DataRead = 0;&lt;/span&gt;
+&lt;span class="s1"&gt;            }  &lt;/span&gt;
+
+&lt;span class="s1"&gt;            myFile.close();&lt;/span&gt;
+&lt;span class="s1"&gt;          }&lt;/span&gt;
+&lt;span class="s1"&gt;          client.println(&amp;quot;&amp;lt;/div&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;quot;);    &lt;/span&gt;
+&lt;span class="s1"&gt;          break;     &lt;/span&gt;
+&lt;span class="s1"&gt;        }&lt;/span&gt;
+&lt;span class="s1"&gt;        if (c == &amp;#39;&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;) {&lt;/span&gt;
+&lt;span class="s1"&gt;          // you&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt; &lt;span class="n"&gt;starting&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;
+          &lt;span class="n"&gt;currentLineIsBlank&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="nt"&gt;else&lt;/span&gt; &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;c&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;\r&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ve gotten a character on the current line&lt;/span&gt;
+&lt;span class="s1"&gt;          currentLineIsBlank = false;&lt;/span&gt;
+&lt;span class="s1"&gt;        }&lt;/span&gt;
+&lt;span class="s1"&gt;      }&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;    // give the web browser time to receive the data&lt;/span&gt;
+&lt;span class="s1"&gt;    delay(1);&lt;/span&gt;
+&lt;span class="s1"&gt;    // close the connection:&lt;/span&gt;
+&lt;span class="s1"&gt;    client.stop();&lt;/span&gt;
+&lt;span class="s1"&gt;//    Serial.println(&amp;quot;client disconnected&amp;quot;);&lt;/span&gt;
+&lt;span class="s1"&gt;  }   &lt;/span&gt;
+&lt;span class="s1"&gt;  delay(1000);&lt;/span&gt;
+&lt;span class="s1"&gt;}&lt;/span&gt;
+
+&lt;span class="s1"&gt;// FUNCTIONS&lt;/span&gt;
+&lt;span class="s1"&gt;void redLED(){ // red LED on, green LED off&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_pos, LOW);&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_neg, HIGH);&lt;/span&gt;
+&lt;span class="s1"&gt;}&lt;/span&gt;
+
+&lt;span class="s1"&gt;void greenLED(){ // red LED off, green LED on&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_pos, HIGH);&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_neg, LOW);&lt;/span&gt;
+&lt;span class="s1"&gt;  tone(buzzer, 440, 50); // sound; frequency of tone: 440 Hz, duration of tone: 50 ms&lt;/span&gt;
+&lt;span class="s1"&gt;}&lt;/span&gt;
+
+&lt;span class="s1"&gt;boolean checkTag(){ // check if tag is unknown&lt;/span&gt;
+&lt;span class="s1"&gt;  if(readTag == UID_tagA){UIDs_No = 1; return true;}&lt;/span&gt;
+&lt;span class="s1"&gt;//  else if(readTag == UID_tagB){UIDs_No = 2; return true;}&lt;/span&gt;
+&lt;span class="s1"&gt;  else {return false;}&lt;/span&gt;
+&lt;span class="s1"&gt;}&lt;/span&gt;
+
+&lt;span class="s1"&gt;void errorBeep(){ // error option&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_pos, LOW);&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_neg, LOW);&lt;/span&gt;
+&lt;span class="s1"&gt;  delay(150);&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_neg, HIGH);&lt;/span&gt;
+&lt;span class="s1"&gt;  tone(buzzer, 440, 50);&lt;/span&gt;
+&lt;span class="s1"&gt;  delay(150);&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_neg, LOW);&lt;/span&gt;
+&lt;span class="s1"&gt;  delay(150);&lt;/span&gt;
+&lt;span class="s1"&gt;  digitalWrite(led_neg, HIGH);&lt;/span&gt;
+&lt;span class="s1"&gt;  tone(buzzer, 440, 50);&lt;/span&gt;
+&lt;span class="s1"&gt;}&lt;/span&gt;
+
+&lt;span class="s1"&gt;int getID() { // Read RFID&lt;/span&gt;
+&lt;span class="s1"&gt;    // Getting ready for Reading PICCs&lt;/span&gt;
+&lt;span class="s1"&gt;  if ( ! mfrc522.PICC_IsNewCardPresent()) { //If a new PICC placed to RFID reader continue&lt;/span&gt;
+&lt;span class="s1"&gt;    return 0;&lt;/span&gt;
+&lt;span class="s1"&gt;  }&lt;/span&gt;
+&lt;span class="s1"&gt;  if ( ! mfrc522.PICC_ReadCardSerial()) {   //Since a PICC placed get Serial and continue&lt;/span&gt;
+&lt;span class="s1"&gt;    return 0;&lt;/span&gt;
+&lt;span class="s1"&gt;  }&lt;/span&gt;
+&lt;span class="s1"&gt;  // There are Mifare PICCs which have 4 byte or 7 byte UID care if you use 7 byte PICC&lt;/span&gt;
+&lt;span class="s1"&gt;  // I think we should assume every PICC as they have 4 byte UID&lt;/span&gt;
+&lt;span class="s1"&gt;  // Until we support 7 byte PICCs&lt;/span&gt;
+&lt;span class="s1"&gt;//  Serial.println(F(&amp;quot;Scanned PICC&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;UID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;));&lt;/span&gt;
+&lt;span class="s2"&gt;  readTag = &amp;quot;&amp;quot;;&lt;/span&gt;
+&lt;span class="s2"&gt;  for (int i = 0; i &amp;lt; 4; i++) {  //&lt;/span&gt;
+&lt;span class="s2"&gt;    readCard&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt; = mfrc522.uid.uidByte&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;;&lt;/span&gt;
+&lt;span class="s2"&gt;//    Serial.print(readCard&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;, HEX);&lt;/span&gt;
+&lt;span class="s2"&gt;    readTag=readTag+String(readCard&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;, HEX);&lt;/span&gt;
+&lt;span class="s2"&gt;  }&lt;/span&gt;
+&lt;span class="s2"&gt;  // Serial.println(readTag);&lt;/span&gt;
+&lt;span class="s2"&gt;//  Serial.println(&amp;quot;&amp;quot;);&lt;/span&gt;
+&lt;span class="s2"&gt;  mfrc522.PICC_HaltA(); // Stop reading&lt;/span&gt;
+&lt;span class="s2"&gt;  return 1;&lt;/span&gt;
+&lt;span class="s2"&gt;}&lt;/span&gt;
+
+&lt;span class="s2"&gt;void StoreData(){ // calculate and store data to SD card&lt;/span&gt;
+&lt;span class="s2"&gt;  DateTime time = RTC.now(); // read time from RTC&lt;/span&gt;
+&lt;span class="s2"&gt;  if(LastMonth != time.month()){ // check if there is a new month&lt;/span&gt;
+&lt;span class="s2"&gt;    LastMonth = time.month();&lt;/span&gt;
+&lt;span class="s2"&gt;    SD.remove(&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;hoursA&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;);&lt;/span&gt;
+&lt;span class="s2"&gt;  }&lt;/span&gt;
+&lt;span class="s2"&gt;  switch(UIDs_No){ // this is set for multiple tags, as of right now is made only for one tag&lt;/span&gt;
+&lt;span class="s2"&gt;    case 1:&lt;/span&gt;
+&lt;span class="s2"&gt;      if(TimeFlag&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;){ // departure&lt;/span&gt;
+&lt;span class="s2"&gt;        departure&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt; = time;  // save departure time&lt;/span&gt;
+&lt;span class="s2"&gt;        // calculate working hours and minutes&lt;/span&gt;
+&lt;span class="s2"&gt;        int dh = abs(departure&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;.hour()-arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;.hour()); &lt;/span&gt;
+&lt;span class="s2"&gt;        int dm = abs(departure&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;.minute()-arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;.minute()); &lt;/span&gt;
+&lt;span class="s2"&gt;        unsigned int work = dh*60 + dm; // working hours in minutes&lt;/span&gt;
+&lt;span class="s2"&gt;        MinsA = MinsA + work; // add working hours in minutes to working hours from this month&lt;/span&gt;
+&lt;span class="s2"&gt;        HoursA = (int)MinsA/60; // calculate working hours from minutes&lt;/span&gt;
+&lt;span class="s2"&gt;        myFile = SD.open(&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;, FILE_WRITE); // open file with history and write to it&lt;/span&gt;
+&lt;span class="s2"&gt;        if(myFile){ // format = &amp;quot;&lt;/span&gt; &lt;span class="n"&gt;MM&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;DD&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;YYYY&lt;/span&gt; &lt;span class="n"&gt;hh&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;mm&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hh&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;mm&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;departure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hh&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt; &lt;span class="n"&gt;hours&lt;/span&gt; &lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hh&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt; &lt;span class="n"&gt;hours&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;month&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;month&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hour&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;minute&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;departure&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hour&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;departure&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;minute&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dh&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dm&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HoursA&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEC&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+          &lt;span class="n"&gt;myFile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="nt"&gt;TimeFlag&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;false&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;set&lt;/span&gt; &lt;span class="nt"&gt;time&lt;/span&gt; &lt;span class="nt"&gt;flag&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;false&lt;/span&gt;
+      &lt;span class="err"&gt;}&lt;/span&gt; &lt;span class="nt"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+        &lt;span class="n"&gt;arrival&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;arrival&lt;/span&gt; 
+        &lt;span class="n"&gt;TimeFlag&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;true&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="nt"&gt;break&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;  
+  &lt;span class="err"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://www.instructables.com/id/Arduino-attendence-logger/"&gt;Visit project’s homepage for more information.&lt;/a&gt;&lt;/p&gt;</summary><category term="Arduino"></category><category term="Projects"></category><category term="RTC"></category><category term="RFID"></category></entry></feed>
