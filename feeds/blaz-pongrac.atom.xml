@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-11-20T00:00:00-06:00</updated><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;p&gt;Recently I received a question from a good friend of mine. He wanted to automate blinds on his office window and he wondered how he can measure or detect light. I told him that the simplest solution would be using LDR resistor.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-11-20T00:00:00-06:00</updated><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;p&gt;&lt;div class="jumbotron"&gt;
+Recently I received a question from a good friend of mine. He wanted to automate blinds on his office window and he wondered how he can measure or detect light. I told him that the simplest solution would be using LDR resistor.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="LDR Prototype" src="/images/ldr-tutorial/image_1.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Light Dependent Resistor, also called photoresistor, is resistor with variable resistance, which depends on illumination. First let us take on the basics of the resistors and then basics of the LDR. After that we can move to LDR light sensor and simple Arduino example.&lt;/p&gt;
 &lt;h4&gt;Resistance&lt;/h4&gt;
@@ -48,19 +49,22 @@ void loop() {
   }
   delay(1000); // short delay, not needed but is convenient
 }
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;p&gt;I made this project long time ago. It was build as proof of concept while working for local tech
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;p&gt;I made this project long time ago. It was build as proof of concept while working for local tech
 company. Since then I have used it to track my working hours on my personal projects. Here is how
 you can make one.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="attendancd logger" src="/images/attendance-logger/image_1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/attendance-logger/image_1.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Point of the project was to develop simple Attendance data logger which can log time of arrival, time
 of departure and calculate working hours and access to the data must be granted within same LAN.
 From that I conclude that I would need RTC (Real Time Clock) module and Ethernet shield. For
 identifying user I went for RFID module. I added LEDs and speaker for more user friendly functioning.&lt;/p&gt;
 &lt;p&gt;To recreate this project, you'll need:
-* &lt;a href="https://www.amazon.com/gp/product/B00JTBMD7E/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00JTBMD7E&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=e019c92af67ea61af617e81aa17c30d5"&gt;Arduino Mega 2560&lt;/a&gt;&lt;/p&gt;
+* &lt;a href="https://www.amazon.com/gp/product/B00JTBMD7E/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00JTBMD7E&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=e019c92af67ea61af617e81aa17c30d5"&gt;Arduino Mega 2560&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00UUR8GJU/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00UUR8GJU&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=0846e93d9644288acfee1498dfb7c5e3"&gt;DS1307 RTC module&lt;/a&gt; (I used TinyRTC)&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00UUR8GJU/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UUR8GJU&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=0846e93d9644288acfee1498dfb7c5e3"&gt;DS1307 RTC module&lt;/a&gt; (I used TinyRTC)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00AXVX5D0/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00AXVX5D0&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=80368ee774a17a2048158c4503320a94"&gt;Ethernet shield&lt;/a&gt; (I used W5100)&lt;/p&gt;
