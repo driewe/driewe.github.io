@@ -112,72 +112,75 @@ void loop() {
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;p&gt;I made this project long time ago. It was build as proof of concept while working for local tech
-company. Since then I have used it to track my working hours on my personal projects. Here is how
-you can make one.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/attendance-logger/image_1.jpg"&gt;&lt;/p&gt;
-&lt;p&gt;Point of the project was to develop simple Attendance data logger which can log time of arrival, time
-of departure and calculate working hours and access to the data must be granted within same LAN.
-From that I conclude that I would need RTC (Real Time Clock) module and Ethernet shield. For
-identifying user I went for RFID module. I added LEDs and speaker for more user friendly functioning.&lt;/p&gt;
-&lt;p&gt;To recreate this project, you'll need:
-* &lt;a href="https://www.amazon.com/gp/product/B00JTBMD7E/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00JTBMD7E&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=e019c92af67ea61af617e81aa17c30d5"&gt;Arduino Mega 2560&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00UUR8GJU/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UUR8GJU&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=0846e93d9644288acfee1498dfb7c5e3"&gt;DS1307 RTC module&lt;/a&gt; (I used TinyRTC)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00AXVX5D0/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00AXVX5D0&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=80368ee774a17a2048158c4503320a94"&gt;Ethernet shield&lt;/a&gt; (I used W5100)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B014CLKOJE/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B014CLKOJE&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=3ccdb0c4bbca230b0cd90cd50111d719"&gt;RFID shield&lt;/a&gt; (I used RC522) and some tags; NFC module can be used instead&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B01F0TCXSW/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B01F0TCXSW&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=8206617fe1f806f6a18bbd0d8e637ab5"&gt;green and red LED&lt;/a&gt; or two color LED (I am using two color 2 pins LED)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B0185FGNWK/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B0185FGNWK&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=1e04088241310f3e56a02a198f438c2b"&gt;220 OHM resistors&lt;/a&gt; for LEDs&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00TX2Z4J8/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00TX2Z4J8&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=4bfcb57047e2c7532ebe9c163ed42665"&gt;8-ohm speaker&lt;/a&gt; or buzzer&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B00BPPTTU6/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B00BPPTTU6&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=82ba7916f18d2c8d02b599c06217e8be"&gt;9V PSU and DC connector&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B01HYHUEBQ/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B01HYHUEBQ&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=d83a5aa9931efe51b29a10d462652e6e"&gt;Ethernet cable&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/gp/product/B004G605OA/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=B004G605OA&amp;amp;linkCode=as2&amp;amp;tag=hackerspacetech-20&amp;amp;linkId=2a9ee9b8f40e70513710481f2d4c2301"&gt;microSD card&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;project housing&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;some wires to connect everything together&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img alt="Board Layout" src="/images/attendance-logger/image_2.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;Schematics are pretty simple. MicroSD card, Ethernet Shield and RC522 are using SPI interface with
-different CS pins, tinyRTC uses I2C interface and LEDs and speakers are controlled with digital pins.
-Project could be executed with Arduino UNO, but one can run out of available memory for the code.
-Arduino Mega 2560 was used instead. For connecting Ethernet Shield to Arduino Mega 2560 you can
-&lt;a href="http://mcukits.com/2009/04/06/arduino-ethernet-shield-mega-hack/"&gt;use this guide&lt;/a&gt;. Because
-different modules can have different pinouts, I created table bellow so connecting everything
-together can be easier. Make sure Ethernet shield is inserted like on link above – only pins 13, 12 and 11 are bended away. Ethernet Shield and RC522 module are using same pins, because they both uses
-same SPI interface. This is something that can be dealt with simple Y wire (I made mine from
-breadboard wires).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Y Cable" src="/images/attendance-logger/image_3.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Ethernet Shield" src="/images/attendance-logger/table.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Arduino code is build according to flow chart below. Program runs in loop. First step in the loop is to check RFID module. If module is sensing known tag, step two is in place – getting data from RTC
-module and storing it onto microSD card. Step three is performed when HTTP request is received.
-Data is collected from microSD card and it is combined with HTML/CSS code to be displayed in
-client’s browser.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="flow chart" src="/images/attendance-logger/flowchart.jpeg" /&gt;&lt;/p&gt;
+&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;div class="jumbotron"&gt;
+
+&lt;div class="container-fluid"&gt;
+&lt;div row&gt;
+    &lt;div class="col-sm-4"&gt;
+    &lt;img src="/images/attendance-logger/image_1.jpg"  class="img-rounded img-thumbnail"&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-8"&gt;
+        &lt;p&gt;&lt;h5&gt;I made this project long time ago. It was build as proof of concept while working for local tech
+        company. Since then I have used it to track my working hours on my personal projects. Here is how
+        you can make one.&lt;/h5&gt;&lt;/p&gt;
+
+        &lt;p&gt;&lt;h5&gt;Point of the project was to develop simple Attendance data logger which can log time of arrival, time
+        of departure and calculate working hours and access to the data must be granted within same LAN.
+        From that I conclude that I would need RTC (Real Time Clock) module and Ethernet shield. For
+        identifying user I went for RFID module. I added LEDs and speaker for more user friendly functioning.&lt;/h5&gt;&lt;/p&gt;
+
+        &lt;h4&gt;To recreate this project, you'll need:&lt;/h4&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B00JTBMD7E/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00JTBMD7E&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=e019c92af67ea61af617e81aa17c30d5"&gt;Arduino Mega 2560&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B00UUR8GJU/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UUR8GJU&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=0846e93d9644288acfee1498dfb7c5e3"&gt;DS1307 RTC module&lt;/a&gt; (I used TinyRTC)&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B00AXVX5D0/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00AXVX5D0&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=80368ee774a17a2048158c4503320a94"&gt;Ethernet shield&lt;/a&gt;  (I used W5100)&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B014CLKOJE/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B014CLKOJE&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=3ccdb0c4bbca230b0cd90cd50111d719"&gt;RFID shield&lt;/a&gt;(I used RC522) and some tags; NFC module can be used instead&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B01F0TCXSW/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01F0TCXSW&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=8206617fe1f806f6a18bbd0d8e637ab5"&gt;green and red LED&lt;/a&gt; or two color LED (I am using two color 2 pins LED)&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B0185FGNWK/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0185FGNWK&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=1e04088241310f3e56a02a198f438c2b"&gt;220 OHM resistors&lt;/a&gt; for LEDs&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B00TX2Z4J8/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00TX2Z4J8&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=4bfcb57047e2c7532ebe9c163ed42665"&gt;8-ohm speaker&lt;/a&gt; or buzzer&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B00BPPTTU6/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00BPPTTU6&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=82ba7916f18d2c8d02b599c06217e8be"&gt;9V PSU and DC connector&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B01HYHUEBQ/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B01HYHUEBQ&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=d83a5aa9931efe51b29a10d462652e6e"&gt;Ethernet cable&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/B004G605OA/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B004G605OA&amp;linkCode=as2&amp;tag=hackerspacetech-20&amp;linkId=2a9ee9b8f40e70513710481f2d4c2301"&gt;microSD card&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;project housing&lt;/li&gt;
+            &lt;li&gt;some wires to connect everything together&lt;/li&gt;
+       &lt;/ul&gt;
+    &lt;/div&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;div class="container-fluid"&gt;
+&lt;div row&gt;
+    &lt;div class="col-sm-8"&gt;
+&lt;p&gt;&lt;h5&gt;Schematics are pretty simple. MicroSD card, Ethernet Shield and RC522 are using SPI interface with different CS pins, tinyRTC uses I2C interface and LEDs and speakers are controlled with digital pins. Project could be executed with Arduino UNO, but one can run out of available memory for the code. Arduino Mega 2560 was used instead. For connecting Ethernet Shield to Arduino Mega 2560 you can &lt;a href="http://mcukits.com/2009/04/06/arduino-ethernet-shield-mega-hack"&gt;use this guide&lt;/a&gt;. Because different modules can have different pinouts, I created table bellow so connecting everything together can be easier. Make sure Ethernet shield is inserted like on link above – only pins 13, 12 and 11 are bended away. Ethernet Shield and RC522 module are using same pins, because they both uses same SPI interface. This is something that can be dealt with simple Y wire (I made mine from breadboard wires).&lt;/h5&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-4"&gt;
+    &lt;img src="/images/attendance-logger/image_2.jpg" class="img-rounded img-thumbnail"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="container-fluid"&gt;
+&lt;div row&gt;
+    &lt;div class="col-sm-6"&gt;
+    &lt;img src="/images/attendance-logger/image_3.jpg" class="img-rounded img-thumbnail"&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-6"&gt;
+    &lt;img src="/images/attendance-logger/table.png" class="img-rounded img-thumbnail"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;h5&gt;Arduino code is build according to flow chart below. Program runs in loop. First step in the loop is to check RFID module. If module is sensing known tag, step two is in place – getting data from RTC module and storing it onto microSD card. Step three is performed when HTTP request is received. Data is collected from microSD card and it is combined with HTML/CSS code to be displayed in client’s browser.&lt;/h5&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img src="/images/attendance-logger/flowchart.jpeg" class="img-rounded img-thumbnail"&gt;&lt;/p&gt;
 &lt;h4&gt;Here is short video from first test of this device.&lt;/h4&gt;
+
 &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/qQ855Dht2_U" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 
-&lt;h4&gt;And here is the Arduino code.&lt;/h4&gt;
+&lt;p&gt;&lt;/center&gt;
+&lt;h4&gt;And here is the Arduino code.&lt;/h4&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;/* RFID TAG READER&lt;/span&gt;
 &lt;span class="c"&gt;Author: vonPongrac&lt;/span&gt;
 
@@ -435,4 +438,5 @@ client’s browser.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;a href="http://www.instructables.com/id/Arduino-attendence-logger/"&gt;Visit project’s homepage for more information.&lt;/a&gt;&lt;/p&gt;</summary><category term="Arduino"></category><category term="Projects"></category><category term="RTC"></category><category term="RFID"></category></entry></feed>
+&lt;p&gt;&lt;a href="http://www.instructables.com/id/Arduino-attendence-logger/" target="_blank"&gt;Visit project’s homepage for more information.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</summary><category term="Arduino"></category><category term="Projects"></category><category term="RTC"></category><category term="RFID"></category></entry></feed>
