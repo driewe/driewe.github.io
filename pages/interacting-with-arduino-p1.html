@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Serial to Parallel Shifting-Out with a 74HC595 - HackerSpaceTech</title>
+    <title>Interacting With Arduino p1 - HackerSpaceTech</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,39 +9,30 @@
 
 
 
-<link rel="canonical" href="./serial-to-parallel-shifting-out-with-a-74hc595.html">
+<link rel="canonical" href="../pages/interacting-with-arduino-p1.html">
 
-        <meta name="author" content="David Riewe" />
-        <meta name="keywords" content="Arduino,75HC595,tutorials" />
-        <meta name="description" content="Using the 74HC595 to control 8 leds (outputs) without giving up 8 ports on the arduino uno. Three outputs from the arduino are used to shift the data out in serial to the 74HC595 were it is then parceled out to each of its individual pins. You can link multiple ..." />
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="** Visit Our Meetup Page To Register For Free Workshop ** Temperature and humidity In this presentation you will learn how to measure temperature and humidity. To do this, we will use a sensor from the DHT family of temperature and humidity sensors. You will also learn about the dielectric property of ..." />
 
-        <meta property="og:site_name" content="HackerSpaceTech" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Serial to Parallel Shifting-Out with a 74HC595"/>
-        <meta property="og:url" content="./serial-to-parallel-shifting-out-with-a-74hc595.html"/>
-        <meta property="og:description" content="Using the 74HC595 to control 8 leds (outputs) without giving up 8 ports on the arduino uno. Three outputs from the arduino are used to shift the data out in serial to the 74HC595 were it is then parceled out to each of its individual pins. You can link multiple ..."/>
-        <meta property="article:published_time" content="2015-11-08" />
-            <meta property="article:section" content="Blog" />
-            <meta property="article:tag" content="Arduino" />
-            <meta property="article:tag" content="75HC595" />
-            <meta property="article:tag" content="tutorials" />
-            <meta property="article:author" content="David Riewe" />
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Interacting With Arduino p1"/>
+    <meta property="og:url" content="../pages/interacting-with-arduino-p1.html"/>
+    <meta property="og:description" content="** Visit Our Meetup Page To Register For Free Workshop ** Temperature and humidity In this presentation you will learn how to measure temperature and humidity. To do this, we will use a sensor from the DHT family of temperature and humidity sensors. You will also learn about the dielectric property of ..." />
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme/css/bootstrap.united.min.css" type="text/css"/>
-    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="../theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme/css/pygments/solarizeddark.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+    <link href="../theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="../theme/css/style.css" type="text/css"/>
 
-        <link href="./feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+        <link href="../feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="HackerSpaceTech ATOM Feed"/>
 
 
 
-        <link href="./feeds/blog.atom.xml" type="application/atom+xml" rel="alternate"
-              title="HackerSpaceTech Blog ATOM Feed"/>
 
 </head>
 <body>
@@ -55,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="./" class="navbar-brand">
+            <a href="../" class="navbar-brand">
 HackerSpaceTech            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -77,7 +68,7 @@ HackerSpaceTech            </a>
 <!-- Banner -->
 <style>
 	#banner{
-	    background-image:url(".//images/banners/mainbanner3.png");
+	    background-image:url("..//images/banners/mainbanner3.png");
 	}
 </style>
 
@@ -91,118 +82,100 @@ HackerSpaceTech            </a>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="./serial-to-parallel-shifting-out-with-a-74hc595.html"
-                       rel="bookmark"
-                       title="Permalink to Serial to Parallel Shifting-Out with a 74HC595">
-                        Serial to Parallel Shifting-Out with a 74HC595
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-11-08T00:00:00-06:00"> Sun 08 November 2015</time>
-    </span>
+    <section id="content" class="body">
+        <h1 class="entry-title">Interacting With Arduino p1</h1>
+        
+        <div class="entry-content">
+            <div class="jumbotron">
+<div class="container-fluid">
 
+<span style="color: red;">**&nbsp;</span><a href="http://www.meetup.com/hackerspacetech/" rel="nofollow" style="text-align: center;" target="_blank">Visit Our Meetup Page To Register For Free Workshop</a><span style="color: red;">&nbsp;**</span><br />
+<br />
+<span style="font-size: large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276163?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Temperature and humidity</a></span><br />
+<blockquote class="tr_bq">
+In this presentation you will learn how to measure temperature and humidity. To do this, we will use a sensor from the DHT family of temperature and humidity sensors. You will also learn about the dielectric property of certain materials, and of how to include an external software library to your Arduino sketch.</blockquote>
+<b><br /></b>
+<b>Parts:</b><br />
+The DHT22 or DHT11 sensor<br />
+10k Resistor<br />
+<br />
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/Temperature%20and%20Humidity/DHTtester/DHTtester.ino">Temperature and Humidity Sketch</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Relative_permittivity#Terminology">The dialectric phenomenon</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Pull-up_resistor">The pull-up resistor</a></li>
+<li><a href="https://github.com/adafruit/DHT-sensor-library">The DHT library from Adafruit.</a></li>
+</ul>
+<span style="font-size: large;"><br /></span>
+<span style="font-size: large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276165?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Barometric pressure sensors</a></span><br />
+<blockquote class="tr_bq">
+This presentation discusses barometric pressure and how you can measure it with the BPM085 sensor. You will also learn about the I2C communications interface that this sensor uses to communicate with the Arduino.</blockquote>
+<br />
+<blockquote class="tr_bq">
+PLEASE NOTE: A new sensor, BMP180, has been release as a drop-in replacement of the BPM085. The new device is a drop-in replacement of the old, so you can use the exact same connections schematic and library as described in this presentation. Also, Adafruit has released a new version of the library, compatible with both BPM085 and BPM180 with new useful features; I will be creating a new presentation showing how to use the new library.</blockquote>
+<br />
+<b>Parts</b><br />
+<br />
+* The BPM085 barometric pressure sensor.<br />
+<br />
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/Barometric%20pressure%20sensors/BMP085test/BMP085test.ino">Barometric pressure sensor sketch</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Atmospheric_pressure">About atmospheric pressure.</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Atmospheric_pressure">The piezo-electric property.</a></li>
+<li><a href="https://github.com/adafruit/Adafruit-BMP085-Library">The Adafruit BMP085 library on Github.</a></li>
+</ul>
+<div>
+<span style="color: #333333; font-family: &quot;proxima&quot;;"><span style="font-size: 17px; line-height: 26px;"><br /></span></span></div>
+<span style="font-size: large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276167?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Infrared motion sensors</a></span><br />
+<blockquote class="tr_bq">
+In this presentation, we will connect a passive infrared sensor to our Arduino, calibrate it, and turn an LED on every time motion is detected. We also discuss the different technologies used to detect motion.</blockquote>
+<br />
+<b>Parts</b><br />
+<ul>
+<li>HC-SR501 passive infrared sensor.</li>
+<li>A resistor.</li>
+<li>An LED.</li>
+</ul>
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/Infrared%20PIR%20sensors/S2_L10_PIR_sensor/S2_L10_PIR_sensor.ino">Infrared motion sensor sketch</a></li>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/Infrared%20PIR%20sensors/L10_Sensitivity_adjusted/L10_Sensitivity_adjusted.ino">PIR sensitivity adjusted sketch</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Doppler_effect">The Doppler effect.</a></li>
+</ul>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-size: large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276169?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Ultrasonic distance sensor&nbsp;</a></span></div>
+<div>
+<blockquote class="tr_bq">
+In this presentation you will learn about how to measure distance using an ultrasonic distance sensor. This is a fairly sophisticated sensor that carries out a quite involved function when it comes to the physics of its implementation, however, as you will see, its application is as simple as it can be. You will also learn how to use a more advanced function of the Arduino language, the pulseIn function, through which you can time external events.</blockquote>
+</div>
+<div>
+<br /></div>
+<div>
+<b>Parts</b></div>
+<div>
+<br /></div>
+<div>
+* HC-SR04 ultrasonic distance sensor.</div>
+</div>
+<div>
+<br /></div>
+<br />
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/Ultrasonic%20Distance%20Sensor/Distance/Distance.ino">Distance sensor sketch</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Sonar">Principles of the sonar.</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Ultrasonic_transducer">More about ultrasonic sensors.</a></li>
+<li><a href="http://www.arduino.cc/en/Reference/PulseIn">More about the pulseIn function.</a></li>
+</ul>
+</div>
 
-            <span class="label label-default">By</span>
-            <a href="./author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="./tag/arduino.html">Arduino</a>
-        /
-	<a href="./tag/75hc595.html">75HC595</a>
-        /
-	<a href="./tag/tutorials.html">tutorials</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p><img alt="74HC595 Driving 8 Leds" src="/images/74hc595.jpg" /></p>
-<p>Using the 74HC595 to control 8 leds (outputs) without giving up 8 ports on the arduino uno. Three outputs from the arduino are used to shift the data out in serial to the 74HC595 were it is then parceled out to each of its individual pins. You can link multiple registers together to extend your output even more, without giving up any more pins on the arduino.</p>
-<blockquote>
-<p>Note: The shift register is not what gives the appearance of the led going back and foth...ie shifting. All the shifting happens prior to the output states changing. The led appears to be shifting because it is in a loop writing the numbers 1, 2, 4, 8, 16, 32, 64, 128, 64, 32, 16, 8, 4, and 2.</p>
-</blockquote>
-<p>If you are interested in seeing how fast data is shifted out by a 16MHz Arduino check out the post <a href="/syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a> where we will use an oscilloscope to observe the shiftout command in action.</p>
-<p><center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-JyDOHiEaF0" frameborder="0" allowfullscreen></iframe>
-</center></p>
-<p>Pin out for the 74HC595 along with a short tutorial by Simon Monk can be <a href="https://learn.adafruit.com/adafruit-arduino-lesson-4-eight-leds/overview">found here</a>.</p>
-<div class="highlight"><pre><span></span> /*
-Using the 74HC595 to control 8 leds (outputs) without giving up 8 ports on the arduino uno. 
-Three outputs from the arduino are used to shift the data out in serial to the 74HC595 were it 
-is then parceled out to each of its individual pins. 
-
-*/
-
-int latchPin = 5;   // to pin 12
-int clockPin = 6;   // to pin 11
-int dataPin = 4;    // to pin 14
-
-byte leds = 0;
-int pattern[] = {1, 2, 4, 8, 16, 32, 64, 128, 64, 32, 16, 8, 4, 2};
-
-void setup() 
-{
-  pinMode(latchPin, OUTPUT);
-  pinMode(dataPin, OUTPUT);  
-  pinMode(clockPin, OUTPUT);
-}
-
-void loop() 
-{
-
-    for (int i = 0; i &lt; 14; i++)
-    {
-        leds = pattern[i];
-        updateShiftRegister();
-        delay(1000);
-    }
-}
-
-void updateShiftRegister()
-{
-    digitalWrite(latchPin, LOW);
-    shiftOut(dataPin, clockPin, LSBFIRST, leds);
-    digitalWrite(latchPin, HIGH);
-}
-</pre></div>
-            </div>
-            <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="./playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
-        <li><a href="./infra-red-controlled-robot.html">Infra Red Controlled Robot</a></li>
-        <li><a href="./creating-a-simple-relay-board-using-eagle.html">Creating A Simple Relay Board Using Eagle</a></li>
-        <li><a href="./understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
-        <li><a href="./matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
-        <li><a href="./ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
-        <li><a href="./max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
-        <li><a href="./creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
-        <li><a href="./multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
-        <li><a href="./while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
-    </ul>
-</section>
-    <hr />
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style">
-            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-            <a class="addthis_button_tweet"></a>
-            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    </div>
-    <!-- AddThis Button END -->
-        </article>
+</div>
+        </div>
     </section>
-
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -222,27 +195,27 @@ void updateShiftRegister()
             <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                 <ul class="list-group" id="recentposts">
                     <li class="list-group-item">
-                        <a href="./creating-a-simple-relay-board-using-eagle.html">
+                        <a href="../creating-a-simple-relay-board-using-eagle.html">
                             Creating A Simple Relay Board Using Eagle
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./ldr-light-sensor-tutorial.html">
+                        <a href="../ldr-light-sensor-tutorial.html">
                             LDR light sensor tutorial
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./attendance-logger.html">
+                        <a href="../attendance-logger.html">
                             Attendance Logger
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./virtual-color-mixer.html">
+                        <a href="../virtual-color-mixer.html">
                             Virtual Color Mixer
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">
+                        <a href="../switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">
                             Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port
                         </a>
                     </li>
@@ -354,15 +327,15 @@ void updateShiftRegister()
       </div>
    </div>
 </footer>
-<script src="./theme/js/jquery.min.js"></script>
+<script src="../theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme/js/bootstrap.min.js"></script>
+<script src="../theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme/js/respond.min.js"></script>
+<script src="../theme/js/respond.min.js"></script>
 
-    <script src="./theme/js/bodypadding.js"></script>
+    <script src="../theme/js/bodypadding.js"></script>
     <!-- Google Analytics -->
     <script type="text/javascript">
 
@@ -381,7 +354,5 @@ void updateShiftRegister()
     </script>
     <!-- End Google Analytics Code -->
 
-        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
 </body>
 </html>
