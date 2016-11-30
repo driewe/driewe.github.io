@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Creating A Simple Relay Board Using Eagle - HackerSpaceTech</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./creating-a-simple-relay-board-using-eagle.html">
+
+        <meta name="author" content="Scott Reesor" />
+        <meta name="keywords" content="Arduino,Tutorials,Eagle,PCB" />
+        <meta name="description" content="h6 { text-align: center; } Figure 1 Here we just do a really simple relay board with two terminal blocks and an omron relay. Below you will see the schematic. I chose the components from the Eagle library which can be accessed from the add component button in the left hand tool ..." />
+
+        <meta property="og:site_name" content="HackerSpaceTech" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Creating A Simple Relay Board Using Eagle"/>
+        <meta property="og:url" content="./creating-a-simple-relay-board-using-eagle.html"/>
+        <meta property="og:description" content="h6 { text-align: center; } Figure 1 Here we just do a really simple relay board with two terminal blocks and an omron relay. Below you will see the schematic. I chose the components from the Eagle library which can be accessed from the add component button in the left hand tool ..."/>
+        <meta property="article:published_time" content="2016-11-29" />
+            <meta property="article:section" content="Blog" />
+            <meta property="article:tag" content="Arduino" />
+            <meta property="article:tag" content="Tutorials" />
+            <meta property="article:tag" content="Eagle" />
+            <meta property="article:tag" content="PCB" />
+            <meta property="article:author" content="Scott Reesor" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+        <link href="./feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="HackerSpaceTech ATOM Feed"/>
+
+
+
+        <link href="./feeds/blog.atom.xml" type="application/atom+xml" rel="alternate"
+              title="HackerSpaceTech Blog ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+HackerSpaceTech            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/blog.html">Blog</a></li>
+                    <li><a href="/pages/meetups.html">Meetups</a></li>
+                    <li><a href="/pages/classes.html">Classes</a></li>
+                    <li><a href="http://freecourse.hackerspacetech.com">Arduino Crash Course</a></li>
+                    <li><a href="/pages/hacker-stars.html">Hacker Stars</a></li>
+                    <li><a href="/pages/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url(".//images/banners/mainbanner3.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container-fluid">
+		<div class="copy">
+			<h1>HackerSpaceTech</h1>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./creating-a-simple-relay-board-using-eagle.html"
+                       rel="bookmark"
+                       title="Permalink to Creating A Simple Relay Board Using Eagle">
+                        Creating A Simple Relay Board Using Eagle
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-11-29T00:00:00-06:00"> Tue 29 November 2016</time>
+    </span>
+
+
+            <span class="label label-default">By</span>
+            <a href="./author/scott-reesor.html"><i class="fa fa-user"></i> Scott Reesor</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/arduino.html">Arduino</a>
+        /
+	<a href="./tag/tutorials.html">Tutorials</a>
+        /
+	<a href="./tag/eagle.html">Eagle</a>
+        /
+	<a href="./tag/pcb.html">PCB</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <style>
+h6 {
+    text-align: center;
+}
+
+</style>
+
+<div class="jumbotron">
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-4">
+        <h6>Figure 1</h6>
+        <a href="/images/relay-pcb/image_1.jpg"><img src="/images/relay-pcb/image_1.jpg" title="Click to enlarge" class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+        <div class="col-sm-8">
+        <p><h5>Here we just do a really simple relay board with two terminal blocks and an omron relay.  Below you will see the schematic.  I chose the components from the Eagle library which can be accessed from the add component button in the left hand tool bar.</h5></p>
+    </div>
+</row>
+</div>
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-8">
+        <p><h5>Once the board view is created the components will first appear outside the board are and you must move them into the board area with the move button and by clicking on the cross hairs of the component.</h5></p>
+    </div>      
+    <div class="col-sm-4">
+        <h6>Figure 2</h6>
+        <a href="/images/relay-pcb/image_2.jpg"><img src="/images/relay-pcb/image_2.jpg" title="Click to enlarge"  class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+
+
+</row>
+</div>
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-4">
+        <h6>Figure 3</h6>
+        <a href="/images/relay-pcb/image_3.jpg"><img src="/images/relay-pcb/image_3.jpg" title="Click to enlarge"  class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+    <div class="col-sm-8">
+        <p><h5>What you see in the next picture is the components have been arranged fairly close to their final position and you will see yellow lines connecting the components. These are referred to as air wires and are the connection that were drawn in the schematic.  You will also a grid panel in the upper left hand corner in which you can choose the size of the grid. I usually choose a mm for millimeter.</h5></p>
+    </div>  
+</row>
+</div>
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-8">
+    <p><h5>You can see I also added drill holes in each corner as well as lettering referring to the no powered state of each relay terminal.  In future tutorials I will go into more detail and boards will get more complex.</h5></p>
+    </div>
+
+    <div class="col-sm-4">
+        <h6>Figure 4</h6>
+        <a href="/images/relay-pcb/image_4.jpg"><img src="/images/relay-pcb/image_4.jpg" title="Click to enlarge" class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+
+</row>
+</div>
+
+</div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="./infra-red-controlled-robot.html">Infra Red Controlled Robot</a></li>
+        <li><a href="./serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="./switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</a></li>
+        <li><a href="./matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
+        <li><a href="./playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="./creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
+        <li><a href="./max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+        <li><a href="./ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
+        <li><a href="./multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
+        <li><a href="./syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
+    </ul>
+</section>
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/animatedlogocropped.gif"/>
+        </p>
+    <p>
+        <strong>About Hacker Space Tech</strong><br/>
+        We a motivated group of hardware hackers who like learning about technology and building cool things.  To learn more about the display above <a href="http://hackerspacetech.com/building-a-16x32-neopixel-display.html">Click Here</a>.  To learn more about the Hacker Stars at Hacker Space Tech <a href="/pages/hacker-stars.html">Click Here</a><br><br>
+    </p>
+</div>
+<section class="well well-sm">
+
+    <ul class="list-group list-group-flush">
+
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="./creating-a-simple-relay-board-using-eagle.html">
+                            Creating A Simple Relay Board Using Eagle
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="./ldr-light-sensor-tutorial.html">
+                            LDR light sensor tutorial
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="./attendance-logger.html">
+                            Attendance Logger
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="./virtual-color-mixer.html">
+                            Virtual Color Mixer
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="./switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">
+                            Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        <br><center><a href="http://freecourse.hackerspacetech.com"><img width="100%" src="/images/sponsors/pea.jpg"></a></center><br>
+
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Follow HackerSpaceTech</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://www.twitter.com/hackerspacetech"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://www.linkedin.com/in/driewe"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+                <li class="list-group-item"><a href="http://www.github.com/driewe"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.facebook.com/HackerSpaceTech"><i class="fa fa-facebook-square fa-lg"></i> facebook</a></li>
+                <li class="list-group-item"><a href="https://www.youtube.com/channel/UCxScU-1pFpDndfqXOLqwrUw"><i class="fa fa-youtube-square fa-lg"></i> youtube</a></li>
+                <li class="list-group-item"><a href="https://www.quora.com/profile/David-Riewe"><i class="fa fa-quora-square fa-lg"></i> quora</a></li>
+              </ul>
+            </li>
+    <!-- Amazon 3d printer add -->
+     <div class="alignleft">
+     <script type="text/javascript">
+       	amzn_assoc_ad_type = "banner";
+	amzn_assoc_marketplace = "amazon";
+	amzn_assoc_region = "US";
+	amzn_assoc_placement = "assoc_banner_placement_default";
+	amzn_assoc_campaigns = "3dprint";
+	amzn_assoc_banner_type = "category";
+	amzn_assoc_p = "12";
+	amzn_assoc_isresponsive = "false";
+	amzn_assoc_banner_id = "1ZZ5MX4FZWRHWKE92NR2";
+	amzn_assoc_width = "300";
+	amzn_assoc_height = "250";
+	amzn_assoc_tracking_id = "teammilleniumonl";
+	amzn_assoc_linkid = "19cc01de1e780bf6b1b83556c49a5017";
+     </script>
+     <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
+    </div>
+
+
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-twitter fa-lg"></i><span class="icon-label">Latest HackerSpaceTech Tweets</span></h4></li>
+    <div id="twitter_timeline">
+        <a class="twitter-timeline" data-width="325" data-height="400" data-dnt="true" data-theme="light" href="https://twitter.com/hackerspacetech">Tweets by hackerspacetech</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+        <center><br><a href="http://goo.gl/XFRMbW"><img width="100%" src="/images/sponsors/sbs.png"></a><br></center>
+
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://freecourse.hackerspacetech.com" target="_blank">
+                Free Arduino Class
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://programmingelectronics.com/hackerspacetech" target="_blank">
+                Register For PEA
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.meetup.com/hackerspacetech" target="_blank">
+                HackerSpaceTech Meetup
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://hackerspacetech.com/16x32-NeoPixel-FadeCandy-Display/" target="_blank">
+                Fadecandy 16x32 Project
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://hackerspacetech.com/RemoteControlRobotIR/" target="_blank">
+                Infra Red Controlled Robot
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://thelab.ms/" target="_blank">
+                TheLab.ms
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://dallasmakerspace.org/" target="_blank">
+                Dallas Maker Space
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="https://www.hackster.io/driewe" target="_blank">
+                Hackster.io
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container-fluid">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Hacker Space Tech
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-47432237-2']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
+</body>
+</html>
