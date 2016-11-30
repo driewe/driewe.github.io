@@ -10,11 +10,11 @@ h6 {
 
 &lt;div class="container-fluid"&gt;
 &lt;row&gt;
-    &lt;div class="col-sm-4"&gt;
+    &lt;div class="col-sm-5"&gt;
         &lt;h6&gt;Figure 1&lt;/h6&gt;
         &lt;a href="/images/relay-pcb/image_1.jpg"&gt;&lt;img src="/images/relay-pcb/image_1.jpg" title="Click to enlarge" class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;
     &lt;/div&gt;
-        &lt;div class="col-sm-8"&gt;
+        &lt;div class="col-sm-7"&gt;
         &lt;p&gt;&lt;h5&gt;Here we just do a really simple relay board with two terminal blocks and an omron relay.  Below you will see the schematic.  I chose the components from the Eagle library which can be accessed from the add component button in the left hand tool bar.&lt;/h5&gt;&lt;/p&gt;
     &lt;/div&gt;
 &lt;/row&gt;
@@ -22,10 +22,10 @@ h6 {
 
 &lt;div class="container-fluid"&gt;
 &lt;row&gt;
-    &lt;div class="col-sm-8"&gt;
+    &lt;div class="col-sm-7"&gt;
         &lt;p&gt;&lt;h5&gt;Once the board view is created the components will first appear outside the board are and you must move them into the board area with the move button and by clicking on the cross hairs of the component.&lt;/h5&gt;&lt;/p&gt;
     &lt;/div&gt;      
-    &lt;div class="col-sm-4"&gt;
+    &lt;div class="col-sm-5"&gt;
         &lt;h6&gt;Figure 2&lt;/h6&gt;
         &lt;a href="/images/relay-pcb/image_2.jpg"&gt;&lt;img src="/images/relay-pcb/image_2.jpg" title="Click to enlarge"  class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;
     &lt;/div&gt;
@@ -36,11 +36,11 @@ h6 {
 
 &lt;div class="container-fluid"&gt;
 &lt;row&gt;
-    &lt;div class="col-sm-4"&gt;
+    &lt;div class="col-sm-5"&gt;
         &lt;h6&gt;Figure 3&lt;/h6&gt;
         &lt;a href="/images/relay-pcb/image_3.jpg"&gt;&lt;img src="/images/relay-pcb/image_3.jpg" title="Click to enlarge"  class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;
     &lt;/div&gt;
-    &lt;div class="col-sm-8"&gt;
+    &lt;div class="col-sm-7"&gt;
         &lt;p&gt;&lt;h5&gt;What you see in the next picture is the components have been arranged fairly close to their final position and you will see yellow lines connecting the components. These are referred to as air wires and are the connection that were drawn in the schematic.  You will also a grid panel in the upper left hand corner in which you can choose the size of the grid. I usually choose a mm for millimeter.&lt;/h5&gt;&lt;/p&gt;
     &lt;/div&gt;  
 &lt;/row&gt;
@@ -48,11 +48,11 @@ h6 {
 
 &lt;div class="container-fluid"&gt;
 &lt;row&gt;
-    &lt;div class="col-sm-8"&gt;
+    &lt;div class="col-sm-7"&gt;
     &lt;p&gt;&lt;h5&gt;You can see I also added drill holes in each corner as well as lettering referring to the no powered state of each relay terminal.  In future tutorials I will go into more detail and boards will get more complex.&lt;/h5&gt;&lt;/p&gt;
     &lt;/div&gt;
 
-    &lt;div class="col-sm-4"&gt;
+    &lt;div class="col-sm-5"&gt;
         &lt;h6&gt;Figure 4&lt;/h6&gt;
         &lt;a href="/images/relay-pcb/image_4.jpg"&gt;&lt;img src="/images/relay-pcb/image_4.jpg" title="Click to enlarge" class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;
     &lt;/div&gt;
