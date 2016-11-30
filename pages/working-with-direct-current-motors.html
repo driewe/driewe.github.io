@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Logging Environmental Data and Charting it with Google Charts - HackerSpaceTech</title>
+    <title>Working With Direct Current Motors - HackerSpaceTech</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,39 +9,30 @@
 
 
 
-<link rel="canonical" href="./logging-environmental-data-and-charting-it-with-google-charts.html">
+<link rel="canonical" href="../pages/working-with-direct-current-motors.html">
 
-        <meta name="author" content="David Riewe" />
-        <meta name="keywords" content="Arduino,IoT,Tutorials" />
-        <meta name="description" content="Today I have been experimenting with the Particle Photon and logging environment data to the internet via the Data.SparkFun.com. Data.SparkFun.com is a free service for posting, storing, and reading sets of data. It’s powered by Phant, an open-source, Node.js-based tool that can be run ..." />
+        <meta name="author" content="Hacker Space Tech" />
+        <meta name="description" content="** Visit Our Meetup Page To Register For Free Workshop ** Direct Current Motors Part 1  In this presentation I will show you how to use a DC motor through a series of demos. All involve two geared DC motors (why use just one when we can use two?) and a motor ..." />
 
-        <meta property="og:site_name" content="HackerSpaceTech" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Logging Environmental Data and Charting it with Google Charts"/>
-        <meta property="og:url" content="./logging-environmental-data-and-charting-it-with-google-charts.html"/>
-        <meta property="og:description" content="Today I have been experimenting with the Particle Photon and logging environment data to the internet via the Data.SparkFun.com. Data.SparkFun.com is a free service for posting, storing, and reading sets of data. It’s powered by Phant, an open-source, Node.js-based tool that can be run ..."/>
-        <meta property="article:published_time" content="2016-04-18" />
-            <meta property="article:section" content="Blog" />
-            <meta property="article:tag" content="Arduino" />
-            <meta property="article:tag" content="IoT" />
-            <meta property="article:tag" content="Tutorials" />
-            <meta property="article:author" content="David Riewe" />
+    <meta property="og:site_name" content="HackerSpaceTech" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Working With Direct Current Motors"/>
+    <meta property="og:url" content="../pages/working-with-direct-current-motors.html"/>
+    <meta property="og:description" content="** Visit Our Meetup Page To Register For Free Workshop ** Direct Current Motors Part 1  In this presentation I will show you how to use a DC motor through a series of demos. All involve two geared DC motors (why use just one when we can use two?) and a motor ..." />
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme/css/bootstrap.united.min.css" type="text/css"/>
-    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../theme/css/bootstrap.united.min.css" type="text/css"/>
+    <link href="../theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme/css/pygments/solarizeddark.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+    <link href="../theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="../theme/css/style.css" type="text/css"/>
 
-        <link href="./feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+        <link href="../feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="HackerSpaceTech ATOM Feed"/>
 
 
 
-        <link href="./feeds/blog.atom.xml" type="application/atom+xml" rel="alternate"
-              title="HackerSpaceTech Blog ATOM Feed"/>
 
 </head>
 <body>
@@ -55,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="./" class="navbar-brand">
+            <a href="../" class="navbar-brand">
 HackerSpaceTech            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -77,7 +68,7 @@ HackerSpaceTech            </a>
 <!-- Banner -->
 <style>
 	#banner{
-	    background-image:url(".//images/banners/mainbanner3.png");
+	    background-image:url("..//images/banners/mainbanner3.png");
 	}
 </style>
 
@@ -91,74 +82,79 @@ HackerSpaceTech            </a>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="./logging-environmental-data-and-charting-it-with-google-charts.html"
-                       rel="bookmark"
-                       title="Permalink to Logging Environmental Data and Charting it with Google Charts">
-                        Logging Environmental Data and Charting it with Google Charts
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-04-18T16:51:00-05:00"> Mon 18 April 2016</time>
-    </span>
+    <section id="content" class="body">
+        <h1 class="entry-title">Working With Direct Current Motors</h1>
+        
+        <div class="entry-content">
+            <div class="jumbotron">
+<div class="container-fluid">
+
+<span style="color: red;">**&nbsp;</span><a href="http://www.meetup.com/TechmillDenton/" rel="nofollow" style="text-align: center;" target="_blank">Visit Our Meetup Page To Register For Free Workshop</a><span style="color: red;">&nbsp;**</span><br />
+<br />
+<span style="font-size: x-large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276207?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Direct Current Motors Part 1&nbsp;</a></span><br />
+<blockquote class="tr_bq">
+In this presentation I will show you how to use a DC motor through a series of demos. All involve two geared DC motors (why use just one when we can use two?) and a motor break-out circuit. I'll explain what these are in a minute. Here's what we are going to build in this presentation:</blockquote>
+<blockquote class="tr_bq">
+First, we'll just hook the motors to the Arduino via the motor break-out board, and make them spin in a single direction. This is part 1 of 3.</blockquote>
+<b>Parts</b><br />
+<br />
+<ul>
+<li>A DC motor, perhaps from an old toy.</li>
+<li>A motor controller board containing the L298N IC.</li>
+<li>A battery powerpack (preferred) or external power supply that can provide 10V-18V.</li>
+<li>A potentiometer.</li>
+</ul>
+<br />
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/DC%20Motors/DC_motor_simple/DC_motor_simple.ino">DC Motors Sketch for Demo 1</a></li>
+<li><a href="http://www.ebay.com.au/sch/sis.html?_nkw=JA12%20N20%20Model%20DC%2012V%20100RPM%20Torque%20Gearbox%20Micro%20Gear%20Box%20Motor&amp;_itemId=111224245217">A DC motor from eBay</a></li>
+<li><a href="http://www.ebay.com.au/sch/i.html?_from=R40&amp;_trksid=m570.l1313&amp;_nkw=L298N&amp;_sacat=0">A L298N motor controller from eBay</a></li>
+<li><a href="http://www.ebay.com.au/itm/Black-AA-Batteries-Holder-Box-Case-Making-Battery-Pack-for-Arduino-monolithic-/121087294434?pt=LH_DefaultDomain_15&amp;hash=item1c315d7be2">A AA-battery power pack</a></li>
+<li><a href="http://tronixlabs.com/news/tutorial-l298n-dual-motor-controller-module-2a-and-arduino/">John Boxal - L298N Dual Motor Controller Module 2A and Arduino</a></li>
+</ul>
+<div>
+<div>
+<span style="font-size: x-large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276208?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Direct current motors, Part 2</a></span></div>
+<blockquote class="tr_bq">
+This is Part 2 of the presentation on the direct current motor. In this part, you will learn about how to control the speed and direction of rotation of a motor using a potentiometer.</blockquote>
+<b>Parts</b><br />
+<ul>
+<li>A DC motor, perhaps from an old toy.</li>
+<li>A motor controller board containing the L298N IC.</li>
+<li>A battery powerpack (preferred) or external power supply that can provide 10V-18V.</li>
+<li>A potentiometer.</li>
+</ul>
+</div>
+<div>
+<br />
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/DC%20Motors/DC_motor_with_potentiometer/DC_motor_with_potentiometer.ino">Sketch for Demo 2 (potentiometer)</a></li>
+<li><a href="http://www.ebay.com.au/sch/sis.html?_nkw=JA12%20N20%20Model%20DC%2012V%20100RPM%20Torque%20Gearbox%20Micro%20Gear%20Box%20Motor&amp;_itemId=111224245217">A DC motor from eBay</a></li>
+<li><a href="http://www.ebay.com.au/sch/i.html?_from=R40&amp;_trksid=m570.l1313&amp;_nkw=L298N&amp;_sacat=0">A L298N motor controller from eBay</a></li>
+<li><a href="http://www.ebay.com.au/itm/Black-AA-Batteries-Holder-Box-Case-Making-Battery-Pack-for-Arduino-monolithic-/121087294434?pt=LH_DefaultDomain_15&amp;hash=item1c315d7be2">A AA-battery power pack</a></li>
+<li><a href="http://tronixlabs.com/news/tutorial-l298n-dual-motor-controller-module-2a-and-arduino/">John Boxal - L298N Dual Motor Controller Module 2A and Arduino</a></li>
+</ul>
+<span style="font-size: x-large;"><a href="http://txplore.tv/courses/arduino-sbs/lectures/276209?affcode=6107_xiz8dp9c" rel="nofollow" target="_blank">Direct current motors, Part 3</a></span><br />
+<blockquote class="tr_bq">
+This is Part 3 of the presentation on the direct current motor. In this part, you will learn about how to control the speed and direction of rotation of a motor using an ultrasonic distance sensor. After that, you could go ahead and design your fist autonomous driving vehicle.</blockquote>
+<b>View external resources</b><br />
+<ul>
+<li><a href="https://github.com/futureshocked/arduino_sbs/blob/master/DC%20Motors/DC_motor_with_distance_sensor/DC_motor_with_distance_sensor.ino">Sketch for Demo 3 (distance sensor)</a></li>
+<li><a href="http://www.ebay.com.au/sch/sis.html?_nkw=JA12%20N20%20Model%20DC%2012V%20100RPM%20Torque%20Gearbox%20Micro%20Gear%20Box%20Motor&amp;_itemId=111224245217">A DC motor from eBay</a></li>
+<li><a href="http://www.ebay.com.au/sch/i.html?_from=R40&amp;_trksid=m570.l1313&amp;_nkw=L298N&amp;_sacat=0">A L298N motor controller from eBay</a></li>
+<li><a href="http://www.ebay.com.au/itm/Black-AA-Batteries-Holder-Box-Case-Making-Battery-Pack-for-Arduino-monolithic-/121087294434?pt=LH_DefaultDomain_15&amp;hash=item1c315d7be2">A AA-battery power pack</a></li>
+<li><a href="http://tronixlabs.com/news/tutorial-l298n-dual-motor-controller-module-2a-and-arduino/">John Boxal - L298N Dual Motor Controller Module 2A and Arduino</a></li>
+</ul>
+</div>
 
 
-            <span class="label label-default">By</span>
-            <a href="./author/david-riewe.html"><i class="fa fa-user"></i> David Riewe</a>
+</div>
 
-
-
-<span class="label label-default">Tags</span>
-	<a href="./tag/arduino.html">Arduino</a>
-        /
-	<a href="./tag/iot.html">IoT</a>
-        /
-	<a href="./tag/tutorials.html">Tutorials</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p><img alt="alt text" src="https://3.bp.blogspot.com/-zt4VLF7uYzs/VwfIVmCCceI/AAAAAAAAs9I/OKQGQSYd1poJw700zIZF-o8pDszGID2ug/s1600/temp.PNG" /></p>
-<p>Today I have been experimenting with the Particle Photon and logging environment data to the internet via the Data.SparkFun.com. Data.SparkFun.com is a free service for posting, storing, and reading sets of data. It’s powered by Phant, an open-source, Node.js-based tool that can be run on any server or computer. Once the data data feed has some data  I can start charting it using a number of free services. Following Sparkfuns tutorial I am using Googles Charts to graph live data on my web site. Adding a barometric sensor to this wouldn't be hard and would make for some interesting weather studies.</p>
-<p><a href="https://learn.sparkfun.com/tutorials/sparkfun-inventors-kit-for-photon-experiment-guide/experiment-6-environment-monitor">Sparkfun Tutorial</a></p>
-<p><a href="http://phant.io/graphing/google/2014/07/07/graphing-data">Graphing Live Data With Google Charts Tutorial</a></p>
-<p><a href="http://www.davidriewe.com/p/temp-light-and-humidity-monitor.html">Sample Live Chart, updated every 60 seconds, from my experiment</a></p>
-            </div>
-            <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="./infra-red-controlled-robot.html">Infra Red Controlled Robot</a></li>
-        <li><a href="./creating-a-simple-relay-board-using-eagle.html">Creating A Simple Relay Board Using Eagle</a></li>
-        <li><a href="./creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
-        <li><a href="./understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
-        <li><a href="./syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
-        <li><a href="./matrix-keypad-with-7-segment-display-arduino-mini-project.html">Matrix keypad with 7 segment display (Arduino mini project)</a></li>
-        <li><a href="./playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
-        <li><a href="./ultrasonic-arduino-how-to-parking-your-car-with-an-arduino.html">UltraSonic Arduino How To - Parking your car with an Arduino</a></li>
-        <li><a href="./max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
-        <li><a href="./multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
-    </ul>
-</section>
-    <hr />
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style">
-            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-            <a class="addthis_button_tweet"></a>
-            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    </div>
-    <!-- AddThis Button END -->
-        </article>
+</div>
+        </div>
     </section>
-
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -178,27 +174,27 @@ HackerSpaceTech            </a>
             <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
                 <ul class="list-group" id="recentposts">
                     <li class="list-group-item">
-                        <a href="./creating-a-simple-relay-board-using-eagle.html">
+                        <a href="../creating-a-simple-relay-board-using-eagle.html">
                             Creating A Simple Relay Board Using Eagle
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./ldr-light-sensor-tutorial.html">
+                        <a href="../ldr-light-sensor-tutorial.html">
                             LDR light sensor tutorial
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./attendance-logger.html">
+                        <a href="../attendance-logger.html">
                             Attendance Logger
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./virtual-color-mixer.html">
+                        <a href="../virtual-color-mixer.html">
                             Virtual Color Mixer
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="./switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">
+                        <a href="../switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html">
                             Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port
                         </a>
                     </li>
@@ -310,15 +306,15 @@ HackerSpaceTech            </a>
       </div>
    </div>
 </footer>
-<script src="./theme/js/jquery.min.js"></script>
+<script src="../theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme/js/bootstrap.min.js"></script>
+<script src="../theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme/js/respond.min.js"></script>
+<script src="../theme/js/respond.min.js"></script>
 
-    <script src="./theme/js/bodypadding.js"></script>
+    <script src="../theme/js/bodypadding.js"></script>
     <!-- Google Analytics -->
     <script type="text/javascript">
 
@@ -337,7 +333,5 @@ HackerSpaceTech            </a>
     </script>
     <!-- End Google Analytics Code -->
 
-        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=driewe"></script>
 </body>
 </html>
