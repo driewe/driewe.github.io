@@ -499,10 +499,19 @@ void loop() {
 
 
 &lt;p&gt;&lt;a href="http://www.instructables.com/id/Arduino-attendence-logger/" target="_blank"&gt;Visit project’s homepage for more information.&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</summary><category term="Arduino"></category><category term="Projects"></category><category term="RTC"></category><category term="RFID"></category></entry><entry><title>Virtual Color Mixer</title><link href="http://www.hackerspacetech.com/virtual-color-mixer.html" rel="alternate"></link><published>2016-11-12T00:00:00-06:00</published><updated>2016-11-12T00:00:00-06:00</updated><author><name>Hacker Space Tech</name></author><id>tag:www.hackerspacetech.com,2016-11-12:virtual-color-mixer.html</id><summary type="html">&lt;div class="jumbotron"&gt;
+&lt;/div&gt;</summary><category term="Arduino"></category><category term="Projects"></category><category term="RTC"></category><category term="RFID"></category></entry><entry><title>Virtual Color Mixer</title><link href="http://www.hackerspacetech.com/virtual-color-mixer.html" rel="alternate"></link><published>2016-11-12T00:00:00-06:00</published><updated>2016-11-12T00:00:00-06:00</updated><author><name>David Riew</name></author><id>tag:www.hackerspacetech.com,2016-11-12:virtual-color-mixer.html</id><summary type="html">&lt;style&gt;
+h6 {
+    text-align: center;
+}
 
-&lt;p&gt;This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch.&lt;/p&gt;
+&lt;/style&gt;
+
+&lt;div class="jumbotron"&gt;
+
+&lt;p&gt;&lt;h5&gt;This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch.&lt;/h5&gt;&lt;/p&gt;
+
 &lt;h4&gt;Hardware Required&lt;/h4&gt;
+
 &lt;ul&gt;
 &lt;li&gt;Arduino or Genuino Board&lt;/li&gt;
 &lt;li&gt;3 Analog Sensors (potentiometer, photocell, FSR, etc.)&lt;/li&gt;
@@ -510,17 +519,32 @@ void loop() {
 &lt;li&gt;hook-up wires&lt;/li&gt;
 &lt;li&gt;breadboard&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;h4&gt;Software Required&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Processing&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;Circuit&lt;/h4&gt;
-&lt;p&gt;Connect analog sensors to analog input pins 0, 1, and 2.&lt;/p&gt;
-&lt;p&gt;This circuit uses three voltage divider sub-circuits to generate analog voltages from the force-sensing resistors. a voltage divider has two resistors in series, dividing the voltage proportionally to their values.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="breadboard" src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" /&gt;&lt;/p&gt;
-&lt;h4&gt;Schematic&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="circuit" src="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" /&gt;&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;Processing&lt;/li&gt;&lt;/ul&gt;
+
+&lt;div class="container-fluid"&gt;
+&lt;row&gt;
+    &lt;div class="col-sm-4"&gt;
+        &lt;h4&gt;Circuit&lt;/h4&gt;
+        &lt;p&gt;&lt;h5&gt;Connect analog sensors to analog input pins 0, 1, and 2.&lt;/h5&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;h5&gt;This circuit uses three voltage divider sub-circuits to generate analog voltages from the force-sensing resistors. a voltage divider has two resistors in series, dividing the voltage proportionally to their values.&lt;/h5&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="col-sm-4"&gt;
+        &lt;a href="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" title="Click To Enlarge"&gt;&lt;img src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="col-sm-4"&gt;
+        &lt;a href="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" title="Click To Enlarge"&gt;&lt;img src="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;  
+    &lt;/div&gt;
+
+&lt;/row&gt;
+&lt;/div&gt;
+
 &lt;h4&gt;Code&lt;/h4&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt;  This example reads three analog sensors (potentiometers are easiest)&lt;/span&gt;
 &lt;span class="cm"&gt; and sends their values serially. The Processing and Max/MSP programs at the bottom&lt;/span&gt;
@@ -556,70 +580,72 @@ void&lt;span class="w"&gt; &lt;/span&gt;loop&lt;span class="o"&gt;()&lt;/span&gt
 &lt;span class="w"&gt;    &lt;/span&gt;Serial&lt;span class="o"&gt;.&lt;/span&gt;print&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;Serial&lt;span class="o"&gt;.&lt;/span&gt;println&lt;span class="o"&gt;(&lt;/span&gt;analogRead&lt;span class="o"&gt;(&lt;/span&gt;bluePin&lt;span class="o"&gt;))&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="cm"&gt;/* Processing code for this example&lt;/span&gt;
-
-&lt;span class="cm"&gt;//  This example code is in the public domain.&lt;/span&gt;
-
-&lt;span class="cm"&gt;import processing.serial.*;&lt;/span&gt;
-
-&lt;span class="cm"&gt;float redValue = 0;        // red value&lt;/span&gt;
-&lt;span class="cm"&gt;float greenValue = 0;      // green value&lt;/span&gt;
-&lt;span class="cm"&gt;float blueValue = 0;       // blue value&lt;/span&gt;
-
-&lt;span class="cm"&gt;Serial myPort;&lt;/span&gt;
-
-&lt;span class="cm"&gt;void setup() {&lt;/span&gt;
-&lt;span class="cm"&gt;  size(200, 200);&lt;/span&gt;
-
-&lt;span class="cm"&gt;  // List all the available serial ports&lt;/span&gt;
-&lt;span class="cm"&gt;  // if using Processing 2.1 or later, use Serial.printArray()&lt;/span&gt;
-&lt;span class="cm"&gt;  println(Serial.list());&lt;/span&gt;
-
-&lt;span class="cm"&gt;  // I know that the first port in the serial list on my mac&lt;/span&gt;
-&lt;span class="cm"&gt;  // is always my  Arduino, so I open Serial.list()[0].&lt;/span&gt;
-&lt;span class="cm"&gt;  // Open whatever port is the one you&amp;#39;re using.&lt;/span&gt;
-&lt;span class="cm"&gt;  myPort = new Serial(this, Serial.list()[0], 9600);&lt;/span&gt;
-&lt;span class="cm"&gt;  // don&amp;#39;t generate a serialEvent() unless you get a newline character:&lt;/span&gt;
-&lt;span class="cm"&gt;  myPort.bufferUntil(&amp;#39;\n&amp;#39;);&lt;/span&gt;
-&lt;span class="cm"&gt;}&lt;/span&gt;
-
-&lt;span class="cm"&gt;void draw() {&lt;/span&gt;
-&lt;span class="cm"&gt;  // set the background color with the color values:&lt;/span&gt;
-&lt;span class="cm"&gt;  background(redValue, greenValue, blueValue);&lt;/span&gt;
-&lt;span class="cm"&gt;}&lt;/span&gt;
-
-&lt;span class="cm"&gt;void serialEvent(Serial myPort) {&lt;/span&gt;
-&lt;span class="cm"&gt;  // get the ASCII string:&lt;/span&gt;
-&lt;span class="cm"&gt;  String inString = myPort.readStringUntil(&amp;#39;\n&amp;#39;);&lt;/span&gt;
-
-&lt;span class="cm"&gt;  if (inString != null) {&lt;/span&gt;
-&lt;span class="cm"&gt;    // trim off any whitespace:&lt;/span&gt;
-&lt;span class="cm"&gt;    inString = trim(inString);&lt;/span&gt;
-&lt;span class="cm"&gt;    // split the string on the commas and convert the&lt;/span&gt;
-&lt;span class="cm"&gt;    // resulting substrings into an integer array:&lt;/span&gt;
-&lt;span class="cm"&gt;    float[] colors = float(split(inString, &amp;quot;,&amp;quot;));&lt;/span&gt;
-&lt;span class="cm"&gt;    // if the array has at least three elements, you know&lt;/span&gt;
-&lt;span class="cm"&gt;    // you got the whole thing.  Put the numbers in the&lt;/span&gt;
-&lt;span class="cm"&gt;    // color variables:&lt;/span&gt;
-&lt;span class="cm"&gt;    if (colors.length &amp;gt;=3) {&lt;/span&gt;
-&lt;span class="cm"&gt;      // map them to the range 0-255:&lt;/span&gt;
-&lt;span class="cm"&gt;      redValue = map(colors[0], 0, 1023, 0, 255);&lt;/span&gt;
-&lt;span class="cm"&gt;      greenValue = map(colors[1], 0, 1023, 0, 255);&lt;/span&gt;
-&lt;span class="cm"&gt;      blueValue = map(colors[2], 0, 1023, 0, 255);&lt;/span&gt;
-&lt;span class="cm"&gt;    }&lt;/span&gt;
-&lt;span class="cm"&gt;  }&lt;/span&gt;
-&lt;span class="cm"&gt;}&lt;/span&gt;
-
-&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;Processing Code&lt;/h4&gt;
-&lt;p&gt;Copy the Processing sketch from the code sample above. As you change the value of the analog sensors, the background color will change:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Processing" src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer-output.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h5&gt;As you change the value of the analog sensors, the background color will change:&lt;/h5&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer-output.png"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;  &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;example&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;processing.serial.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="n"&gt;redValue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;        &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;red&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="n"&gt;greenValue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;      &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;green&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="n"&gt;blueValue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;       &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+
+&lt;span class="n"&gt;Serial&lt;/span&gt; &lt;span class="n"&gt;myPort&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;void&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt; &lt;span class="n"&gt;serial&lt;/span&gt; &lt;span class="n"&gt;ports&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;Processing&lt;/span&gt; &lt;span class="mf"&gt;2.1&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;later&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;printArray&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;know&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;serial&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="n"&gt;mac&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;  &lt;span class="n"&gt;Arduino&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;Open&lt;/span&gt; &lt;span class="n"&gt;whatever&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;re using.&lt;/span&gt;
+  &lt;span class="n"&gt;myPort&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;don&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;t generate a serialEvent() unless you get a newline character:&lt;/span&gt;
+  &lt;span class="n"&gt;myPort&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bufferUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;void&lt;/span&gt; &lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;background&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;background&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;redValue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;greenValue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blueValue&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;void&lt;/span&gt; &lt;span class="n"&gt;serialEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt; &lt;span class="n"&gt;myPort&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;ASCII&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;inString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;myPort&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readStringUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inString&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;trim&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt; &lt;span class="nb"&gt;any&lt;/span&gt; &lt;span class="n"&gt;whitespace&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;inString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;trim&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inString&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;commas&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;convert&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;resulting&lt;/span&gt; &lt;span class="n"&gt;substrings&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;integer&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;colors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inString&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;least&lt;/span&gt; &lt;span class="n"&gt;three&lt;/span&gt; &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;know&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;got&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;whole&lt;/span&gt; &lt;span class="n"&gt;thing&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;Put&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt; &lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt; &lt;span class="n"&gt;them&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;redValue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1023&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="n"&gt;greenValue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1023&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="n"&gt;blueValue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1023&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h4&gt;Video Demonstration&lt;/h4&gt;
-&lt;p&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/kPKBdf-KYZU" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/kPKBdf-KYZU" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
 &lt;/div&gt;</summary><category term="Arduino"></category><category term="Programming"></category><category term="Tutorials"></category><category term="Processing"></category></entry><entry><title>Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</title><link href="http://www.hackerspacetech.com/switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html" rel="alternate"></link><published>2016-11-09T00:00:00-06:00</published><updated>2016-11-09T00:00:00-06:00</updated><author><name>Hacker Space Tech</name></author><id>tag:www.hackerspacetech.com,2016-11-09:switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html</id><summary type="html">&lt;p&gt;&lt;div class="jumbotron"&gt;
 An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.&lt;/p&gt;
 &lt;p&gt;This tutorial shows you how to use switch to turn on one of several different LEDs based on a byte of data received serially. The sketch listens for serial input, and turns on a different LED for the characters a, b, c, d, or e.&lt;/p&gt;

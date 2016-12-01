@@ -11,22 +11,22 @@
 
 <link rel="canonical" href="./virtual-color-mixer.html">
 
-        <meta name="author" content="Hacker Space Tech" />
+        <meta name="author" content="David Riew" />
         <meta name="keywords" content="Arduino,Programming,Tutorials,Processing" />
-        <meta name="description" content="This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch. Hardware Required Arduino or Genuino Board 3 Analog Sensors (potentiometer, photocell, FSR ..." />
+        <meta name="description" content="h6 { text-align: center; } This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch. Hardware Required Arduino or Genuino Board 3 Analog Sensors ..." />
 
         <meta property="og:site_name" content="HackerSpaceTech" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Virtual Color Mixer"/>
         <meta property="og:url" content="./virtual-color-mixer.html"/>
-        <meta property="og:description" content="This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch. Hardware Required Arduino or Genuino Board 3 Analog Sensors (potentiometer, photocell, FSR ..."/>
+        <meta property="og:description" content="h6 { text-align: center; } This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch. Hardware Required Arduino or Genuino Board 3 Analog Sensors ..."/>
         <meta property="article:published_time" content="2016-11-12" />
             <meta property="article:section" content="Blog" />
             <meta property="article:tag" content="Arduino" />
             <meta property="article:tag" content="Programming" />
             <meta property="article:tag" content="Tutorials" />
             <meta property="article:tag" content="Processing" />
-            <meta property="article:author" content="Hacker Space Tech" />
+            <meta property="article:author" content="David Riew" />
 
 
     <!-- Bootstrap -->
@@ -114,7 +114,7 @@ HackerSpaceTech            </a>
 
 
             <span class="label label-default">By</span>
-            <a href="./author/hacker-space-tech.html"><i class="fa fa-user"></i> Hacker Space Tech</a>
+            <a href="./author/david-riew.html"><i class="fa fa-user"></i> David Riew</a>
 
 
 
@@ -129,10 +129,19 @@ HackerSpaceTech            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <div class="jumbotron">
+                <style>
+h6 {
+    text-align: center;
+}
 
-<p>This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch.</p>
+</style>
+
+<div class="jumbotron">
+
+<p><h5>This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch.</h5></p>
+
 <h4>Hardware Required</h4>
+
 <ul>
 <li>Arduino or Genuino Board</li>
 <li>3 Analog Sensors (potentiometer, photocell, FSR, etc.)</li>
@@ -140,17 +149,32 @@ HackerSpaceTech            </a>
 <li>hook-up wires</li>
 <li>breadboard</li>
 </ul>
+
 <h4>Software Required</h4>
-<ul>
-<li>Processing</li>
-</ul>
-<h4>Circuit</h4>
-<p>Connect analog sensors to analog input pins 0, 1, and 2.</p>
-<p>This circuit uses three voltage divider sub-circuits to generate analog voltages from the force-sensing resistors. a voltage divider has two resistors in series, dividing the voltage proportionally to their values.</p>
-<p><img alt="breadboard" src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" /></p>
-<h4>Schematic</h4>
-<p><img alt="circuit" src="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" /></p>
+
+<ul><li>Processing</li></ul>
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-4">
+        <h4>Circuit</h4>
+        <p><h5>Connect analog sensors to analog input pins 0, 1, and 2.</h5></p>
+        <p><h5>This circuit uses three voltage divider sub-circuits to generate analog voltages from the force-sensing resistors. a voltage divider has two resistors in series, dividing the voltage proportionally to their values.</h5></p>
+    </div>
+
+    <div class="col-sm-4">
+        <a href="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" title="Click To Enlarge"><img src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer_bb.png" class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+
+    <div class="col-sm-4">
+        <a href="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" title="Click To Enlarge"><img src="https://www.arduino.cc/en/uploads/Tutorial/VCM_schem.png" class="img-rounded img-responsive img-thumbnail"></a>  
+    </div>
+
+</row>
+</div>
+
 <h4>Code</h4>
+
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">  This example reads three analog sensors (potentiometers are easiest)</span>
 <span class="cm"> and sends their values serially. The Processing and Max/MSP programs at the bottom</span>
@@ -186,70 +210,72 @@ void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
 <span class="w">    </span>Serial<span class="o">.</span>print<span class="o">(</span><span class="s">&quot;,&quot;</span><span class="o">)</span><span class="err">;</span><span class="w"></span>
 <span class="w">    </span>Serial<span class="o">.</span>println<span class="o">(</span>analogRead<span class="o">(</span>bluePin<span class="o">))</span><span class="err">;</span><span class="w"></span>
 <span class="err">}</span><span class="w"></span>
-
-<span class="cm">/* Processing code for this example</span>
-
-<span class="cm">//  This example code is in the public domain.</span>
-
-<span class="cm">import processing.serial.*;</span>
-
-<span class="cm">float redValue = 0;        // red value</span>
-<span class="cm">float greenValue = 0;      // green value</span>
-<span class="cm">float blueValue = 0;       // blue value</span>
-
-<span class="cm">Serial myPort;</span>
-
-<span class="cm">void setup() {</span>
-<span class="cm">  size(200, 200);</span>
-
-<span class="cm">  // List all the available serial ports</span>
-<span class="cm">  // if using Processing 2.1 or later, use Serial.printArray()</span>
-<span class="cm">  println(Serial.list());</span>
-
-<span class="cm">  // I know that the first port in the serial list on my mac</span>
-<span class="cm">  // is always my  Arduino, so I open Serial.list()[0].</span>
-<span class="cm">  // Open whatever port is the one you&#39;re using.</span>
-<span class="cm">  myPort = new Serial(this, Serial.list()[0], 9600);</span>
-<span class="cm">  // don&#39;t generate a serialEvent() unless you get a newline character:</span>
-<span class="cm">  myPort.bufferUntil(&#39;\n&#39;);</span>
-<span class="cm">}</span>
-
-<span class="cm">void draw() {</span>
-<span class="cm">  // set the background color with the color values:</span>
-<span class="cm">  background(redValue, greenValue, blueValue);</span>
-<span class="cm">}</span>
-
-<span class="cm">void serialEvent(Serial myPort) {</span>
-<span class="cm">  // get the ASCII string:</span>
-<span class="cm">  String inString = myPort.readStringUntil(&#39;\n&#39;);</span>
-
-<span class="cm">  if (inString != null) {</span>
-<span class="cm">    // trim off any whitespace:</span>
-<span class="cm">    inString = trim(inString);</span>
-<span class="cm">    // split the string on the commas and convert the</span>
-<span class="cm">    // resulting substrings into an integer array:</span>
-<span class="cm">    float[] colors = float(split(inString, &quot;,&quot;));</span>
-<span class="cm">    // if the array has at least three elements, you know</span>
-<span class="cm">    // you got the whole thing.  Put the numbers in the</span>
-<span class="cm">    // color variables:</span>
-<span class="cm">    if (colors.length &gt;=3) {</span>
-<span class="cm">      // map them to the range 0-255:</span>
-<span class="cm">      redValue = map(colors[0], 0, 1023, 0, 255);</span>
-<span class="cm">      greenValue = map(colors[1], 0, 1023, 0, 255);</span>
-<span class="cm">      blueValue = map(colors[2], 0, 1023, 0, 255);</span>
-<span class="cm">    }</span>
-<span class="cm">  }</span>
-<span class="cm">}</span>
-
-<span class="cm"> */</span><span class="w"></span>
 </pre></div>
 
 
 <h4>Processing Code</h4>
-<p>Copy the Processing sketch from the code sample above. As you change the value of the analog sensors, the background color will change:</p>
-<p><img alt="Processing" src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer-output.png" /></p>
+
+<p><h5>As you change the value of the analog sensors, the background color will change:</h5></p>
+
+<p><img src="https://www.arduino.cc/en/uploads/Tutorial/virtualColorMixer-output.png"></p>
+<div class="highlight"><pre><span></span><span class="o">//</span>  <span class="n">This</span> <span class="n">example</span> <span class="n">code</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">public</span> <span class="n">domain</span><span class="o">.</span>
+
+<span class="kn">import</span> <span class="nn">processing.serial.</span><span class="o">*</span><span class="p">;</span>
+
+<span class="nb">float</span> <span class="n">redValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>        <span class="o">//</span> <span class="n">red</span> <span class="n">value</span>
+<span class="nb">float</span> <span class="n">greenValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>      <span class="o">//</span> <span class="n">green</span> <span class="n">value</span>
+<span class="nb">float</span> <span class="n">blueValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>       <span class="o">//</span> <span class="n">blue</span> <span class="n">value</span>
+
+<span class="n">Serial</span> <span class="n">myPort</span><span class="p">;</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">size</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+
+  <span class="o">//</span> <span class="n">List</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">available</span> <span class="n">serial</span> <span class="n">ports</span>
+  <span class="o">//</span> <span class="k">if</span> <span class="n">using</span> <span class="n">Processing</span> <span class="mf">2.1</span> <span class="ow">or</span> <span class="n">later</span><span class="p">,</span> <span class="n">use</span> <span class="n">Serial</span><span class="o">.</span><span class="n">printArray</span><span class="p">()</span>
+  <span class="n">println</span><span class="p">(</span><span class="n">Serial</span><span class="o">.</span><span class="n">list</span><span class="p">());</span>
+
+  <span class="o">//</span> <span class="n">I</span> <span class="n">know</span> <span class="n">that</span> <span class="n">the</span> <span class="n">first</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">serial</span> <span class="nb">list</span> <span class="n">on</span> <span class="n">my</span> <span class="n">mac</span>
+  <span class="o">//</span> <span class="ow">is</span> <span class="n">always</span> <span class="n">my</span>  <span class="n">Arduino</span><span class="p">,</span> <span class="n">so</span> <span class="n">I</span> <span class="nb">open</span> <span class="n">Serial</span><span class="o">.</span><span class="n">list</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span>
+  <span class="o">//</span> <span class="n">Open</span> <span class="n">whatever</span> <span class="n">port</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">one</span> <span class="n">you</span><span class="s1">&#39;re using.</span>
+  <span class="n">myPort</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Serial</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">Serial</span><span class="o">.</span><span class="n">list</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">9600</span><span class="p">);</span>
+  <span class="o">//</span> <span class="n">don</span><span class="s1">&#39;t generate a serialEvent() unless you get a newline character:</span>
+  <span class="n">myPort</span><span class="o">.</span><span class="n">bufferUntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="nb">set</span> <span class="n">the</span> <span class="n">background</span> <span class="n">color</span> <span class="k">with</span> <span class="n">the</span> <span class="n">color</span> <span class="n">values</span><span class="p">:</span>
+  <span class="n">background</span><span class="p">(</span><span class="n">redValue</span><span class="p">,</span> <span class="n">greenValue</span><span class="p">,</span> <span class="n">blueValue</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">serialEvent</span><span class="p">(</span><span class="n">Serial</span> <span class="n">myPort</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">get</span> <span class="n">the</span> <span class="n">ASCII</span> <span class="n">string</span><span class="p">:</span>
+  <span class="n">String</span> <span class="n">inString</span> <span class="o">=</span> <span class="n">myPort</span><span class="o">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">inString</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">trim</span> <span class="n">off</span> <span class="nb">any</span> <span class="n">whitespace</span><span class="p">:</span>
+    <span class="n">inString</span> <span class="o">=</span> <span class="n">trim</span><span class="p">(</span><span class="n">inString</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">split</span> <span class="n">the</span> <span class="n">string</span> <span class="n">on</span> <span class="n">the</span> <span class="n">commas</span> <span class="ow">and</span> <span class="n">convert</span> <span class="n">the</span>
+    <span class="o">//</span> <span class="n">resulting</span> <span class="n">substrings</span> <span class="n">into</span> <span class="n">an</span> <span class="n">integer</span> <span class="n">array</span><span class="p">:</span>
+    <span class="nb">float</span><span class="p">[]</span> <span class="n">colors</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">split</span><span class="p">(</span><span class="n">inString</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">));</span>
+    <span class="o">//</span> <span class="k">if</span> <span class="n">the</span> <span class="n">array</span> <span class="n">has</span> <span class="n">at</span> <span class="n">least</span> <span class="n">three</span> <span class="n">elements</span><span class="p">,</span> <span class="n">you</span> <span class="n">know</span>
+    <span class="o">//</span> <span class="n">you</span> <span class="n">got</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">thing</span><span class="o">.</span>  <span class="n">Put</span> <span class="n">the</span> <span class="n">numbers</span> <span class="ow">in</span> <span class="n">the</span>
+    <span class="o">//</span> <span class="n">color</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;=</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+      <span class="o">//</span> <span class="nb">map</span> <span class="n">them</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">range</span> <span class="mi">0</span><span class="o">-</span><span class="mi">255</span><span class="p">:</span>
+      <span class="n">redValue</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+      <span class="n">greenValue</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+      <span class="n">blueValue</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h4>Video Demonstration</h4>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/kPKBdf-KYZU" frameborder="0" allowfullscreen></iframe></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kPKBdf-KYZU" frameborder="0" allowfullscreen></iframe>
+
 </div>
             </div>
             <!-- /.entry-content -->
@@ -262,10 +288,10 @@ void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
         <li><a href="./infra-red-controlled-robot.html">Infra Red Controlled Robot</a></li>
         <li><a href="./creating-a-simple-relay-board-using-eagle.html">Creating A Simple Relay Board Using Eagle</a></li>
         <li><a href="./creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
-        <li><a href="./neopixel-16-ring-fun.html">NeoPixel 16 Ring Fun</a></li>
         <li><a href="./playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
         <li><a href="./syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
         <li><a href="./max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
+        <li><a href="./multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
     </ul>
 </section>
     <hr />
@@ -292,7 +318,49 @@ void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
     </p>
 </div>
 <section class="well well-sm">
-
+<!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//HackerSpaceTech.us13.list-manage.com/subscribe/post?u=a0dcde6f498dc22f6741963db&amp;id=732af8bbfb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<h2>Subscribe to HackerSpace Tech</h2>
+<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+<div class="mc-field-group">
+	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+<div class="mc-field-group">
+	<label for="mce-FNAME">First Name </label>
+	<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+</div>
+<div class="mc-field-group">
+	<label for="mce-LNAME">Last Name </label>
+	<input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+</div>
+<div class="mc-field-group input-group">
+    <strong>Email Format </strong>
+    <ul><li><input type="radio" value="html" name="EMAILTYPE" id="mce-EMAILTYPE-0"><label for="mce-EMAILTYPE-0">html</label></li>
+<li><input type="radio" value="text" name="EMAILTYPE" id="mce-EMAILTYPE-1"><label for="mce-EMAILTYPE-1">text</label></li>
+</ul>
+</div>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a0dcde6f498dc22f6741963db_732af8bbfb" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+    
     <ul class="list-group list-group-flush">
 
             <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
@@ -326,6 +394,10 @@ void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
             </li>
 
         <br><center><a href="http://freecourse.hackerspacetech.com"><img width="100%" src="/images/sponsors/pea.jpg"></a></center><br>
+        
+        <!--- Start Sign up --->
+        
+        
 
             <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Follow HackerSpaceTech</span></h4>
               <ul class="list-group" id="social">
