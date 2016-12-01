@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"><channel><title>HackerSpaceTech</title><link>http://www.hackerspacetech.com/</link><description></description><lastBuildDate>Wed, 09 Nov 2016 00:00:00 -0600</lastBuildDate><item><title>Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</title><link>http://www.hackerspacetech.com/switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html</link><description>&lt;p&gt;&lt;div class="jumbotron"&gt;
-An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.&lt;/p&gt;
-&lt;p&gt;This tutorial shows you how to use switch to turn on one of several different LEDs based on a byte of data received serially. The sketch listens for serial input, and turns on a different LED for the characters a, b, c, d, or e.&lt;/p&gt;
+&lt;h5&gt;An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.&lt;/h5&gt;&lt;/p&gt;
+&lt;p&gt;&lt;h5&gt;This tutorial shows you how to use switch to turn on one of several different LEDs based on a byte of data received serially. The sketch listens for serial input, and turns on a different LED for the characters a, b, c, d, or e.&lt;/h5&gt;&lt;/p&gt;
+
 &lt;h4&gt;Hardware Required&lt;/h4&gt;
+
 &lt;ul&gt;
 &lt;li&gt;Arduino&lt;/li&gt;
 &lt;li&gt;5 LEDs&lt;/li&gt;
@@ -10,12 +12,27 @@ An if statement allows you to choose between two discrete options, TRUE or FALSE
 &lt;li&gt;hook-up wires&lt;/li&gt;
 &lt;li&gt;breadboard&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;h4&gt;Circuit&lt;/h4&gt;
-&lt;p&gt;Five LEDs are attached to digital pins 2, 3, 4, 5, and 6 in series through 220 ohm resistors.&lt;/p&gt;
-&lt;p&gt;To make this sketch work, your board must be connected to your computer. In the Arduino IDE open the serial monitor and send the characters a, b, c, d, or e to lit up the corresponding LED, or anything else to switch them off.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Circuit" src="http://www.arduino.cc/en/uploads/Tutorial/switchCase2_bb.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Arduino" src="http://www.arduino.cc/en/uploads/Tutorial/SwitchCase2.png" /&gt;&lt;/p&gt;
+
+&lt;div class="container-fluid"&gt;
+&lt;row&gt;
+    &lt;div class="col-sm-4"&gt;
+        &lt;p&gt;&lt;h5&gt;Five LEDs are attached to digital pins 2, 3, 4, 5, and 6 in series through 220 ohm resistors.&lt;/h5&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;h5&gt;To make this sketch work, your board must be connected to your computer. In the Arduino IDE open the serial monitor and send the characters a, b, c, d, or e to lit up the corresponding LED, or anything else to switch them off.&lt;/h5&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="col-sm-4"&gt;
+        &lt;a href="http://www.arduino.cc/en/uploads/Tutorial/switchCase2_bb.png" title="Click To Enlarge"&gt;&lt;img src="http://www.arduino.cc/en/uploads/Tutorial/switchCase2_bb.png" class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-4"&gt;
+        &lt;a href="http://www.arduino.cc/en/uploads/Tutorial/SwitchCase2.png" title="Click To Enlarge"&gt;&lt;img src="http://www.arduino.cc/en/uploads/Tutorial/SwitchCase2.png" class="img-rounded img-responsive img-thumbnail"&gt;&lt;/a&gt;  
+    &lt;/div&gt;
+&lt;/row&gt;
+&lt;/div&gt;
+
 &lt;h4&gt;Code&lt;/h4&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt;  Switch statement  with serial input&lt;/span&gt;
 

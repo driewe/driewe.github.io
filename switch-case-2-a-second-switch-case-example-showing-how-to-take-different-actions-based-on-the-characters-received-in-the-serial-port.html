@@ -127,9 +127,11 @@ HackerSpaceTech            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p><div class="jumbotron">
-An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.</p>
-<p>This tutorial shows you how to use switch to turn on one of several different LEDs based on a byte of data received serially. The sketch listens for serial input, and turns on a different LED for the characters a, b, c, d, or e.</p>
+<h5>An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.</h5></p>
+<p><h5>This tutorial shows you how to use switch to turn on one of several different LEDs based on a byte of data received serially. The sketch listens for serial input, and turns on a different LED for the characters a, b, c, d, or e.</h5></p>
+
 <h4>Hardware Required</h4>
+
 <ul>
 <li>Arduino</li>
 <li>5 LEDs</li>
@@ -137,12 +139,27 @@ An if statement allows you to choose between two discrete options, TRUE or FALSE
 <li>hook-up wires</li>
 <li>breadboard</li>
 </ul>
+
 <h4>Circuit</h4>
-<p>Five LEDs are attached to digital pins 2, 3, 4, 5, and 6 in series through 220 ohm resistors.</p>
-<p>To make this sketch work, your board must be connected to your computer. In the Arduino IDE open the serial monitor and send the characters a, b, c, d, or e to lit up the corresponding LED, or anything else to switch them off.</p>
-<p><img alt="Circuit" src="http://www.arduino.cc/en/uploads/Tutorial/switchCase2_bb.png" /></p>
-<p><img alt="Arduino" src="http://www.arduino.cc/en/uploads/Tutorial/SwitchCase2.png" /></p>
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-4">
+        <p><h5>Five LEDs are attached to digital pins 2, 3, 4, 5, and 6 in series through 220 ohm resistors.</h5></p>
+        <p><h5>To make this sketch work, your board must be connected to your computer. In the Arduino IDE open the serial monitor and send the characters a, b, c, d, or e to lit up the corresponding LED, or anything else to switch them off.</h5></p>
+    </div>
+
+    <div class="col-sm-4">
+        <a href="http://www.arduino.cc/en/uploads/Tutorial/switchCase2_bb.png" title="Click To Enlarge"><img src="http://www.arduino.cc/en/uploads/Tutorial/switchCase2_bb.png" class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+    <div class="col-sm-4">
+        <a href="http://www.arduino.cc/en/uploads/Tutorial/SwitchCase2.png" title="Click To Enlarge"><img src="http://www.arduino.cc/en/uploads/Tutorial/SwitchCase2.png" class="img-rounded img-responsive img-thumbnail"></a>  
+    </div>
+</row>
+</div>
+
 <h4>Code</h4>
+
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">  Switch statement  with serial input</span>
 
@@ -223,16 +240,16 @@ void<span class="w"> </span>loop<span class="o">()</span><span class="w"></span>
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="./virtual-color-mixer.html">Virtual Color Mixer</a></li>
-        <li><a href="./while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
         <li><a href="./understanding-data-types-for-variables.html">Understanding Data Types for variables</a></li>
+        <li><a href="./while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html">While Statement Conditional: How to use a while loop to calibrate a sensor while a button is being read.</a></li>
+        <li><a href="./virtual-color-mixer.html">Virtual Color Mixer</a></li>
         <li><a href="./infra-red-controlled-robot.html">Infra Red Controlled Robot</a></li>
         <li><a href="./creating-a-simple-relay-board-using-eagle.html">Creating A Simple Relay Board Using Eagle</a></li>
         <li><a href="./creating-a-four-digit-display-using-74hc595-shift-registers.html">Creating a Four Digit Display Using 74HC595 Shift Registers</a></li>
-        <li><a href="./playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
         <li><a href="./syncing-oscilloscope-to-interrupt-activity.html">Syncing Oscilloscope To Interrupt Activity</a></li>
-        <li><a href="./max7219-and-8x8-led-matrix-on-breadboard.html">MAX7219 and 8x8 LED Matrix on breadboard</a></li>
-        <li><a href="./multiplexing-seven-segment-displays.html">Multiplexing Seven Segment Displays</a></li>
+        <li><a href="./serial-to-parallel-shifting-out-with-a-74hc595.html">Serial to Parallel Shifting-Out with a 74HC595</a></li>
+        <li><a href="./ldr-light-sensor-tutorial.html">LDR light sensor tutorial</a></li>
+        <li><a href="./logging-environmental-data-and-charting-it-with-google-charts.html">Logging Environmental Data and Charting it with Google Charts</a></li>
     </ul>
 </section>
     <hr />

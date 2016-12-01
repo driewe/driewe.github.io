@@ -13,13 +13,13 @@
 
         <meta name="author" content="David Riewe" />
         <meta name="keywords" content="NeoPixel,Projects" />
-        <meta name="description" content="Earlier this year while attending a FabNow Conferance in Ft. Worth I came across a few exibits with Neo Pixel Rings. I was fascinated with the color levels and the fact they could be controlled with a single wire! While experimenting with the Neo Pixel Rings I learned about Adafruits ..." />
+        <meta name="description" content="h6 { text-align: center; } Earlier this year while attending a FabNow Conferance in Ft. Worth I came across a few exibits with Neo Pixel Rings. I was fascinated with the color levels and the fact they could be controlled with a single wire! While experimenting with the Neo Pixel Rings I ..." />
 
         <meta property="og:site_name" content="HackerSpaceTech" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Building A 16x32 NeoPixel Display"/>
         <meta property="og:url" content="./building-a-16x32-neopixel-display.html"/>
-        <meta property="og:description" content="Earlier this year while attending a FabNow Conferance in Ft. Worth I came across a few exibits with Neo Pixel Rings. I was fascinated with the color levels and the fact they could be controlled with a single wire! While experimenting with the Neo Pixel Rings I learned about Adafruits ..."/>
+        <meta property="og:description" content="h6 { text-align: center; } Earlier this year while attending a FabNow Conferance in Ft. Worth I came across a few exibits with Neo Pixel Rings. I was fascinated with the color levels and the fact they could be controlled with a single wire! While experimenting with the Neo Pixel Rings I ..."/>
         <meta property="article:published_time" content="2016-10-30" />
             <meta property="article:section" content="Blog" />
             <meta property="article:tag" content="NeoPixel" />
@@ -123,58 +123,102 @@ HackerSpaceTech            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Earlier this year while attending a <a href="http://www.fabnow-conference.com/">FabNow Conferance</a> in Ft. Worth I came across a few exibits with <a href="/neopixel-16-ring-fun.html">Neo Pixel Rings</a>.  I was fascinated with the color levels and the fact they could be controlled with a single wire!  While experimenting with the <a href="/neopixel-16-ring-fun.html">Neo Pixel Rings</a> I learned about Adafruits <a href="https://www.amazon.com/gp/product/B00UW5XQFO/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UW5XQFO&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=9f7c9da230fd9e7db371393c392b9d68">NeoPixel 64 LED 8x8 Matrix</a>, the FadeCandy controller then was mesmerized by some of the demonstrations at <a href="http://www.misc.name/fadecandy/">Micah Elizabeth Scotts website</a> and the <a href="https://learn.adafruit.com/led-art-with-fadecandy">LED Art with Fadecandy</a> tutorial on Adafruits website.</p>
-<p>I was hooked.  I knew I wanted to build some sort of display using the <a href="https://www.amazon.com/gp/product/B00UW5XQFO/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UW5XQFO&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=9f7c9da230fd9e7db371393c392b9d68">8x8 neopixel panels</a> and control them using the FadeCandy!  Using the <a href="https://learn.adafruit.com/led-art-with-fadecandy">LED Art with Fadecandy</a> tutorial on Adafruits website as I guide I thought I would start off with four of the <a href="https://www.amazon.com/gp/product/B00UW5XQFO/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UW5XQFO&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=9f7c9da230fd9e7db371393c392b9d68">8x8 neopixel panels</a> but then decided to go with eight so I either build two separate 2x2 panel displays (16x16) or one larger 16x32 display.</p>
-<h3>Parts List</h3>
+                <style>
+h6 {
+    text-align: center;
+}
+</style>
+
+<div class="jumbotron">
+
+<p><h5>Earlier this year while attending a <a href="http://www.fabnow-conference.com" target="_blank">FabNow Conferance</a> in Ft. Worth I came across a few exibits with <a href="/neopixel-16-ring-fun.html">Neo Pixel Rings.  I was fascinated with the color levels and the fact they could be controlled with a single wire!  While experimenting with the <a href="/neopixel-16-ring-fun.html">Neo Pixel Rings</a> I learned about Adafruits <a href="http://amzn.to/2fVoeuE" target="_blank">NeoPixel 64 LED 8x8 Matrix</a>, the FadeCandy controller then was mesmerized by some of the demonstrations at <a href="http://www.misc.name/fadecandy" target="_blank">Micah Elizabeth Scotts website</a> and the <a href="https://learn.adafruit.com/led-art-with-fadecandy" target="_blank">LED Art with Fadecandy</a> tutorial on Adafruits website.</h5></p>
+
+<p><h5>I was hooked.  I knew I wanted to build some sort of display using the <a href="http://amzn.to/2fVoeuE" target="_blank">8x8 neopixel panels</a> and control them using the FadeCandy!  Using the <a href="https://learn.adafruit.com/led-art-with-fadecandy" target="_blank">LED Art with Fadecandy</a>[]() tutorial on Adafruits website as I guide I thought I would start off with four of the <a href="http://amzn.to/2fVoeuE" target="_blank">8x8 neopixel panels</a> but then decided to go with eight so I either build two separate 2x2 panel displays (16x16) or one larger 16x32 display.</h5></p>
+
+<h4>Parts List</h4>
+
 <ul>
-<li><a href="https://www.amazon.com/gp/product/B00UW5XQFO/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00UW5XQFO&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=9f7c9da230fd9e7db371393c392b9d68">Adafruit NeoPixel NeoMatrix 8x8 - 64 RGB LED Pixel Matrix</a></li>
-<li><a href="https://www.amazon.com/gp/product/B00JHJJF9W/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00JHJJF9W&amp;linkCode=as2&amp;tag=teammilleniumonl&amp;linkId=d2139b830d7b5b819210906ff27e62f9">FadeCandy - Dithering USB-Controlled Driver for NeoPixels</a></li>
-<li><a href="https://www.amazon.com/SMAKN-100-240V-adapter-switching-display/dp/B015109EI2/ref=as_sl_pc_tf_til?tag=teammilleniumonl&amp;linkCode=w00&amp;linkId=e0d74c287050443fb9757cc3e9953847&amp;creativeASIN=B015109EI2">5V 10A switching power supply</a> </li>
+<li><a href="http://amzn.to/2fVoeuE" target="_blank">Adafruit NeoPixel NeoMatrix 8x8 - 64 RGB LED Pixel Matrix</a></li>
+<li><a href="http://amzn.to/2gCDlaF" target="_blank">FadeCandy - Dithering USB-Controlled Driver for NeoPixels</a></li>
+<li><a href="http://amzn.to/2fP9idY" target="_blank">5V 10A switching power supply</a></li>
+<li>Each of the 8x8 Panels can draw up to 3.5 amps if all LEDs are turned on full white.  Two 10amp supplies were purchased so that I would have ample power to supply four of the  8x8 matrixes.</li>
+<li>I also picked up some stranded wire from Tanner electronics.  16 gauge was used to provide main power to each of the panels and 22 gauge was used for the data signals from the Fadecandy to the 8x8 panels.</li>
 </ul>
-<p><em>Each of the 8x8 Panels can draw up to 3.5 amps if all LEDs are turned on full white.  Two 10amp supplies were purchased so that I would have ample power to supply four of the  8x8 matrixes.</em></p>
-<p><em>I also picked up some stranded wire from Tanner electronics.  16 gauge was used to provide main power to each of the panels and 22 gauge was used for the data signals from the Fadecandy to the 8x8 panels.</em></p>
-<p>With parts in hand I started out by wiring up four of the 8x8 panels.  The wires on the top, running to the left, are 16 gauge stranded wire and will be combined into a barrel connector that will connect with a 5volt 10 amp supply.  The wires on the bottom bring the signal and ground from the fadecandy controller.  The twisting of the wires was dones simply to keep things neat.  I used masking tape along with toothpicks to provide some structural support until I would be ready to mount the panels.</p>
-<p><img alt="1x4 Rear View" src="/images/fadecandy/1x4-panel-rear.resized.jpg" /></p>
+
+<p><h5>With parts in hand I started out by wiring up four of the 8x8 panels.  The wires on the top, running to the left, are 16 gauge stranded wire and will be combined into a barrel connector that will connect with a 5volt 10 amp supply.  The wires on the bottom bring the signal and ground from the fadecandy controller.  The twisting of the wires was dones simply to keep things neat.  I used masking tape along with toothpicks to provide some structural support until I would be ready to mount the panels.</h5></p>
+
 <h4>Here is a closer look at the Fadecandy controller.</h4>
-<p><img alt="Fadecandy controller" src="/images/fadecandy/fccontroller.resized.jpg" /></p>
-<p><img alt="Fadecandy controller" src="/images/fadecandy/fccontroller2.resized.jpg" /></p>
+
+<div class="container-fluid">
+<row>
+    <div class="col-sm-4">
+        <a href="/images/fadecandy/1x4-panel-rear.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/1x4-panel-rear.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a>
+        <h6>1x4 Rear View</h6>
+    </div>
+
+    <div class="col-sm-4">
+        <a href="/images/fadecandy/fccontroller.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/fccontroller.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+    <div class="col-sm-4">
+        <a href="/images/fadecandy/fccontroller2.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/fccontroller2.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a>
+    </div>
+</row>
+</div>
+
 <h4>Testing the panel at 50% brightness!</h4>
-<p><img alt="Panel Test" src="/images/fadecandy/20160425_170525.resized.jpg" /></p>
-<h4>With both 1x4 panels wired up it is time to get ready for mounting to a permanent base.  I chose a sheet of plexiglass I had lying around that was 1/8" thickness.</h4>
-<p>Prior to starting the build I had laid all eight panels out on a xerox machine and produced a outline of where all the holes in the pc boards were located.  Using this as a guide I drilled holes int he plexi-glass for mounting the 8x8 matrix panels. </p>
-<p><img alt="Premount Photo" src="/images/fadecandy/premount.resized.jpg" /></p>
+
+<p><a href="/images/fadecandy/20160425_170525.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/20160425_170525.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a></p>
+<h4>With both 1x4 panels wired up it is time to get ready for mounting to a permanent base.  I chose a sheet of plexiglass I had lying around that was 1/8" thickness.
+Prior to starting the build I had laid all eight panels out on a xerox machine and produced a outline of where all the holes in the pc boards were located.  Using this as a guide I drilled holes int he plexi-glass for mounting the 8x8 matrix panels. </h4>
+
+<p><a href="/images/fadecandy/premount.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/premount.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a></p>
 <h4>Rear view of mounted panels</h4>
-<p><img alt="Mounted Rearvie" src="/images/fadecandy/rearview.resized.jpg" /></p>
+
+<p><a href="/images/fadecandy/rearview.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/rearview.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a></p>
 <h4>Front view of mounted panels</h4>
-<p><img alt="Mounted Front View" src="/images/fadecandy/frontview.resized.jpg" /></p>
+
+<p><a href="/images/fadecandy/frontview.resized.jpg" title="Click To Enlarge"><img src="/images/fadecandy/frontview.resized.jpg" class="img-rounded img-responsive img-thumbnail"></a></p>
 <h4>Here is a short video of the 16x32 panel without any diffuser</h4>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/PqErA3lq35Q" frameborder="0" allowfullscreen></iframe></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PqErA3lq35Q" frameborder="0" allowfullscreen></iframe>
+
 <h4>Here is a short video of the un-diffused 16x32 responding to some music</h4>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/d7M31PMLR6c" frameborder="0" allowfullscreen></iframe></p>
-<p>At this point I was still un-decided where to go next.  One option was to use the extra space on the plexiglass to mount suction cups that would allow mounting the display to the glass wall of the North Branch Library makerspace.  Realizing I needed some sort of diffuser I started looking into different shadow boxes at local arts and crafts store.  I one which would allow the 2x4 panels to fit nicely inside.  I used my drimmel to carefully cut away the extra plexi-glass, allowing the display to fit inside of the shadow box.</p>
-<p><img alt="Shadow Box Rear View" src="/images/fadecandy/shadowboxrear.rotated.jpg" /></p>
-<p>For a difusser I went to Lowes and found an overhead flourescent light diffuser panel that was chipped (the chip allowed me to negotiate a better price).  I used a right angle to mark the outline of the section I would need to cut out with a marker then used a fine tip soldering iron to go over the lines slowly until I had burned and etch over half way through.  I ended up needed three of these to get the level of diffusion that I was satisfied with.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/d7M31PMLR6c" frameborder="0" allowfullscreen></iframe>
+
+<p><h5>At this point I was still un-decided where to go next.  One option was to use the extra space on the plexiglass to mount suction cups that would allow mounting the display to the glass wall of the North Branch Library makerspace.  Realizing I needed some sort of diffuser I started looking into different shadow boxes at local arts and crafts store.  I one which would allow the 2x4 panels to fit nicely inside.  I used my drimmel to carefully cut away the extra plexi-glass, allowing the display to fit inside of the shadow box.</h5></p>
+
+<p><a href="/images/fadecandy/shadowboxrear.rotated.jpg" title="Click To Enlarge"><img src="/images/fadecandy/shadowboxrear.rotated.jpg" class="img-rounded img-responsive img-thumbnail"></a></p>
+<p><h5>For a difusser I went to Lowes and found an overhead flourescent light diffuser panel that was chipped (the chip allowed me to negotiate a better price).  I used a right angle to mark the outline of the section I would need to cut out with a marker then used a fine tip soldering iron to go over the lines slowly until I had burned and etch over half way through.  I ended up needed three of these to get the level of diffusion that I was satisfied with.</h5></p>
+
 <h4>Here is the 16x32 with diffusers in place running a rings algorythm</h4>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/qufMyeZC1rk" frameborder="0" allowfullscreen></iframe></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qufMyeZC1rk" frameborder="0" allowfullscreen></iframe>
+
 <h4>Here we have some cool trails</h4>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/1phsNupJlso" frameborder="0" allowfullscreen></iframe></p>
-<p>In a follow up post I will go into more detail on how we control the display via the Fadecandy controller using any programming language that can write to a web socket.</p>
-<p>For now I would encourage you to take a look at the <a href="https://github.com/scanlime/fadecandy">Fadecandy Repo on Github</a></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1phsNupJlso" frameborder="0" allowfullscreen></iframe>
+
+<p><h5>In a follow up post I will go into more detail on how we control the display via the Fadecandy controller using any programming language that can write to a web socket.</h5></p>
+
+<p><h5>For now I would encourage you to take a look at the <a href="https://github.com/scanlime/fadecandy" target="_blank">Fadecandy Repo on Github</a></h5></p>
+
+</div>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="./visualizing-music-with-fft.html">Visualizing Music With FFT</a></li>
-        <li><a href="./adding-second-joystick-to-joystick-shield-for-arduino.html">Adding Second Joystick to Joystick Shield for Arduino</a></li>
-        <li><a href="./neopixel-16-ring-fun.html">NeoPixel 16 Ring Fun</a></li>
+        <li><a href="./wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
         <li><a href="./attendance-logger.html">Attendance Logger</a></li>
         <li><a href="./playing-music-with-remote-control.html">Playing Music With Remote Control</a></li>
-        <li><a href="./wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
+        <li><a href="./8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
         <li><a href="./nootropic-design-16x32-rgb-backpack-from-adafruit.html">Nootropic design 16x32 RGB backpack from Adafruit</a></li>
+        <li><a href="./adding-second-joystick-to-joystick-shield-for-arduino.html">Adding Second Joystick to Joystick Shield for Arduino</a></li>
         <li><a href="./arduino-gps-clock.html">Arduino GPS Clock</a></li>
         <li><a href="./track-a-car-using-tiny-arduino-gps-with-sd-card.html">Track A Car Using Tiny Arduino GPS with SD Card</a></li>
-        <li><a href="./8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
+        <li><a href="./neopixel-16-ring-fun.html">NeoPixel 16 Ring Fun</a></li>
     </ul>
 </section>
     <hr />
