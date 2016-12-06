@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>HackerSpaceTech</title><link>http://www.hackerspacetech.com/</link><description></description><lastBuildDate>Sun, 20 Nov 2016 00:00:00 -0600</lastBuildDate><item><title>LDR light sensor tutorial</title><link>http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html</link><description>&lt;div class="jumbotron"&gt;
-
+<rss version="2.0"><channel><title>HackerSpaceTech</title><link>http://www.hackerspacetech.com/</link><description></description><lastBuildDate>Sun, 20 Nov 2016 00:00:00 -0600</lastBuildDate><item><title>LDR light sensor tutorial</title><link>http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html</link><description>&lt;div class="container-fluid"&gt;
 &lt;div class="row"&gt;
     &lt;div class="col-sm-4"&gt;
     &lt;p&gt;&lt;img class="img-responsive" src="/images/ldr-tutorial/image_1.jpg"&gt;&lt;/p&gt;
@@ -112,9 +111,7 @@ void loop() {
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Blaž Pongrac</dc:creator><pubDate>Sun, 20 Nov 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</guid><category>Arduino</category><category>Tutorials</category><category>LDR</category><category>light sensor</category></item><item><title>Attendance Logger</title><link>http://www.hackerspacetech.com/attendance-logger.html</link><description>&lt;div class="jumbotron"&gt;
-
-&lt;div class="container-fluid"&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Blaž Pongrac</dc:creator><pubDate>Sun, 20 Nov 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</guid><category>Arduino</category><category>Tutorials</category><category>LDR</category><category>light sensor</category></item><item><title>Attendance Logger</title><link>http://www.hackerspacetech.com/attendance-logger.html</link><description>&lt;div class="container-fluid"&gt;
 &lt;div row&gt;
     &lt;div class="col-sm-4"&gt;
     &lt;img src="/images/attendance-logger/image_1.jpg"  class="img-rounded img-thumbnail"&gt;

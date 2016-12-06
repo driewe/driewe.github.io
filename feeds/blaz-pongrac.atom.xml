@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-11-20T00:00:00-06:00</updated><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;div class="jumbotron"&gt;
-
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-11-20T00:00:00-06:00</updated><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;div class="container-fluid"&gt;
 &lt;div class="row"&gt;
     &lt;div class="col-sm-4"&gt;
     &lt;p&gt;&lt;img class="img-responsive" src="/images/ldr-tutorial/image_1.jpg"&gt;&lt;/p&gt;
@@ -112,9 +111,7 @@ void loop() {
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;div class="jumbotron"&gt;
-
-&lt;div class="container-fluid"&gt;
+&lt;/div&gt;</summary><category term="Arduino"></category><category term="Tutorials"></category><category term="LDR"></category><category term="light sensor"></category></entry><entry><title>Attendance Logger</title><link href="http://www.hackerspacetech.com/attendance-logger.html" rel="alternate"></link><published>2016-11-14T00:00:00-06:00</published><updated>2016-11-14T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-14:attendance-logger.html</id><summary type="html">&lt;div class="container-fluid"&gt;
 &lt;div row&gt;
     &lt;div class="col-sm-4"&gt;
     &lt;img src="/images/attendance-logger/image_1.jpg"  class="img-rounded img-thumbnail"&gt;

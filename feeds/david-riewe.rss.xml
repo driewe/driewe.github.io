@@ -6,12 +6,10 @@ h6 {
 
 &lt;/style&gt;
 
-&lt;div class="jumbotron"&gt;
-
+&lt;div class="container-fluid"&gt;
 &lt;p&gt;&lt;h5&gt;This example demonstrates how to send multiple values from the Arduino board to the computer. The readings from three potentiometers are used to set the red, green, and blue components of the background color of a Processing sketch.&lt;/h5&gt;&lt;/p&gt;
 
 &lt;h4&gt;Hardware Required&lt;/h4&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Arduino or Genuino Board&lt;/li&gt;
 &lt;li&gt;3 Analog Sensors (potentiometer, photocell, FSR, etc.)&lt;/li&gt;
@@ -21,7 +19,6 @@ h6 {
 &lt;/ul&gt;
 
 &lt;h4&gt;Software Required&lt;/h4&gt;
-
 &lt;ul&gt;&lt;li&gt;Processing&lt;/li&gt;&lt;/ul&gt;
 
 &lt;div class="container-fluid"&gt;
@@ -146,12 +143,12 @@ void&lt;span class="w"&gt; &lt;/span&gt;loop&lt;span class="o"&gt;()&lt;/span&gt
 
 &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/kPKBdf-KYZU" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 
-&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Sat, 12 Nov 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-11-12:virtual-color-mixer.html</guid><category>Arduino</category><category>Programming</category><category>Tutorials</category><category>Processing</category></item><item><title>Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</title><link>http://www.hackerspacetech.com/switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html</link><description>&lt;p&gt;&lt;div class="jumbotron"&gt;
-&lt;h5&gt;An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.&lt;/h5&gt;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Sat, 12 Nov 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-11-12:virtual-color-mixer.html</guid><category>Arduino</category><category>Programming</category><category>Tutorials</category><category>Processing</category></item><item><title>Switch Case 2: A second switch-case example, showing how to take different actions based on the characters received in the serial port</title><link>http://www.hackerspacetech.com/switch-case-2-a-second-switch-case-example-showing-how-to-take-different-actions-based-on-the-characters-received-in-the-serial-port.html</link><description>&lt;div class="container-fluid"&gt;
+&lt;h5&gt;An if statement allows you to choose between two discrete options, TRUE or FALSE. When there are more than two options, you can use multiple if statements, or you can use the switch statement. Switch allows you to choose between several discrete options.&lt;/h5&gt;
+
 &lt;p&gt;&lt;h5&gt;This tutorial shows you how to use switch to turn on one of several different LEDs based on a byte of data received serially. The sketch listens for serial input, and turns on a different LED for the characters a, b, c, d, or e.&lt;/h5&gt;&lt;/p&gt;
 
 &lt;h4&gt;Hardware Required&lt;/h4&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Arduino&lt;/li&gt;
 &lt;li&gt;5 LEDs&lt;/li&gt;
@@ -159,6 +156,7 @@ void&lt;span class="w"&gt; &lt;/span&gt;loop&lt;span class="o"&gt;()&lt;/span&gt
 &lt;li&gt;hook-up wires&lt;/li&gt;
 &lt;li&gt;breadboard&lt;/li&gt;
 &lt;/ul&gt;
+
 
 &lt;h4&gt;Circuit&lt;/h4&gt;
 
@@ -260,8 +258,8 @@ h6 {
 }
 &lt;/style&gt;
 
-&lt;p&gt;&lt;div class="jumbotron"&gt;
-&lt;h5&gt;Sometimes you want everything in the program to stop while a given condition is true. You can do this using a &lt;a href="http://www.arduino.cc/en/Reference/While"&gt;while loop&lt;/a&gt;. This example shows how to use a while loop to &lt;a href="http://www.arduino.cc/en/Tutorial/Calibration"&gt;calibrate&lt;/a&gt; the value of an analog sensor.&lt;/h5&gt;&lt;/p&gt;
+&lt;h5&gt;Sometimes you want everything in the program to stop while a given condition is true. You can do this using a [while loop](http://www.arduino.cc/en/Reference/While). This example shows how to use a while loop to [calibrate](http://www.arduino.cc/en/Tutorial/Calibration) the value of an analog sensor.&lt;/h5&gt;
+
 &lt;h5&gt;In the main loop, the sketch below reads the value of a photoresistor on analog pin 0 and uses it to fade an LED on pin 9. But while a button attached to digital pin 2 is pressed, the program runs a method called calibrate() that looks for the highest and lowest values of the analog sensor. When you release the button, the sketch continues with the main loop.&lt;/h5&gt;
 
 &lt;h5&gt;This technique lets you update the maximum and minimum values for the photoresistor when the lighting conditions change.&lt;/h5&gt;
@@ -388,16 +386,11 @@ void&lt;span class="w"&gt; &lt;/span&gt;calibrate&lt;span class="o"&gt;()&lt;/sp
 &lt;span class="w"&gt;        &lt;/span&gt;sensorMin&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sensorValue&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Tue, 08 Nov 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-11-08:while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html</guid><category>Arduino</category><category>Programming</category><category>Tutorials</category></item><item><title>Building A 16x32 NeoPixel Display</title><link>http://www.hackerspacetech.com/building-a-16x32-neopixel-display.html</link><description>&lt;style&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Tue, 08 Nov 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-11-08:while-statement-conditional-how-to-use-a-while-loop-to-calibrate-a-sensor-while-a-button-is-being-read.html</guid><category>Arduino</category><category>Programming</category><category>Tutorials</category></item><item><title>Building A 16x32 NeoPixel Display</title><link>http://www.hackerspacetech.com/building-a-16x32-neopixel-display.html</link><description>&lt;style&gt;
 h6 {
     text-align: center;
 }
 &lt;/style&gt;
-
-&lt;div class="jumbotron"&gt;
 
 &lt;p&gt;&lt;h5&gt;Earlier this year while attending a &lt;a href="http://www.fabnow-conference.com" target="_blank"&gt;FabNow Conferance&lt;/a&gt; in Ft. Worth I came across a few exibits with &lt;a href="/neopixel-16-ring-fun.html"&gt;Neo Pixel Rings.  I was fascinated with the color levels and the fact they could be controlled with a single wire!  While experimenting with the &lt;a href="/neopixel-16-ring-fun.html"&gt;Neo Pixel Rings&lt;/a&gt; I learned about Adafruits &lt;a href="http://amzn.to/2fVoeuE" target="_blank"&gt;NeoPixel 64 LED 8x8 Matrix&lt;/a&gt;, the FadeCandy controller then was mesmerized by some of the demonstrations at &lt;a href="http://www.misc.name/fadecandy" target="_blank"&gt;Micah Elizabeth Scotts website&lt;/a&gt; and the &lt;a href="https://learn.adafruit.com/led-art-with-fadecandy" target="_blank"&gt;LED Art with Fadecandy&lt;/a&gt; tutorial on Adafruits website.&lt;/h5&gt;&lt;/p&gt;
 
@@ -477,9 +470,7 @@ Prior to starting the build I had laid all eight panels out on a xerox machine a
 
 &lt;p&gt;&lt;h5&gt;In a follow up post I will go into more detail on how we control the display via the Fadecandy controller using any programming language that can write to a web socket.&lt;/h5&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h5&gt;For now I would encourage you to take a look at the &lt;a href="https://github.com/scanlime/fadecandy" target="_blank"&gt;Fadecandy Repo on Github&lt;/a&gt;&lt;/h5&gt;&lt;/p&gt;
-
-&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Sun, 30 Oct 2016 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-10-30:building-a-16x32-neopixel-display.html</guid><category>NeoPixel</category><category>Projects</category></item><item><title>Visualizing Music With FFT</title><link>http://www.hackerspacetech.com/visualizing-music-with-fft.html</link><description>&lt;p&gt;The following videos are displaying patterns generated by
+&lt;p&gt;&lt;h5&gt;For now I would encourage you to take a look at the &lt;a href="https://github.com/scanlime/fadecandy" target="_blank"&gt;Fadecandy Repo on Github&lt;/a&gt;&lt;/h5&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Sun, 30 Oct 2016 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-10-30:building-a-16x32-neopixel-display.html</guid><category>NeoPixel</category><category>Projects</category></item><item><title>Visualizing Music With FFT</title><link>http://www.hackerspacetech.com/visualizing-music-with-fft.html</link><description>&lt;p&gt;The following videos are displaying patterns generated by
 a Processing program doing real-time FFT (Fast Fourier transform).
 Basically it is visualizing music in the frequency domain using a
 polar-coordinate particle system.&lt;/p&gt;
