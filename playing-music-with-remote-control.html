@@ -126,7 +126,6 @@ HackerSpaceTech            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                
                 <p>This was the first experiment I did with Ken Shirrif's Infrared Remote Control Library for the Arduino. </p>
 <p>The circuit uses a TSOP382 IR photo sensor to receive the codes from the Clarion remote controller I had lying around.  Once the code is received the program then decides which tone to play.  In this example I have 8 tones set up, middle c through middle b.  For added fun and visual effects I turn on a led for each of the notes as they are played.</p>
 <p>Here is a short video of a few notes being played on the Arduino.  Below the video is the code along with some instructions on how to modify the library so it will work with the tone() function.
@@ -283,28 +282,39 @@ In IRremoteInt.h, at line 194 you need to uncomment the IR_USE_TIME1 line and co
 
 <p>Most likely you will not have the same controller that I have.  Therefore, use the receiving ir example from the library to discover the unique codes for your controller then replace them in the source code.</p>
 <p><a href="https://learn.sparkfun.com/tutorials/ir-communication">Sparkfun IR Tutorial</a></p>
-                <!-- Grab Gravatar Data
+            
+            <div class="well">
+            <div class="row">
+                <div class="col-sm-1">
+                <a href="http://www.hackerspacetech.com/author/david-riewe.html" title="See posts by David Riewe">
                         <img class="avatar" alt="David Riewe" src="https://www.gravatar.com/avatar/2d9756bdf568ea028c6e2c08dc5aef99">
-                <h2 class="article-info">David Riewe</h2>
+ 
+                </a>
+                </div>
+                <div class="col-sm-2">
+                <h3 class="article-info">David Riewe</h3>
                 <small class="about-author"></small>
                 <h5>Published</h5>
-                <p>Tue 03 November 2015</p>  -->
-                <!--- End Gravatar Data -->
+                <p>Tue 03 November 2015</p> 
+                </div>
             </div>
-            <!-- /.entry-content -->
+                
+                
+            </div>
+                    
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://www.hackerspacetech.com/nootropic-design-16x32-rgb-backpack-from-adafruit.html">Nootropic design 16x32 RGB backpack from Adafruit</a></li>
-        <li><a href="http://www.hackerspacetech.com/wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
-        <li><a href="http://www.hackerspacetech.com/infra-red-remote-controller-shield.html">Infra Red Remote Controller Shield</a></li>
         <li><a href="http://www.hackerspacetech.com/track-a-car-using-tiny-arduino-gps-with-sd-card.html">Track A Car Using Tiny Arduino GPS with SD Card</a></li>
+        <li><a href="http://www.hackerspacetech.com/8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
         <li><a href="http://www.hackerspacetech.com/infra-red-controlled-robot.html">Infra Red Controlled Robot</a></li>
+        <li><a href="http://www.hackerspacetech.com/wireless-arduino-thumb-joystick-shield.html">Wireless Arduino Thumb Joystick Shield</a></li>
         <li><a href="http://www.hackerspacetech.com/arduino-gps-clock.html">Arduino GPS Clock</a></li>
         <li><a href="http://www.hackerspacetech.com/adding-second-joystick-to-joystick-shield-for-arduino.html">Adding Second Joystick to Joystick Shield for Arduino</a></li>
         <li><a href="http://www.hackerspacetech.com/attendance-logger.html">Attendance Logger</a></li>
-        <li><a href="http://www.hackerspacetech.com/8x16-led-matrix-controlled-by-2-max7219s.html">8x16 LED matrix controlled by 2 MAX7219's</a></li>
-        <li><a href="http://www.hackerspacetech.com/playing-night-rider-with-three-74hc595s.html">Playing night rider with three 74HC595s</a></li>
+        <li><a href="http://www.hackerspacetech.com/infra-red-remote-controller-shield.html">Infra Red Remote Controller Shield</a></li>
+        <li><a href="http://www.hackerspacetech.com/lcd-button-shield-v2-for-arduino-by-sparkfun.html">LCD Button Shield V2 for Arduino by Sparkfun</a></li>
     </ul>
 </section>
     <hr />
@@ -345,6 +355,7 @@ In IRremoteInt.h, at line 194 you need to uncomment the IR_USE_TIME1 line and co
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
     </section>
+         
         </article>
     </section>
 
