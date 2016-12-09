@@ -70,7 +70,10 @@
 
 &lt;p&gt;Then create a NeoPixel object, call it 'strip' and pass it the number of LED's and what pin we are using for the data line.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIN);&lt;/code&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIN);
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;In the setup function we will start off by opening serial comms for debug purposes.&lt;/p&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    void setup()
