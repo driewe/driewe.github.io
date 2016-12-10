@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blog.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-09T00:00:00-06:00</updated><entry><title>Intel Edison threshold WiFi Grapher</title><link href="http://www.hackerspacetech.com/intel-edison-threshold-wifi-grapher.html" rel="alternate"></link><published>2016-12-09T00:00:00-06:00</published><updated>2016-12-09T00:00:00-06:00</updated><author><name>Stephen Borsay</name></author><id>tag:www.hackerspacetech.com,2016-12-09:intel-edison-threshold-wifi-grapher.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blog.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-10T00:00:00-06:00</updated><entry><title>Control Arduino Robot Arm with Android App</title><link href="http://www.hackerspacetech.com/control-arduino-robot-arm-with-android-app.html" rel="alternate"></link><published>2016-12-10T00:00:00-06:00</published><updated>2016-12-10T00:00:00-06:00</updated><author><name>Slant Concepts</name></author><id>tag:www.hackerspacetech.com,2016-12-10:control-arduino-robot-arm-with-android-app.html</id><summary type="html">
+        
+        &lt;b&gt;Parts Used&lt;/b&gt;    
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="http://amzn.to/2gx25D6" rel="nofollow" target="_blank"&gt;LittleArm&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://amzn.to/2guHM9Z" rel="nofollow" target="_blank"&gt;Arduino Uno&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://amzn.to/2gpY19t" rel="nofollow" target="_blank"&gt;HC-05 Arduino Bluetooth Module&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://amzn.to/2hybnMZ" rel="nofollow" target="_blank"&gt;Android Tablet&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;This tutorial is based on resources from &lt;a href="#" rel="nofollow" target="_blank"&gt;this page&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;The LittleArm is a customarily controlled utilizing a free desktop PC application that keeps running on Windows and Linux. In any case, this requires the LittleArm be associated with a PC to be controlled. We at long last finished the application for the LittleArm so you can control the Arduino remotely with Bluetooth.&lt;/p&gt;
+        &lt;p&gt;The application permits you to control all the DOF's of the LittleArm additionally record sets of charges and play them back. The code for the Arduino does not transform from our customary code in the product bundles &lt;a href="http://www.littlearmrobot.com/downloads.html" rel="nofollow" target="_blank"&gt;from here&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;The LittleArm app for this project can be &lt;a href="https://play.google.com/store/apps/details?id=appinventor.ai_slantconcepts.littlearm_record_v0_4&amp;amp;hl=en" rel="nofollow" target="_blank"&gt;downloaded here&lt;/a&gt;.&lt;/p&gt;
+        &lt;center&gt;
+            &lt;p&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/K9Bn1SxP-Xs" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href="images/little-arm-robot/image_1.jpg" rel="nofollow" target="_blank"&gt;&lt;img src="images/little-arm-robot/image_1.jpg" class="img-responsive img-rounded" width="300"&gt;&lt;/a&gt;&lt;/p&gt;
+       
+        &lt;/center&gt;
+        &lt;b&gt;Schematics&lt;/b&gt;
+        &lt;p&gt;&lt;center&gt;&lt;img src="images/little-arm-robot/image_2.jpg" width="500"&gt;&lt;/p&gt;
+        &lt;div class"well" style="width: 80%"&gt;
+&lt;script src="https://gist.github.com/driewe/cfe957cf64567520339f45359ee1df6b.js"&gt;&lt;/script&gt;
+            &lt;/div&gt;&lt;/center&gt;
+    </summary><category term="Arduino"></category><category term="Robotics"></category><category term="Android"></category><category term="Tutorials"></category></entry><entry><title>Intel Edison threshold WiFi Grapher</title><link href="http://www.hackerspacetech.com/intel-edison-threshold-wifi-grapher.html" rel="alternate"></link><published>2016-12-09T00:00:00-06:00</published><updated>2016-12-09T00:00:00-06:00</updated><author><name>Stephen Borsay</name></author><id>tag:www.hackerspacetech.com,2016-12-09:intel-edison-threshold-wifi-grapher.html</id><summary type="html">
         &lt;b&gt;About this project&lt;/b&gt;
 &lt;p&gt;This project is of two parts; first we construct a pot value controlled LED lighter then we connect it to WiFi for cloud graphing.&lt;/p&gt;
 &lt;b&gt;Parts used&lt;/b&gt;
