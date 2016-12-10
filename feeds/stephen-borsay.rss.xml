@@ -23,7 +23,10 @@
 &lt;div class="row text-center"&gt;
 &lt;b&gt;Intel Edison&lt;/b&gt;
 &lt;img src="/images/intel-edison-threshold-wifi-grapher/edison.jpg" class="img-responsive center-block img-rounded"&gt;&lt;/div&gt;
-&lt;b&gt;Code&lt;/b&gt;
+&lt;div class="row text-center"&gt;
+    &lt;b&gt;Code&lt;/b&gt;&lt;/div&gt;
+        &lt;center&gt;
+        &lt;div class"well center-block" style="width: 80%"&gt;
 &lt;script src="https://gist.github.com/driewe/e232cac47c05cc7c65d5df1f60cd58b6.js"&gt;&lt;/script&gt;
-
+            &lt;/div&gt;&lt;/center&gt;
     </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Stephen Borsay</dc:creator><pubDate>Fri, 09 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-09:intel-edison-threshold-wifi-grapher.html</guid><category>Arduino</category><category>Intel Edison</category><category>WiFi</category><category>Tutorials</category></item></channel></rss>

@@ -23,7 +23,10 @@
 &lt;div class="row text-center"&gt;
 &lt;b&gt;Intel Edison&lt;/b&gt;
 &lt;img src="/images/intel-edison-threshold-wifi-grapher/edison.jpg" class="img-responsive center-block img-rounded"&gt;&lt;/div&gt;
-&lt;b&gt;Code&lt;/b&gt;
+&lt;div class="row text-center"&gt;
+    &lt;b&gt;Code&lt;/b&gt;&lt;/div&gt;
+        &lt;center&gt;
+        &lt;div class"well center-block" style="width: 80%"&gt;
 &lt;script src="https://gist.github.com/driewe/e232cac47c05cc7c65d5df1f60cd58b6.js"&gt;&lt;/script&gt;
-
+            &lt;/div&gt;&lt;/center&gt;
     </summary><category term="Arduino"></category><category term="Intel Edison"></category><category term="WiFi"></category><category term="Tutorials"></category></entry></feed>
