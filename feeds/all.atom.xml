@@ -4,11 +4,11 @@
 &lt;p&gt;This project is of two parts; first we construct a pot value controlled LED lighter then we connect it to WiFi for cloud graphing.&lt;/p&gt;
 &lt;b&gt;Parts used&lt;/b&gt;
 &lt;ul&gt;
-&lt;li&gt;Intel Edison&lt;/li&gt;
-&lt;li&gt;Jumper Wires&lt;/li&gt;
-&lt;li&gt;LED&lt;/li&gt;
-&lt;li&gt;Rotary Potentiometer&lt;/li&gt;
-&lt;li&gt;Breadboard&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.to/2hpxhWy" rel="nofollow" target="_blank"&gt;Edison&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.to/2hgaqfE" rel="nofollow" target="_blank"&gt;Jumper Wires&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.to/2h9yCzM" rel="nofollow" target="_blank"&gt;LED&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.to/2gm139y" rel="nofollow" target="_blank"&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://amzn.to/2gm3IjA" rel="nofollow" target="_blank"&gt;Breadboard&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;b&gt;Overview of project&lt;/b&gt;
 &lt;p&gt;This teaching project comprises of two sections. The first object was to make a simple prototyping venture that understudies could plan on a breadboard with simple info (potentiometer) and advanced yield (LEDs). The second part of the venture adds the additional code expected to make this an "IoT" extend. This second part sends the simple info estimation of the potentiometer(pot) as WiFi information yield to a diagram on the ThingSpeak.com site.&lt;/p&gt;
