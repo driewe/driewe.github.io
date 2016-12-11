@@ -22,7 +22,7 @@
         &lt;div class"well" style="width: 80%"&gt;
 &lt;script src="https://gist.github.com/driewe/cfe957cf64567520339f45359ee1df6b.js"&gt;&lt;/script&gt;
             &lt;/div&gt;&lt;/center&gt;
-    &lt;div class="text-center"&gt;&lt;h6&gt;Content edited by HackerSpaceTech as granted by &lt;a href="https://creativecommons.org/licenses/by/4.0" rel="nofollow" target="_blank"&gt;CC BY&lt;/a&gt; do not carry any endorsement from original author&lt;/h6&gt;&lt;/div&gt;
+    &lt;div class="text-center"&gt;&lt;h6&gt;Content edited by HackerSpaceTech as granted by &lt;a href="https://creativecommons.org/licenses/by/4.0" rel="nofollow" target="_blank"&gt;CC BY&lt;/a&gt; does not carry any endorsement from original author&lt;/h6&gt;&lt;/div&gt;
     </summary><category term="Arduino"></category><category term="Robotics"></category><category term="Android"></category><category term="Tutorials"></category></entry><entry><title>Neo-Pixel Ring Clock - ESP8266 Controlled</title><link href="http://www.hackerspacetech.com/neo-pixel-ring-clock-esp8266-controlled.html" rel="alternate"></link><published>2016-12-08T00:00:00-06:00</published><updated>2016-12-08T00:00:00-06:00</updated><author><name>Mike McRoberts</name></author><id>tag:www.hackerspacetech.com,2016-12-08:neo-pixel-ring-clock-esp8266-controlled.html</id><summary type="html">
 
 &lt;b&gt;Parts Used:&lt;/b&gt;
@@ -212,7 +212,7 @@
     &lt;div class"well center-block" style="width: 80%"&gt;
         &lt;script src="https://gist.github.com/driewe/4dd3cd02fd875438339ec78fe95198d3.js"&gt;&lt;/script&gt;&lt;/div&gt;
     &lt;/center&gt;
-    &lt;div class="text-center"&gt;&lt;h6&gt;Content edited by HackerSpaceTech as granted by &lt;a href="https://creativecommons.org/licenses/by/4.0" rel="nofollow" target="_blank"&gt;CC BY&lt;/a&gt; do not carry any endorsement from original author&lt;/h6&gt;&lt;/div&gt;
+    &lt;div class="text-center"&gt;&lt;h6&gt;Content edited by HackerSpaceTech as granted by &lt;a href="https://creativecommons.org/licenses/by/4.0" rel="nofollow" target="_blank"&gt;CC BY&lt;/a&gt; does not carry any endorsement from original author&lt;/h6&gt;&lt;/div&gt;
 </summary><category term="Arduino"></category><category term="ESP8266"></category><category term="neopixel"></category><category term="Tutorials"></category></entry><entry><title>Creating A Simple Relay Board Using Eagle</title><link href="http://www.hackerspacetech.com/creating-a-simple-relay-board-using-eagle.html" rel="alternate"></link><published>2016-11-29T00:00:00-06:00</published><updated>2016-11-29T00:00:00-06:00</updated><author><name>Scott Reesor</name></author><id>tag:www.hackerspacetech.com,2016-11-29:creating-a-simple-relay-board-using-eagle.html</id><summary type="html">&lt;style&gt;
 h6 {
     text-align: center;
