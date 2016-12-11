@@ -182,11 +182,12 @@
 
 &lt;p&gt;My clock is presently only a model on a breadboard, as should be obvious in the picture. Be that as it may, this would look incredible underneath some scratched white acrylic so I provoke you to utilize the code above to make your own particular ring clock and make something delightful out of it.&lt;/p&gt;
 
-&lt;div class"well" style="width: 80%"&gt;
+&lt;div class="well" style="width: 80%"&gt;
 &lt;div class="row text-center"&gt;
     &lt;b&gt;Code&lt;/b&gt;&lt;/div&gt;
     &lt;center&gt;
     &lt;div class"well center-block" style="width: 80%"&gt;
         &lt;script src="https://gist.github.com/driewe/4dd3cd02fd875438339ec78fe95198d3.js"&gt;&lt;/script&gt;&lt;/div&gt;
     &lt;/center&gt;
+    &lt;div class="text-right"&gt;&lt;h6&gt;Editorial edits made by HackerSpaceTech as granted by &lt;a href="https://creativecommons.org/licenses/by/4.0" rel="nofollow" target="_blank"&gt;CC BY&lt;/a&gt; do not carry any endorsement from original author&lt;/h6&gt;&lt;/div&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Mike McRoberts</dc:creator><pubDate>Thu, 08 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-08:neo-pixel-ring-clock-esp8266-controlled.html</guid><category>Arduino</category><category>ESP8266</category><category>neopixel</category><category>Tutorials</category></item></channel></rss>
