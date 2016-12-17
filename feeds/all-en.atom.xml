@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-15T00:00:00-06:00</updated><entry><title>Arduino101 BLE Autonomous Rover</title><link href="http://www.hackerspacetech.com/arduino101-ble-autonomous-rover.html" rel="alternate"></link><published>2016-12-15T00:00:00-06:00</published><updated>2016-12-15T00:00:00-06:00</updated><author><name>Oliver Chen</name></author><id>tag:www.hackerspacetech.com,2016-12-15:arduino101-ble-autonomous-rover.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/all-en.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-17T00:00:00-06:00</updated><entry><title>27 Week Arduino Series Scheduled For 2017</title><link href="http://www.hackerspacetech.com/27-week-arduino-series-scheduled-for-2017.html" rel="alternate"></link><published>2016-12-17T00:00:00-06:00</published><updated>2016-12-17T00:00:00-06:00</updated><author><name>David Riewe</name></author><id>tag:www.hackerspacetech.com,2016-12-17:27-week-arduino-series-scheduled-for-2017.html</id><summary type="html">
+
+
+        &lt;p&gt;We will be starting a comprehensive 35 week workshop series designed for anyone interested in learning electronic design and microcontroller programming. No experience is required, and all you need is an Arduino and several low-cost components. The workshops will start on Jan 4th, 2017 and run weekly through Aug 30th, 2017.&lt;/p&gt;
+        &lt;p&gt;With over 20 hours of content in 110 lectures and hands on help from skilled professionals this workshop series will take you from zero experience in electronics or programming to Arduino Master. NOTE:  What you learn in this series can be taken to ANY other development platform.  We use the Arduino for it popularity and community support&lt;/p&gt;&lt;br&gt;
+        &lt;h4&gt;What will it cost?&lt;/h4&gt;
+        &lt;p&gt;This workshop series is free to the general public, membership at TheLabMS is not required.  However, space is limited to 20 participants so you will want to reserver your spot for the classes you wish to attend.  You will also need to bring your own laptop, Arduino and parts if you wish to particpate in the lab work.  Participants may also choose to watch the presentation then observe or partner with others that are doing the labs.&lt;/p&gt;&lt;br&gt;
+        &lt;h4&gt;Do I need to attend all events&lt;/h4&gt;
+        &lt;p&gt;No, you can pick and chose.  It is recommended to register via the meetup page so your spot is reserved&lt;/p&gt;
+        &lt;p&gt;Here is a current list of scheduled workshops. Clicking on the title will take you to the meetup where you can learn more about the event and RSVP&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236180991/"&gt;01/04 - Getting Started with Arduino - beginner&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181031/"&gt;01/11 - Arduino - Working With Sensors - Part 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181057/"&gt;01/18 - Arduino - Working With Sensors - Part 2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181071/"&gt;01/25 - Interacting With Arduino - Part 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181105/"&gt;02/01 - Interacting With Arduino - Part 2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181317/"&gt;02/08 - Working with Rotary Encoders - Arduino&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181440/"&gt;02/15 - Using Adafruits Fingerprint Sensor&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236181609/"&gt;02/22 - Using LCD Screens including I2C&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203129/"&gt;03/01 - Working With LCD TFT screens&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203139/"&gt;03/08 - Using 7 Segment Displays&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203161/"&gt;03/15 - Control an 8x8 LED matrix display with the MAX7219 controller&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203201/"&gt;03/22 - Working With Direct Current Motors&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203188/"&gt;03/29 - Using Servo Motors&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203230/"&gt;04/05 - Using Stepper motors&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203242/"&gt;04/12 - Using an Ethernet Shield&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203251/"&gt;04/19 - Setting up an Arduino Reporting Web server&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203262/"&gt;04/26 - Setting up an Arduino Controlling Web server&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203294/"&gt;05/03 - Web Logging to Nimbus and Twitter&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203297/"&gt;05/10 - Wireless Connectivity with BlueTooth&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203303/"&gt;05/17 - WiFi connectivity (using CC3000)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203314/"&gt;05/24 - Wireless Connectivity Using the NRF24L01+ transceiver module&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203324/"&gt;05/31 - Bluetooth Low Energy (BLE)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203330/"&gt;06/07 - Using An SD Card In Your Project&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203339/"&gt;06/14 - Using EEPROM In Your Projects&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203352/"&gt;06/21 - Taking a closer look at the Atmega microcontroller - part 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203356/"&gt;06/28 - Taking a closer look at the Atmega microcontroller - part 2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203434/"&gt;07/05 - Using Shiftregisters&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203447/"&gt;07/12 - Control more devices with a port expander&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203451/"&gt;07/19 - Using A Real Time Clock (RTC)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203460/"&gt;07/26 - Controlling large loads with relays and transistors&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203486/"&gt;08-02 - Location Sensing - How to add a GPS to your projects&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203492/"&gt;08-09 - Topics on Prototyping - Bare Bones Arduino&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203495/"&gt;08-16 - Topics on Prototyping - Create your own printed circuit boards (PCB)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203503/"&gt;08-23 - Using Processing (the language) with the Arduino, Part 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203510/"&gt;08-30 - Create your own Library for the Arduino&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        
+    </summary><category term="Arduino"></category><category term="Arduino101"></category><category term="Classes"></category></entry><entry><title>Arduino101 BLE Autonomous Rover</title><link href="http://www.hackerspacetech.com/arduino101-ble-autonomous-rover.html" rel="alternate"></link><published>2016-12-15T00:00:00-06:00</published><updated>2016-12-15T00:00:00-06:00</updated><author><name>Oliver Chen</name></author><id>tag:www.hackerspacetech.com,2016-12-15:arduino101-ble-autonomous-rover.html</id><summary type="html">
         &lt;img src="images/ble-autonomous-rover/tmp_image_0.jpg" class="img-responsive img-rounded center-block" style="padding:30px"&gt; 
         &lt;h4&gt;About This Project:&lt;/h4&gt;
         &lt;p&gt;This project is an expansion of the Arudino101 BLE Rover, where I had provided some Seeedstudio Skeleton Bot 4WD versatile mechanical stage packs to a group directing a Maker encounter for Oakland, CA High School understudies. The purpose of this instructional exercise is to show how by including sensors you can make a stage to investigate how to program a self-ruling self driving vehicle.&lt;/p&gt;
