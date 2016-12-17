@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/all.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-17T00:00:00-06:00</updated><entry><title>27 Week Arduino Series Scheduled For 2017</title><link href="http://www.hackerspacetech.com/27-week-arduino-series-scheduled-for-2017.html" rel="alternate"></link><published>2016-12-17T00:00:00-06:00</published><updated>2016-12-17T00:00:00-06:00</updated><author><name>David Riewe</name></author><id>tag:www.hackerspacetech.com,2016-12-17:27-week-arduino-series-scheduled-for-2017.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/all.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-17T00:00:00-06:00</updated><entry><title>35 Week Arduino Series Scheduled For 2017</title><link href="http://www.hackerspacetech.com/35-week-arduino-series-scheduled-for-2017.html" rel="alternate"></link><published>2016-12-17T00:00:00-06:00</published><updated>2016-12-17T00:00:00-06:00</updated><author><name>David Riewe</name></author><id>tag:www.hackerspacetech.com,2016-12-17:35-week-arduino-series-scheduled-for-2017.html</id><summary type="html">
 
+        
+        
+        &lt;img src="/images/sponsors/sbs-nodiscount.png" class="img-rounded" style="float:left; padding:10px"&gt;
 
-        &lt;p&gt;We will be starting a comprehensive 35 week workshop series designed for anyone interested in learning electronic design and microcontroller programming. No experience is required, and all you need is an Arduino and several low-cost components. The workshops will start on Jan 4th, 2017 and run weekly through Aug 30th, 2017.&lt;/p&gt;
+        &lt;br&gt;&lt;p&gt;We will be starting a comprehensive 35 week workshop series designed for anyone interested in learning electronic design and microcontroller programming. No experience is required, and all you need is an Arduino and several low-cost components. The workshops will start on Jan 4th, 2017 and run weekly through Aug 30th, 2017.&lt;/p&gt;
         &lt;p&gt;With over 20 hours of content in 110 lectures and hands on help from skilled professionals this workshop series will take you from zero experience in electronics or programming to Arduino Master. NOTE:  What you learn in this series can be taken to ANY other development platform.  We use the Arduino for it popularity and community support&lt;/p&gt;&lt;br&gt;
         &lt;h4&gt;What will it cost?&lt;/h4&gt;
         &lt;p&gt;This workshop series is free to the general public, membership at TheLabMS is not required.  However, space is limited to 20 participants so you will want to reserver your spot for the classes you wish to attend.  You will also need to bring your own laptop, Arduino and parts if you wish to particpate in the lab work.  Participants may also choose to watch the presentation then observe or partner with others that are doing the labs.&lt;/p&gt;&lt;br&gt;
@@ -46,7 +49,8 @@
             &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203503/"&gt;08-23 - Using Processing (the language) with the Arduino, Part 1&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="https://www.meetup.com/HackerSpaceTech/events/236203510/"&gt;08-30 - Create your own Library for the Arduino&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
-        
+        &lt;br&gt;
+        &lt;p&gt;If you have any questions feel free to &lt;a href="/pages/contact.html"&gt;contact me&lt;/a&gt;&lt;/p&gt;
     </summary><category term="Arduino"></category><category term="Arduino101"></category><category term="Classes"></category></entry><entry><title>Arduino101 BLE Autonomous Rover</title><link href="http://www.hackerspacetech.com/arduino101-ble-autonomous-rover.html" rel="alternate"></link><published>2016-12-15T00:00:00-06:00</published><updated>2016-12-15T00:00:00-06:00</updated><author><name>Oliver Chen</name></author><id>tag:www.hackerspacetech.com,2016-12-15:arduino101-ble-autonomous-rover.html</id><summary type="html">
         &lt;img src="images/ble-autonomous-rover/tmp_image_0.jpg" class="img-responsive img-rounded center-block" style="padding:30px"&gt; 
         &lt;h4&gt;About This Project:&lt;/h4&gt;
