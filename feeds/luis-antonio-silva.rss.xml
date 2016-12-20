@@ -51,8 +51,8 @@
                 &lt;/div&gt;
             &lt;/row&gt;
         &lt;/div&gt;
-        &lt;br &amp;lt;center&gt;&lt;b&gt;Video&lt;/b&gt;&lt;/center&gt;
-        &lt;center&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/87UpHQqewMI" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;
+        &lt;br &amp;lt;center&gt;&lt;b&gt;Video&lt;/b&gt;
+        &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/87UpHQqewMI" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;
         
         &lt;b&gt;Assembly&lt;/b&gt;
         &lt;p&gt;The assembly is exceptionally straightforward because of the utilization of secluded parts. Simply take after the schematic and take mind with the wires associations.&lt;/p&gt;
@@ -102,7 +102,8 @@
         &lt;center&gt;&lt;img src="/images/tiny-calendar-clock/schematic.jpg" width="80%"&gt;&lt;/center&gt;
             &lt;div class"well" style="width: 80%"&gt;
                 &lt;script src="https://gist.github.com/driewe/93236f81cba25b8b1f06f363c1a6c931.js"&gt;&lt;/script&gt;
-            &lt;/div&gt;
+            &lt;/div&gt;&lt;/center&gt;
             
             &lt;div class="text-center"&gt;&lt;h6&gt;Content edited by HackerSpaceTech as granted by &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0" rel="nofollow" target="_blank"&gt;CC BY-NC-SA&lt;/a&gt; does not carry any endorsement from original author&lt;/h6&gt;&lt;/div&gt;
+
     </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Luis Antonio Silva</dc:creator><pubDate>Mon, 12 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-12:tiny-calendar-and-clock-featuring-moon-phase-in-a-led-matrix.html</guid><category>Arduino</category><category>RTC</category><category>LED</category><category>Matrix</category><category>Tutorials</category></item></channel></rss>

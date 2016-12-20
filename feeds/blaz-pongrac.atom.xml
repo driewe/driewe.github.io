@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-11-20T00:00:00-06:00</updated><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;div class="container-fluid"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HackerSpaceTech</title><link href="http://www.hackerspacetech.com/" rel="alternate"></link><link href="http://www.hackerspacetech.com/feeds/blaz-pongrac.atom.xml" rel="self"></link><id>http://www.hackerspacetech.com/</id><updated>2016-12-20T00:00:00-06:00</updated><entry><title>Software PWM for controlling LEDs</title><link href="http://www.hackerspacetech.com/software-pwm-for-controlling-leds.html" rel="alternate"></link><published>2016-12-20T00:00:00-06:00</published><updated>2016-12-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-12-20:software-pwm-for-controlling-leds.html</id><summary type="html">
+   
+        &lt;p&gt;LED’s brightness can be controlled with Pulse Width Modulation or PWM. Arduino only have so many PWM ports. Did you ever wonder how to control the LED on any Arduino Pin? Here is how you can make it.&lt;/p&gt;
+        &lt;img class="img-responsive img-rounded center-block" style="padding:30px" src="images/software-pwm/img1.jpg"&gt;
+        &lt;p&gt;Let me talk first about PWM. PWM signal is digital signal modulation with HIGH and LOW states. It is basically a square wave with constant frequency f and with variable duty cycle d. Duty cycle is ratio between period T of the signal (1/f) and length of the HIGH state. For example: if period of the signal is 20 ms and length of the HIGH state is 5 ms, duty cycle would be d = 5/20 = 0.25 or 25%&lt;/p&gt;
+        &lt;img class="img-responsive img-rounded center-block" style="padding:30px" src="images/software-pwm/img2_pwm.jpg"&gt;
+        &lt;p&gt;By setting the duty cycle we can affect the lit time of the LED and by using frequencies that our eye cannot distinguish (usually higher than 40 Hz) for refresh rate, we get a feeling LED isn’t blinking. If for example duty cycle is set to 25% that means LED is lit 25% of the time. Our eye will see LED dimmed at about 25%. If duty cycle is set to 75% LED will be brighter and with duty cycle at 100% LED would be the brightest. When using analogWrite() function, this is easy. But How to do the same on pins that does not have option for PWM?&lt;/p&gt;
+        &lt;p&gt;As said before, we need signal with constant frequency/period. The best way to set duty cycle is to divide period into several smaller steps. These steps count as different duty cycles. If there are 20 steps in one period, this means that we can set our PWM with 5% resolution.&lt;/p&gt;
+        &lt;img class="img-responsive img-rounded center-block" style="padding:30px" src="/images/software-pwm/img3_flow.png"&gt;
+        &lt;p&gt;Flow chart is showing, how software PWM should look like. If we want 50% duty cycle, first 10 steps in the period output would be HIGH and the last 10 steps in the period output should be LOW. Here a few examples:&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;10% duty cycle --&gt; first 2 steps HIGH, other LOW&lt;/li&gt;
+            &lt;li&gt;25% duty cycle --&gt; first 5 steps HIGH, other LOW&lt;/li&gt;
+            &lt;li&gt;75% duty cycle --&gt; first 15 steps HIGH, other LOW&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;I think you get the idea. This code can be used to implement dimming or raising the brightness of the LED, like in the example bellow, or controlling single LED. I would not recommend using this code with any other longer bits of the code, because results may not be as predicted.&lt;/p&gt;
+        
+      &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/RZUymWv7KRA" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+        
+        &lt;div class"well" style="width: 80%"&gt;
+            &lt;script src="https://gist.github.com/driewe/9220de9f8584763ad454f1c8f03cb52d.js"&gt;&lt;/script&gt;
+        &lt;/div&gt;
+       
+    </summary><category term="Arduino"></category><category term="LED"></category><category term="PWM"></category><category term="Tutorials"></category></entry><entry><title>LDR light sensor tutorial</title><link href="http://www.hackerspacetech.com/ldr-light-sensor-tutorial.html" rel="alternate"></link><published>2016-11-20T00:00:00-06:00</published><updated>2016-11-20T00:00:00-06:00</updated><author><name>Blaž Pongrac</name></author><id>tag:www.hackerspacetech.com,2016-11-20:ldr-light-sensor-tutorial.html</id><summary type="html">&lt;div class="container-fluid"&gt;
 &lt;div class="row"&gt;
     &lt;div class="col-sm-4"&gt;
     &lt;p&gt;&lt;img class="img-responsive" src="/images/ldr-tutorial/image_1.jpg"&gt;&lt;/p&gt;
