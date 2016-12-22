@@ -5,217 +5,224 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.hackerspacetech.com/</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/archives.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/tags.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/categories.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/setting-up-an-arduino-controlling-web-server.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/using-an-arduino-ethernet-shield.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/setting-up-an-arduino-reporting-web-server.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/arduino-stepper-motors.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/arduino-using-servo-motors.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/wifi-connectivity-using-cc3000.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/arduino-working-with-rotary-encoders.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/arduino-working-with-sensors-p1.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/arduino-working-with-sensors-p2.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/bluetooth-low-energy-ble.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/classes.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/contact-bootstrap.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/contact.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/control-an-8x8-led-matrix-display-with-the-max7219-controller.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/getting-started-with-the-arduino.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/interacting-with-arduino-p1.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/interacting-with-arduino-p2.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/meetups.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/social-logging-to-twitter.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/using-adafruits-finger-print-sensor.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/using-lcd-screens.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/using-seven-segment-displays.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/web-logging-with-nimbus.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/wireless-connectivity-with-bluetooth.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/wireless-connectivity-using-the-nrf24l01-transceiver-module.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/working-with-lcd-tft-screens.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.hackerspacetech.com/pages/working-with-direct-current-motors.html</loc>
-<lastmod>2016-12-21T14:23:50-00:00</lastmod>
+<lastmod>2016-12-22T16:15:10-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.hackerspacetech.com/teach-the-particle-photon-to-text-in-5-minutes.html</loc>
+<lastmod>2016-12-22T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -523,7 +530,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.hackerspacetech.com/category/blog.html</loc>
-<lastmod>2016-12-21T00:00:00-05:51</lastmod>
+<lastmod>2016-12-22T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -578,8 +585,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.hackerspacetech.com/tag/keypad.html</loc>
-<lastmod>2016-02-12T12:53:00-05:51</lastmod>
+<loc>http://www.hackerspacetech.com/tag/twillo.html</loc>
+<lastmod>2016-12-22T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -593,7 +600,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.hackerspacetech.com/tag/particle-photon.html</loc>
-<lastmod>2016-03-06T15:12:00-05:51</lastmod>
+<lastmod>2016-12-22T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -642,7 +649,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.hackerspacetech.com/tag/tutorials.html</loc>
-<lastmod>2016-12-21T00:00:00-05:51</lastmod>
+<lastmod>2016-12-22T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -788,6 +795,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://www.hackerspacetech.com/tag/keypad.html</loc>
+<lastmod>2016-02-12T12:53:00-05:51</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://www.hackerspacetech.com/tag/light-sensor.html</loc>
 <lastmod>2016-11-20T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
@@ -867,6 +881,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.hackerspacetech.com/author/david-riewe.html</loc>
 <lastmod>2016-12-17T00:00:00-05:51</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.hackerspacetech.com/author/kevin-sidwell.html</loc>
+<lastmod>2016-12-22T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
