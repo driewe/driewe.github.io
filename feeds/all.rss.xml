@@ -227,7 +227,7 @@ Now that you have your Photon publishing an event and your Twilio account setup 
             &lt;script src="https://gist.github.com/driewe/9220de9f8584763ad454f1c8f03cb52d.js"&gt;&lt;/script&gt;
         &lt;/div&gt;
        
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Blaž Pongrac</dc:creator><pubDate>Tue, 20 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-20:software-pwm-for-controlling-leds.html</guid><category>Arduino</category><category>LED</category><category>PWM</category><category>Tutorials</category></item><item><title>35 Week Arduino Series Scheduled For 2017</title><link>http://www.hackerspacetech.com/35-week-arduino-series-scheduled-for-2017.html</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Blaž Pongrac</dc:creator><pubDate>Tue, 20 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-20:software-pwm-for-controlling-leds.html</guid><category>Arduino</category><category>LED</category><category>PWM</category><category>Tutorials</category></item><item><title>35 Week Arduino Class Series Scheduled For 2017</title><link>http://www.hackerspacetech.com/35-week-arduino-class-series-scheduled-for-2017.html</link><description>
 
         
         
@@ -279,7 +279,7 @@ Now that you have your Photon publishing an event and your Twilio account setup 
         &lt;/ul&gt;
         &lt;br&gt;
         &lt;p&gt;If you have any questions feel free to &lt;a href="/pages/contact.html"&gt;contact me&lt;/a&gt;&lt;/p&gt;
-    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Sat, 17 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-17:35-week-arduino-series-scheduled-for-2017.html</guid><category>Arduino</category><category>Arduino101</category><category>Classes</category></item><item><title>Arduino101 BLE Autonomous Rover</title><link>http://www.hackerspacetech.com/arduino101-ble-autonomous-rover.html</link><description>
+    </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Riewe</dc:creator><pubDate>Sat, 17 Dec 2016 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:www.hackerspacetech.com,2016-12-17:35-week-arduino-class-series-scheduled-for-2017.html</guid><category>Arduino</category><category>Arduino101</category><category>Classes</category></item><item><title>Arduino101 BLE Autonomous Rover</title><link>http://www.hackerspacetech.com/arduino101-ble-autonomous-rover.html</link><description>
         &lt;img src="images/ble-autonomous-rover/tmp_image_0.jpg" class="img-responsive img-rounded center-block" style="padding:30px"&gt; 
         &lt;h4&gt;About This Project:&lt;/h4&gt;
         &lt;p&gt;This project is an expansion of the Arudino101 BLE Rover, where I had provided some Seeedstudio Skeleton Bot 4WD versatile mechanical stage packs to a group directing a Maker encounter for Oakland, CA High School understudies. The purpose of this instructional exercise is to show how by including sensors you can make a stage to investigate how to program a self-ruling self driving vehicle.&lt;/p&gt;
